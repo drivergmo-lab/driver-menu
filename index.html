@@ -208,25 +208,6 @@
     }
 
 
-    .hero p {
-      position: relative;
-
-      z-index: 1;
-
-      margin:
-        10px 0 0;
-
-      color:
-        var(--muted);
-
-      font-size:
-        17px;
-
-      font-weight:
-        700;
-    }
-
-
     /* =========================================================
        メインカード
        ========================================================= */
@@ -253,7 +234,7 @@
 
 
     /* =========================================================
-       選択人物
+       現在状態
        ========================================================= */
 
     .driver-pill {
@@ -296,6 +277,9 @@
       color:
         #1676c7;
 
+      font-size:
+        16px;
+
       font-weight:
         900;
 
@@ -304,12 +288,24 @@
     }
 
 
-    .driver-pill small {
+    .driver-pill.done {
       color:
-        var(--muted);
+        #16804a;
 
-      font-weight:
-        700;
+      background:
+        #eefbf3;
+
+      border-color:
+        #ccefd8;
+    }
+
+
+    .driver-pill .status-icon {
+      font-size:
+        18px;
+
+      line-height:
+        1;
     }
 
 
@@ -770,12 +766,6 @@
     }
 
 
-    .field input::-webkit-inner-spin-button {
-      margin:
-        0;
-    }
-
-
     #nextDate {
       font-size:
         15px;
@@ -888,10 +878,6 @@
 
       cursor:
         pointer;
-
-      box-shadow:
-        0 10px 20px
-        rgba(45,136,216,.18);
     }
 
 
@@ -1037,12 +1023,6 @@
       }
 
 
-      .hero p {
-        font-size:
-          14px;
-      }
-
-
       .main-card {
         margin-top:
           10px;
@@ -1056,26 +1036,17 @@
 
 
       .driver-pill {
-        justify-content:
-          center;
-
-        width:
-          fit-content;
-
-        max-width:
-          100%;
+        min-height:
+          42px;
 
         margin:
           0 auto 10px;
 
         padding:
-          9px 14px;
+          8px 15px;
 
         font-size:
           15px;
-
-        text-align:
-          center;
       }
 
 
@@ -1172,39 +1143,9 @@
       }
 
 
-      .preview {
-        margin-top:
-          9px;
-
-        padding:
-          13px 15px;
-
-        font-size:
-          14px;
-
-        line-height:
-          1.7;
-      }
-
-
-      .send-btn {
-        margin-top:
-          7px;
-
-        padding:
-          14px 12px;
-
-        font-size:
-          20px;
-      }
-
-
       .history h3 {
         width:
           100%;
-
-        text-align:
-          center;
 
         font-size:
           20px;
@@ -1219,11 +1160,13 @@
 
 <body>
 
+
   <div class="page">
 
 
     <!-- =======================================================
          ヘッダー
+         ※「本人を自動判定して開きます」は削除
          ======================================================= -->
 
     <header class="hero">
@@ -1236,36 +1179,35 @@
         運転手MENU
       </h1>
 
-      <p>
-        本人を自動判定して開きます
-      </p>
-
     </header>
 
-
-    <!-- =======================================================
-         メイン
-         ======================================================= -->
 
     <main class="main-card">
 
 
       <!-- =====================================================
-           現在の人物
+           現在状況
+           ※「人物を選択してください」ではなく
+             現在状況を表示
            ===================================================== -->
 
-      <div class="driver-pill">
+      <div
+        id="statusPill"
+        class="driver-pill"
+      >
 
-        <span id="driverIcon">
-          🚙
+        <span
+          id="statusIcon"
+          class="status-icon"
+        >
+          ⏳
         </span>
 
-        <span id="driverName">
-          人物を選択してください
+        <span
+          id="statusText"
+        >
+          自動判別中...
         </span>
-
-        <small id="driverMeta">
-        </small>
 
       </div>
 
@@ -1304,7 +1246,9 @@
            出勤・退勤
            ===================================================== -->
 
-      <div class="attendance-buttons">
+      <div
+        class="attendance-buttons"
+      >
 
 
         <!-- 出勤 -->
@@ -1479,7 +1423,9 @@
           </svg>
 
 
-          <span class="attendance-text">
+          <span
+            class="attendance-text"
+          >
             出勤
           </span>
 
@@ -1562,12 +1508,41 @@
 
             <g fill="#fff59d">
 
-              <circle cx="30" cy="30" r="2" />
-              <circle cx="65" cy="65" r="1.5" />
-              <circle cx="105" cy="25" r="2.5" />
-              <circle cx="170" cy="35" r="2" />
-              <circle cx="235" cy="60" r="2.5" />
-              <circle cx="275" cy="30" r="2" />
+              <circle
+                cx="30"
+                cy="30"
+                r="2"
+              />
+
+              <circle
+                cx="65"
+                cy="65"
+                r="1.5"
+              />
+
+              <circle
+                cx="105"
+                cy="25"
+                r="2.5"
+              />
+
+              <circle
+                cx="170"
+                cy="35"
+                r="2"
+              />
+
+              <circle
+                cx="235"
+                cy="60"
+                r="2.5"
+              />
+
+              <circle
+                cx="275"
+                cy="30"
+                r="2"
+              />
 
             </g>
 
@@ -1715,7 +1690,9 @@
           </svg>
 
 
-          <span class="attendance-text">
+          <span
+            class="attendance-text"
+          >
             退勤
           </span>
 
@@ -1744,14 +1721,18 @@
         class="edit-panel"
       >
 
-        <h2 class="edit-title">
+        <h2
+          class="edit-title"
+        >
           内容修正
         </h2>
 
 
         <!-- 出勤 -->
 
-        <div id="inFields">
+        <div
+          id="inFields"
+        >
 
           <div
             class="field single-field"
@@ -1781,9 +1762,13 @@
           class="hidden"
         >
 
-          <div class="two-column">
+          <div
+            class="two-column"
+          >
 
-            <div class="field">
+            <div
+              class="field"
+            >
 
               <label
                 for="editClockInTime"
@@ -1800,7 +1785,9 @@
             </div>
 
 
-            <div class="field">
+            <div
+              class="field"
+            >
 
               <label
                 for="clockOutTime"
@@ -1819,9 +1806,13 @@
           </div>
 
 
-          <div class="two-column">
+          <div
+            class="two-column"
+          >
 
-            <div class="field">
+            <div
+              class="field"
+            >
 
               <label
                 for="nextDate"
@@ -1838,7 +1829,9 @@
             </div>
 
 
-            <div class="field">
+            <div
+              class="field"
+            >
 
               <label
                 for="nextTime"
@@ -1895,7 +1888,9 @@
           class="history-list"
         >
 
-          <li class="empty">
+          <li
+            class="empty"
+          >
             まだ履歴はありません
           </li>
 
@@ -1907,7 +1902,9 @@
     </main>
 
 
-    <footer class="footer">
+    <footer
+      class="footer"
+    >
       勤怠管理Bot
     </footer>
 
@@ -1917,7 +1914,7 @@
   <script>
 
     // ==========================================================
-    // ★★★★★ 設定はここだけ ★★★★★
+    // ★★★★★ 設定 ★★★★★
     // ==========================================================
 
     const API_URL =
@@ -1929,9 +1926,7 @@
 
 
     // ==========================================================
-    // 過去人物保存キー
-    //
-    // v1とv2両方読む
+    // 最近使った人物
     // ==========================================================
 
     const RECENT_KEYS = [
@@ -1953,19 +1948,19 @@
 
     const els = {
 
-      driverIcon:
+      statusPill:
         document.getElementById(
-          'driverIcon'
+          'statusPill'
         ),
 
-      driverName:
+      statusIcon:
         document.getElementById(
-          'driverName'
+          'statusIcon'
         ),
 
-      driverMeta:
+      statusText:
         document.getElementById(
-          'driverMeta'
+          'statusText'
         ),
 
       driverSelect:
@@ -2072,9 +2067,48 @@
 
 
     // ==========================================================
-    // 最近使った人物を読む
-    //
-    // v1 / v2 両対応
+    // 状態表示
+    // ==========================================================
+
+    function setStatus(
+      status
+    ) {
+
+      if (
+        status ===
+        'done'
+      ) {
+
+        els.statusIcon.textContent =
+          '✓';
+
+        els.statusText.textContent =
+          '完了';
+
+        els.statusPill.classList.add(
+          'done'
+        );
+
+
+      } else {
+
+        els.statusIcon.textContent =
+          '⏳';
+
+        els.statusText.textContent =
+          '自動判別中...';
+
+        els.statusPill.classList.remove(
+          'done'
+        );
+
+      }
+
+    }
+
+
+    // ==========================================================
+    // 過去人物取得
     // ==========================================================
 
     function getRecentDrivers() {
@@ -2132,7 +2166,9 @@
             const exists =
               merged.some(
 
-                function(existing) {
+                function(
+                  existing
+                ) {
 
                   return (
                     existing.driverKey ===
@@ -2155,7 +2191,9 @@
                   item.displayName
 
               });
+
             }
+
           }
 
 
@@ -2164,8 +2202,7 @@
         ) {
 
           console.warn(
-            '履歴読み込み失敗',
-            key,
+            '人物履歴読み込み失敗',
             error
           );
 
@@ -2182,7 +2219,7 @@
 
 
     // ==========================================================
-    // 最近使った人物を保存
+    // 過去人物保存
     // ==========================================================
 
     function saveRecentDriver(
@@ -2208,7 +2245,9 @@
         list =
           list.filter(
 
-            function(item) {
+            function(
+              item
+            ) {
 
               return (
                 item.driverKey !==
@@ -2238,12 +2277,6 @@
           );
 
 
-        /*
-         * v1に戻す
-         *
-         * これまでのコードとの互換性を維持
-         */
-
         localStorage.setItem(
 
           'driver_menu_recent_drivers_v1',
@@ -2259,18 +2292,17 @@
       ) {
 
         console.warn(
-          '履歴保存失敗',
+          '人物履歴保存失敗',
           error
         );
 
       }
+
     }
 
 
     // ==========================================================
-    // 過去人物を即表示
-    //
-    // ★ ネットワーク不要
+    // 起動直後の人物表示
     // ==========================================================
 
     function renderRecentDriversImmediately() {
@@ -2322,7 +2354,9 @@
 
       recent.forEach(
 
-        function(item) {
+        function(
+          item
+        ) {
 
           const option =
             document.createElement(
@@ -2354,8 +2388,7 @@
 
 
       /*
-       * 過去人物の1人目を
-       * 即座に選択
+       * 過去人物があれば最初の人物を即選択
        */
 
       const first =
@@ -2381,17 +2414,18 @@
         true;
 
 
-      updateDriverUI(
+      updateDriverState(
         state.driver
       );
+
     }
 
 
     // ==========================================================
-    // 人物UI更新
+    // 人物状態更新
     // ==========================================================
 
-    function updateDriverUI(
+    function updateDriverState(
       driver
     ) {
 
@@ -2399,27 +2433,6 @@
         return;
       }
 
-
-      els.driverIcon.textContent =
-        '🚙';
-
-
-      els.driverName.textContent =
-        driver.displayName +
-        ' さん';
-
-
-      els.driverMeta.textContent =
-        driver.driverKey
-          ? ' / ' +
-            driver.driverKey
-          : '';
-
-
-      /*
-       * ★ 人物が決まった瞬間に
-       * 出勤・退勤を有効化
-       */
 
       els.btnIn.disabled =
         false;
@@ -2435,11 +2448,17 @@
 
       els.driverSelect.value =
         driver.driverKey;
+
+
+      setStatus(
+        'done'
+      );
+
     }
 
 
     // ==========================================================
-    // 人物確定
+    // 人物選択
     // ==========================================================
 
     function selectDriver(
@@ -2465,14 +2484,15 @@
       );
 
 
-      updateDriverUI(
+      updateDriverState(
         driver
       );
+
     }
 
 
     // ==========================================================
-    // driverKeyから人物
+    // 人物キーから選択
     // ==========================================================
 
     function selectDriverByKey(
@@ -2485,14 +2505,12 @@
       }
 
 
-      /*
-       * サーバーから取得済みなら正式データ
-       */
-
       const serverDriver =
         state.drivers.find(
 
-          function(driver) {
+          function(
+            driver
+          ) {
 
             return (
               driver.driverKey ===
@@ -2518,11 +2536,6 @@
       }
 
 
-      /*
-       * まだサーバーから取れていない場合、
-       * 端末履歴から仮確定
-       */
-
       const recent =
         getRecentDrivers();
 
@@ -2530,7 +2543,9 @@
       const recentDriver =
         recent.find(
 
-          function(item) {
+          function(
+            item
+          ) {
 
             return (
               item.driverKey ===
@@ -2568,11 +2583,12 @@
 
 
       return false;
+
     }
 
 
     // ==========================================================
-    // 日付
+    // 日付・時間
     // ==========================================================
 
     function pad2(
@@ -2585,6 +2601,7 @@
         2,
         '0'
       );
+
     }
 
 
@@ -2605,6 +2622,7 @@
         )
 
       );
+
     }
 
 
@@ -2629,6 +2647,7 @@
         )
 
       );
+
     }
 
 
@@ -2649,6 +2668,7 @@
       ][
         date.getDay()
       ];
+
     }
 
 
@@ -2662,10 +2682,13 @@
         '/' +
         date.getDate() +
         '(' +
-        weekdayJa(date) +
+        weekdayJa(
+          date
+        ) +
         ')'
 
       );
+
     }
 
 
@@ -2682,6 +2705,7 @@
         date.getDate()
 
       );
+
     }
 
 
@@ -2701,7 +2725,7 @@
 
 
     // ==========================================================
-    // 次回出勤表現
+    // 次回出勤表示
     // ==========================================================
 
     function getNextAttendanceLabel(
@@ -2853,11 +2877,12 @@
 
 
       return '次回';
+
     }
 
 
     // ==========================================================
-    // API
+    // Apps Script API
     // ==========================================================
 
     function callServer(
@@ -2950,7 +2975,9 @@
 
           ).catch(
 
-            function(error) {
+            function(
+              error
+            ) {
 
               console.warn(
                 'API POST失敗',
@@ -2972,6 +2999,7 @@
         }
 
       );
+
     }
 
 
@@ -3039,6 +3067,7 @@
           script.parentNode.removeChild(
             script
           );
+
         }
 
 
@@ -3057,6 +3086,7 @@
           ] = undefined;
 
         }
+
       }
 
 
@@ -3142,6 +3172,7 @@
         resolve(
           response.data
         );
+
       };
 
 
@@ -3179,6 +3210,7 @@
             WAIT_MS
 
           );
+
         };
 
 
@@ -3205,13 +3237,12 @@
       document.body.appendChild(
         script
       );
+
     }
 
 
     // ==========================================================
     // driver_master一覧
-    //
-    // 通信失敗しても画面は止めない
     // ==========================================================
 
     async function loadDriverList() {
@@ -3238,10 +3269,6 @@
             : '';
 
 
-        /*
-         * 最新一覧を作る
-         */
-
         els.driverSelect.innerHTML =
           '';
 
@@ -3255,7 +3282,9 @@
 
             recent.map(
 
-              function(item) {
+              function(
+                item
+              ) {
 
                 return item.driverKey;
 
@@ -3269,7 +3298,9 @@
         const recentDrivers =
           state.drivers.filter(
 
-            function(driver) {
+            function(
+              driver
+            ) {
 
               return recentKeys.has(
                 driver.driverKey
@@ -3281,7 +3312,7 @@
 
 
         if (
-          recentDrivers.length > 0
+          recentDrivers.length
         ) {
 
           const recentGroup =
@@ -3296,7 +3327,9 @@
 
           recentDrivers.forEach(
 
-            function(driver) {
+            function(
+              driver
+            ) {
 
               const option =
                 document.createElement(
@@ -3325,13 +3358,16 @@
           els.driverSelect.appendChild(
             recentGroup
           );
+
         }
 
 
         const others =
           state.drivers.filter(
 
-            function(driver) {
+            function(
+              driver
+            ) {
 
               return !recentKeys.has(
                 driver.driverKey
@@ -3343,7 +3379,7 @@
 
 
         if (
-          others.length > 0
+          others.length
         ) {
 
           const otherGroup =
@@ -3358,7 +3394,9 @@
 
           others.forEach(
 
-            function(driver) {
+            function(
+              driver
+            ) {
 
               const option =
                 document.createElement(
@@ -3386,12 +3424,9 @@
           els.driverSelect.appendChild(
             otherGroup
           );
+
         }
 
-
-        /*
-         * 現在の人物を維持
-         */
 
         if (
           currentKey
@@ -3400,11 +3435,23 @@
           els.driverSelect.value =
             currentKey;
 
+        }
+
+
+        /*
+         * サーバー側で正式な人物情報へ更新
+         */
+
+        if (
+          currentKey
+        ) {
 
           const officialDriver =
             state.drivers.find(
 
-              function(driver) {
+              function(
+                driver
+              ) {
 
                 return (
                   driver.driverKey ===
@@ -3424,10 +3471,12 @@
               officialDriver;
 
 
-            updateDriverUI(
+            updateDriverState(
               officialDriver
             );
+
           }
+
         }
 
 
@@ -3435,69 +3484,30 @@
         error
       ) {
 
-        /*
-         * 重要:
-         * サーバー取得失敗でも画面を壊さない
-         *
-         * 過去人物がある場合はそのまま使用
-         */
-
         console.warn(
           'driver_master一覧取得失敗',
           error
         );
 
 
+        /*
+         * 通信失敗しても
+         * 既に手動人物が選ばれていれば
+         * そのまま使える
+         */
+
         if (
           state.driver
         ) {
 
-          updateDriverUI(
+          updateDriverState(
             state.driver
           );
+
         }
 
       }
 
-    }
-
-
-    // ==========================================================
-    // HTMLエスケープ
-    // ==========================================================
-
-    function escapeHtml(
-      value
-    ) {
-
-      return String(
-        value
-      )
-
-      .replace(
-        /&/g,
-        '&amp;'
-      )
-
-      .replace(
-        /</g,
-        '&lt;'
-      )
-
-      .replace(
-        />/g,
-        '&gt;'
-      )
-
-      .replace(
-        /"/g,
-        '&quot;'
-      )
-
-      .replace(
-        /'/g,
-        '&#39;'
-      );
     }
 
 
@@ -3523,19 +3533,21 @@
 
         state.history.map(
 
-          function(item) {
+          function(
+            item
+          ) {
 
             return (
 
               '<li>' +
 
-              escapeHtml(
+              String(
                 item.time
               ) +
 
               '　' +
 
-              escapeHtml(
+              String(
                 item.text
               ) +
 
@@ -3546,6 +3558,7 @@
           }
 
         ).join('');
+
     }
 
 
@@ -3575,6 +3588,7 @@
 
 
       renderHistory();
+
     }
 
 
@@ -3601,6 +3615,7 @@
         '本日もよろしくお願いいたします。'
 
       );
+
     }
 
 
@@ -3625,6 +3640,7 @@
             'T00:00:00'
 
           );
+
       }
 
 
@@ -3655,15 +3671,19 @@
         '稼働)' +
 
         (
+
           els.editClockInTime.value ||
           '00:00'
+
         ) +
 
         '-' +
 
         (
+
           els.clockOutTime.value ||
           '00:00'
+
         ) +
 
         '\n\n' +
@@ -3687,6 +3707,7 @@
         'もよろしくお願いいたします。'
 
       );
+
     }
 
 
@@ -3694,7 +3715,8 @@
 
       const message =
 
-        state.mode === 'in'
+        state.mode ===
+        'in'
 
           ? buildInMessage()
 
@@ -3711,11 +3733,12 @@
 
 
       return message;
+
     }
 
 
     // ==========================================================
-    // 出勤・退勤モード
+    // モード
     // ==========================================================
 
     function setMode(
@@ -3732,7 +3755,8 @@
 
 
       if (
-        mode === 'in'
+        mode ===
+        'in'
       ) {
 
         els.inFields.classList.remove(
@@ -3811,6 +3835,7 @@
 
 
       refreshPreview();
+
     }
 
 
@@ -3833,10 +3858,6 @@
         }
 
 
-        /*
-         * ★ その場で人物確定
-         */
-
         const selected =
           selectDriverByKey(
             driverKey,
@@ -3849,8 +3870,7 @@
         ) {
 
           /*
-           * 現在の一覧に無い場合でも
-           * 履歴をもう一度確認
+           * 履歴にある人物なら即使用
            */
 
           const recent =
@@ -3860,7 +3880,9 @@
           const recentDriver =
             recent.find(
 
-              function(item) {
+              function(
+                item
+              ) {
 
                 return (
                   item.driverKey ===
@@ -3891,7 +3913,9 @@
               true
 
             );
+
           }
+
         }
 
       }
@@ -3925,6 +3949,7 @@
         setMode(
           'in'
         );
+
       }
 
     );
@@ -3956,13 +3981,14 @@
         setMode(
           'out'
         );
+
       }
 
     );
 
 
     // ==========================================================
-    // 入力変更
+    // 時刻入力
     // ==========================================================
 
     els.clockInTime.addEventListener(
@@ -4072,12 +4098,14 @@
                 : '送信結果を確認できませんでした'
 
             );
+
           }
 
 
           const title =
 
-            state.mode === 'in'
+            state.mode ===
+            'in'
 
               ? '出勤'
 
@@ -4131,6 +4159,7 @@
 
           els.sendBtn.disabled =
             false;
+
         }
 
       }
@@ -4140,11 +4169,18 @@
 
     // ==========================================================
     // 自動本人判別
-    //
-    // UIとは完全に分離
     // ==========================================================
 
     async function autoDetectDriver() {
+
+      /*
+       * 起動直後は必ず「自動判別中」
+       */
+
+      setStatus(
+        'detecting'
+      );
+
 
       try {
 
@@ -4152,6 +4188,17 @@
           typeof liff ===
           'undefined'
         ) {
+
+          /*
+           * LIFF自体がない場合も
+           * 手動選択は利用可能
+           */
+
+          setStatus(
+            state.driver
+              ? 'done'
+              : 'detecting'
+          );
 
           return;
         }
@@ -4172,6 +4219,21 @@
           !liff.isLoggedIn()
         ) {
 
+          /*
+           * ログイン前でも手動選択は可能
+           */
+
+          setStatus(
+            state.driver
+              ? 'done'
+              : 'detecting'
+          );
+
+
+          /*
+           * ログインは裏で開始
+           */
+
           liff.login({
 
             redirectUri:
@@ -4189,6 +4251,14 @@
 
 
         if (!idToken) {
+
+          setStatus(
+            state.driver
+              ? 'done'
+              : 'detecting'
+          );
+
+
           return;
         }
 
@@ -4198,14 +4268,14 @@
 
 
         /*
-         * 一覧取得は裏で行う
+         * 最新人物一覧
          */
 
         loadDriverList();
 
 
         /*
-         * 自動本人判別
+         * 自動判別
          */
 
         const info =
@@ -4215,13 +4285,17 @@
 
 
         /*
-         * 手動選択済みなら
-         * 自動判別結果で上書きしない
+         * 手動選択済みなら上書きしない
          */
 
         if (
           state.userSelectedManually
         ) {
+
+          setStatus(
+            'done'
+          );
+
 
           return;
         }
@@ -4233,9 +4307,32 @@
         ) {
 
           selectDriverByKey(
+
             info.driverKey,
+
             false
+
           );
+
+
+          setStatus(
+            'done'
+          );
+
+
+        } else {
+
+          /*
+           * 自動判別できなくても
+           * 状態としては完了
+           *
+           * 手動選択は可能
+           */
+
+          setStatus(
+            'done'
+          );
+
         }
 
 
@@ -4243,14 +4340,20 @@
         error
       ) {
 
-        /*
-         * 自動判別失敗は
-         * 手動選択に影響させない
-         */
-
         console.warn(
           '自動本人判別失敗',
           error
+        );
+
+
+        /*
+         * エラーでも手動選択は可能
+         */
+
+        setStatus(
+          state.driver
+            ? 'done'
+            : 'detecting'
         );
 
       }
@@ -4269,16 +4372,23 @@
       function() {
 
         /*
-         * ★★★ 最重要 ★★★
-         *
-         * まず端末履歴だけで画面を作る
+         * まず自動判別中を表示
+         */
+
+        setStatus(
+          'detecting'
+        );
+
+
+        /*
+         * 過去人物を即表示
          */
 
         renderRecentDriversImmediately();
 
 
         /*
-         * その後、裏で自動判別
+         * その後、自動判別
          */
 
         setTimeout(
