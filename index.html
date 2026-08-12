@@ -305,7 +305,7 @@
     }
 
     .edit-title {
-      margin: 0 0 10px;
+      margin: 0 0 12px;
       color: #1676c7;
       font-size: 26px;
       font-weight: 900;
@@ -329,9 +329,10 @@
 
     .field label {
       display: block;
-      margin-bottom: 6px;
+      margin: 0 0 6px;
       color: #61798e;
       font-size: 13px;
+      line-height: 1.25;
       font-weight: 800;
     }
 
@@ -339,8 +340,8 @@
       display: block;
       width: 100%;
       min-width: 0;
-      height: 60px;
-      padding: 6px 8px;
+      height: 54px;
+      padding: 0 8px;
       border: 1px solid #cfe5f5;
       border-radius: 15px;
       outline: none;
@@ -348,8 +349,10 @@
       color: #0d2340;
       font-family: inherit;
       font-size: 24px;
+      line-height: 1;
       font-weight: 900;
       text-align: center;
+      appearance: auto;
     }
 
     .field input:focus {
@@ -359,9 +362,8 @@
     }
 
     /*
-      ★ 次回出勤日だけ文字を小さくする
-      2026/08/13 のような日付が
-      スマホでも切れないようにする
+      次回出勤日
+      長い日付でも横切れしないように少し小さくする
     */
     #nextDate {
       font-size: 18px;
@@ -513,16 +515,47 @@
       }
 
       .guide {
+        margin-top: 14px;
+        margin-bottom: 8px;
         font-size: 13px;
       }
 
-      .field input {
-        height: 54px;
-        font-size: 22px;
+      .edit-panel {
+        margin-top: 12px;
+        padding: 14px 12px;
+        border-radius: 20px;
+      }
+
+      .edit-title {
+        margin-bottom: 10px;
+        font-size: 25px;
+      }
+
+      .two-column {
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .field label {
+        margin-bottom: 4px;
+        font-size: 12px;
+        line-height: 1.15;
       }
 
       /*
-        ★ スマホでは次回出勤日をさらに少し小さく
+        スマホでは入力欄をさらにコンパクトにして
+        数字の下の無駄な余白を減らす
+      */
+      .field input {
+        height: 48px;
+        padding: 0 6px;
+        border-radius: 14px;
+        font-size: 21px;
+        line-height: 1;
+      }
+
+      /*
+        次回出勤日だけ日付が長いので少し小さめ
       */
       #nextDate {
         font-size: 16px;
@@ -531,7 +564,16 @@
         padding-right: 2px;
       }
 
+      .preview {
+        margin-top: 10px;
+        padding: 14px 16px;
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
       .send-btn {
+        margin-top: 8px;
+        padding: 15px 12px;
         font-size: 20px;
       }
     }
@@ -903,7 +945,7 @@
 
 
       <div class="guide">
-        出勤時刻・退勤時刻・次回出勤日時を確認して、必要なら修正してください。
+        出勤時間・退勤時間・次回出勤日時を確認して、必要なら修正してください。
       </div>
 
 
@@ -922,7 +964,7 @@
           <div class="field single-field">
 
             <label for="clockInTime">
-              出勤時刻
+              出勤時間
             </label>
 
             <input
@@ -945,7 +987,7 @@
             <div class="field">
 
               <label for="editClockInTime">
-                出勤時刻
+                出勤時間
               </label>
 
               <input
@@ -959,7 +1001,7 @@
             <div class="field">
 
               <label for="clockOutTime">
-                退勤時刻
+                退勤時間
               </label>
 
               <input
@@ -1179,7 +1221,7 @@
 
 
     // ============================================================
-    // ステータス表示
+    // ステータス
     // ============================================================
 
     function setStatus(
@@ -1326,13 +1368,7 @@
 
 
     // ============================================================
-    // ★ 次回出勤日の文章を自動判定
-    //
-    // 1日後     → 明日
-    // 2日後     → 明後日
-    // 次の週    → 来週
-    // 次の月    → 来月
-    // それ以外  → 次回
+    // 次回出勤日の文章を自動判定
     // ============================================================
 
     function getNextAttendanceLabel(
@@ -1368,10 +1404,6 @@
         );
 
 
-      // ----------------------------------------------------------
-      // 明日
-      // ----------------------------------------------------------
-
       if (
         diffDays === 1
       ) {
@@ -1380,10 +1412,6 @@
       }
 
 
-      // ----------------------------------------------------------
-      // 明後日
-      // ----------------------------------------------------------
-
       if (
         diffDays === 2
       ) {
@@ -1391,11 +1419,6 @@
         return '明後日';
       }
 
-
-      // ----------------------------------------------------------
-      // 来週判定
-      // 月曜日始まり
-      // ----------------------------------------------------------
 
       const todayDay =
         todayDate.getDay();
@@ -1466,10 +1489,6 @@
       }
 
 
-      // ----------------------------------------------------------
-      // 来月判定
-      // ----------------------------------------------------------
-
       const nextMonth =
         new Date(
           todayDate.getFullYear(),
@@ -1494,10 +1513,6 @@
         return '来月';
       }
 
-
-      // ----------------------------------------------------------
-      // その他
-      // ----------------------------------------------------------
 
       return '次回';
     }
@@ -1972,11 +1987,7 @@
 
 
     // ============================================================
-    // ★ 退勤メッセージ
-    //
-    // 次回出勤日に応じて
-    // 明日 / 明後日 / 来週 / 来月 / 次回
-    // を自動判定
+    // 退勤メッセージ
     // ============================================================
 
     function buildOutMessage() {
@@ -2102,7 +2113,7 @@
 
 
     // ============================================================
-    // 出勤・退勤モード
+    // モード
     // ============================================================
 
     function setMode(
@@ -2170,9 +2181,7 @@
 
 
         els.editClockInTime.value =
-
           state.lastStartTime ||
-
           toTimeInput(
             now
           );
@@ -2455,7 +2464,7 @@
 
 
     // ============================================================
-    // 出勤
+    // 出勤ボタン
     // ============================================================
 
     els.btnIn.addEventListener(
@@ -2479,7 +2488,7 @@
 
 
     // ============================================================
-    // 退勤
+    // 退勤ボタン
     // ============================================================
 
     els.btnOut.addEventListener(
