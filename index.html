@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
 
@@ -38,9 +37,18 @@
       padding: 0;
       width: 100%;
       min-height: 100%;
-      font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      font-family:
+        "Hiragino Sans",
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
       color: var(--text);
-      background: linear-gradient(180deg, var(--bg1), var(--bg2));
+      background:
+        linear-gradient(
+          180deg,
+          var(--bg1),
+          var(--bg2)
+        );
     }
 
     body {
@@ -217,7 +225,9 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 10px 22px rgba(39,96,139,.12);
-      transition: transform .12s ease, opacity .12s ease;
+      transition:
+        transform .12s ease,
+        opacity .12s ease;
       isolation: isolate;
     }
 
@@ -343,7 +353,8 @@
 
     .field input:focus {
       border-color: #63b4ea;
-      box-shadow: 0 0 0 3px rgba(99,180,234,.14);
+      box-shadow:
+        0 0 0 3px rgba(99,180,234,.14);
     }
 
     .single-field {
@@ -356,7 +367,12 @@
       padding: 16px 18px;
       border: 1px solid var(--line);
       border-radius: 18px;
-      background: linear-gradient(135deg, #f9fdff 0%, #eef8ff 100%);
+      background:
+        linear-gradient(
+          135deg,
+          #f9fdff 0%,
+          #eef8ff 100%
+        );
       color: #14446e;
       font-size: 15px;
       line-height: 1.75;
@@ -375,13 +391,19 @@
       padding: 17px 12px;
       border: 0;
       border-radius: 18px;
-      background: linear-gradient(180deg, #56baf0 0%, #2d88d8 100%);
+      background:
+        linear-gradient(
+          180deg,
+          #56baf0 0%,
+          #2d88d8 100%
+        );
       color: #ffffff;
       font-family: inherit;
       font-size: 24px;
       font-weight: 900;
       cursor: pointer;
-      box-shadow: 0 10px 20px rgba(45,136,216,.18);
+      box-shadow:
+        0 10px 20px rgba(45,136,216,.18);
     }
 
     .send-btn:disabled {
@@ -436,6 +458,7 @@
     }
 
     @media (max-width: 480px) {
+
       .page {
         padding: 12px 10px 20px;
       }
@@ -534,46 +557,163 @@
             preserveAspectRatio="none"
             aria-hidden="true"
           >
+
             <defs>
-              <linearGradient id="daySky" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#41b2ff"/>
-                <stop offset="60%" stop-color="#9ce0ff"/>
-                <stop offset="100%" stop-color="#dff6ff"/>
+
+              <linearGradient
+                id="daySky"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1"
+              >
+                <stop
+                  offset="0%"
+                  stop-color="#41b2ff"
+                />
+
+                <stop
+                  offset="60%"
+                  stop-color="#9ce0ff"
+                />
+
+                <stop
+                  offset="100%"
+                  stop-color="#dff6ff"
+                />
               </linearGradient>
 
-              <linearGradient id="hillGreen" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#73d151"/>
-                <stop offset="100%" stop-color="#388e3c"/>
+
+              <linearGradient
+                id="hillGreen"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1"
+              >
+                <stop
+                  offset="0%"
+                  stop-color="#73d151"
+                />
+
+                <stop
+                  offset="100%"
+                  stop-color="#388e3c"
+                />
               </linearGradient>
+
             </defs>
 
-            <rect width="320" height="220" fill="url(#daySky)"/>
 
-            <circle cx="65" cy="55" r="33" fill="#ffe082"/>
-            <circle cx="65" cy="55" r="48" fill="#ffb74d" opacity=".18"/>
+            <rect
+              width="320"
+              height="220"
+              fill="url(#daySky)"
+            />
 
-            <g fill="#ffffff" opacity=".94">
-              <ellipse cx="190" cy="70" rx="38" ry="16"/>
-              <ellipse cx="220" cy="80" rx="48" ry="18"/>
+
+            <circle
+              cx="65"
+              cy="55"
+              r="33"
+              fill="#ffe082"
+            />
+
+
+            <circle
+              cx="65"
+              cy="55"
+              r="48"
+              fill="#ffb74d"
+              opacity=".18"
+            />
+
+
+            <g
+              fill="#ffffff"
+              opacity=".94"
+            >
+
+              <ellipse
+                cx="190"
+                cy="70"
+                rx="38"
+                ry="16"
+              />
+
+              <ellipse
+                cx="220"
+                cy="80"
+                rx="48"
+                ry="18"
+              />
+
             </g>
 
+
             <path
-              d="M-10,160 C58,120 100,152 160,132 C210,116 240,150 330,124 L330,220 L-10,220 Z"
+              d="
+                M-10,160
+                C58,120 100,152 160,132
+                C210,116 240,150 330,124
+                L330,220
+                L-10,220
+                Z
+              "
               fill="url(#hillGreen)"
             />
 
+
             <path
-              d="M-10,182 C76,160 112,190 170,174 C224,160 252,184 330,164 L330,220 L-10,220 Z"
+              d="
+                M-10,182
+                C76,160 112,190 170,174
+                C224,160 252,184 330,164
+                L330,220
+                L-10,220
+                Z
+              "
               fill="#2e7d32"
               opacity=".75"
             />
 
-            <rect x="-10" y="190" width="340" height="30" fill="#eaf6ff" opacity=".95"/>
-            <rect x="-10" y="192" width="340" height="4" rx="2" fill="#ffffff"/>
-            <rect x="-10" y="200" width="340" height="4" rx="2" fill="#ffffff"/>
+
+            <rect
+              x="-10"
+              y="190"
+              width="340"
+              height="30"
+              fill="#eaf6ff"
+              opacity=".95"
+            />
+
+
+            <rect
+              x="-10"
+              y="192"
+              width="340"
+              height="4"
+              rx="2"
+              fill="#ffffff"
+            />
+
+
+            <rect
+              x="-10"
+              y="200"
+              width="340"
+              height="4"
+              rx="2"
+              fill="#ffffff"
+            />
+
           </svg>
 
-          <span class="attendance-text">出勤</span>
+
+          <span class="attendance-text">
+            出勤
+          </span>
+
         </button>
 
 
@@ -591,59 +731,249 @@
             preserveAspectRatio="none"
             aria-hidden="true"
           >
+
             <defs>
-              <linearGradient id="nightSky" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#0b1742"/>
-                <stop offset="60%" stop-color="#0f2b6b"/>
-                <stop offset="100%" stop-color="#183b8a"/>
+
+              <linearGradient
+                id="nightSky"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1"
+              >
+                <stop
+                  offset="0%"
+                  stop-color="#0b1742"
+                />
+
+                <stop
+                  offset="60%"
+                  stop-color="#0f2b6b"
+                />
+
+                <stop
+                  offset="100%"
+                  stop-color="#183b8a"
+                />
               </linearGradient>
 
-              <linearGradient id="buildingGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#091333"/>
-                <stop offset="100%" stop-color="#050a1c"/>
+
+              <linearGradient
+                id="buildingGrad"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1"
+              >
+                <stop
+                  offset="0%"
+                  stop-color="#091333"
+                />
+
+                <stop
+                  offset="100%"
+                  stop-color="#050a1c"
+                />
               </linearGradient>
+
             </defs>
 
-            <rect width="320" height="220" fill="url(#nightSky)"/>
+
+            <rect
+              width="320"
+              height="220"
+              fill="url(#nightSky)"
+            />
+
 
             <g fill="#fff59d">
-              <circle cx="30" cy="30" r="2"/>
-              <circle cx="65" cy="65" r="1.5"/>
-              <circle cx="105" cy="25" r="2.5"/>
-              <circle cx="170" cy="35" r="2"/>
-              <circle cx="235" cy="60" r="2.5"/>
-              <circle cx="275" cy="30" r="2"/>
+
+              <circle
+                cx="30"
+                cy="30"
+                r="2"
+              />
+
+              <circle
+                cx="65"
+                cy="65"
+                r="1.5"
+              />
+
+              <circle
+                cx="105"
+                cy="25"
+                r="2.5"
+              />
+
+              <circle
+                cx="170"
+                cy="35"
+                r="2"
+              />
+
+              <circle
+                cx="235"
+                cy="60"
+                r="2.5"
+              />
+
+              <circle
+                cx="275"
+                cy="30"
+                r="2"
+              />
+
             </g>
 
-            <circle cx="90" cy="72" r="32" fill="#ffee58"/>
-            <circle cx="106" cy="58" r="32" fill="#0b1742"/>
 
-            <g opacity=".4" fill="#1e3a78">
-              <ellipse cx="180" cy="80" rx="44" ry="16"/>
-              <ellipse cx="215" cy="90" rx="52" ry="18"/>
+            <circle
+              cx="90"
+              cy="72"
+              r="32"
+              fill="#ffee58"
+            />
+
+
+            <circle
+              cx="106"
+              cy="58"
+              r="32"
+              fill="#0b1742"
+            />
+
+
+            <g
+              opacity=".4"
+              fill="#1e3a78"
+            >
+
+              <ellipse
+                cx="180"
+                cy="80"
+                rx="44"
+                ry="16"
+              />
+
+              <ellipse
+                cx="215"
+                cy="90"
+                rx="52"
+                ry="18"
+              />
+
             </g>
+
 
             <g fill="url(#buildingGrad)">
-              <rect x="205" y="108" width="28" height="85"/>
-              <rect x="245" y="126" width="30" height="67"/>
-              <rect x="276" y="92" width="34" height="101"/>
+
+              <rect
+                x="205"
+                y="108"
+                width="28"
+                height="85"
+              />
+
+              <rect
+                x="245"
+                y="126"
+                width="30"
+                height="67"
+              />
+
+              <rect
+                x="276"
+                y="92"
+                width="34"
+                height="101"
+              />
+
             </g>
 
-            <g fill="#ffeb3b" opacity=".85">
-              <rect x="218" y="120" width="5" height="6"/>
-              <rect x="228" y="135" width="5" height="6"/>
-              <rect x="253" y="138" width="5" height="6"/>
-              <rect x="264" y="150" width="5" height="6"/>
-              <rect x="284" y="105" width="5" height="6"/>
-              <rect x="296" y="120" width="5" height="6"/>
+
+            <g
+              fill="#ffeb3b"
+              opacity=".85"
+            >
+
+              <rect
+                x="218"
+                y="120"
+                width="5"
+                height="6"
+              />
+
+              <rect
+                x="228"
+                y="135"
+                width="5"
+                height="6"
+              />
+
+              <rect
+                x="253"
+                y="138"
+                width="5"
+                height="6"
+              />
+
+              <rect
+                x="264"
+                y="150"
+                width="5"
+                height="6"
+              />
+
+              <rect
+                x="284"
+                y="105"
+                width="5"
+                height="6"
+              />
+
+              <rect
+                x="296"
+                y="120"
+                width="5"
+                height="6"
+              />
+
             </g>
 
-            <rect x="-10" y="190" width="340" height="30" fill="#0d1b3e"/>
-            <rect x="-10" y="192" width="340" height="4" fill="#6482ad"/>
-            <rect x="-10" y="200" width="340" height="4" fill="#6482ad"/>
+
+            <rect
+              x="-10"
+              y="190"
+              width="340"
+              height="30"
+              fill="#0d1b3e"
+            />
+
+
+            <rect
+              x="-10"
+              y="192"
+              width="340"
+              height="4"
+              fill="#6482ad"
+            />
+
+
+            <rect
+              x="-10"
+              y="200"
+              width="340"
+              height="4"
+              fill="#6482ad"
+            />
+
           </svg>
 
-          <span class="attendance-text">退勤</span>
+
+          <span class="attendance-text">
+            退勤
+          </span>
+
         </button>
 
       </div>
@@ -654,56 +984,109 @@
       </div>
 
 
-      <section id="editPanel" class="edit-panel">
+      <section
+        id="editPanel"
+        class="edit-panel"
+      >
 
-        <h2 class="edit-title">内容修正</h2>
+        <h2 class="edit-title">
+          内容修正
+        </h2>
 
 
         <div id="inFields">
 
           <div class="field single-field">
-            <label for="clockInTime">出勤時刻</label>
-            <input id="clockInTime" type="time">
-          </div>
 
-        </div>
+            <label for="clockInTime">
+              出勤時刻
+            </label>
 
-
-        <div id="outFields" class="hidden">
-
-          <div class="two-column">
-
-            <div class="field">
-              <label for="editClockInTime">出勤時刻</label>
-              <input id="editClockInTime" type="time">
-            </div>
-
-            <div class="field">
-              <label for="clockOutTime">退勤時刻</label>
-              <input id="clockOutTime" type="time">
-            </div>
-
-          </div>
-
-
-          <div class="two-column">
-
-            <div class="field">
-              <label for="nextDate">次回出勤日</label>
-              <input id="nextDate" type="date">
-            </div>
-
-            <div class="field">
-              <label for="nextTime">次回出勤時間</label>
-              <input id="nextTime" type="time">
-            </div>
+            <input
+              id="clockInTime"
+              type="time"
+            />
 
           </div>
 
         </div>
 
 
-        <div id="preview" class="preview"></div>
+        <div
+          id="outFields"
+          class="hidden"
+        >
+
+          <div class="two-column">
+
+            <div class="field">
+
+              <label for="editClockInTime">
+                出勤時刻
+              </label>
+
+              <input
+                id="editClockInTime"
+                type="time"
+              />
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="clockOutTime">
+                退勤時刻
+              </label>
+
+              <input
+                id="clockOutTime"
+                type="time"
+              />
+
+            </div>
+
+          </div>
+
+
+          <div class="two-column">
+
+            <div class="field">
+
+              <label for="nextDate">
+                次回出勤日
+              </label>
+
+              <input
+                id="nextDate"
+                type="date"
+              />
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="nextTime">
+                次回出勤時間
+              </label>
+
+              <input
+                id="nextTime"
+                type="time"
+              />
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="preview"
+          class="preview"
+        ></div>
 
 
         <button
@@ -720,10 +1103,20 @@
 
       <section class="history">
 
-        <h3>今日の履歴</h3>
+        <h3>
+          今日の履歴
+        </h3>
 
-        <ul id="historyList" class="history-list">
-          <li class="empty">まだ履歴はありません</li>
+
+        <ul
+          id="historyList"
+          class="history-list"
+        >
+
+          <li class="empty">
+            まだ履歴はありません
+          </li>
+
         </ul>
 
       </section>
@@ -744,9 +1137,10 @@
     // ★★★★★ 設定はここだけ ★★★★★
     // ============================================================
 
-    // Apps Script ウェブアプリURL
+    // 最新のApps Scriptウェブアプリ /exec URL
     const API_URL =
-      'https://script.google.com/macros/s/AKfycbySZ6bhrlPbyqqoI41PLzzj2rpARayPFIm04LiR7C4pfEaL__kkWblnkNnZIjfECrfW/exec';
+      'https://script.google.com/macros/s/AKfycbzcqyJl-AD5dt8iZ6wb17UxnbfgXuk0Y_RFDVi6-wxZdF9flYGFid0m1mXBSUJxzQdk/exec';
+
 
     // LINE LIFF ID
     const LIFF_ID =
@@ -754,62 +1148,96 @@
 
 
     // ============================================================
-    // ★★★★★ ここから下は基本的に変更しない ★★★★★
+    // ★★★★★ ここから下は変更しない ★★★★★
     // ============================================================
 
 
     const els = {
 
       driverIcon:
-        document.getElementById('driverIcon'),
+        document.getElementById(
+          'driverIcon'
+        ),
 
       driverName:
-        document.getElementById('driverName'),
+        document.getElementById(
+          'driverName'
+        ),
 
       driverMeta:
-        document.getElementById('driverMeta'),
+        document.getElementById(
+          'driverMeta'
+        ),
 
       status:
-        document.getElementById('status'),
+        document.getElementById(
+          'status'
+        ),
 
       btnIn:
-        document.getElementById('btnIn'),
+        document.getElementById(
+          'btnIn'
+        ),
 
       btnOut:
-        document.getElementById('btnOut'),
+        document.getElementById(
+          'btnOut'
+        ),
 
       editPanel:
-        document.getElementById('editPanel'),
+        document.getElementById(
+          'editPanel'
+        ),
 
       inFields:
-        document.getElementById('inFields'),
+        document.getElementById(
+          'inFields'
+        ),
 
       outFields:
-        document.getElementById('outFields'),
+        document.getElementById(
+          'outFields'
+        ),
 
       clockInTime:
-        document.getElementById('clockInTime'),
+        document.getElementById(
+          'clockInTime'
+        ),
 
       editClockInTime:
-        document.getElementById('editClockInTime'),
+        document.getElementById(
+          'editClockInTime'
+        ),
 
       clockOutTime:
-        document.getElementById('clockOutTime'),
+        document.getElementById(
+          'clockOutTime'
+        ),
 
       nextDate:
-        document.getElementById('nextDate'),
+        document.getElementById(
+          'nextDate'
+        ),
 
       nextTime:
-        document.getElementById('nextTime'),
+        document.getElementById(
+          'nextTime'
+        ),
 
       preview:
-        document.getElementById('preview'),
+        document.getElementById(
+          'preview'
+        ),
 
       sendBtn:
-        document.getElementById('sendBtn'),
+        document.getElementById(
+          'sendBtn'
+        ),
 
       historyList:
-        document.getElementById('historyList')
+        document.getElementById(
+          'historyList'
+        )
 
     };
 
@@ -833,52 +1261,85 @@
     // ステータス表示
     // ============================================================
 
-    function setStatus(text, type = '') {
+    function setStatus(
+      text,
+      type = ''
+    ) {
 
-      els.status.textContent = text;
+      els.status.textContent =
+        text;
 
-      els.status.className = 'status';
+
+      els.status.className =
+        'status';
+
 
       if (type) {
-        els.status.classList.add(type);
+
+        els.status.classList.add(
+          type
+        );
       }
     }
 
 
     // ============================================================
-    // 日時
+    // 日付・時刻
     // ============================================================
 
-    function pad2(value) {
-      return String(value).padStart(2, '0');
-    }
+    function pad2(
+      value
+    ) {
 
-
-    function toTimeInput(date) {
-
-      return (
-        pad2(date.getHours()) +
-        ':' +
-        pad2(date.getMinutes())
+      return String(
+        value
+      ).padStart(
+        2,
+        '0'
       );
     }
 
 
-    function toDateInput(date) {
+    function toTimeInput(
+      date
+    ) {
+
+      return (
+        pad2(
+          date.getHours()
+        ) +
+        ':' +
+        pad2(
+          date.getMinutes()
+        )
+      );
+    }
+
+
+    function toDateInput(
+      date
+    ) {
 
       return (
         date.getFullYear() +
         '-' +
-        pad2(date.getMonth() + 1) +
+        pad2(
+          date.getMonth() + 1
+        ) +
         '-' +
-        pad2(date.getDate())
+        pad2(
+          date.getDate()
+        )
       );
     }
 
 
-    function weekdayJa(date) {
+    function weekdayJa(
+      date
+    ) {
 
       return [
+
         '日',
         '月',
         '火',
@@ -886,251 +1347,451 @@
         '木',
         '金',
         '土'
-      ][date.getDay()];
+
+      ][
+        date.getDay()
+      ];
     }
 
 
-    function dateLabel(date) {
+    function dateLabel(
+      date
+    ) {
 
       return (
+
         (date.getMonth() + 1) +
         '/' +
         date.getDate() +
         '(' +
-        weekdayJa(date) +
+        weekdayJa(
+          date
+        ) +
         ')'
+
       );
     }
 
 
-    function dateSlash(date) {
+    function dateSlash(
+      date
+    ) {
 
       return (
+
         date.getFullYear() +
         '/' +
         (date.getMonth() + 1) +
         '/' +
         date.getDate()
+
       );
     }
 
 
     function tomorrowDate() {
 
-      const date = new Date();
+      const date =
+        new Date();
+
 
       date.setDate(
         date.getDate() + 1
       );
+
 
       return date;
     }
 
 
     // ============================================================
-    // Apps Script API
+    // 外部Apps Script API
+    //
+    // POST:
+    // GitHub Pages
+    //    ↓
+    // Apps Script doPost
+    //
+    // GET(JSONP):
+    // GitHub Pages
+    //    ↓
+    // Apps Script doGet?action=pollApi
+    //
+    // google.script.run は使わない
     // ============================================================
 
-    function callServer(action, data = {}) {
+    function callServer(
+      operation,
+      data = {}
+    ) {
 
-      return new Promise((resolve, reject) => {
+      return new Promise(
+        function(
+          resolve,
+          reject
+        ) {
 
-        const requestId =
-          'req_' +
-          Date.now() +
-          '_' +
-          Math.random()
-            .toString(36)
-            .slice(2);
-
-
-        const iframe =
-          document.createElement('iframe');
-
-
-        const iframeName =
-          'gas_api_' + requestId;
-
-
-        iframe.name = iframeName;
-        iframe.style.display = 'none';
-        iframe.setAttribute('aria-hidden', 'true');
+          const requestId =
+            'req_' +
+            Date.now() +
+            '_' +
+            Math.random()
+              .toString(36)
+              .slice(2);
 
 
-        document.body.appendChild(iframe);
+          const formData =
+            new URLSearchParams();
 
 
-        const form =
-          document.createElement('form');
+          formData.append(
+            'action',
+            'api'
+          );
 
 
-        form.method = 'POST';
-        form.action = API_URL;
-        form.target = iframeName;
-        form.style.display = 'none';
+          formData.append(
+            'operation',
+            operation
+          );
 
 
-        const fields = {
+          formData.append(
+            'requestId',
+            requestId
+          );
 
-          action: action,
 
-          requestId: requestId,
+          formData.append(
+            'idToken',
+            state.idToken ||
+            ''
+          );
 
-          idToken:
-            state.idToken || '',
 
-          message:
-            data.message || ''
+          if (
+            data.message
+          ) {
+
+            formData.append(
+              'message',
+              data.message
+            );
+          }
+
+
+          // ------------------------------------------------------
+          // POST実行
+          //
+          // no-corsなのでレスポンス本文は読みません。
+          // Apps Script側で処理してCacheServiceへ保存します。
+          // ------------------------------------------------------
+
+          fetch(
+            API_URL,
+            {
+
+              method:
+                'POST',
+
+              mode:
+                'no-cors',
+
+              headers: {
+
+                'Content-Type':
+                  'application/x-www-form-urlencoded;charset=UTF-8'
+
+              },
+
+              body:
+                formData.toString()
+
+            }
+          )
+          .catch(
+            function(error) {
+
+              console.error(
+                'POST error:',
+                error
+              );
+
+              // no-corsではここに来ない場合もあるので
+              // ここでは即rejectせずpollへ進ませる
+
+            }
+          );
+
+
+          // ------------------------------------------------------
+          // 結果をJSONPで取りに行く
+          // ------------------------------------------------------
+
+          pollApiResult_(
+            requestId,
+            resolve,
+            reject,
+            0
+          );
+
+        }
+      );
+    }
+
+
+    // ============================================================
+    // API結果ポーリング
+    // ============================================================
+
+    function pollApiResult_(
+      requestId,
+      resolve,
+      reject,
+      attempt
+    ) {
+
+      const MAX_ATTEMPTS =
+        40;
+
+
+      const WAIT_MS =
+        500;
+
+
+      if (
+        attempt >=
+        MAX_ATTEMPTS
+      ) {
+
+        reject(
+          new Error(
+            'Apps Script APIの応答が20秒以内に返りませんでした'
+          )
+        );
+
+        return;
+      }
+
+
+      const callbackName =
+        'gasCallback_' +
+        Date.now() +
+        '_' +
+        attempt;
+
+
+      let script =
+        document.createElement(
+          'script'
+        );
+
+
+      let finished =
+        false;
+
+
+      function cleanup() {
+
+        if (
+          script &&
+          script.parentNode
+        ) {
+
+          script.parentNode.removeChild(
+            script
+          );
+        }
+
+
+        try {
+
+          delete window[
+            callbackName
+          ];
+
+        } catch (
+          error
+        ) {
+
+          window[
+            callbackName
+          ] = undefined;
+        }
+
+      }
+
+
+      window[
+        callbackName
+      ] = function(
+        response
+      ) {
+
+        if (finished) {
+          return;
+        }
+
+
+        finished =
+          true;
+
+
+        cleanup();
+
+
+        // ------------------------------------------------------
+        // まだ処理中
+        // ------------------------------------------------------
+
+        if (
+          response &&
+          response.status ===
+          'pending'
+        ) {
+
+          setTimeout(
+            function() {
+
+              pollApiResult_(
+                requestId,
+                resolve,
+                reject,
+                attempt + 1
+              );
+
+            },
+            WAIT_MS
+          );
+
+
+          return;
+        }
+
+
+        // ------------------------------------------------------
+        // 処理中
+        // ------------------------------------------------------
+
+        if (
+          response &&
+          response.status ===
+          'processing'
+        ) {
+
+          setTimeout(
+            function() {
+
+              pollApiResult_(
+                requestId,
+                resolve,
+                reject,
+                attempt + 1
+              );
+
+            },
+            WAIT_MS
+          );
+
+
+          return;
+        }
+
+
+        // ------------------------------------------------------
+        // エラー
+        // ------------------------------------------------------
+
+        if (
+          !response ||
+          response.ok !== true
+        ) {
+
+          reject(
+
+            new Error(
+
+              response &&
+              response.error
+
+                ? response.error
+
+                : 'Apps Script APIエラー'
+
+            )
+
+          );
+
+          return;
+        }
+
+
+        // ------------------------------------------------------
+        // 成功
+        // ------------------------------------------------------
+
+        resolve(
+          response.data
+        );
+
+      };
+
+
+      script.onerror =
+        function() {
+
+          if (finished) {
+            return;
+          }
+
+
+          finished =
+            true;
+
+
+          cleanup();
+
+
+          setTimeout(
+            function() {
+
+              pollApiResult_(
+                requestId,
+                resolve,
+                reject,
+                attempt + 1
+              );
+
+            },
+            WAIT_MS
+          );
 
         };
 
 
-        Object.keys(fields).forEach(function(key) {
+      script.src =
 
-          const input =
-            document.createElement('input');
+        API_URL +
 
-          input.type = 'hidden';
+        '?action=pollApi' +
 
-          input.name = key;
+        '&requestId=' +
+        encodeURIComponent(
+          requestId
+        ) +
 
-          input.value =
-            String(fields[key] || '');
+        '&callback=' +
+        encodeURIComponent(
+          callbackName
+        ) +
 
-          form.appendChild(input);
-
-        });
-
-
-        document.body.appendChild(form);
-
-
-        let finished = false;
+        '&_=' +
+        Date.now();
 
 
-        function cleanup() {
-
-          window.removeEventListener(
-            'message',
-            onMessage
-          );
-
-
-          if (form.parentNode) {
-            form.parentNode.removeChild(form);
-          }
-
-
-          setTimeout(function() {
-
-            if (iframe.parentNode) {
-              iframe.parentNode.removeChild(iframe);
-            }
-
-          }, 100);
-
-        }
-
-
-        function fail(error) {
-
-          if (finished) {
-            return;
-          }
-
-          finished = true;
-
-          cleanup();
-
-          reject(error);
-        }
-
-
-        function onMessage(event) {
-
-          const response =
-            event.data || {};
-
-
-          if (
-            response.type !==
-            'gasApiResponse'
-          ) {
-            return;
-          }
-
-
-          if (
-            response.requestId !==
-            requestId
-          ) {
-            return;
-          }
-
-
-          if (
-            event.source !==
-            iframe.contentWindow
-          ) {
-            return;
-          }
-
-
-          if (finished) {
-            return;
-          }
-
-
-          finished = true;
-
-          cleanup();
-
-
-          const payload =
-            response.payload || {};
-
-
-          if (
-            payload.ok === true
-          ) {
-
-            resolve(
-              payload.data
-            );
-
-          } else {
-
-            reject(
-              new Error(
-                payload.error ||
-                'Apps Script APIエラー'
-              )
-            );
-          }
-
-        }
-
-
-        window.addEventListener(
-          'message',
-          onMessage
-        );
-
-
-        form.submit();
-
-
-        setTimeout(function() {
-
-          fail(
-            new Error(
-              'Apps Script APIの応答が20秒以内に返りませんでした'
-            )
-          );
-
-        }, 20000);
-
-      });
+      document.body.appendChild(
+        script
+      );
     }
 
 
@@ -1138,14 +1799,38 @@
     // HTMLエスケープ
     // ============================================================
 
-    function escapeHtml(value) {
+    function escapeHtml(
+      value
+    ) {
 
-      return String(value)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
+      return String(
+        value
+      )
+
+      .replace(
+        /&/g,
+        '&amp;'
+      )
+
+      .replace(
+        /</g,
+        '&lt;'
+      )
+
+      .replace(
+        />/g,
+        '&gt;'
+      )
+
+      .replace(
+        /"/g,
+        '&quot;'
+      )
+
+      .replace(
+        /'/g,
+        '&#39;'
+      );
     }
 
 
@@ -1155,7 +1840,9 @@
 
     function renderHistory() {
 
-      if (!state.history.length) {
+      if (
+        !state.history.length
+      ) {
 
         els.historyList.innerHTML =
           '<li class="empty">まだ履歴はありません</li>';
@@ -1166,35 +1853,58 @@
 
       els.historyList.innerHTML =
         state.history
-          .map(function(item) {
 
-            return (
-              '<li>' +
-              escapeHtml(item.time) +
-              '　' +
-              escapeHtml(item.text) +
-              '</li>'
-            );
+          .map(
+            function(item) {
 
-          })
+              return (
+
+                '<li>' +
+
+                escapeHtml(
+                  item.time
+                ) +
+
+                '　' +
+
+                escapeHtml(
+                  item.text
+                ) +
+
+                '</li>'
+
+              );
+
+            }
+          )
+
           .join('');
     }
 
 
-    function addHistory(text) {
+    function addHistory(
+      text
+    ) {
 
       state.history.unshift({
 
         time:
-          new Date().toLocaleString('ja-JP'),
+          new Date()
+            .toLocaleString(
+              'ja-JP'
+            ),
 
-        text: text
+        text:
+          text
 
       });
 
 
       state.history =
-        state.history.slice(0, 5);
+        state.history.slice(
+          0,
+          5
+        );
 
 
       renderHistory();
@@ -1212,10 +1922,17 @@
 
 
       return (
+
         'お疲れ様でございます。\n\n' +
-        dateLabel(today) +
+
+        dateLabel(
+          today
+        ) +
+
         '出勤いたしました。\n\n' +
+
         '本日もよろしくお願いいたします。'
+
       );
     }
 
@@ -1252,27 +1969,51 @@
 
 
       return (
+
         'お疲れ様でございます。\n\n' +
+
         '業務完了いたしました。\n\n' +
 
-        dateSlash(today) +
+        dateSlash(
+          today
+        ) +
+
         '\n' +
 
         '稼働)' +
-        (els.editClockInTime.value || '00:00') +
+
+        (
+          els.editClockInTime
+            .value ||
+          '00:00'
+        ) +
+
         '-' +
-        (els.clockOutTime.value || '00:00') +
+
+        (
+          els.clockOutTime
+            .value ||
+          '00:00'
+        ) +
+
         '\n\n' +
 
         '本日は失礼させていただきます。\n\n' +
 
         '出勤) ' +
-        dateLabel(next) +
+
+        dateLabel(
+          next
+        ) +
+
         ' ' +
+
         nextTime +
+
         '\n\n' +
 
         '明日もよろしくお願いいたします。'
+
       );
     }
 
@@ -1283,11 +2024,13 @@
 
     function refreshPreview() {
 
-      let message = '';
+      let message =
+        '';
 
 
       if (
-        state.mode === 'in'
+        state.mode ===
+        'in'
       ) {
 
         message =
@@ -1314,12 +2057,15 @@
 
 
     // ============================================================
-    // 出勤・退勤選択
+    // モード
     // ============================================================
 
-    function setMode(mode) {
+    function setMode(
+      mode
+    ) {
 
-      state.mode = mode;
+      state.mode =
+        mode;
 
 
       els.editPanel.classList.add(
@@ -1328,7 +2074,8 @@
 
 
       if (
-        mode === 'in'
+        mode ===
+        'in'
       ) {
 
         els.inFields.classList.remove(
@@ -1349,7 +2096,9 @@
 
 
         els.clockInTime.value =
-          toTimeInput(now);
+          toTimeInput(
+            now
+          );
 
 
         state.lastStartTime =
@@ -1376,12 +2125,18 @@
 
 
         els.editClockInTime.value =
+
           state.lastStartTime ||
-          toTimeInput(now);
+
+          toTimeInput(
+            now
+          );
 
 
         els.clockOutTime.value =
-          toTimeInput(now);
+          toTimeInput(
+            now
+          );
 
 
         els.nextDate.value =
@@ -1413,7 +2168,8 @@
       try {
 
         if (
-          typeof liff === 'undefined'
+          typeof liff ===
+          'undefined'
         ) {
 
           throw new Error(
@@ -1427,30 +2183,47 @@
         );
 
 
-        console.log(
-          'LIFF ID:',
-          LIFF_ID
-        );
+        const initPromise =
+          liff.init({
+
+            liffId:
+              LIFF_ID,
+
+            withLoginOnExternalBrowser:
+              true
+
+          });
 
 
-        console.log(
-          'Current URL:',
-          window.location.href
-        );
+        const timeoutPromise =
+          new Promise(
+            function(
+              _,
+              reject
+            ) {
+
+              setTimeout(
+                function() {
+
+                  reject(
+
+                    new Error(
+                      'LIFF初期化が10秒以内に完了しませんでした'
+                    )
+
+                  );
+
+                },
+                10000
+              );
+            }
+          );
 
 
-        console.log(
-          'API URL:',
-          API_URL
-        );
-
-
-        await liff.init({
-
-          liffId:
-            LIFF_ID
-
-        });
+        await Promise.race([
+          initPromise,
+          timeoutPromise
+        ]);
 
 
         setStatus(
@@ -1532,23 +2305,20 @@
             '未登録';
 
 
-          els.driverMeta.textContent =
-            info &&
-            info.lineUserId
-              ? ' / ' +
-                info.lineUserId
-              : '';
-
-
           setStatus(
-            'driver_masterにこのLINEユーザーが登録されていません。\n\n' +
+
             (
               info &&
               info.reason
+
                 ? info.reason
-                : ''
+
+                : 'driver_masterにこのLINEユーザーが登録されていません。'
+
             ),
+
             'error'
+
           );
 
 
@@ -1589,17 +2359,21 @@
 
 
         setStatus(
+
           '⑧ 本人確認完了：' +
           info.displayName +
           ' さん',
+
           'success'
+
         );
 
 
-      } catch (error) {
+      } catch (
+        error
+      ) {
 
         console.error(
-          'LIFF ERROR:',
           error
         );
 
@@ -1612,91 +2386,73 @@
           'LIFFエラー';
 
 
-        let message = '';
+        const message =
+          error &&
+          error.message
 
+            ? error.message
 
-        if (error) {
-
-          if (error.code) {
-
-            message +=
-              'code: ' +
-              error.code +
-              '\n';
-          }
-
-
-          if (error.message) {
-
-            message +=
-              'message: ' +
-              error.message +
-              '\n';
-          }
-
-
-          if (error.name) {
-
-            message +=
-              'name: ' +
-              error.name +
-              '\n';
-          }
-        }
-
-
-        if (!message) {
-
-          message =
-            String(error);
-        }
-
-
-        message +=
-          '\n\n現在URL:\n' +
-          window.location.href;
-
-
-        message +=
-          '\n\nLIFF ID:\n' +
-          LIFF_ID;
+            : String(
+                error
+              );
 
 
         setStatus(
-          'LIFF初期化エラー\n' +
+
+          '初期化エラー\n' +
           message,
+
           'error'
+
         );
       }
     }
 
 
     // ============================================================
-    // ボタン
+    // 出勤ボタン
     // ============================================================
 
     els.btnIn.addEventListener(
       'click',
       function() {
 
-        if (!state.driver) {
+        if (
+          !state.driver
+        ) {
+
           return;
         }
 
-        setMode('in');
+
+        setMode(
+          'in'
+        );
+
       }
     );
 
+
+    // ============================================================
+    // 退勤ボタン
+    // ============================================================
 
     els.btnOut.addEventListener(
       'click',
       function() {
 
-        if (!state.driver) {
+        if (
+          !state.driver
+        ) {
+
           return;
         }
 
-        setMode('out');
+
+        setMode(
+          'out'
+        );
+
       }
     );
 
@@ -1712,7 +2468,9 @@
         state.lastStartTime =
           els.clockInTime.value;
 
+
         refreshPreview();
+
       }
     );
 
@@ -1742,14 +2500,16 @@
 
 
     // ============================================================
-    // LINEグループへ送信
+    // 送信
     // ============================================================
 
     els.sendBtn.addEventListener(
       'click',
       async function() {
 
-        if (!state.driver) {
+        if (
+          !state.driver
+        ) {
 
           setStatus(
             '本人情報が取得できていません。',
@@ -1760,7 +2520,9 @@
         }
 
 
-        if (!state.idToken) {
+        if (
+          !state.idToken
+        ) {
 
           setStatus(
             'LINE認証情報が取得できていません。',
@@ -1771,7 +2533,9 @@
         }
 
 
-        if (!state.mode) {
+        if (
+          !state.mode
+        ) {
 
           setStatus(
             '出勤または退勤を選択してください。',
@@ -1799,11 +2563,14 @@
 
           const result =
             await callServer(
+
               'sendAttendance',
+
               {
                 message:
                   message
               }
+
             );
 
 
@@ -1819,8 +2586,12 @@
 
 
           const title =
-            state.mode === 'in'
+
+            state.mode ===
+            'in'
+
               ? '出勤'
+
               : '退勤';
 
 
@@ -1831,28 +2602,53 @@
 
 
           setStatus(
+
             result.displayName +
             'さんの勤怠グループへ送信しました。',
+
             'success'
+
           );
 
 
-        } catch (error) {
+          // 送信後に編集欄を閉じる
+          els.editPanel.classList.remove(
+            'show'
+          );
 
-          console.error(error);
+
+          state.mode =
+            null;
+
+
+        } catch (
+          error
+        ) {
+
+          console.error(
+            error
+          );
 
 
           const errorMessage =
+
             error &&
             error.message
+
               ? error.message
-              : String(error);
+
+              : String(
+                  error
+                );
 
 
           setStatus(
+
             '送信失敗\n' +
             errorMessage,
+
             'error'
+
           );
 
 
@@ -1860,7 +2656,9 @@
 
           els.sendBtn.disabled =
             false;
+
         }
+
       }
     );
 
@@ -1879,11 +2677,11 @@
 
 
         resolveDriver();
+
       }
     );
 
   </script>
 
 </body>
-
 </html>
