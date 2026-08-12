@@ -219,7 +219,7 @@
 
 
     /* =========================================================
-       現在選択中の人物
+       選択人物
        ========================================================= */
 
     .driver-pill {
@@ -539,12 +539,7 @@
     }
 
 
-    /* =========================================================
-       スマホの日時入力の余白対策
-       ========================================================= */
-
     .field input {
-
       display: block;
 
       width: 100%;
@@ -586,9 +581,7 @@
 
 
     .field input::-webkit-date-and-time-value {
-
       margin: 0;
-
       padding: 0;
 
       height: auto;
@@ -605,7 +598,6 @@
 
 
     .field input:focus {
-
       border-color:
         #63b4ea;
 
@@ -616,7 +608,6 @@
 
 
     #nextDate {
-
       font-size: 15px;
 
       letter-spacing: -.7px;
@@ -673,7 +664,6 @@
        ========================================================= */
 
     .send-btn {
-
       display: block;
 
       width: 100%;
@@ -709,7 +699,6 @@
 
 
     .send-btn:disabled {
-
       opacity: .55;
 
       cursor:
@@ -722,12 +711,9 @@
        ========================================================= */
 
     .history {
+      margin-top: 18px;
 
-      margin-top:
-        18px;
-
-      padding-top:
-        14px;
+      padding-top: 14px;
 
       border-top:
         1px solid #e2eef6;
@@ -735,7 +721,6 @@
 
 
     .history h3 {
-
       margin:
         0 0 10px;
 
@@ -754,14 +739,12 @@
 
 
     .history h3::before {
-
       content:
         "🕘 ";
     }
 
 
     .history-list {
-
       list-style:
         none;
 
@@ -774,7 +757,6 @@
 
 
     .history-list li {
-
       padding:
         9px 0;
 
@@ -793,7 +775,6 @@
 
 
     .history-list .empty {
-
       color:
         #7a90a3;
 
@@ -803,7 +784,6 @@
 
 
     .footer {
-
       padding:
         14px 10px 4px;
 
@@ -831,14 +811,12 @@
     @media (max-width: 480px) {
 
       .page {
-
         padding:
           12px 10px 20px;
       }
 
 
       .hero {
-
         padding:
           22px 12px 18px;
 
@@ -848,28 +826,24 @@
 
 
       .hero-car {
-
         font-size:
           48px;
       }
 
 
       .hero h1 {
-
         font-size:
           32px;
       }
 
 
       .hero p {
-
         font-size:
           14px;
       }
 
 
       .main-card {
-
         margin-top:
           10px;
 
@@ -882,7 +856,6 @@
 
 
       .driver-pill {
-
         justify-content:
           center;
 
@@ -907,7 +880,6 @@
 
 
       .driver-select {
-
         height:
           44px;
 
@@ -917,14 +889,12 @@
 
 
       .attendance-buttons {
-
         gap:
           8px;
       }
 
 
       .attendance-btn {
-
         height:
           126px;
 
@@ -934,14 +904,12 @@
 
 
       .attendance-text {
-
         font-size:
           30px;
       }
 
 
       .guide {
-
         margin-top:
           14px;
 
@@ -954,7 +922,6 @@
 
 
       .edit-panel {
-
         margin-top:
           12px;
 
@@ -967,20 +934,15 @@
 
 
       .edit-title {
-
         margin-bottom:
           9px;
 
         font-size:
           25px;
-
-        text-align:
-          center;
       }
 
 
       .field input {
-
         height:
           40px;
 
@@ -996,7 +958,6 @@
 
 
       .field input::-webkit-date-and-time-value {
-
         margin:
           0;
 
@@ -1012,7 +973,6 @@
 
 
       .preview {
-
         margin-top:
           9px;
 
@@ -1028,7 +988,6 @@
 
 
       .send-btn {
-
         margin-top:
           7px;
 
@@ -1041,7 +1000,6 @@
 
 
       .history h3 {
-
         width:
           100%;
 
@@ -1094,7 +1052,7 @@
 
 
       <!-- =====================================================
-           現在選択中の人物
+           選択中人物
            ===================================================== -->
 
       <div class="driver-pill">
@@ -1150,8 +1108,6 @@
 
       <div class="attendance-buttons">
 
-
-        <!-- 出勤 -->
 
         <button
           id="btnIn"
@@ -1329,8 +1285,6 @@
 
         </button>
 
-
-        <!-- 退勤 -->
 
         <button
           id="btnOut"
@@ -1514,47 +1468,12 @@
               opacity=".85"
             >
 
-              <rect
-                x="218"
-                y="120"
-                width="5"
-                height="6"
-              />
-
-              <rect
-                x="228"
-                y="135"
-                width="5"
-                height="6"
-              />
-
-              <rect
-                x="253"
-                y="138"
-                width="5"
-                height="6"
-              />
-
-              <rect
-                x="264"
-                y="150"
-                width="5"
-                height="6"
-              />
-
-              <rect
-                x="284"
-                y="105"
-                width="5"
-                height="6"
-              />
-
-              <rect
-                x="296"
-                y="120"
-                width="5"
-                height="6"
-              />
+              <rect x="218" y="120" width="5" height="6" />
+              <rect x="228" y="135" width="5" height="6" />
+              <rect x="253" y="138" width="5" height="6" />
+              <rect x="264" y="150" width="5" height="6" />
+              <rect x="284" y="105" width="5" height="6" />
+              <rect x="296" y="120" width="5" height="6" />
 
             </g>
 
@@ -1622,8 +1541,6 @@
         </h2>
 
 
-        <!-- 出勤 -->
-
         <div id="inFields">
 
           <div class="field single-field">
@@ -1644,8 +1561,6 @@
 
         </div>
 
-
-        <!-- 退勤 -->
 
         <div
           id="outFields"
@@ -1730,15 +1645,11 @@
         </div>
 
 
-        <!-- プレビュー -->
-
         <div
           id="preview"
           class="preview"
         ></div>
 
-
-        <!-- 送信 -->
 
         <button
           id="sendBtn"
@@ -1790,7 +1701,7 @@
   <script>
 
     // ==========================================================
-    // ★★★★★ 設定はここだけ ★★★★★
+    // 設定
     // ==========================================================
 
     const API_URL =
@@ -1801,12 +1712,8 @@
       '2011011273-HIdBF1sM';
 
 
-    // ==========================================================
-    // 最近使った人物の保存キー
-    // ==========================================================
-
     const RECENT_DRIVERS_KEY =
-      'driver_menu_recent_drivers_v1';
+      'driver_menu_recent_drivers_v2';
 
 
     const MAX_RECENT_DRIVERS =
@@ -1944,7 +1851,7 @@
 
 
     // ==========================================================
-    // 最近使った人物を取得
+    // 過去に使った人物
     // ==========================================================
 
     function getRecentDrivers() {
@@ -1958,6 +1865,7 @@
 
 
         if (!raw) {
+
           return [];
         }
 
@@ -1976,43 +1884,34 @@
         }
 
 
-        return list
-          .filter(
-            function(item) {
+        return list.filter(
 
-              return (
+          function(item) {
 
-                item &&
-                item.driverKey &&
-                item.displayName
+            return (
 
-              );
-            }
-          )
-          .slice(
-            0,
-            MAX_RECENT_DRIVERS
-          );
+              item &&
+              item.driverKey &&
+              item.displayName
+
+            );
+
+          }
+
+        ).slice(
+          0,
+          MAX_RECENT_DRIVERS
+        );
 
 
       } catch (
         error
       ) {
 
-        console.warn(
-          '最近使った人物を取得できません:',
-          error
-        );
-
-
         return [];
       }
     }
 
-
-    // ==========================================================
-    // 最近使った人物を保存
-    // ==========================================================
 
     function saveRecentDriver(
       driver
@@ -2077,13 +1976,11 @@
 
         );
 
-
       } catch (
         error
       ) {
 
         console.warn(
-          '最近使った人物を保存できません:',
           error
         );
       }
@@ -2091,10 +1988,7 @@
 
 
     // ==========================================================
-    // 起動直後の人物選択欄
-    //
-    // ネットワークを待たず、
-    // 過去に使った人物を即表示する
+    // 過去人物を即表示
     // ==========================================================
 
     function renderRecentDriversImmediately() {
@@ -2134,23 +2028,14 @@
       }
 
 
-      const recentHeader =
+      const group =
         document.createElement(
-          'option'
+          'optgroup'
         );
 
 
-      recentHeader.value =
-        '';
-
-
-      recentHeader.textContent =
+      group.label =
         '最近使った人物';
-
-
-      els.driverSelect.appendChild(
-        recentHeader
-      );
 
 
       recent.forEach(
@@ -2172,7 +2057,7 @@
             item.displayName;
 
 
-          els.driverSelect.appendChild(
+          group.appendChild(
             option
           );
 
@@ -2180,31 +2065,238 @@
 
       );
 
+
+      els.driverSelect.appendChild(
+        group
+      );
+
+
+      /*
+       * 最初の人物を実際に選択状態にする
+       */
+
+      els.driverSelect.value =
+        recent[0].driverKey;
+
+
+      /*
+       * ここが今回の重要修正
+       *
+       * 過去人物を表示した時点で
+       * state.driverにも入れる
+       */
+
+      state.driver = {
+
+        driverKey:
+          recent[0].driverKey,
+
+        displayName:
+          recent[0].displayName
+
+      };
+
+
+      state.manualSelectedDriverKey =
+        recent[0].driverKey;
+
+
+      state.userSelectedManually =
+        true;
+
+
+      updateDriverUI(
+        state.driver
+      );
     }
 
 
     // ==========================================================
-    // ステータス関連
-    //
-    // 画面には表示しない
+    // 人物UI更新
     // ==========================================================
 
-    function setStatus(
-      text,
-      type = ''
+    function updateDriverUI(
+      driver
     ) {
-      // 画面には表示しません
-      // 自動判別は裏で実行します
-    }
+
+      if (!driver) {
+
+        return;
+      }
 
 
-    function hideStatus() {
-      // 何もしません
+      els.driverIcon.textContent =
+        '🚙';
+
+
+      els.driverName.textContent =
+        driver.displayName +
+        ' さん';
+
+
+      els.driverMeta.textContent =
+        driver.driverKey
+          ? ' / ' +
+            driver.driverKey
+          : '';
+
+
+      /*
+       * 人物が決まったら即ボタン有効
+       */
+
+      els.btnIn.disabled =
+        false;
+
+
+      els.btnOut.disabled =
+        false;
+
+
+      els.sendBtn.disabled =
+        false;
+
+
+      els.driverSelect.value =
+        driver.driverKey;
     }
 
 
     // ==========================================================
-    // 日付・時間
+    // 人物確定
+    // ==========================================================
+
+    function applyDriver(
+      driver,
+      manual
+    ) {
+
+      if (!driver) {
+
+        return;
+      }
+
+
+      state.driver =
+        driver;
+
+
+      state.manualSelectedDriverKey =
+        driver.driverKey;
+
+
+      state.userSelectedManually =
+        manual;
+
+
+      saveRecentDriver(
+        driver
+      );
+
+
+      updateDriverUI(
+        driver
+      );
+    }
+
+
+    // ==========================================================
+    // driverKeyから人物取得
+    // ==========================================================
+
+    function applyDriverByKey(
+      driverKey,
+      manual
+    ) {
+
+      if (!driverKey) {
+
+        return;
+      }
+
+
+      /*
+       * 最新一覧に存在する場合
+       */
+
+      let driver =
+        state.drivers.find(
+
+          function(item) {
+
+            return (
+              item.driverKey ===
+              driverKey
+            );
+
+          }
+
+        );
+
+
+      if (
+        driver
+      ) {
+
+        applyDriver(
+          driver,
+          manual
+        );
+
+
+        return;
+      }
+
+
+      /*
+       * まだサーバー一覧取得前なら
+       * localStorageの人物を使う
+       */
+
+      const recent =
+        getRecentDrivers();
+
+
+      const recentDriver =
+        recent.find(
+
+          function(item) {
+
+            return (
+              item.driverKey ===
+              driverKey
+            );
+
+          }
+
+        );
+
+
+      if (
+        recentDriver
+      ) {
+
+        driver = {
+
+          driverKey:
+            recentDriver.driverKey,
+
+          displayName:
+            recentDriver.displayName
+
+        };
+
+
+        applyDriver(
+          driver,
+          manual
+        );
+      }
+    }
+
+
+    // ==========================================================
+    // 日付
     // ==========================================================
 
     function pad2(
@@ -2315,13 +2407,9 @@
       return (
 
         date.getFullYear() +
-
         '/' +
-
         (date.getMonth() + 1) +
-
         '/' +
-
         date.getDate()
 
       );
@@ -2344,7 +2432,7 @@
 
 
     // ==========================================================
-    // 次回出勤日の表現
+    // 次回出勤表現
     // ==========================================================
 
     function getNextAttendanceLabel(
@@ -2372,21 +2460,15 @@
         );
 
 
-      const diffMs =
-        targetDate.getTime() -
-        todayDate.getTime();
-
-
       const diffDays =
         Math.round(
 
-          diffMs /
-
           (
-            1000 *
-            60 *
-            60 *
-            24
+            targetDate.getTime() -
+            todayDate.getTime()
+          ) /
+          (
+            1000 * 60 * 60 * 24
           )
 
         );
@@ -2408,24 +2490,16 @@
       }
 
 
-      const todayDay =
-        todayDate.getDay();
-
-
-      const targetDay =
-        targetDate.getDay();
-
-
       const todayWeekday =
-        todayDay === 0
+        todayDate.getDay() === 0
           ? 7
-          : todayDay;
+          : todayDate.getDay();
 
 
       const targetWeekday =
-        targetDay === 0
+        targetDate.getDay() === 0
           ? 7
-          : targetDay;
+          : targetDate.getDay();
 
 
       const thisWeekMonday =
@@ -2451,10 +2525,7 @@
 
 
       nextWeekMonday.setDate(
-
-        thisWeekMonday.getDate() +
-        7
-
+        thisWeekMonday.getDate() + 7
       );
 
 
@@ -2517,7 +2588,7 @@
 
 
     // ==========================================================
-    // Apps Script API
+    // API
     // ==========================================================
 
     function callServer(
@@ -2531,7 +2602,6 @@
           resolve,
           reject
         ) {
-
 
           const requestId =
             'req_' +
@@ -2571,26 +2641,18 @@
           );
 
 
-          if (
-            data.message
-          ) {
-
-            formData.append(
-              'message',
-              data.message
-            );
-          }
+          formData.append(
+            'message',
+            data.message ||
+            ''
+          );
 
 
-          if (
-            data.selectedDriverKey
-          ) {
-
-            formData.append(
-              'selectedDriverKey',
-              data.selectedDriverKey
-            );
-          }
+          formData.append(
+            'selectedDriverKey',
+            data.selectedDriverKey ||
+            ''
+          );
 
 
           fetch(
@@ -2617,14 +2679,11 @@
 
             }
 
-          )
-
-          .catch(
+          ).catch(
 
             function(error) {
 
               console.error(
-                'POST error:',
                 error
               );
 
@@ -2646,10 +2705,6 @@
     }
 
 
-    // ==========================================================
-    // API結果取得
-    // ==========================================================
-
     function pollApiResult_(
       requestId,
       resolve,
@@ -2666,7 +2721,8 @@
 
 
       if (
-        attempt >= MAX_ATTEMPTS
+        attempt >=
+        MAX_ATTEMPTS
       ) {
 
         reject(
@@ -2689,7 +2745,7 @@
         attempt;
 
 
-      let script =
+      const script =
         document.createElement(
           'script'
         );
@@ -2702,7 +2758,6 @@
       function cleanup() {
 
         if (
-          script &&
           script.parentNode
         ) {
 
@@ -2735,7 +2790,6 @@
         response
       ) {
 
-
         if (
           finished
         ) {
@@ -2754,11 +2808,8 @@
         if (
           response &&
           (
-            response.status ===
-              'pending' ||
-
-            response.status ===
-              'processing'
+            response.status === 'pending' ||
+            response.status === 'processing'
           )
         ) {
 
@@ -2812,7 +2863,6 @@
         resolve(
           response.data
         );
-
       };
 
 
@@ -2850,7 +2900,6 @@
             WAIT_MS
 
           );
-
         };
 
 
@@ -2881,7 +2930,7 @@
 
 
     // ==========================================================
-    // サーバーから人物一覧取得
+    // driver_master一覧
     // ==========================================================
 
     async function loadDriverList() {
@@ -2900,56 +2949,10 @@
           : [];
 
 
-      /*
-       * 最近使った人物を先頭にする
-       */
-
-      const recent =
-        getRecentDrivers();
-
-
-      const recentKeys =
-        new Set(
-
-          recent.map(
-
-            function(item) {
-
-              return item.driverKey;
-
-            }
-
-          )
-
-        );
-
-
-      const recentDrivers =
-        state.drivers.filter(
-
-          function(driver) {
-
-            return recentKeys.has(
-              driver.driverKey
-            );
-
-          }
-
-        );
-
-
-      const otherDrivers =
-        state.drivers.filter(
-
-          function(driver) {
-
-            return !recentKeys.has(
-              driver.driverKey
-            );
-
-          }
-
-        );
+      const currentKey =
+        state.driver
+          ? state.driver.driverKey
+          : '';
 
 
       els.driverSelect.innerHTML =
@@ -2960,17 +2963,44 @@
        * 最近使った人物
        */
 
+      const recent =
+        getRecentDrivers();
+
+
+      const recentDrivers =
+        state.drivers.filter(
+
+          function(driver) {
+
+            return recent.some(
+
+              function(item) {
+
+                return (
+                  item.driverKey ===
+                  driver.driverKey
+                );
+
+              }
+
+            );
+
+          }
+
+        );
+
+
       if (
         recentDrivers.length > 0
       ) {
 
-        const group =
+        const recentGroup =
           document.createElement(
             'optgroup'
           );
 
 
-        group.label =
+        recentGroup.label =
           '最近使った人物';
 
 
@@ -2993,7 +3023,7 @@
               driver.displayName;
 
 
-            group.appendChild(
+            recentGroup.appendChild(
               option
             );
 
@@ -3003,30 +3033,53 @@
 
 
         els.driverSelect.appendChild(
-          group
+          recentGroup
         );
       }
 
 
       /*
-       * その他の人物
+       * その他
        */
 
+      const others =
+        state.drivers.filter(
+
+          function(driver) {
+
+            return !recent.some(
+
+              function(item) {
+
+                return (
+                  item.driverKey ===
+                  driver.driverKey
+                );
+
+              }
+
+            );
+
+          }
+
+        );
+
+
       if (
-        otherDrivers.length > 0
+        others.length > 0
       ) {
 
-        const group =
+        const otherGroup =
           document.createElement(
             'optgroup'
           );
 
 
-        group.label =
+        otherGroup.label =
           'その他の人物';
 
 
-        otherDrivers.forEach(
+        others.forEach(
 
           function(driver) {
 
@@ -3044,7 +3097,7 @@
               driver.displayName;
 
 
-            group.appendChild(
+            otherGroup.appendChild(
               option
             );
 
@@ -3054,152 +3107,42 @@
 
 
         els.driverSelect.appendChild(
-          group
+          otherGroup
         );
       }
 
 
       /*
-       * 過去履歴が何もない場合
+       * 現在選択中の人物を維持
        */
 
       if (
-        state.drivers.length === 0
+        currentKey
       ) {
 
-        const option =
-          document.createElement(
-            'option'
-          );
+        els.driverSelect.value =
+          currentKey;
 
-
-        option.value =
-          '';
-
-
-        option.textContent =
-          '人物が登録されていません';
-
-
-        els.driverSelect.appendChild(
-          option
-        );
       }
-    }
-
-
-    // ==========================================================
-    // 人物を適用
-    // ==========================================================
-
-    function applyDriver(
-      driver,
-      manual
-    ) {
-
-      if (!driver) {
-
-        return;
-      }
-
-
-      state.driver =
-        driver;
-
-
-      state.manualSelectedDriverKey =
-        manual
-          ? driver.driverKey
-          : '';
-
-
-      state.userSelectedManually =
-        manual;
-
-
-      els.driverIcon.textContent =
-        '🚙';
-
-
-      els.driverName.textContent =
-        driver.displayName +
-        ' さん';
-
-
-      els.driverMeta.textContent =
-        driver.driverKey
-          ? ' / ' +
-            driver.driverKey
-          : '';
-
-
-      els.btnIn.disabled =
-        false;
-
-
-      els.btnOut.disabled =
-        false;
-
-
-      els.sendBtn.disabled =
-        false;
-
-
-      els.driverSelect.value =
-        driver.driverKey;
 
 
       /*
-       * 最近使った人物として保存
+       * driver_masterに存在する
+       * 正式な情報に差し替える
        */
 
-      saveRecentDriver(
-        driver
-      );
-    }
+      if (
+        currentKey
+      ) {
 
+        const officialDriver =
+          state.drivers.find(
 
-    function applyDriverByKey(
-      driverKey,
-      manual
-    ) {
-
-      const driver =
-        state.drivers.find(
-
-          function(item) {
-
-            return (
-              item.driverKey ===
-              driverKey
-            );
-
-          }
-
-        );
-
-
-      if (!driver) {
-
-        /*
-         * サーバー一覧がまだ届いていない場合、
-         * 過去履歴の人物を仮選択する。
-         *
-         * 実送信時にdriver_masterを再確認する。
-         */
-
-        const recent =
-          getRecentDrivers();
-
-
-        const recentDriver =
-          recent.find(
-
-            function(item) {
+            function(driver) {
 
               return (
-                item.driverKey ===
-                driverKey
+                driver.driverKey ===
+                currentKey
               );
 
             }
@@ -3208,77 +3151,23 @@
 
 
         if (
-          recentDriver
+          officialDriver
         ) {
 
-          state.driver = {
-
-            driverKey:
-              recentDriver.driverKey,
-
-            displayName:
-              recentDriver.displayName
-
-          };
+          state.driver =
+            officialDriver;
 
 
-          state.manualSelectedDriverKey =
-            manual
-              ? recentDriver.driverKey
-              : '';
-
-
-          state.userSelectedManually =
-            manual;
-
-
-          els.driverIcon.textContent =
-            '🚙';
-
-
-          els.driverName.textContent =
-            recentDriver.displayName +
-            ' さん';
-
-
-          els.driverMeta.textContent =
-            recentDriver.driverKey
-              ? ' / ' +
-                recentDriver.driverKey
-              : '';
-
-
-          els.btnIn.disabled =
-            false;
-
-
-          els.btnOut.disabled =
-            false;
-
-
-          els.sendBtn.disabled =
-            false;
-
-
-          saveRecentDriver(
-            state.driver
+          updateDriverUI(
+            officialDriver
           );
         }
-
-
-        return;
       }
-
-
-      applyDriver(
-        driver,
-        manual
-      );
     }
 
 
     // ==========================================================
-    // HTMLエスケープ
+    // 履歴
     // ==========================================================
 
     function escapeHtml(
@@ -3316,10 +3205,6 @@
     }
 
 
-    // ==========================================================
-    // 今日の履歴
-    // ==========================================================
-
     function renderHistory() {
 
       if (
@@ -3336,35 +3221,30 @@
 
       els.historyList.innerHTML =
 
-        state.history
+        state.history.map(
 
-          .map(
+          function(item) {
 
-            function(item) {
+            return (
 
-              return (
+              '<li>' +
 
-                '<li>' +
+              escapeHtml(
+                item.time
+              ) +
 
-                escapeHtml(
-                  item.time
-                ) +
+              '　' +
 
-                '　' +
+              escapeHtml(
+                item.text
+              ) +
 
-                escapeHtml(
-                  item.text
-                ) +
+              '</li>'
 
-                '</li>'
+            );
+          }
 
-              );
-
-            }
-
-          )
-
-          .join('');
+        ).join('');
     }
 
 
@@ -3398,7 +3278,7 @@
 
 
     // ==========================================================
-    // 出勤メッセージ
+    // メッセージ
     // ==========================================================
 
     function buildInMessage() {
@@ -3422,10 +3302,6 @@
       );
     }
 
-
-    // ==========================================================
-    // 退勤メッセージ
-    // ==========================================================
 
     function buildOutMessage() {
 
@@ -3517,28 +3393,15 @@
     }
 
 
-    // ==========================================================
-    // プレビュー
-    // ==========================================================
-
     function refreshPreview() {
 
-      let message =
-        '';
+      const message =
 
-
-      if (
         state.mode === 'in'
-      ) {
 
-        message =
-          buildInMessage();
+          ? buildInMessage()
 
-      } else {
-
-        message =
-          buildOutMessage();
-      }
+          : buildOutMessage();
 
 
       els.preview.textContent =
@@ -3555,7 +3418,7 @@
 
 
     // ==========================================================
-    // モード
+    // 出勤 / 退勤
     // ==========================================================
 
     function setMode(
@@ -3654,197 +3517,7 @@
 
 
     // ==========================================================
-    // LIFF本人確認
-    //
-    // ポイント:
-    // 「待ってから人物選択」ではなく
-    // 「人物選択を先に出して、自動判別は裏で行う」
-    // ==========================================================
-
-    async function resolveDriver() {
-
-      /*
-       * まず過去履歴を即表示
-       * ネットワークを一切待たない
-       */
-
-      renderRecentDriversImmediately();
-
-
-      /*
-       * 過去に使った人物があれば
-       * 最初の人物を画面上だけ仮表示
-       *
-       * ただし、送信を押す前に
-       * driver_masterで再確認される。
-       */
-
-      const recent =
-        getRecentDrivers();
-
-
-      if (
-        recent.length > 0
-      ) {
-
-        applyDriverByKey(
-          recent[0].driverKey,
-          true
-        );
-      }
-
-
-      /*
-       * ここから自動判別を裏で実行
-       */
-
-      try {
-
-        if (
-          typeof liff ===
-          'undefined'
-        ) {
-
-          return;
-        }
-
-
-        await liff.init({
-
-          liffId:
-            LIFF_ID,
-
-          withLoginOnExternalBrowser:
-            true
-
-        });
-
-
-        /*
-         * ログインしていない場合
-         * ログイン処理
-         */
-
-        if (
-          !liff.isLoggedIn()
-        ) {
-
-          liff.login({
-
-            redirectUri:
-              window.location.href
-
-          });
-
-
-          return;
-        }
-
-
-        /*
-         * IDトークン取得
-         */
-
-        const idToken =
-          liff.getIDToken();
-
-
-        if (!idToken) {
-
-          return;
-        }
-
-
-        state.idToken =
-          idToken;
-
-
-        /*
-         * サーバーから人物一覧を取得
-         *
-         * 手動選択を既に使える状態でも、
-         * 最新のdriver_masterと照合するため取得する。
-         */
-
-        loadDriverList()
-
-          .catch(
-
-            function(error) {
-
-              console.warn(
-                '人物一覧の取得に失敗:',
-                error
-              );
-
-            }
-
-          );
-
-
-        /*
-         * 自動本人判別
-         */
-
-        const info =
-          await callServer(
-            'getDriverInfo'
-          );
-
-
-        /*
-         * 手動選択中なら
-         * 自動判別結果で上書きしない
-         */
-
-        if (
-          state.userSelectedManually
-        ) {
-
-          return;
-        }
-
-
-        if (
-          info &&
-          info.found
-        ) {
-
-          state.autoDetectedDriverKey =
-            info.driverKey;
-
-
-          applyDriverByKey(
-
-            info.driverKey,
-
-            false
-
-          );
-        }
-
-
-      } catch (
-        error
-      ) {
-
-        /*
-         * 自動判別に失敗しても
-         * 手動選択はそのまま使える。
-         */
-
-        console.warn(
-          '自動本人判別に失敗:',
-          error
-        );
-
-      }
-
-    }
-
-
-    // ==========================================================
-    // 手動人物選択
+    // 手動人物変更
     // ==========================================================
 
     els.driverSelect.addEventListener(
@@ -3863,18 +3536,76 @@
         }
 
 
-        state.userSelectedManually =
-          true;
+        const driver =
+          state.drivers.find(
+
+            function(item) {
+
+              return (
+                item.driverKey ===
+                driverKey
+              );
+
+            }
+
+          );
 
 
-        applyDriverByKey(
+        /*
+         * サーバー一覧がまだ届いていないとき
+         */
 
-          driverKey,
+        if (!driver) {
 
+          const recent =
+            getRecentDrivers();
+
+
+          const recentDriver =
+            recent.find(
+
+              function(item) {
+
+                return (
+                  item.driverKey ===
+                  driverKey
+                );
+
+              }
+
+            );
+
+
+          if (
+            recentDriver
+          ) {
+
+            applyDriver(
+
+              {
+
+                driverKey:
+                  recentDriver.driverKey,
+
+                displayName:
+                  recentDriver.displayName
+
+              },
+
+              true
+
+            );
+          }
+
+
+          return;
+        }
+
+
+        applyDriver(
+          driver,
           true
-
         );
-
       }
 
     );
@@ -3901,7 +3632,6 @@
         setMode(
           'in'
         );
-
       }
 
     );
@@ -3928,14 +3658,13 @@
         setMode(
           'out'
         );
-
       }
 
     );
 
 
     // ==========================================================
-    // 入力変更
+    // 入力
     // ==========================================================
 
     els.clockInTime.addEventListener(
@@ -3949,7 +3678,6 @@
 
 
         refreshPreview();
-
       }
 
     );
@@ -3989,21 +3717,18 @@
 
       async function() {
 
-
         if (
           !state.driver
         ) {
 
+          alert(
+            '人物を選択してください。'
+          );
+
+
           return;
         }
 
-
-        /*
-         * ID Tokenがまだ無くても、
-         * 自動判別とは別に手動選択ができるようにする。
-         *
-         * 送信API側ではselectedDriverKeyを優先する。
-         */
 
         const message =
           refreshPreview();
@@ -4039,7 +3764,14 @@
           ) {
 
             throw new Error(
-              '送信結果を確認できませんでした'
+
+              result &&
+              result.error
+
+                ? result.error
+
+                : '送信結果を確認できませんでした'
+
             );
           }
 
@@ -4061,32 +3793,9 @@
           );
 
 
-          /*
-           * 送信成功した人物を
-           * 次回すぐ選べるよう保存
-           */
-
           saveRecentDriver(
             state.driver
           );
-
-
-          /*
-           * 最新の人物選択順を反映
-           */
-
-          try {
-
-            await loadDriverList();
-
-          } catch (
-            refreshError
-          ) {
-
-            console.warn(
-              refreshError
-            );
-          }
 
 
           els.editPanel.classList.remove(
@@ -4107,11 +3816,6 @@
           );
 
 
-          /*
-           * 手動選択した人物が
-           * 最新driver_masterに存在しない場合など
-           */
-
           alert(
 
             error &&
@@ -4129,10 +3833,147 @@
           els.sendBtn.disabled =
             false;
         }
-
       }
 
     );
+
+
+    // ==========================================================
+    // 自動本人判別
+    //
+    // UIを止めずに裏で実行
+    // ==========================================================
+
+    async function autoDetectDriver() {
+
+      try {
+
+        if (
+          typeof liff ===
+          'undefined'
+        ) {
+
+          return;
+        }
+
+
+        await liff.init({
+
+          liffId:
+            LIFF_ID,
+
+          withLoginOnExternalBrowser:
+            true
+
+        });
+
+
+        if (
+          !liff.isLoggedIn()
+        ) {
+
+          liff.login({
+
+            redirectUri:
+              window.location.href
+
+          });
+
+
+          return;
+        }
+
+
+        const idToken =
+          liff.getIDToken();
+
+
+        if (!idToken) {
+
+          return;
+        }
+
+
+        state.idToken =
+          idToken;
+
+
+        /*
+         * 最新一覧は裏で更新
+         */
+
+        loadDriverList()
+
+          .catch(
+
+            function(error) {
+
+              console.warn(
+                error
+              );
+
+            }
+
+          );
+
+
+        /*
+         * 本人の自動判別
+         */
+
+        const info =
+          await callServer(
+            'getDriverInfo'
+          );
+
+
+        /*
+         * 既に手動選択されていれば
+         * 絶対に上書きしない
+         */
+
+        if (
+          state.userSelectedManually
+        ) {
+
+          return;
+        }
+
+
+        if (
+          info &&
+          info.found
+        ) {
+
+          state.autoDetectedDriverKey =
+            info.driverKey;
+
+
+          applyDriverByKey(
+
+            info.driverKey,
+
+            false
+
+          );
+        }
+
+
+      } catch (
+        error
+      ) {
+
+        /*
+         * 自動判別失敗は
+         * 手動選択には影響させない
+         */
+
+        console.warn(
+          '自動判別失敗:',
+          error
+        );
+      }
+    }
 
 
     // ==========================================================
@@ -4146,11 +3987,17 @@
       function() {
 
         /*
-         * まず画面を表示
-         * その後、自動判別を裏で開始
+         * ① 過去人物を即表示
          */
 
-        resolveDriver();
+        renderRecentDriversImmediately();
+
+
+        /*
+         * ② 自動判別を裏で開始
+         */
+
+        autoDetectDriver();
 
       }
 
