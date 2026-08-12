@@ -754,6 +754,43 @@
         1.45;
     }
 
+    .history-item {
+      display: grid;
+      grid-template-columns: auto auto auto 1fr auto;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 2px !important;
+      font-size: 13px !important;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+
+    .history-date {
+      color: #6b8296;
+      font-weight: 800;
+    }
+
+    .history-type {
+      color: #1676c7;
+      font-weight: 900;
+    }
+
+    .history-report-time {
+      color: #17324d;
+      font-weight: 900;
+    }
+
+    .history-sent-time {
+      color: #6b8296;
+      text-align: right;
+    }
+
+    .history-status {
+      color: #16804a;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
     .history-list .empty {
       color:
         #7a90a3;
@@ -932,6 +969,21 @@
 
         font-size:
           20px;
+      }
+
+      .history-item {
+        grid-template-columns:
+          auto auto auto 1fr;
+
+        gap: 4px;
+
+        font-size: 12px !important;
+        white-space: nowrap;
+      }
+
+      .history-status {
+        grid-column: 4;
+        text-align: right;
       }
 
     }
@@ -1724,7 +1776,7 @@
     // ==========================================================
 
     const STORAGE_KEY_HISTORY =
-      'driver_menu_attendance_history_v1';
+      'driver_menu_attendance_history_v2';
 
 
     const STORAGE_KEY_WORK =
@@ -4356,20 +4408,80 @@
           }
 
 
-          const title =
-            state.mode === 'in'
-              ? '出勤'
-              : '退勤';
-
-
           /*
            * 履歴を永続保存
+           *
+           * 出勤:
+           * 8/12　出勤 09:00　送信 09:03　✓完了
+           *
+           * 退勤:
+           * 8/12　退勤 09:00→18:30　送信 18:32　✓完了
            */
 
-          addHistory(
-            title +
-            'を送信しました'
-          );
+          const completedAt =
+            new Date();
+
+          const historyDate =
+            (completedAt.getMonth() + 1) +
+            '/' +
+            completedAt.getDate();
+
+          const sentTime =
+            String(
+              completedAt.getHours()
+            ).padStart(2, '0') +
+            ':' +
+            String(
+              completedAt.getMinutes()
+            ).padStart(2, '0');
+
+          if (
+            state.mode === 'in'
+          ) {
+
+            addHistory({
+
+              date:
+                historyDate,
+
+              type:
+                '出勤',
+
+              reportTime:
+                els.clockInTime.value,
+
+              sentTime:
+                sentTime,
+
+              status:
+                '完了'
+
+            });
+
+          } else {
+
+            addHistory({
+
+              date:
+                historyDate,
+
+              type:
+                '退勤',
+
+              startTime:
+                els.editClockInTime.value,
+
+              endTime:
+                els.clockOutTime.value,
+
+              sentTime:
+                sentTime,
+
+              status:
+                '完了'
+
+            });
+          }
 
 
           /*
@@ -4437,28 +4549,204 @@
       }
 
 
-      els.historyList.innerHTML =
-        state.history.map(
-          function(item) {
+      /*
+       * 新しい履歴ほど上に表示。
+       * savedAtがある新形式を基準に並び替え、
+       * 古い履歴にもそのまま対応する。
+       */
+
+      const sortedHistory =
+        [...state.history].sort(
+          function(a, b) {
 
             return (
-              '<li>' +
-              escapeHtml(
-                String(
-                  item.time
-                )
-              ) +
-              '　' +
-              escapeHtml(
-                String(
-                  item.text
-                )
-              ) +
-              '</li>'
+              Number(
+                b.savedAt || 0
+              ) -
+              Number(
+                a.savedAt || 0
+              )
             );
 
           }
-        ).join('');
+        );
+
+
+      els.historyList.innerHTML =
+        sortedHistory
+          .map(
+            function(item) {
+
+              /*
+               * 旧形式の履歴にも対応
+               */
+
+              if (
+                item.text &&
+                !item.type
+              ) {
+
+                return (
+                  '<li>' +
+                  escapeHtml(
+                    String(
+                      item.time || ''
+                    )
+                  ) +
+                  '　' +
+                  escapeHtml(
+                    String(
+                      item.text || ''
+                    )
+                  ) +
+                  '</li>'
+                );
+              }
+
+
+              /*
+               * 出勤
+               * 8/12　出勤 09:00　送信 09:03　✓完了
+               */
+
+              if (
+                item.type === '出勤'
+              ) {
+
+                return (
+                  '<li class="history-item">' +
+
+                    '<span class="history-date">' +
+                      escapeHtml(
+                        item.date || ''
+                      ) +
+                    '</span>' +
+
+                    '<span class="history-type">' +
+                      '出勤' +
+                    '</span>' +
+
+                    '<span class="history-report-time">' +
+                      escapeHtml(
+                        item.reportTime || ''
+                      ) +
+                    '</span>' +
+
+                    '<span class="history-sent-time">' +
+                      '送信 ' +
+                      escapeHtml(
+                        item.sentTime || ''
+                      ) +
+                    '</span>' +
+
+                    '<span class="history-status">' +
+                      '✓' +
+                      escapeHtml(
+                        item.status || '完了'
+                      ) +
+                    '</span>' +
+
+                  '</li>'
+                );
+              }
+
+
+              /*
+               * 退勤
+               * 8/12　退勤 09:00→18:30　送信 18:32　✓完了
+               */
+
+              if (
+                item.type === '退勤'
+              ) {
+
+                return (
+                  '<li class="history-item">' +
+
+                    '<span class="history-date">' +
+                      escapeHtml(
+                        item.date || ''
+                      ) +
+                    '</span>' +
+
+                    '<span class="history-type">' +
+                      '退勤' +
+                    '</span>' +
+
+                    '<span class="history-report-time">' +
+                      escapeHtml(
+                        item.startTime || ''
+                      ) +
+                      '→' +
+                      escapeHtml(
+                        item.endTime || item.reportTime || ''
+                      ) +
+                    '</span>' +
+
+                    '<span class="history-sent-time">' +
+                      '送信 ' +
+                      escapeHtml(
+                        item.sentTime || ''
+                      ) +
+                    '</span>' +
+
+                    '<span class="history-status">' +
+                      '✓' +
+                      escapeHtml(
+                        item.status || '完了'
+                      ) +
+                    '</span>' +
+
+                  '</li>'
+                );
+              }
+
+
+              /*
+               * その他の形式
+               */
+
+              return (
+                '<li class="history-item">' +
+
+                  '<span class="history-date">' +
+                    escapeHtml(
+                      item.date || ''
+                    ) +
+                  '</span>' +
+
+                  '<span class="history-type">' +
+                    escapeHtml(
+                      item.type || ''
+                    ) +
+                  '</span>' +
+
+                  '<span class="history-report-time">' +
+                    escapeHtml(
+                      item.reportTime || ''
+                    ) +
+                  '</span>' +
+
+                  '<span class="history-sent-time">' +
+                    '送信 ' +
+                    escapeHtml(
+                      item.sentTime || ''
+                    ) +
+                  '</span>' +
+
+                  '<span class="history-status">' +
+                    '✓' +
+                    escapeHtml(
+                      item.status || '完了'
+                    ) +
+                  '</span>' +
+
+                '</li>'
+              );
+
+            }
+          )
+          .join('');
     }
 
 
@@ -4506,19 +4794,34 @@
     // ==========================================================
 
     function addHistory(
-      text
+      item
     ) {
 
       state.history.unshift({
 
-        time:
-          new Date()
-            .toLocaleString(
-              'ja-JP'
-            ),
+        date:
+          item.date || '',
 
-        text:
-          text
+        type:
+          item.type || '',
+
+        reportTime:
+          item.reportTime || '',
+
+        startTime:
+          item.startTime || '',
+
+        endTime:
+          item.endTime || '',
+
+        sentTime:
+          item.sentTime || '',
+
+        status:
+          item.status || '完了',
+
+        savedAt:
+          Date.now()
 
       });
 
@@ -4534,12 +4837,7 @@
         );
 
 
-      /*
-       * ★永続保存
-       */
-
       saveHistoryToStorage();
-
 
       renderHistory();
     }
