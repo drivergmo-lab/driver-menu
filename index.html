@@ -11,7 +11,6 @@
 
   <title>運転手MENU</title>
 
-  <!-- LINE LIFF SDK -->
   <script
     src="https://static.line-scdn.net/liff/edge/2/sdk.js"
   ></script>
@@ -20,27 +19,16 @@
   <style>
 
     :root {
-
       --bg1: #e8f7ff;
       --bg2: #f7fcff;
-
       --card: rgba(255,255,255,.95);
-
       --line: #d8ebf7;
-
       --text: #17324d;
-
       --muted: #6b8296;
-
       --primary: #2d88d8;
-
       --primary2: #56baf0;
-
-      --shadow:
-        0 14px 40px rgba(39,96,139,.10);
-
-      --shadow-soft:
-        0 8px 22px rgba(39,96,139,.08);
+      --shadow: 0 14px 40px rgba(39,96,139,.10);
+      --shadow-soft: 0 8px 22px rgba(39,96,139,.08);
     }
 
 
@@ -51,13 +39,9 @@
 
     html,
     body {
-
       margin: 0;
-
       padding: 0;
-
       width: 100%;
-
       min-height: 100%;
 
       font-family:
@@ -66,8 +50,7 @@
         "Meiryo",
         sans-serif;
 
-      color:
-        var(--text);
+      color: var(--text);
 
       background:
         linear-gradient(
@@ -79,21 +62,15 @@
 
 
     body {
-
       min-height: 100vh;
     }
 
 
     .page {
-
       width: 100%;
-
       max-width: 760px;
-
       margin: 0 auto;
-
-      padding:
-        18px 14px 28px;
+      padding: 18px 14px 28px;
     }
 
 
@@ -102,15 +79,12 @@
        ========================================================= */
 
     .hero {
-
       position: relative;
-
       overflow: hidden;
 
       text-align: center;
 
-      padding:
-        28px 16px 24px;
+      padding: 28px 16px 24px;
 
       border-radius: 30px;
 
@@ -134,27 +108,22 @@
           #e9f9ff 100%
         );
 
-      box-shadow:
-        var(--shadow-soft);
+      box-shadow: var(--shadow-soft);
 
       border:
         1px solid rgba(255,255,255,.7);
 
-      isolation:
-        isolate;
+      isolation: isolate;
     }
 
 
     .hero::before {
-
       content: "";
 
       position: absolute;
 
       left: -10%;
-
       right: -10%;
-
       bottom: 0;
 
       height: 40%;
@@ -187,97 +156,62 @@
 
       opacity: .75;
 
-      pointer-events:
-        none;
+      pointer-events: none;
     }
 
 
     .hero-car {
+      position: relative;
+      z-index: 1;
 
-      position:
-        relative;
+      font-size: 56px;
+      line-height: 1;
 
-      z-index:
-        1;
-
-      font-size:
-        56px;
-
-      line-height:
-        1;
-
-      margin-bottom:
-        8px;
+      margin-bottom: 8px;
     }
 
 
     .hero h1 {
+      position: relative;
+      z-index: 1;
 
-      position:
-        relative;
+      margin: 0;
 
-      z-index:
-        1;
+      color: #1676c7;
 
-      margin:
-        0;
-
-      color:
-        #1676c7;
-
-      font-size:
-        38px;
-
-      line-height:
-        1.12;
-
-      font-weight:
-        900;
+      font-size: 38px;
+      line-height: 1.12;
+      font-weight: 900;
     }
 
 
     .hero p {
+      position: relative;
+      z-index: 1;
 
-      position:
-        relative;
+      margin: 10px 0 0;
 
-      z-index:
-        1;
+      color: var(--muted);
 
-      margin:
-        10px 0 0;
-
-      color:
-        var(--muted);
-
-      font-size:
-        17px;
-
-      font-weight:
-        700;
+      font-size: 17px;
+      font-weight: 700;
     }
 
 
     /* =========================================================
-       メインカード
+       メイン
        ========================================================= */
 
     .main-card {
+      margin-top: 14px;
 
-      margin-top:
-        14px;
+      padding: 16px;
 
-      padding:
-        16px;
+      background: var(--card);
 
-      background:
-        var(--card);
+      border-radius: 28px;
 
-      border-radius:
-        28px;
-
-      box-shadow:
-        var(--shadow);
+      box-shadow: var(--shadow);
 
       border:
         1px solid rgba(255,255,255,.75);
@@ -285,212 +219,111 @@
 
 
     /* =========================================================
-       人物表示
+       現在選択中の人物
        ========================================================= */
 
     .driver-pill {
+      display: flex;
 
-      display:
-        flex;
+      align-items: center;
+      justify-content: center;
 
-      align-items:
-        center;
+      gap: 8px;
 
-      gap:
-        8px;
+      width: fit-content;
+      max-width: 100%;
 
-      width:
-        fit-content;
+      min-height: 44px;
 
-      max-width:
-        100%;
-
-      min-height:
-        44px;
-
-      margin-bottom:
-        10px;
+      margin:
+        0 auto 10px;
 
       padding:
-        10px 14px;
+        10px 18px;
 
-      border-radius:
-        999px;
+      border-radius: 999px;
 
-      background:
-        #f3fbff;
+      background: #f3fbff;
 
       border:
         1px solid #dceff9;
 
-      color:
-        #1676c7;
+      color: #1676c7;
 
-      font-weight:
-        900;
+      font-weight: 900;
+
+      text-align: center;
     }
 
 
     .driver-pill small {
-
-      color:
-        var(--muted);
-
-      font-weight:
-        700;
+      color: var(--muted);
+      font-weight: 700;
     }
 
 
     /* =========================================================
-       手動人物選択
+       人物選択
        ========================================================= */
 
     .manual-select-area {
+      margin: 0 0 12px;
 
-      margin:
-        0 0 12px;
-
-      padding:
-        10px 12px;
+      padding: 10px 12px;
 
       border:
         1px solid #dceff9;
 
-      border-radius:
-        16px;
+      border-radius: 16px;
 
-      background:
-        #f9fdff;
+      background: #f9fdff;
     }
 
 
     .manual-select-label {
+      display: block;
 
-      display:
-        block;
+      margin-bottom: 6px;
 
-      margin-bottom:
-        6px;
+      color: #61798e;
 
-      color:
-        #61798e;
-
-      font-size:
-        12px;
-
-      font-weight:
-        800;
-
-      line-height:
-        1.3;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.3;
     }
 
 
     .driver-select {
+      display: block;
 
-      display:
-        block;
+      width: 100%;
+      height: 46px;
 
-      width:
-        100%;
-
-      height:
-        46px;
-
-      padding:
-        0 10px;
+      padding: 0 10px;
 
       border:
         1px solid #cfe5f5;
 
-      border-radius:
-        12px;
+      border-radius: 12px;
 
-      background:
-        #ffffff;
+      background: #ffffff;
 
-      color:
-        #17324d;
+      color: #17324d;
 
-      font-family:
-        inherit;
+      font-family: inherit;
 
-      font-size:
-        16px;
+      font-size: 16px;
+      font-weight: 800;
 
-      font-weight:
-        800;
-
-      outline:
-        none;
+      outline: none;
     }
 
 
     .driver-select:focus {
-
-      border-color:
-        #63b4ea;
+      border-color: #63b4ea;
 
       box-shadow:
-        0 0 0 3px
-        rgba(99,180,234,.14);
-    }
-
-
-    /* =========================================================
-       ステータス
-       ========================================================= */
-
-    .status {
-
-      display:
-        block;
-
-      margin:
-        10px 0 12px;
-
-      padding:
-        10px 14px;
-
-      border-radius:
-        14px;
-
-      background:
-        #eef9ff;
-
-      color:
-        #1676c7;
-
-      font-size:
-        13px;
-
-      font-weight:
-        800;
-
-      line-height:
-        1.45;
-
-      border:
-        1px solid #d8ebf7;
-
-      white-space:
-        pre-wrap;
-
-      word-break:
-        break-word;
-    }
-
-
-    .status.error {
-
-      background:
-        #fff1f1;
-
-      border-color:
-        #ffd1d1;
-
-      color:
-        #a33;
+        0 0 0 3px rgba(99,180,234,.14);
     }
 
 
@@ -499,131 +332,89 @@
        ========================================================= */
 
     .attendance-buttons {
-
-      display:
-        grid;
+      display: grid;
 
       grid-template-columns:
         1fr 1fr;
 
-      gap:
-        12px;
+      gap: 12px;
 
-      width:
-        100%;
+      width: 100%;
     }
 
 
     .attendance-btn {
+      position: relative;
 
-      position:
-        relative;
+      width: 100%;
+      height: 170px;
 
-      width:
-        100%;
+      border: 0;
 
-      height:
-        170px;
+      border-radius: 24px;
 
-      border:
-        0;
+      overflow: hidden;
 
-      border-radius:
-        24px;
+      cursor: pointer;
 
-      overflow:
-        hidden;
+      font-family: inherit;
 
-      cursor:
-        pointer;
+      display: flex;
 
-      font-family:
-        inherit;
-
-      display:
-        flex;
-
-      align-items:
-        center;
-
-      justify-content:
-        center;
+      align-items: center;
+      justify-content: center;
 
       box-shadow:
-        0 10px 22px
-        rgba(39,96,139,.12);
+        0 10px 22px rgba(39,96,139,.12);
 
       transition:
         transform .12s ease,
         opacity .12s ease;
 
-      isolation:
-        isolate;
+      isolation: isolate;
     }
 
 
     .attendance-btn:active {
-
       transform:
         translateY(1px) scale(.99);
     }
 
 
     .attendance-btn:disabled {
-
-      opacity:
-        .45;
-
-      cursor:
-        not-allowed;
+      opacity: .45;
+      cursor: not-allowed;
     }
 
 
     .scene {
+      position: absolute;
 
-      position:
-        absolute;
+      inset: 0;
 
-      inset:
-        0;
+      width: 100%;
+      height: 100%;
 
-      width:
-        100%;
-
-      height:
-        100%;
-
-      z-index:
-        0;
+      z-index: 0;
     }
 
 
     .attendance-text {
+      position: relative;
 
-      position:
-        relative;
+      z-index: 3;
 
-      z-index:
-        3;
+      font-size: 38px;
+      line-height: 1;
 
-      font-size:
-        38px;
+      font-weight: 900;
 
-      line-height:
-        1;
-
-      font-weight:
-        900;
-
-      letter-spacing:
-        .04em;
+      letter-spacing: .04em;
     }
 
 
     .btn-in {
-
-      color:
-        #0a4c7d;
+      color: #0a4c7d;
 
       background:
         linear-gradient(
@@ -639,9 +430,7 @@
 
 
     .btn-out {
-
-      color:
-        #ffffff;
+      color: #ffffff;
 
       background:
         linear-gradient(
@@ -661,24 +450,15 @@
        ========================================================= */
 
     .guide {
+      margin: 16px 4px 10px;
 
-      margin:
-        16px 4px 10px;
+      color: #1676c7;
 
-      color:
-        #1676c7;
+      font-size: 15px;
+      line-height: 1.55;
+      font-weight: 800;
 
-      font-size:
-        15px;
-
-      line-height:
-        1.55;
-
-      font-weight:
-        800;
-
-      text-align:
-        center;
+      text-align: center;
     }
 
 
@@ -687,162 +467,140 @@
        ========================================================= */
 
     .edit-panel {
+      display: none;
 
-      display:
-        none;
+      margin-top: 14px;
 
-      margin-top:
-        14px;
+      padding: 13px;
 
-      padding:
-        16px;
+      background: #ffffff;
 
-      background:
-        #ffffff;
+      border-radius: 22px;
 
-      border-radius:
-        22px;
-
-      box-shadow:
-        var(--shadow-soft);
+      box-shadow: var(--shadow-soft);
 
       border:
-        1px solid
-        rgba(216,235,247,.9);
+        1px solid rgba(216,235,247,.9);
     }
 
 
     .edit-panel.show {
-
-      display:
-        block;
+      display: block;
     }
 
 
     .edit-title {
+      margin: 0 0 10px;
 
-      margin:
-        0 0 12px;
+      color: #1676c7;
 
-      color:
-        #1676c7;
+      font-size: 26px;
+      font-weight: 900;
 
-      font-size:
-        26px;
-
-      font-weight:
-        900;
-
-      text-align:
-        center;
+      text-align: center;
     }
 
 
     .edit-title::before {
+      content: "✎ ";
 
-      content:
-        "✎ ";
-
-      color:
-        #68aee6;
+      color: #68aee6;
     }
 
 
     .two-column {
-
-      display:
-        grid;
+      display: grid;
 
       grid-template-columns:
         minmax(0, 1fr)
         minmax(0, 1fr);
 
-      gap:
-        10px;
+      gap: 7px;
 
-      margin-bottom:
-        10px;
+      margin-bottom: 7px;
     }
 
 
     .field {
-
-      min-width:
-        0;
+      min-width: 0;
     }
 
 
     .field label {
+      display: block;
 
-      display:
-        block;
+      margin: 0 0 3px;
 
-      margin:
-        0 0 6px;
+      color: #61798e;
 
-      color:
-        #61798e;
-
-      font-size:
-        13px;
-
-      line-height:
-        1.25;
-
-      font-weight:
-        800;
+      font-size: 12px;
+      line-height: 1.1;
+      font-weight: 800;
     }
 
 
+    /* =========================================================
+       スマホの日時入力の余白対策
+       ========================================================= */
+
     .field input {
 
-      display:
-        block;
+      display: block;
 
-      width:
-        100%;
+      width: 100%;
 
-      min-width:
-        0;
+      min-width: 0;
 
-      height:
-        54px;
+      height: 40px;
+      min-height: 40px;
 
-      padding:
-        0 8px;
+      padding: 0;
+      margin: 0;
 
       border:
         1px solid #cfe5f5;
 
-      border-radius:
-        15px;
+      border-radius: 13px;
 
-      outline:
-        none;
+      outline: none;
 
-      background:
-        #ffffff;
+      background: #ffffff;
 
-      color:
-        #0d2340;
+      color: #0d2340;
 
-      font-family:
-        inherit;
+      font-family: inherit;
 
-      font-size:
-        24px;
+      font-size: 20px;
 
-      line-height:
-        1;
+      font-weight: 900;
 
-      font-weight:
-        900;
+      line-height: 1;
 
-      text-align:
-        center;
+      text-align: center;
 
-      appearance:
-        auto;
+      vertical-align: middle;
+
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+
+    .field input::-webkit-date-and-time-value {
+
+      margin: 0;
+
+      padding: 0;
+
+      height: auto;
+
+      line-height: 1;
+
+      text-align: center;
+    }
+
+
+    .field input::-webkit-inner-spin-button {
+      margin: 0;
     }
 
 
@@ -859,24 +617,16 @@
 
     #nextDate {
 
-      font-size:
-        18px;
+      font-size: 15px;
 
-      letter-spacing:
-        -.5px;
+      letter-spacing: -.7px;
 
-      padding-left:
-        4px;
-
-      padding-right:
-        4px;
+      padding: 0;
     }
 
 
     .single-field {
-
-      margin-bottom:
-        10px;
+      margin-bottom: 8px;
     }
 
 
@@ -885,22 +635,16 @@
        ========================================================= */
 
     .preview {
+      display: none;
 
-      display:
-        none;
+      margin-top: 9px;
 
-      margin-top:
-        12px;
-
-      padding:
-        16px 18px;
+      padding: 13px 15px;
 
       border:
-        1px solid
-        var(--line);
+        1px solid var(--line);
 
-      border-radius:
-        18px;
+      border-radius: 18px;
 
       background:
         linear-gradient(
@@ -909,27 +653,18 @@
           #eef8ff 100%
         );
 
-      color:
-        #14446e;
+      color: #14446e;
 
-      font-size:
-        15px;
+      font-size: 14px;
+      line-height: 1.7;
+      font-weight: 600;
 
-      line-height:
-        1.75;
-
-      font-weight:
-        600;
-
-      white-space:
-        pre-line;
+      white-space: pre-line;
     }
 
 
     .preview.show {
-
-      display:
-        block;
+      display: block;
     }
 
 
@@ -939,23 +674,17 @@
 
     .send-btn {
 
-      display:
-        block;
+      display: block;
 
-      width:
-        100%;
+      width: 100%;
 
-      margin-top:
-        10px;
+      margin-top: 7px;
 
-      padding:
-        17px 12px;
+      padding: 14px 12px;
 
-      border:
-        0;
+      border: 0;
 
-      border-radius:
-        18px;
+      border-radius: 18px;
 
       background:
         linear-gradient(
@@ -964,31 +693,24 @@
           #2d88d8 100%
         );
 
-      color:
-        #ffffff;
+      color: #ffffff;
 
-      font-family:
-        inherit;
+      font-family: inherit;
 
-      font-size:
-        24px;
+      font-size: 20px;
 
-      font-weight:
-        900;
+      font-weight: 900;
 
-      cursor:
-        pointer;
+      cursor: pointer;
 
       box-shadow:
-        0 10px 20px
-        rgba(45,136,216,.18);
+        0 10px 20px rgba(45,136,216,.18);
     }
 
 
     .send-btn:disabled {
 
-      opacity:
-        .55;
+      opacity: .55;
 
       cursor:
         not-allowed;
@@ -996,7 +718,7 @@
 
 
     /* =========================================================
-       履歴
+       今日の履歴
        ========================================================= */
 
     .history {
@@ -1025,6 +747,9 @@
 
       font-weight:
         900;
+
+      text-align:
+        center;
     }
 
 
@@ -1071,6 +796,9 @@
 
       color:
         #7a90a3;
+
+      text-align:
+        center;
     }
 
 
@@ -1091,7 +819,6 @@
 
 
     .hidden {
-
       display:
         none !important;
     }
@@ -1156,8 +883,26 @@
 
       .driver-pill {
 
+        justify-content:
+          center;
+
+        width:
+          fit-content;
+
+        max-width:
+          100%;
+
+        margin:
+          0 auto 10px;
+
+        padding:
+          9px 14px;
+
         font-size:
           15px;
+
+        text-align:
+          center;
       }
 
 
@@ -1214,7 +959,7 @@
           12px;
 
         padding:
-          14px 12px;
+          13px 12px;
 
         border-radius:
           20px;
@@ -1224,7 +969,7 @@
       .edit-title {
 
         margin-bottom:
-          10px;
+          9px;
 
         font-size:
           25px;
@@ -1234,71 +979,45 @@
       }
 
 
-      .two-column {
-
-        gap:
-          8px;
-
-        margin-bottom:
-          8px;
-      }
-
-
-      .field label {
-
-        margin-bottom:
-          4px;
-
-        font-size:
-          12px;
-
-        line-height:
-          1.15;
-      }
-
-
       .field input {
 
         height:
-          48px;
+          40px;
+
+        min-height:
+          40px;
 
         padding:
-          0 6px;
-
-        border-radius:
-          14px;
+          0;
 
         font-size:
-          21px;
+          20px;
+      }
+
+
+      .field input::-webkit-date-and-time-value {
+
+        margin:
+          0;
+
+        padding:
+          0;
+
+        height:
+          auto;
 
         line-height:
           1;
       }
 
 
-      #nextDate {
-
-        font-size:
-          16px;
-
-        letter-spacing:
-          -.8px;
-
-        padding-left:
-          2px;
-
-        padding-right:
-          2px;
-      }
-
-
       .preview {
 
         margin-top:
-          10px;
+          9px;
 
         padding:
-          14px 16px;
+          13px 15px;
 
         font-size:
           14px;
@@ -1311,14 +1030,28 @@
       .send-btn {
 
         margin-top:
-          8px;
+          7px;
 
         padding:
-          15px 12px;
+          14px 12px;
 
         font-size:
           20px;
       }
+
+
+      .history h3 {
+
+        width:
+          100%;
+
+        text-align:
+          center;
+
+        font-size:
+          20px;
+      }
+
     }
 
   </style>
@@ -1327,6 +1060,7 @@
 
 
 <body>
+
 
   <div class="page">
 
@@ -1366,11 +1100,11 @@
       <div class="driver-pill">
 
         <span id="driverIcon">
-          ⏳
+          🚙
         </span>
 
         <span id="driverName">
-          本人確認中...
+          人物を選択してください
         </span>
 
         <small id="driverMeta">
@@ -1380,7 +1114,7 @@
 
 
       <!-- =====================================================
-           手動人物選択
+           人物選択
            ===================================================== -->
 
       <div
@@ -1392,7 +1126,7 @@
           class="manual-select-label"
           for="driverSelect"
         >
-          人物選択（自動判別 / 手動選択）
+          人物選択
         </label>
 
 
@@ -1402,23 +1136,11 @@
         >
 
           <option value="">
-            本人確認中...
+            読み込み中...
           </option>
 
         </select>
 
-      </div>
-
-
-      <!-- =====================================================
-           本人確認中ステータス
-           ===================================================== -->
-
-      <div
-        id="status"
-        class="status"
-      >
-        本人確認中...
       </div>
 
 
@@ -1902,9 +1624,7 @@
 
         <!-- 出勤 -->
 
-        <div
-          id="inFields"
-        >
+        <div id="inFields">
 
           <div class="field single-field">
 
@@ -1933,7 +1653,6 @@
         >
 
           <div class="two-column">
-
 
             <div class="field">
 
@@ -1973,7 +1692,6 @@
 
           <div class="two-column">
 
-
             <div class="field">
 
               <label
@@ -2012,9 +1730,7 @@
         </div>
 
 
-        <!-- ===================================================
-             プレビュー
-             =================================================== -->
+        <!-- プレビュー -->
 
         <div
           id="preview"
@@ -2022,9 +1738,7 @@
         ></div>
 
 
-        <!-- ===================================================
-             送信
-             =================================================== -->
+        <!-- 送信 -->
 
         <button
           id="sendBtn"
@@ -2032,16 +1746,14 @@
           type="button"
           disabled
         >
-
           送信
-
         </button>
 
       </section>
 
 
       <!-- =====================================================
-           履歴
+           今日の履歴
            ===================================================== -->
 
       <section class="history">
@@ -2090,119 +1802,102 @@
 
 
     // ==========================================================
+    // 最近使った人物の保存キー
+    // ==========================================================
+
+    const RECENT_DRIVERS_KEY =
+      'driver_menu_recent_drivers_v1';
+
+
+    const MAX_RECENT_DRIVERS =
+      5;
+
+
+    // ==========================================================
     // DOM
     // ==========================================================
 
     const els = {
-
 
       driverIcon:
         document.getElementById(
           'driverIcon'
         ),
 
-
       driverName:
         document.getElementById(
           'driverName'
         ),
-
 
       driverMeta:
         document.getElementById(
           'driverMeta'
         ),
 
-
-      manualSelectArea:
-        document.getElementById(
-          'manualSelectArea'
-        ),
-
-
       driverSelect:
         document.getElementById(
           'driverSelect'
         ),
-
-
-      status:
-        document.getElementById(
-          'status'
-        ),
-
 
       btnIn:
         document.getElementById(
           'btnIn'
         ),
 
-
       btnOut:
         document.getElementById(
           'btnOut'
         ),
-
 
       editPanel:
         document.getElementById(
           'editPanel'
         ),
 
-
       inFields:
         document.getElementById(
           'inFields'
         ),
-
 
       outFields:
         document.getElementById(
           'outFields'
         ),
 
-
       clockInTime:
         document.getElementById(
           'clockInTime'
         ),
-
 
       editClockInTime:
         document.getElementById(
           'editClockInTime'
         ),
 
-
       clockOutTime:
         document.getElementById(
           'clockOutTime'
         ),
-
 
       nextDate:
         document.getElementById(
           'nextDate'
         ),
 
-
       nextTime:
         document.getElementById(
           'nextTime'
         ),
-
 
       preview:
         document.getElementById(
           'preview'
         ),
 
-
       sendBtn:
         document.getElementById(
           'sendBtn'
         ),
-
 
       historyList:
         document.getElementById(
@@ -2240,45 +1935,271 @@
         '',
 
       manualSelectedDriverKey:
-        ''
+        '',
+
+      userSelectedManually:
+        false
 
     };
 
 
     // ==========================================================
-    // ステータス
+    // 最近使った人物を取得
+    // ==========================================================
+
+    function getRecentDrivers() {
+
+      try {
+
+        const raw =
+          localStorage.getItem(
+            RECENT_DRIVERS_KEY
+          );
+
+
+        if (!raw) {
+          return [];
+        }
+
+
+        const list =
+          JSON.parse(
+            raw
+          );
+
+
+        if (
+          !Array.isArray(list)
+        ) {
+
+          return [];
+        }
+
+
+        return list
+          .filter(
+            function(item) {
+
+              return (
+
+                item &&
+                item.driverKey &&
+                item.displayName
+
+              );
+            }
+          )
+          .slice(
+            0,
+            MAX_RECENT_DRIVERS
+          );
+
+
+      } catch (
+        error
+      ) {
+
+        console.warn(
+          '最近使った人物を取得できません:',
+          error
+        );
+
+
+        return [];
+      }
+    }
+
+
+    // ==========================================================
+    // 最近使った人物を保存
+    // ==========================================================
+
+    function saveRecentDriver(
+      driver
+    ) {
+
+      if (
+        !driver ||
+        !driver.driverKey ||
+        !driver.displayName
+      ) {
+
+        return;
+      }
+
+
+      try {
+
+        let list =
+          getRecentDrivers();
+
+
+        list =
+          list.filter(
+
+            function(item) {
+
+              return (
+                item.driverKey !==
+                driver.driverKey
+              );
+
+            }
+
+          );
+
+
+        list.unshift({
+
+          driverKey:
+            driver.driverKey,
+
+          displayName:
+            driver.displayName
+
+        });
+
+
+        list =
+          list.slice(
+            0,
+            MAX_RECENT_DRIVERS
+          );
+
+
+        localStorage.setItem(
+
+          RECENT_DRIVERS_KEY,
+
+          JSON.stringify(
+            list
+          )
+
+        );
+
+
+      } catch (
+        error
+      ) {
+
+        console.warn(
+          '最近使った人物を保存できません:',
+          error
+        );
+      }
+    }
+
+
+    // ==========================================================
+    // 起動直後の人物選択欄
+    //
+    // ネットワークを待たず、
+    // 過去に使った人物を即表示する
+    // ==========================================================
+
+    function renderRecentDriversImmediately() {
+
+      const recent =
+        getRecentDrivers();
+
+
+      els.driverSelect.innerHTML =
+        '';
+
+
+      if (
+        recent.length === 0
+      ) {
+
+        const option =
+          document.createElement(
+            'option'
+          );
+
+
+        option.value =
+          '';
+
+
+        option.textContent =
+          '人物一覧を読み込み中...';
+
+
+        els.driverSelect.appendChild(
+          option
+        );
+
+
+        return;
+      }
+
+
+      const recentHeader =
+        document.createElement(
+          'option'
+        );
+
+
+      recentHeader.value =
+        '';
+
+
+      recentHeader.textContent =
+        '最近使った人物';
+
+
+      els.driverSelect.appendChild(
+        recentHeader
+      );
+
+
+      recent.forEach(
+
+        function(item) {
+
+          const option =
+            document.createElement(
+              'option'
+            );
+
+
+          option.value =
+            item.driverKey;
+
+
+          option.textContent =
+            '★ ' +
+            item.displayName;
+
+
+          els.driverSelect.appendChild(
+            option
+          );
+
+        }
+
+      );
+
+    }
+
+
+    // ==========================================================
+    // ステータス関連
+    //
+    // 画面には表示しない
     // ==========================================================
 
     function setStatus(
       text,
       type = ''
     ) {
-
-      els.status.textContent =
-        text;
-
-
-      els.status.className =
-        'status';
-
-
-      if (type) {
-
-        els.status.classList.add(
-          type
-        );
-      }
-
-
-      els.status.style.display =
-        'block';
+      // 画面には表示しません
+      // 自動判別は裏で実行します
     }
 
 
     function hideStatus() {
-
-      els.status.style.display =
-        'none';
+      // 何もしません
     }
 
 
@@ -2423,7 +2344,7 @@
 
 
     // ==========================================================
-    // 次回出勤日の文章
+    // 次回出勤日の表現
     // ==========================================================
 
     function getNextAttendanceLabel(
@@ -2433,17 +2354,21 @@
 
       const todayDate =
         new Date(
+
           today.getFullYear(),
           today.getMonth(),
           today.getDate()
+
         );
 
 
       const targetDate =
         new Date(
+
           nextDate.getFullYear(),
           nextDate.getMonth(),
           nextDate.getDate()
+
         );
 
 
@@ -2454,19 +2379,21 @@
 
       const diffDays =
         Math.round(
+
           diffMs /
+
           (
             1000 *
             60 *
             60 *
             24
           )
+
         );
 
 
       if (
-        diffDays ===
-        1
+        diffDays === 1
       ) {
 
         return '明日';
@@ -2474,8 +2401,7 @@
 
 
       if (
-        diffDays ===
-        2
+        diffDays === 2
       ) {
 
         return '明後日';
@@ -2694,6 +2620,7 @@
           )
 
           .catch(
+
             function(error) {
 
               console.error(
@@ -2702,6 +2629,7 @@
               );
 
             }
+
           );
 
 
@@ -2719,7 +2647,7 @@
 
 
     // ==========================================================
-    // API結果
+    // API結果取得
     // ==========================================================
 
     function pollApiResult_(
@@ -2738,8 +2666,7 @@
 
 
       if (
-        attempt >=
-        MAX_ATTEMPTS
+        attempt >= MAX_ATTEMPTS
       ) {
 
         reject(
@@ -2835,7 +2762,6 @@
           )
         ) {
 
-
           setTimeout(
 
             function() {
@@ -2862,7 +2788,6 @@
           !response ||
           response.ok !== true
         ) {
-
 
           reject(
 
@@ -2893,7 +2818,6 @@
 
       script.onerror =
         function() {
-
 
           if (
             finished
@@ -2926,6 +2850,7 @@
             WAIT_MS
 
           );
+
         };
 
 
@@ -2956,7 +2881,7 @@
 
 
     // ==========================================================
-    // ドライバー一覧
+    // サーバーから人物一覧取得
     // ==========================================================
 
     async function loadDriverList() {
@@ -2975,59 +2900,196 @@
           : [];
 
 
+      /*
+       * 最近使った人物を先頭にする
+       */
+
+      const recent =
+        getRecentDrivers();
+
+
+      const recentKeys =
+        new Set(
+
+          recent.map(
+
+            function(item) {
+
+              return item.driverKey;
+
+            }
+
+          )
+
+        );
+
+
+      const recentDrivers =
+        state.drivers.filter(
+
+          function(driver) {
+
+            return recentKeys.has(
+              driver.driverKey
+            );
+
+          }
+
+        );
+
+
+      const otherDrivers =
+        state.drivers.filter(
+
+          function(driver) {
+
+            return !recentKeys.has(
+              driver.driverKey
+            );
+
+          }
+
+        );
+
+
       els.driverSelect.innerHTML =
         '';
 
 
-      const autoOption =
-        document.createElement(
-          'option'
+      /*
+       * 最近使った人物
+       */
+
+      if (
+        recentDrivers.length > 0
+      ) {
+
+        const group =
+          document.createElement(
+            'optgroup'
+          );
+
+
+        group.label =
+          '最近使った人物';
+
+
+        recentDrivers.forEach(
+
+          function(driver) {
+
+            const option =
+              document.createElement(
+                'option'
+              );
+
+
+            option.value =
+              driver.driverKey;
+
+
+            option.textContent =
+              '★ ' +
+              driver.displayName;
+
+
+            group.appendChild(
+              option
+            );
+
+          }
+
         );
 
 
-      autoOption.value =
-        '';
+        els.driverSelect.appendChild(
+          group
+        );
+      }
 
 
-      autoOption.textContent =
-        '自動判別中...';
+      /*
+       * その他の人物
+       */
 
+      if (
+        otherDrivers.length > 0
+      ) {
 
-      els.driverSelect.appendChild(
-        autoOption
-      );
-
-
-      state.drivers.forEach(
-
-        function(driver) {
-
-          const option =
-            document.createElement(
-              'option'
-            );
-
-
-          option.value =
-            driver.driverKey;
-
-
-          option.textContent =
-            driver.displayName;
-
-
-          els.driverSelect.appendChild(
-            option
+        const group =
+          document.createElement(
+            'optgroup'
           );
 
-        }
 
-      );
+        group.label =
+          'その他の人物';
+
+
+        otherDrivers.forEach(
+
+          function(driver) {
+
+            const option =
+              document.createElement(
+                'option'
+              );
+
+
+            option.value =
+              driver.driverKey;
+
+
+            option.textContent =
+              driver.displayName;
+
+
+            group.appendChild(
+              option
+            );
+
+          }
+
+        );
+
+
+        els.driverSelect.appendChild(
+          group
+        );
+      }
+
+
+      /*
+       * 過去履歴が何もない場合
+       */
+
+      if (
+        state.drivers.length === 0
+      ) {
+
+        const option =
+          document.createElement(
+            'option'
+          );
+
+
+        option.value =
+          '';
+
+
+        option.textContent =
+          '人物が登録されていません';
+
+
+        els.driverSelect.appendChild(
+          option
+        );
+      }
     }
 
 
     // ==========================================================
-    // 手動選択
+    // 人物を適用
     // ==========================================================
 
     function applyDriver(
@@ -3049,6 +3111,10 @@
         manual
           ? driver.driverKey
           : '';
+
+
+      state.userSelectedManually =
+        manual;
 
 
       els.driverIcon.textContent =
@@ -3083,9 +3149,13 @@
         driver.driverKey;
 
 
-      // 自動判別成功後は
-      // 「本人確認完了」の緑表示を出さない
-      hideStatus();
+      /*
+       * 最近使った人物として保存
+       */
+
+      saveRecentDriver(
+        driver
+      );
     }
 
 
@@ -3103,12 +3173,98 @@
               item.driverKey ===
               driverKey
             );
+
           }
 
         );
 
 
       if (!driver) {
+
+        /*
+         * サーバー一覧がまだ届いていない場合、
+         * 過去履歴の人物を仮選択する。
+         *
+         * 実送信時にdriver_masterを再確認する。
+         */
+
+        const recent =
+          getRecentDrivers();
+
+
+        const recentDriver =
+          recent.find(
+
+            function(item) {
+
+              return (
+                item.driverKey ===
+                driverKey
+              );
+
+            }
+
+          );
+
+
+        if (
+          recentDriver
+        ) {
+
+          state.driver = {
+
+            driverKey:
+              recentDriver.driverKey,
+
+            displayName:
+              recentDriver.displayName
+
+          };
+
+
+          state.manualSelectedDriverKey =
+            manual
+              ? recentDriver.driverKey
+              : '';
+
+
+          state.userSelectedManually =
+            manual;
+
+
+          els.driverIcon.textContent =
+            '🚙';
+
+
+          els.driverName.textContent =
+            recentDriver.displayName +
+            ' さん';
+
+
+          els.driverMeta.textContent =
+            recentDriver.driverKey
+              ? ' / ' +
+                recentDriver.driverKey
+              : '';
+
+
+          els.btnIn.disabled =
+            false;
+
+
+          els.btnOut.disabled =
+            false;
+
+
+          els.sendBtn.disabled =
+            false;
+
+
+          saveRecentDriver(
+            state.driver
+          );
+        }
+
 
         return;
       }
@@ -3161,7 +3317,7 @@
 
 
     // ==========================================================
-    // 履歴
+    // 今日の履歴
     // ==========================================================
 
     function renderHistory() {
@@ -3203,6 +3359,7 @@
                 '</li>'
 
               );
+
             }
 
           )
@@ -3371,13 +3528,11 @@
 
 
       if (
-        state.mode ===
-        'in'
+        state.mode === 'in'
       ) {
 
         message =
           buildInMessage();
-
 
       } else {
 
@@ -3417,10 +3572,8 @@
 
 
       if (
-        mode ===
-        'in'
+        mode === 'in'
       ) {
-
 
         els.inFields.classList.remove(
           'hidden'
@@ -3451,7 +3604,6 @@
 
 
       } else {
-
 
         els.inFields.classList.add(
           'hidden'
@@ -3503,100 +3655,79 @@
 
     // ==========================================================
     // LIFF本人確認
+    //
+    // ポイント:
+    // 「待ってから人物選択」ではなく
+    // 「人物選択を先に出して、自動判別は裏で行う」
     // ==========================================================
 
     async function resolveDriver() {
 
-      try {
+      /*
+       * まず過去履歴を即表示
+       * ネットワークを一切待たない
+       */
+
+      renderRecentDriversImmediately();
 
 
-        setStatus(
-          '本人確認中...'
+      /*
+       * 過去に使った人物があれば
+       * 最初の人物を画面上だけ仮表示
+       *
+       * ただし、送信を押す前に
+       * driver_masterで再確認される。
+       */
+
+      const recent =
+        getRecentDrivers();
+
+
+      if (
+        recent.length > 0
+      ) {
+
+        applyDriverByKey(
+          recent[0].driverKey,
+          true
         );
+      }
 
 
-        // ------------------------------------------------------
-        // LIFF SDK
-        // ------------------------------------------------------
+      /*
+       * ここから自動判別を裏で実行
+       */
+
+      try {
 
         if (
           typeof liff ===
           'undefined'
         ) {
 
-          throw new Error(
-            'LIFF SDKを読み込めませんでした'
-          );
+          return;
         }
 
 
-        // ------------------------------------------------------
-        // 初期化
-        // ------------------------------------------------------
+        await liff.init({
 
-        const initPromise =
-          liff.init({
+          liffId:
+            LIFF_ID,
 
-            liffId:
-              LIFF_ID,
+          withLoginOnExternalBrowser:
+            true
 
-            withLoginOnExternalBrowser:
-              true
-
-          });
+        });
 
 
-        const timeoutPromise =
-
-          new Promise(
-
-            function(
-              _,
-              reject
-            ) {
-
-              setTimeout(
-
-                function() {
-
-                  reject(
-
-                    new Error(
-                      'LIFF初期化が10秒以内に完了しませんでした'
-                    )
-
-                  );
-
-                },
-
-                10000
-
-              );
-            }
-          );
-
-
-        await Promise.race([
-
-          initPromise,
-
-          timeoutPromise
-
-        ]);
-
-
-        // ------------------------------------------------------
-        // ログイン確認
-        // ------------------------------------------------------
+        /*
+         * ログインしていない場合
+         * ログイン処理
+         */
 
         if (
           !liff.isLoggedIn()
         ) {
-
-          setStatus(
-            '本人確認中...'
-          );
-
 
           liff.login({
 
@@ -3610,9 +3741,9 @@
         }
 
 
-        // ------------------------------------------------------
-        // IDトークン
-        // ------------------------------------------------------
+        /*
+         * IDトークン取得
+         */
 
         const idToken =
           liff.getIDToken();
@@ -3620,9 +3751,7 @@
 
         if (!idToken) {
 
-          throw new Error(
-            'LINE認証情報を取得できませんでした'
-          );
+          return;
         }
 
 
@@ -3630,38 +3759,32 @@
           idToken;
 
 
-        // ------------------------------------------------------
-        // driver_master一覧取得
-        //
-        // 手動選択を先に使えるようにする
-        // ------------------------------------------------------
+        /*
+         * サーバーから人物一覧を取得
+         *
+         * 手動選択を既に使える状態でも、
+         * 最新のdriver_masterと照合するため取得する。
+         */
 
-        try {
+        loadDriverList()
 
-          await loadDriverList();
+          .catch(
 
+            function(error) {
 
-        } catch (
-          listError
-        ) {
+              console.warn(
+                '人物一覧の取得に失敗:',
+                error
+              );
 
-          console.error(
-            listError
+            }
+
           );
 
-          els.driverSelect.innerHTML =
-            '<option value="">人物一覧を取得できません</option>';
-        }
 
-
-        // ------------------------------------------------------
-        // 自動判別
-        // ------------------------------------------------------
-
-        setStatus(
-          '本人確認中...'
-        );
-
+        /*
+         * 自動本人判別
+         */
 
         const info =
           await callServer(
@@ -3669,11 +3792,23 @@
           );
 
 
+        /*
+         * 手動選択中なら
+         * 自動判別結果で上書きしない
+         */
+
+        if (
+          state.userSelectedManually
+        ) {
+
+          return;
+        }
+
+
         if (
           info &&
           info.found
         ) {
-
 
           state.autoDetectedDriverKey =
             info.driverKey;
@@ -3686,23 +3821,6 @@
             false
 
           );
-
-
-        } else {
-
-          // 自動判別できなくても
-          // 手動選択は使用可能
-          setStatus(
-            '本人確認中...'
-          );
-
-
-          els.driverName.textContent =
-            '人物を選択してください';
-
-
-          els.driverIcon.textContent =
-            '🚙';
         }
 
 
@@ -3710,34 +3828,23 @@
         error
       ) {
 
+        /*
+         * 自動判別に失敗しても
+         * 手動選択はそのまま使える。
+         */
 
-        console.error(
+        console.warn(
+          '自動本人判別に失敗:',
           error
         );
 
-
-        setStatus(
-
-          '本人確認中\n' +
-          (
-            error &&
-            error.message
-              ? error.message
-              : String(error)
-          ),
-
-          'error'
-
-        );
-
-
-        // エラーでも手動選択を残す
       }
+
     }
 
 
     // ==========================================================
-    // 手動人物選択イベント
+    // 手動人物選択
     // ==========================================================
 
     els.driverSelect.addEventListener(
@@ -3756,9 +3863,16 @@
         }
 
 
+        state.userSelectedManually =
+          true;
+
+
         applyDriverByKey(
+
           driverKey,
+
           true
+
         );
 
       }
@@ -3842,38 +3956,26 @@
 
 
     els.editClockInTime.addEventListener(
-
       'input',
-
       refreshPreview
-
     );
 
 
     els.clockOutTime.addEventListener(
-
       'input',
-
       refreshPreview
-
     );
 
 
     els.nextDate.addEventListener(
-
       'change',
-
       refreshPreview
-
     );
 
 
     els.nextTime.addEventListener(
-
       'input',
-
       refreshPreview
-
     );
 
 
@@ -3892,59 +3994,22 @@
           !state.driver
         ) {
 
-          setStatus(
-
-            '人物を選択してください。',
-
-            'error'
-
-          );
-
-
           return;
         }
 
 
-        if (
-          !state.idToken
-        ) {
-
-          setStatus(
-
-            'LINE認証情報が取得できていません。',
-
-            'error'
-
-          );
-
-
-          return;
-        }
-
-
-        if (
-          !state.mode
-        ) {
-
-          setStatus(
-
-            '出勤または退勤を選択してください。',
-
-            'error'
-
-          );
-
-
-          return;
-        }
-
+        /*
+         * ID Tokenがまだ無くても、
+         * 自動判別とは別に手動選択ができるようにする。
+         *
+         * 送信API側ではselectedDriverKeyを優先する。
+         */
 
         const message =
           refreshPreview();
 
 
         try {
-
 
           els.sendBtn.disabled =
             true;
@@ -3974,17 +4039,14 @@
           ) {
 
             throw new Error(
-
               '送信結果を確認できませんでした'
-
             );
           }
 
 
           const title =
 
-            state.mode ===
-            'in'
+            state.mode === 'in'
 
               ? '出勤'
 
@@ -3999,8 +4061,32 @@
           );
 
 
-          // 送信後にステータスを出さない
-          hideStatus();
+          /*
+           * 送信成功した人物を
+           * 次回すぐ選べるよう保存
+           */
+
+          saveRecentDriver(
+            state.driver
+          );
+
+
+          /*
+           * 最新の人物選択順を反映
+           */
+
+          try {
+
+            await loadDriverList();
+
+          } catch (
+            refreshError
+          ) {
+
+            console.warn(
+              refreshError
+            );
+          }
 
 
           els.editPanel.classList.remove(
@@ -4016,30 +4102,24 @@
           error
         ) {
 
-
           console.error(
             error
           );
 
 
-          const errorMessage =
+          /*
+           * 手動選択した人物が
+           * 最新driver_masterに存在しない場合など
+           */
+
+          alert(
 
             error &&
             error.message
 
               ? error.message
 
-              : String(
-                  error
-                );
-
-
-          setStatus(
-
-            '送信失敗\n' +
-            errorMessage,
-
-            'error'
+              : '送信に失敗しました'
 
           );
 
@@ -4064,6 +4144,11 @@
       'load',
 
       function() {
+
+        /*
+         * まず画面を表示
+         * その後、自動判別を裏で開始
+         */
 
         resolveDriver();
 
