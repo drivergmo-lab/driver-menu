@@ -418,10 +418,6 @@
       border:
         1px solid rgba(216,235,247,.9);
 
-      /*
-       * スマホでscrollIntoViewした時に
-       * 上下が詰まりすぎないようにする
-       */
       scroll-margin-top:
         70px;
 
@@ -887,10 +883,6 @@
         border-radius:
           20px;
 
-        /*
-         * ★ スマホで中央スクロールする時の余白
-         */
-
         scroll-margin-top:
           70px;
 
@@ -941,6 +933,7 @@
         font-size:
           20px;
       }
+
     }
 
   </style>
@@ -1035,7 +1028,6 @@
       <div
         class="attendance-buttons"
       >
-
 
         <!-- 出勤 -->
 
@@ -1512,6 +1504,8 @@
         </h2>
 
 
+        <!-- 出勤 -->
+
         <div
           id="inFields"
         >
@@ -1536,6 +1530,8 @@
 
         </div>
 
+
+        <!-- 退勤 -->
 
         <div
           id="outFields"
@@ -1632,11 +1628,15 @@
         </div>
 
 
+        <!-- プレビュー -->
+
         <div
           id="preview"
           class="preview"
         ></div>
 
+
+        <!-- 送信 -->
 
         <button
           id="sendBtn"
@@ -1717,6 +1717,18 @@
 
     const MAX_RECENT_DRIVERS =
       10;
+
+
+    // ==========================================================
+    // ★★★★★ 保存キー ★★★★★
+    // ==========================================================
+
+    const STORAGE_KEY_HISTORY =
+      'driver_menu_attendance_history_v1';
+
+
+    const STORAGE_KEY_WORK =
+      'driver_menu_work_state_v1';
 
 
     // ==========================================================
@@ -1850,6 +1862,39 @@
 
 
     // ==========================================================
+    // 日付キー
+    //
+    // 例:
+    // 2026-08-12
+    // ==========================================================
+
+    function getTodayKey() {
+
+      const date =
+        new Date();
+
+
+      return (
+        date.getFullYear() +
+        '-' +
+        String(
+          date.getMonth() + 1
+        ).padStart(
+          2,
+          '0'
+        ) +
+        '-' +
+        String(
+          date.getDate()
+        ).padStart(
+          2,
+          '0'
+        )
+      );
+    }
+
+
+    // ==========================================================
     // 状態表示
     // ==========================================================
 
@@ -1935,6 +1980,11 @@
         false;
 
 
+      /*
+       * 送信ボタンは内容修正画面を開くまで
+       * 見た目上は非表示なので無効でも問題なし
+       */
+
       els.sendBtn.disabled =
         false;
 
@@ -1964,7 +2014,6 @@
 
 
       if (!driverKey) {
-
         return false;
       }
 
@@ -1976,7 +2025,6 @@
 
 
       if (!driver) {
-
         return false;
       }
 
@@ -2013,7 +2061,6 @@
     ) {
 
       if (!driver) {
-
         return false;
       }
 
@@ -2036,6 +2083,13 @@
       );
 
 
+      /*
+       * 以前保存した今日の出勤時間を読み込む
+       */
+
+      loadWorkState();
+
+
       setStatus(
         'done'
       );
@@ -2054,7 +2108,6 @@
     ) {
 
       if (!driverKey) {
-
         return null;
       }
 
@@ -2131,7 +2184,6 @@
 
 
           if (!raw) {
-
             continue;
           }
 
@@ -2286,6 +2338,253 @@
 
         console.warn(
           '人物履歴保存失敗',
+          error
+        );
+
+      }
+    }
+
+
+    // ==========================================================
+    // ★★★★★ 今日の履歴保存 ★★★★★
+    // ==========================================================
+
+    function saveHistoryToStorage() {
+
+      try {
+
+        localStorage.setItem(
+
+          STORAGE_KEY_HISTORY,
+
+          JSON.stringify(
+            state.history.slice(
+              0,
+              50
+            )
+          )
+
+        );
+
+      } catch (
+        error
+      ) {
+
+        console.warn(
+          '履歴保存失敗',
+          error
+        );
+
+      }
+    }
+
+
+    // ==========================================================
+    // ★★★★★ 今日の履歴読み込み ★★★★★
+    // ==========================================================
+
+    function loadHistoryFromStorage() {
+
+      try {
+
+        const raw =
+          localStorage.getItem(
+            STORAGE_KEY_HISTORY
+          );
+
+
+        if (!raw) {
+
+          state.history =
+            [];
+
+          renderHistory();
+
+          return;
+        }
+
+
+        const data =
+          JSON.parse(
+            raw
+          );
+
+
+        if (
+          !Array.isArray(
+            data
+          )
+        ) {
+
+          state.history =
+            [];
+
+          renderHistory();
+
+          return;
+        }
+
+
+        /*
+         * 50件まで復元
+         */
+
+        state.history =
+          data.slice(
+            0,
+            50
+          );
+
+
+        renderHistory();
+
+
+      } catch (
+        error
+      ) {
+
+        console.warn(
+          '履歴読み込み失敗',
+          error
+        );
+
+
+        state.history =
+          [];
+
+
+        renderHistory();
+      }
+    }
+
+
+    // ==========================================================
+    // ★★★★★ 今日の出勤状態保存 ★★★★★
+    // ==========================================================
+
+    function saveWorkState() {
+
+      try {
+
+        const data = {
+
+          date:
+            getTodayKey(),
+
+          driverKey:
+            state.driver
+              ? state.driver.driverKey
+              : '',
+
+          driverName:
+            state.driver
+              ? state.driver.displayName
+              : '',
+
+          startTime:
+            state.lastStartTime ||
+            ''
+
+        };
+
+
+        localStorage.setItem(
+
+          STORAGE_KEY_WORK,
+
+          JSON.stringify(
+            data
+          )
+
+        );
+
+      } catch (
+        error
+      ) {
+
+        console.warn(
+          '出勤状態保存失敗',
+          error
+        );
+
+      }
+    }
+
+
+    // ==========================================================
+    // ★★★★★ 今日の出勤状態読み込み ★★★★★
+    // ==========================================================
+
+    function loadWorkState() {
+
+      try {
+
+        const raw =
+          localStorage.getItem(
+            STORAGE_KEY_WORK
+          );
+
+
+        if (!raw) {
+          return;
+        }
+
+
+        const data =
+          JSON.parse(
+            raw
+          );
+
+
+        if (!data) {
+          return;
+        }
+
+
+        /*
+         * 今日以外のデータは使用しない
+         */
+
+        if (
+          data.date !==
+          getTodayKey()
+        ) {
+
+          return;
+        }
+
+
+        /*
+         * 人物が決まっている場合は
+         * 別人物の時間を使わない
+         */
+
+        if (
+          state.driver &&
+          data.driverKey &&
+          state.driver.driverKey !==
+            data.driverKey
+        ) {
+
+          return;
+        }
+
+
+        if (
+          data.startTime
+        ) {
+
+          state.lastStartTime =
+            data.startTime;
+
+        }
+
+      } catch (
+        error
+      ) {
+
+        console.warn(
+          '出勤状態読み込み失敗',
           error
         );
 
@@ -2694,19 +2993,22 @@
 
           formData.append(
             'idToken',
-            state.idToken || ''
+            state.idToken ||
+            ''
           );
 
 
           formData.append(
             'message',
-            data.message || ''
+            data.message ||
+            ''
           );
 
 
           formData.append(
             'selectedDriverKey',
-            data.selectedDriverKey || ''
+            data.selectedDriverKey ||
+            ''
           );
 
 
@@ -2768,6 +3070,7 @@
       const MAX_ATTEMPTS =
         40;
 
+
       const WAIT_MS =
         500;
 
@@ -2782,6 +3085,7 @@
             'Apps Script APIの応答が20秒以内に返りませんでした'
           )
         );
+
 
         return;
       }
@@ -2814,7 +3118,6 @@
           script.parentNode.removeChild(
             script
           );
-
         }
 
 
@@ -2881,6 +3184,7 @@
             WAIT_MS
           );
 
+
           return;
         }
 
@@ -2899,6 +3203,7 @@
                 : 'Apps Script APIエラー'
             )
           );
+
 
           return;
         }
@@ -2968,7 +3273,7 @@
     // ==========================================================
     // driver_master取得
     //
-    // ★ LIFFログインを待たずに実行
+    // LIFFログインを待たずに実行
     // ==========================================================
 
     async function loadDriverList() {
@@ -3575,21 +3880,32 @@
         );
 
 
+      /*
+       * 退勤時の出勤時間は
+       * 現在時刻ではなく、
+       * 確定した出勤時間を使う。
+       */
+
+      const startTime =
+        els.editClockInTime.value ||
+        state.lastStartTime ||
+        '00:00';
+
+
+      const endTime =
+        els.clockOutTime.value ||
+        '00:00';
+
+
       return (
         'お疲れ様でございます。\n\n' +
         '業務完了いたしました。\n\n' +
         dateSlash(today) +
         '\n' +
         '稼働)' +
-        (
-          els.editClockInTime.value ||
-          '00:00'
-        ) +
+        startTime +
         '-' +
-        (
-          els.clockOutTime.value ||
-          '00:00'
-        ) +
+        endTime +
         '\n\n' +
         '本日は失礼させていただきます。\n\n' +
         '出勤) ' +
@@ -3669,6 +3985,13 @@
           );
 
 
+        /*
+         * ここではまだ確定しない。
+         *
+         * 出勤送信時に
+         * 実際に画面で設定されている時刻を保存する。
+         */
+
         state.lastStartTime =
           els.clockInTime.value;
 
@@ -3693,6 +4016,20 @@
           new Date();
 
 
+        /*
+         * ★重要
+         *
+         * 今日保存された出勤時間を復元
+         */
+
+        loadWorkState();
+
+
+        /*
+         * 出勤時間は
+         * 保存済みの時間を優先
+         */
+
         els.editClockInTime.value =
           state.lastStartTime ||
           toTimeInput(
@@ -3700,11 +4037,19 @@
           );
 
 
+        /*
+         * 退勤時間だけ現在時刻
+         */
+
         els.clockOutTime.value =
           toTimeInput(
             now
           );
 
+
+        /*
+         * 次回出勤
+         */
 
         els.nextDate.value =
           toDateInput(
@@ -3722,11 +4067,7 @@
 
       /*
        * ======================================================
-       * ★★★★★ 今回の修正
-       *
-       * スマホでは「内容修正」が
-       * 上に寄ってしまうため、
-       * パネルを画面中央へスクロールする。
+       * スマホでは内容修正を画面中央へ
        * ======================================================
        */
 
@@ -3762,7 +4103,7 @@
 
 
     // ==========================================================
-    // 時刻変更
+    // 出勤時間変更
     // ==========================================================
 
     els.clockInTime.addEventListener(
@@ -3778,11 +4119,31 @@
     );
 
 
+    // ==========================================================
+    // 退勤時の出勤時間変更
+    // ==========================================================
+
     els.editClockInTime.addEventListener(
       'input',
-      refreshPreview
+      function() {
+
+        /*
+         * 退勤画面で出勤時間を修正した場合も
+         * stateに反映する
+         */
+
+        state.lastStartTime =
+          els.editClockInTime.value;
+
+
+        refreshPreview();
+      }
     );
 
+
+    // ==========================================================
+    // 退勤時間変更
+    // ==========================================================
 
     els.clockOutTime.addEventListener(
       'input',
@@ -3790,11 +4151,19 @@
     );
 
 
+    // ==========================================================
+    // 次回出勤日
+    // ==========================================================
+
     els.nextDate.addEventListener(
       'change',
       refreshPreview
     );
 
+
+    // ==========================================================
+    // 次回出勤時間
+    // ==========================================================
 
     els.nextTime.addEventListener(
       'input',
@@ -3811,7 +4180,7 @@
       async function() {
 
         /*
-         * 送信直前にも同期
+         * スマホ対策
          */
 
         if (
@@ -3835,8 +4204,119 @@
         }
 
 
-        const message =
+        /*
+         * 送信直前に
+         * もう一度確認
+         */
+
+        let message =
           refreshPreview();
+
+
+        /*
+         * 出勤の場合
+         *
+         * 画面で確定した出勤時刻を保存
+         */
+
+        if (
+          state.mode ===
+          'in'
+        ) {
+
+          const confirmedStartTime =
+            els.clockInTime.value;
+
+
+          if (
+            !confirmedStartTime
+          ) {
+
+            alert(
+              '出勤時間を入力してください。'
+            );
+
+
+            return;
+          }
+
+
+          state.lastStartTime =
+            confirmedStartTime;
+
+
+          saveWorkState();
+
+
+          /*
+           * 保存した確定値で
+           * メッセージを再生成
+           */
+
+          message =
+            buildInMessage();
+        }
+
+
+        /*
+         * 退勤の場合
+         *
+         * 出勤時間を維持
+         */
+
+        if (
+          state.mode ===
+          'out'
+        ) {
+
+          const startTime =
+            els.editClockInTime.value;
+
+
+          const endTime =
+            els.clockOutTime.value;
+
+
+          if (
+            !startTime
+          ) {
+
+            alert(
+              '出勤時間が設定されていません。'
+            );
+
+
+            return;
+          }
+
+
+          if (
+            !endTime
+          ) {
+
+            alert(
+              '退勤時間が設定されていません。'
+            );
+
+
+            return;
+          }
+
+
+          state.lastStartTime =
+            startTime;
+
+
+          saveWorkState();
+
+
+          /*
+           * 確定値でメッセージを再生成
+           */
+
+          message =
+            buildOutMessage();
+        }
 
 
         try {
@@ -3869,9 +4349,7 @@
 
               result &&
               result.error
-
                 ? result.error
-
                 : '送信結果を確認できませんでした'
 
             );
@@ -3884,16 +4362,28 @@
               : '退勤';
 
 
+          /*
+           * 履歴を永続保存
+           */
+
           addHistory(
             title +
             'を送信しました'
           );
 
 
+          /*
+           * 最近人物も保存
+           */
+
           saveRecentDriver(
             state.driver
           );
 
+
+          /*
+           * 送信成功後の表示
+           */
 
           els.editPanel.classList.remove(
             'show'
@@ -3931,7 +4421,7 @@
 
 
     // ==========================================================
-    // 履歴
+    // 履歴表示
     // ==========================================================
 
     function renderHistory() {
@@ -3953,12 +4443,16 @@
 
             return (
               '<li>' +
-              String(
-                item.time
+              escapeHtml(
+                String(
+                  item.time
+                )
               ) +
               '　' +
-              String(
-                item.text
+              escapeHtml(
+                String(
+                  item.text
+                )
               ) +
               '</li>'
             );
@@ -3967,6 +4461,49 @@
         ).join('');
     }
 
+
+    // ==========================================================
+    // HTMLエスケープ
+    // ==========================================================
+
+    function escapeHtml(
+      value
+    ) {
+
+      return String(
+        value
+      )
+
+        .replace(
+          /&/g,
+          '&amp;'
+        )
+
+        .replace(
+          /</g,
+          '&lt;'
+        )
+
+        .replace(
+          />/g,
+          '&gt;'
+        )
+
+        .replace(
+          /"/g,
+          '&quot;'
+        )
+
+        .replace(
+          /'/g,
+          '&#39;'
+        );
+    }
+
+
+    // ==========================================================
+    // 履歴追加
+    // ==========================================================
 
     function addHistory(
       text
@@ -3982,14 +4519,26 @@
 
         text:
           text
+
       });
 
+
+      /*
+       * 最大50件
+       */
 
       state.history =
         state.history.slice(
           0,
-          5
+          50
         );
+
+
+      /*
+       * ★永続保存
+       */
+
+      saveHistoryToStorage();
 
 
       renderHistory();
@@ -3998,6 +4547,8 @@
 
     // ==========================================================
     // 自動本人判別
+    //
+    // 人物一覧取得とは独立
     // ==========================================================
 
     async function autoDetectDriver() {
@@ -4030,6 +4581,7 @@
 
           withLoginOnExternalBrowser:
             true
+
         });
 
 
@@ -4160,8 +4712,6 @@
 
     // ==========================================================
     // 起動
-    //
-    // ★ LIFFログインを待たずdriver_master取得
     // ==========================================================
 
     window.addEventListener(
@@ -4169,14 +4719,28 @@
       function() {
 
         /*
-         * 最近人物を即表示
+         * ★ 保存済み履歴を復元
+         */
+
+        loadHistoryFromStorage();
+
+
+        /*
+         * ★ 今日の出勤状態を復元
+         */
+
+        loadWorkState();
+
+
+        /*
+         * 最近人物
          */
 
         renderRecentDriversImmediately();
 
 
         /*
-         * driver_masterを取得
+         * driver_master
          */
 
         loadDriverList();
@@ -4212,6 +4776,20 @@
 
             syncDriverFromSelect();
 
+
+            /*
+             * 履歴も再読み込み
+             */
+
+            loadHistoryFromStorage();
+
+
+            /*
+             * 出勤状態も再読み込み
+             */
+
+            loadWorkState();
+
           },
           100
         );
@@ -4232,6 +4810,12 @@
           function() {
 
             syncDriverFromSelect();
+
+
+            loadHistoryFromStorage();
+
+
+            loadWorkState();
 
           },
           100
