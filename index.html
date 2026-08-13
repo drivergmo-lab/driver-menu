@@ -2,6 +2,7 @@
 <html lang="ja">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -12,7 +13,9 @@
   <title>運転手MENU</title>
 
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
 
   <style>
 
@@ -22,7 +25,6 @@
       --card: #ffffff;
       --line: #d5eaf7;
       --text: #17324d;
-      --muted: #71889a;
       --blue: #1676c7;
       --green: #18824e;
       --green-bg: #eefbf3;
@@ -31,18 +33,23 @@
       --shadow: 0 12px 34px rgba(40, 92, 128, .10);
     }
 
+
     * {
       box-sizing: border-box;
     }
+
 
     html,
     body {
       margin: 0;
       padding: 0;
+
       width: 100%;
       min-height: 100%;
+
       overflow-x: hidden;
     }
+
 
     body {
       min-height: 100vh;
@@ -65,6 +72,7 @@
       color: var(--text);
     }
 
+
     button,
     input,
     select,
@@ -73,25 +81,32 @@
       box-sizing: border-box;
     }
 
+
     .page {
       width: 100%;
       max-width: 760px;
+
       margin: 0 auto;
 
       padding:
         12px 10px
-        calc(24px + env(safe-area-inset-bottom));
+        calc(
+          24px +
+          env(safe-area-inset-bottom)
+        );
     }
 
-    /* ========================================================
-       HERO
-       ======================================================== */
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
 
     .hero {
       position: relative;
       overflow: hidden;
 
-      padding: 22px 14px 18px;
+      padding:
+        22px 14px 18px;
 
       border-radius: 26px;
 
@@ -106,204 +121,319 @@
           #73c768 100%
         );
 
-      box-shadow: var(--shadow);
+      box-shadow:
+        var(--shadow);
     }
+
 
     .hero-car {
       font-size: 48px;
       line-height: 1;
     }
 
+
     .hero h1 {
-      margin: 7px 0 0;
+      margin:
+        7px 0 0;
 
-      color: var(--blue);
+      color:
+        var(--blue);
 
-      font-size: 32px;
-      line-height: 1.1;
-      font-weight: 900;
+      font-size:
+        32px;
+
+      line-height:
+        1.1;
+
+      font-weight:
+        900;
     }
 
-    /* ========================================================
-       MAIN
-       ======================================================== */
+
+    /* =========================================================
+       CARD
+       ========================================================= */
 
     .card {
-      width: 100%;
+      width:
+        100%;
 
-      margin-top: 12px;
-      padding: 13px;
+      margin-top:
+        12px;
 
-      border-radius: 24px;
+      padding:
+        13px;
 
-      background: rgba(255,255,255,.97);
+      border-radius:
+        24px;
 
-      box-shadow: var(--shadow);
+      background:
+        rgba(255,255,255,.97);
 
-      overflow: hidden;
+      box-shadow:
+        var(--shadow);
+
+      overflow:
+        hidden;
     }
 
-    /* ========================================================
+
+    /* =========================================================
        STATUS
-       ======================================================== */
+       ========================================================= */
 
     .status {
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
-      justify-content: center;
+      align-items:
+        center;
 
-      width: fit-content;
-      max-width: 100%;
+      justify-content:
+        center;
 
-      min-height: 44px;
+      width:
+        fit-content;
 
-      margin: 0 auto 11px;
+      max-width:
+        100%;
 
-      padding: 9px 17px;
+      min-height:
+        44px;
 
-      border: 1px solid var(--line);
-      border-radius: 999px;
+      margin:
+        0 auto 11px;
 
-      background: #f3fbff;
+      padding:
+        9px 17px;
 
-      color: var(--blue);
+      border:
+        1px solid
+        var(--line);
 
-      font-size: 15px;
-      font-weight: 900;
+      border-radius:
+        999px;
 
-      text-align: center;
+      background:
+        #f3fbff;
+
+      color:
+        var(--blue);
+
+      font-size:
+        15px;
+
+      font-weight:
+        900;
+
+      text-align:
+        center;
     }
+
 
     .status.done {
-      color: var(--green);
+      color:
+        var(--green);
 
-      background: var(--green-bg);
+      background:
+        var(--green-bg);
 
-      border-color: #ccefd8;
+      border-color:
+        #ccefd8;
     }
+
 
     .status.error {
-      color: var(--danger);
+      color:
+        var(--danger);
 
-      background: #fff3f3;
+      background:
+        #fff3f3;
 
-      border-color: #f0cccc;
+      border-color:
+        #f0cccc;
     }
 
-    /* ========================================================
-       DRIVER
-       ======================================================== */
+
+    /* =========================================================
+       COMMON BOX
+       ========================================================= */
 
     .box {
-      width: 100%;
+      width:
+        100%;
 
-      border: 1px solid var(--line);
-      border-radius: 17px;
+      border:
+        1px solid
+        var(--line);
 
-      background: var(--soft);
+      border-radius:
+        17px;
 
-      overflow: hidden;
+      background:
+        var(--soft);
+
+      overflow:
+        hidden;
     }
+
 
     .driver-box {
-      padding: 10px 12px;
+      padding:
+        10px 12px;
     }
+
 
     .label {
-      display: block;
+      display:
+        block;
 
-      margin-bottom: 6px;
+      margin-bottom:
+        6px;
 
-      color: #637c90;
+      color:
+        #637c90;
 
-      font-size: 13px;
-      font-weight: 900;
+      font-size:
+        13px;
+
+      font-weight:
+        900;
     }
+
 
     select,
     input[type="time"],
     input[type="date"] {
-      display: block;
+      display:
+        block;
 
-      width: 100%;
-      min-width: 0;
-      max-width: 100%;
+      width:
+        100%;
 
-      height: 46px;
+      min-width:
+        0;
 
-      border: 1px solid #cfe4f3;
-      border-radius: 13px;
+      max-width:
+        100%;
 
-      padding: 0 9px;
+      height:
+        46px;
 
-      outline: none;
+      border:
+        1px solid
+        #cfe4f3;
 
-      background: #ffffff;
+      border-radius:
+        13px;
 
-      color: var(--text);
+      padding:
+        0 9px;
 
-      font-size: 16px;
-      font-weight: 800;
+      outline:
+        none;
+
+      background:
+        #ffffff;
+
+      color:
+        var(--text);
+
+      font-size:
+        16px;
+
+      font-weight:
+        800;
     }
+
 
     select:focus,
     input:focus,
     textarea:focus {
-      border-color: #67b6ea;
+      border-color:
+        #67b6ea;
 
       box-shadow:
         0 0 0 3px
-        rgba(103, 182, 234, .14);
+        rgba(103,182,234,.14);
     }
 
-    /* ========================================================
+
+    /* =========================================================
        MODE
-       ======================================================== */
+       ========================================================= */
 
     .mode-box {
-      display: grid;
+      display:
+        grid;
 
       grid-template-columns:
-        minmax(0, 1fr)
-        minmax(0, 1fr);
+        minmax(0,1fr)
+        minmax(0,1fr);
 
-      gap: 8px;
+      gap:
+        8px;
 
-      width: 100%;
+      width:
+        100%;
 
-      margin-top: 10px;
-      padding: 8px;
+      margin-top:
+        10px;
 
-      border: 1px solid var(--line);
-      border-radius: 17px;
+      padding:
+        8px;
 
-      background: var(--soft);
+      border:
+        1px solid
+        var(--line);
 
-      overflow: hidden;
+      border-radius:
+        17px;
+
+      background:
+        var(--soft);
+
+      overflow:
+        hidden;
     }
+
 
     .mode-btn {
-      min-width: 0;
-      min-height: 74px;
+      min-width:
+        0;
 
-      border: 0;
-      border-radius: 15px;
+      min-height:
+        74px;
 
-      background: #e7f4fb;
+      border:
+        0;
 
-      color: #738a9a;
+      border-radius:
+        15px;
 
-      font-size: 23px;
-      font-weight: 900;
+      background:
+        #e7f4fb;
 
-      cursor: pointer;
+      color:
+        #738a9a;
 
-      transition: .15s ease;
+      font-size:
+        23px;
+
+      font-weight:
+        900;
+
+      cursor:
+        pointer;
+
+      transition:
+        .15s ease;
     }
 
+
     .mode-btn.active.in {
-      color: #084e78;
+      color:
+        #084e78;
 
       background:
         linear-gradient(
@@ -315,11 +445,13 @@
 
       box-shadow:
         0 5px 12px
-        rgba(67, 170, 225, .18);
+        rgba(67,170,225,.18);
     }
 
+
     .mode-btn.active.out {
-      color: #ffffff;
+      color:
+        #ffffff;
 
       background:
         linear-gradient(
@@ -330,311 +462,503 @@
 
       box-shadow:
         0 5px 12px
-        rgba(39, 68, 145, .24);
+        rgba(39,68,145,.24);
     }
 
-    /* ========================================================
+
+    /* =========================================================
        PHOTO
-       ======================================================== */
+       ========================================================= */
 
     .upload-btn {
-      display: block;
+      display:
+        block;
 
-      width: 100%;
-      min-height: 54px;
+      width:
+        100%;
 
-      margin-top: 11px;
+      min-height:
+        54px;
 
-      padding: 12px 14px;
+      margin-top:
+        11px;
 
-      border: 1px solid #cfe8f7;
-      border-radius: 17px;
+      padding:
+        12px 14px;
 
-      background: #eaf7ff;
+      border:
+        1px solid
+        #cfe8f7;
 
-      color: var(--blue);
+      border-radius:
+        17px;
 
-      font-size: 17px;
-      font-weight: 900;
+      background:
+        #eaf7ff;
 
-      cursor: pointer;
+      color:
+        var(--blue);
+
+      font-size:
+        17px;
+
+      font-weight:
+        900;
+
+      cursor:
+        pointer;
     }
+
 
     .upload-btn:active {
-      transform: translateY(1px);
+      transform:
+        translateY(1px);
     }
+
 
     .notice {
-      display: none;
+      display:
+        none;
 
-      width: 100%;
+      width:
+        100%;
 
-      margin-top: 10px;
+      margin-top:
+        10px;
 
-      padding: 10px 12px;
+      padding:
+        10px 12px;
 
-      border: 1px solid var(--line);
-      border-radius: 13px;
+      border:
+        1px solid
+        var(--line);
 
-      background: #f7fcff;
+      border-radius:
+        13px;
 
-      color: #5c7588;
+      background:
+        #f7fcff;
 
-      font-size: 13px;
-      line-height: 1.5;
+      color:
+        #5c7588;
 
-      text-align: center;
+      font-size:
+        13px;
+
+      line-height:
+        1.5;
+
+      text-align:
+        center;
     }
+
 
     .notice.show {
-      display: block;
+      display:
+        block;
     }
 
-    /* ========================================================
+
+    /* =========================================================
        PREVIEW
-       ======================================================== */
+       ========================================================= */
 
     .preview-wrap {
-      display: none;
+      display:
+        none;
 
-      width: 100%;
+      width:
+        100%;
 
-      margin-top: 12px;
+      margin-top:
+        12px;
 
-      padding: 12px;
+      padding:
+        12px;
 
-      border: 1px solid var(--line);
-      border-radius: 19px;
+      border:
+        1px solid
+        var(--line);
 
-      background: #ffffff;
+      border-radius:
+        19px;
 
-      overflow: hidden;
+      background:
+        #ffffff;
+
+      overflow:
+        hidden;
     }
+
 
     .preview-wrap.show {
-      display: block;
+      display:
+        block;
     }
+
 
     .photo-preview {
-      display: block;
+      display:
+        block;
 
-      width: 100%;
-      max-width: 100%;
-      max-height: 390px;
+      width:
+        100%;
 
-      object-fit: contain;
+      max-width:
+        100%;
 
-      border-radius: 15px;
+      max-height:
+        390px;
 
-      background: #eef4f8;
+      object-fit:
+        contain;
+
+      border-radius:
+        15px;
+
+      background:
+        #eef4f8;
     }
+
 
     .section-title {
-      margin: 14px 0 8px;
+      margin:
+        14px 0 8px;
 
-      color: var(--blue);
+      color:
+        var(--blue);
 
-      font-size: 18px;
-      font-weight: 900;
+      font-size:
+        18px;
 
-      text-align: center;
+      font-weight:
+        900;
+
+      text-align:
+        center;
     }
 
-    /* OCRの生データは表示しない */
+
+    /* OCR生データは表示しない */
 
     .ocr-text {
-      display: none !important;
+      display:
+        none !important;
     }
 
-    /* ========================================================
-       INPUT FIELDS
-       ======================================================== */
+
+    /* =========================================================
+       FIELDS
+       ========================================================= */
 
     .fields {
-      display: grid;
+      display:
+        grid;
 
       grid-template-columns:
-        minmax(0, 1fr)
-        minmax(0, 1fr);
+        minmax(0,1fr)
+        minmax(0,1fr);
 
-      gap: 8px;
+      gap:
+        8px;
 
-      width: 100%;
+      width:
+        100%;
 
-      margin-top: 11px;
+      margin-top:
+        11px;
     }
+
 
     .field {
-      width: 100%;
-      min-width: 0;
+      width:
+        100%;
 
-      padding: 8px;
+      min-width:
+        0;
 
-      border: 1px solid var(--line);
-      border-radius: 14px;
+      padding:
+        8px;
 
-      background: #f9fdff;
+      border:
+        1px solid
+        var(--line);
 
-      overflow: hidden;
+      border-radius:
+        14px;
+
+      background:
+        #f9fdff;
+
+      overflow:
+        hidden;
     }
+
 
     .field input {
-      display: block;
+      display:
+        block;
 
-      width: 100%;
-      min-width: 0;
-      max-width: 100%;
+      width:
+        100%;
 
-      height: 42px;
+      min-width:
+        0;
 
-      padding: 0 6px;
+      max-width:
+        100%;
 
-      border-radius: 12px;
+      height:
+        42px;
 
-      font-size: 16px;
-      font-weight: 900;
+      padding:
+        0 5px;
 
-      text-align: center;
+      font-size:
+        16px;
+
+      font-weight:
+        900;
+
+      text-align:
+        center;
     }
+
 
     input[type="date"] {
-      font-size: 14px;
+      font-size:
+        14px;
     }
+
 
     input[type="time"] {
-      font-size: 17px;
+      font-size:
+        17px;
     }
+
 
     .summary {
-      grid-column: 1 / -1;
+      grid-column:
+        1 / -1;
 
-      width: 100%;
-      min-width: 0;
+      width:
+        100%;
 
-      padding: 11px 8px;
+      min-width:
+        0;
 
-      border: 1px solid var(--line);
-      border-radius: 14px;
+      padding:
+        11px 8px;
 
-      background: #f7fcff;
+      border:
+        1px solid
+        var(--line);
 
-      color: #446276;
+      border-radius:
+        14px;
 
-      font-size: 14px;
-      font-weight: 800;
+      background:
+        #f7fcff;
 
-      text-align: center;
+      color:
+        #446276;
 
-      overflow: hidden;
+      font-size:
+        14px;
+
+      font-weight:
+        800;
+
+      text-align:
+        center;
+
+      overflow:
+        hidden;
     }
+
 
     .summary strong {
-      color: var(--blue);
+      color:
+        var(--blue);
 
-      font-size: 16px;
+      font-size:
+        16px;
     }
 
-    /* ========================================================
+
+    /* =========================================================
        MESSAGE
-       ======================================================== */
+       ========================================================= */
 
     .message-box {
-      width: 100%;
-      min-width: 0;
+      width:
+        100%;
 
-      margin-top: 11px;
+      min-width:
+        0;
 
-      padding: 13px;
+      margin-top:
+        11px;
 
-      border: 1px solid var(--line);
-      border-radius: 16px;
+      padding:
+        13px;
 
-      background: #f4fbff;
+      border:
+        1px solid
+        var(--line);
 
-      overflow: hidden;
+      border-radius:
+        16px;
+
+      background:
+        #f4fbff;
+
+      overflow:
+        hidden;
     }
+
 
     .extra-message-label {
-      margin-top: 8px;
-      margin-bottom: 6px;
+      margin-top:
+        8px;
 
-      color: #637c90;
+      margin-bottom:
+        6px;
 
-      font-size: 13px;
-      font-weight: 900;
+      color:
+        #637c90;
+
+      font-size:
+        13px;
+
+      font-weight:
+        900;
     }
+
 
     .extra-message {
-      display: block;
+      display:
+        block;
 
-      width: 100%;
-      min-width: 0;
-      max-width: 100%;
+      width:
+        100%;
 
-      min-height: 84px;
+      min-width:
+        0;
 
-      resize: vertical;
+      max-width:
+        100%;
 
-      padding: 10px;
+      min-height:
+        84px;
 
-      border: 1px solid #cfe4f3;
-      border-radius: 13px;
+      resize:
+        vertical;
 
-      background: #ffffff;
+      padding:
+        10px;
 
-      color: var(--text);
+      border:
+        1px solid
+        #cfe4f3;
 
-      font-size: 14px;
-      line-height: 1.6;
+      border-radius:
+        13px;
 
-      outline: none;
+      background:
+        #ffffff;
+
+      color:
+        var(--text);
+
+      font-size:
+        14px;
+
+      line-height:
+        1.6;
+
+      outline:
+        none;
     }
+
 
     .message-preview {
-      width: 100%;
-      min-width: 0;
+      width:
+        100%;
 
-      min-height: 130px;
+      min-width:
+        0;
 
-      margin-top: 13px;
+      min-height:
+        130px;
 
-      padding: 12px;
+      margin-top:
+        13px;
 
-      border: 1px solid #dcecf6;
-      border-radius: 13px;
+      padding:
+        12px;
 
-      background: #ffffff;
+      border:
+        1px solid
+        #dcecf6;
 
-      color: #15446e;
+      border-radius:
+        13px;
 
-      font-size: 14px;
-      line-height: 1.5;
-      font-weight: 600;
+      background:
+        #ffffff;
 
-      white-space: pre-line;
+      color:
+        #15446e;
 
-      word-break: break-word;
-      overflow-wrap: anywhere;
+      font-size:
+        14px;
 
-      overflow: hidden;
+      line-height:
+        1.5;
+
+      font-weight:
+        600;
+
+      white-space:
+        pre-line;
+
+      word-break:
+        break-word;
+
+      overflow-wrap:
+        anywhere;
+
+      overflow:
+        hidden;
     }
 
-    /* ========================================================
+
+    /* =========================================================
        SEND
-       ======================================================== */
+       ========================================================= */
 
     .send-btn {
-      display: block;
+      display:
+        block;
 
-      width: 100%;
-      min-height: 55px;
+      width:
+        100%;
 
-      margin-top: 11px;
+      min-height:
+        55px;
 
-      padding: 13px 14px;
+      margin-top:
+        11px;
 
-      border: 0;
-      border-radius: 17px;
+      padding:
+        13px 14px;
+
+      border:
+        0;
+
+      border-radius:
+        17px;
 
       background:
         linear-gradient(
@@ -643,180 +967,277 @@
           #2d88d8
         );
 
-      color: #ffffff;
+      color:
+        #ffffff;
 
-      font-size: 19px;
-      font-weight: 900;
+      font-size:
+        19px;
 
-      cursor: pointer;
+      font-weight:
+        900;
+
+      cursor:
+        pointer;
     }
+
 
     .send-btn:disabled {
-      opacity: .45;
+      opacity:
+        .45;
 
-      cursor: not-allowed;
+      cursor:
+        not-allowed;
     }
 
-    /* ========================================================
+
+    /* =========================================================
        HISTORY
-       ======================================================== */
+       ========================================================= */
 
     .history {
-      width: 100%;
+      width:
+        100%;
 
-      margin-top: 17px;
+      margin-top:
+        17px;
 
-      padding-top: 14px;
+      padding-top:
+        14px;
 
-      border-top: 1px solid #e1edf5;
+      border-top:
+        1px solid
+        #e1edf5;
 
-      overflow: hidden;
+      overflow:
+        hidden;
     }
+
 
     .history-title {
-      margin: 0 0 10px;
+      margin:
+        0 0 10px;
 
-      color: var(--blue);
+      color:
+        var(--blue);
 
-      font-size: 21px;
-      font-weight: 900;
+      font-size:
+        21px;
 
-      text-align: center;
+      font-weight:
+        900;
+
+      text-align:
+        center;
     }
+
 
     .history-list {
-      width: 100%;
+      width:
+        100%;
 
-      list-style: none;
+      list-style:
+        none;
 
-      margin: 0;
-      padding: 0;
+      margin:
+        0;
+
+      padding:
+        0;
     }
+
 
     .history-item {
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
+      align-items:
+        center;
 
-      gap: 8px;
+      gap:
+        8px;
 
-      width: 100%;
-      min-width: 0;
+      width:
+        100%;
 
-      min-height: 46px;
+      min-width:
+        0;
 
-      padding: 10px 2px;
+      min-height:
+        46px;
 
-      border-bottom: 1px solid #edf4fa;
+      padding:
+        10px 2px;
 
-      color: #536b7c;
+      border-bottom:
+        1px solid
+        #edf4fa;
 
-      font-size: 13px;
-      font-weight: 700;
+      color:
+        #536b7c;
 
-      white-space: nowrap;
+      font-size:
+        13px;
 
-      overflow: hidden;
+      font-weight:
+        700;
+
+      white-space:
+        nowrap;
+
+      overflow:
+        hidden;
     }
+
 
     .history-date {
-      flex: 0 0 42px;
+      flex:
+        0 0 42px;
 
-      color: #687f90;
+      color:
+        #687f90;
     }
+
 
     .history-type {
-      flex: 0 0 42px;
+      flex:
+        0 0 42px;
 
-      color: var(--blue);
+      color:
+        var(--blue);
 
-      font-weight: 900;
+      font-weight:
+        900;
     }
+
 
     .history-time {
-      flex: 1 1 auto;
+      flex:
+        1 1 auto;
 
-      min-width: 0;
+      min-width:
+        0;
 
-      color: var(--text);
+      color:
+        var(--text);
 
-      font-weight: 900;
+      font-weight:
+        900;
 
-      overflow: hidden;
+      overflow:
+        hidden;
 
-      text-overflow: ellipsis;
+      text-overflow:
+        ellipsis;
     }
+
 
     .history-ok {
-      flex: 0 0 auto;
+      flex:
+        0 0 auto;
 
-      color: var(--green);
+      color:
+        var(--green);
 
-      font-weight: 900;
+      font-weight:
+        900;
     }
+
 
     .empty {
-      padding: 10px;
+      padding:
+        10px;
 
-      color: #8095a5;
+      color:
+        #8095a5;
 
-      text-align: center;
+      text-align:
+        center;
     }
+
 
     .footer {
-      padding: 15px 0 4px;
+      padding:
+        15px 0 4px;
 
-      color: #8aa0b2;
+      color:
+        #8aa0b2;
 
-      font-size: 13px;
+      font-size:
+        13px;
 
-      text-align: center;
+      text-align:
+        center;
     }
+
 
     .hidden {
-      display: none !important;
+      display:
+        none !important;
     }
 
-    /* ========================================================
-       MOBILE
-       ======================================================== */
 
-    @media (max-width: 420px) {
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (
+      max-width: 420px
+    ) {
 
       .page {
-        padding-left: 8px;
-        padding-right: 8px;
+        padding-left:
+          8px;
+
+        padding-right:
+          8px;
       }
+
 
       .card {
-        padding: 10px;
+        padding:
+          10px;
       }
+
 
       .mode-btn {
-        min-height: 68px;
+        min-height:
+          68px;
 
-        font-size: 20px;
+        font-size:
+          20px;
       }
+
 
       .field {
-        padding: 6px;
+        padding:
+          6px;
       }
+
 
       .field input {
-        padding-left: 3px;
-        padding-right: 3px;
+        padding-left:
+          3px;
+
+        padding-right:
+          3px;
       }
+
 
       input[type="date"] {
-        font-size: 12px;
+        font-size:
+          12px;
       }
+
 
       input[type="time"] {
-        font-size: 16px;
+        font-size:
+          16px;
       }
 
+
       .history-item {
-        font-size: 12px;
+        font-size:
+          12px;
       }
 
     }
@@ -830,9 +1251,10 @@
 
 <div class="page">
 
-  <!-- ========================================================
+
+  <!-- =======================================================
        HEADER
-       ======================================================== -->
+       ======================================================= -->
 
   <header class="hero">
 
@@ -847,11 +1269,12 @@
   </header>
 
 
-  <!-- ========================================================
-       MAIN
-       ======================================================== -->
-
   <main class="card">
+
+
+    <!-- =====================================================
+         STATUS
+         ===================================================== -->
 
     <div
       id="status"
@@ -861,9 +1284,13 @@
     </div>
 
 
-    <!-- 人物選択 -->
+    <!-- =====================================================
+         DRIVER
+         ===================================================== -->
 
-    <section class="box driver-box">
+    <section
+      class="box driver-box"
+    >
 
       <label
         class="label"
@@ -872,7 +1299,10 @@
         人物選択
       </label>
 
-      <select id="driverSelect">
+
+      <select
+        id="driverSelect"
+      >
 
         <option value="">
           人物を選択してください
@@ -883,7 +1313,9 @@
     </section>
 
 
-    <!-- 出勤 / 退勤 -->
+    <!-- =====================================================
+         MODE
+         ===================================================== -->
 
     <section class="mode-box">
 
@@ -894,6 +1326,7 @@
       >
         ☀️ 出勤
       </button>
+
 
       <button
         id="outMode"
@@ -906,14 +1339,9 @@
     </section>
 
 
-    <!--
-      captureを付けていないので、
-
-      ・その場で撮影
-      ・過去写真を選択
-
-      の両方が利用可能
-    -->
+    <!-- =====================================================
+         PHOTO
+         ===================================================== -->
 
     <input
       id="photoInput"
@@ -938,14 +1366,15 @@
     ></div>
 
 
-    <!-- ======================================================
-         写真確認
-         ====================================================== -->
+    <!-- =====================================================
+         PREVIEW
+         ===================================================== -->
 
     <section
       id="previewWrap"
       class="preview-wrap"
     >
+
 
       <img
         id="photoPreview"
@@ -960,6 +1389,7 @@
 
 
       <div class="fields">
+
 
         <!-- 報告日 -->
 
@@ -1112,11 +1542,13 @@
       </div>
 
 
-      <!-- ====================================================
-           送信内容
-           ==================================================== -->
+      <!-- ===================================================
+           MESSAGE
+           =================================================== -->
 
-      <section class="message-box">
+      <section
+        class="message-box"
+      >
 
         <div
           class="section-title"
@@ -1135,7 +1567,7 @@
           id="extraMessage"
           class="extra-message"
           rows="3"
-          placeholder="【MEMO】追加文章"
+          placeholder="追加文章を入力できます"
         ></textarea>
 
 
@@ -1147,6 +1579,10 @@
       </section>
 
 
+      <!-- ===================================================
+           SEND
+           =================================================== -->
+
       <button
         id="sendBtn"
         class="send-btn"
@@ -1156,12 +1592,13 @@
         📤 写真＋報告文章を送信
       </button>
 
+
     </section>
 
 
-    <!-- ======================================================
-         今日の履歴
-         ====================================================== -->
+    <!-- =====================================================
+         HISTORY
+         ===================================================== -->
 
     <section class="history">
 
@@ -1183,6 +1620,7 @@
 
     </section>
 
+
   </main>
 
 
@@ -1190,17 +1628,19 @@
     運転手Bot
   </footer>
 
+
 </div>
 
 
 <script>
 
+
 // ============================================================
-// ★ 最新 Apps Script URL
+// ★ 最新Apps Script URL
 // ============================================================
 
 const API_URL =
-  'https://script.google.com/macros/s/AKfycbxUMjEbzsDobOSlGoXpAtXBujfHSlVmTFSmd1ep4EMO_WHV5x3AZrATH2A9po6XqDsY/exec';
+  'https://script.google.com/macros/s/AKfycbwcdo-FzaXTmRj2mVv-REGhopjLeDcr4XRkBO4s3v1mRKSjsjHHXu6Rh2N4I0Vi_ymv/exec';
 
 
 // ============================================================
@@ -1212,21 +1652,21 @@ const LIFF_ID =
 
 
 // ============================================================
-// LOCAL STORAGE
+// CACHE
 // ============================================================
 
 const RECENT_STORAGE_KEY =
-  'driver_menu_recent_v5';
+  'driver_menu_recent_v6';
 
 const DRIVER_CACHE_KEY =
-  'driver_menu_driver_list_v2';
+  'driver_menu_driver_list_v3';
 
 const LAST_DRIVER_KEY =
-  'driver_menu_last_driver_v2';
+  'driver_menu_last_driver_v3';
 
 
 // ============================================================
-// 自動判別は最大2.5秒
+// 自動判別タイムアウト
 // ============================================================
 
 const AUTO_DETECT_TIMEOUT_MS =
@@ -1239,31 +1679,41 @@ const AUTO_DETECT_TIMEOUT_MS =
 
 const state = {
 
-  idToken: '',
+  idToken:
+    '',
 
-  drivers: [],
+  drivers:
+    [],
 
-  driver: null,
+  driver:
+    null,
 
-  mode: 'in',
+  mode:
+    'in',
 
-  draft: null,
+  draft:
+    null,
 
-  manualSelected: false,
+  manualSelected:
+    false,
 
   workState: {
 
-    hasWork: false,
+    hasWork:
+      false,
 
-    startTime: ''
+    startTime:
+      ''
 
   },
 
   summary: {
 
-    previousOvertime: '0:00',
+    previousOvertime:
+      '0:00',
 
-    monthlyOvertime: '0:00'
+    monthlyOvertime:
+      '0:00'
 
   }
 
@@ -1271,7 +1721,7 @@ const state = {
 
 
 // ============================================================
-// ELEMENT
+// ELEMENTS
 // ============================================================
 
 const el = {
@@ -1429,7 +1879,8 @@ function setStatus(
 
 
   if (
-    type === 'done'
+    type ===
+    'done'
   ) {
 
     el.status.classList.add(
@@ -1440,7 +1891,8 @@ function setStatus(
 
 
   if (
-    type === 'error'
+    type ===
+    'error'
   ) {
 
     el.status.classList.add(
@@ -1478,6 +1930,225 @@ function hideNotice() {
   el.notice.classList.remove(
     'show'
   );
+
+}
+
+
+// ============================================================
+// LOCAL STORAGE
+// ============================================================
+
+function getCachedDrivers() {
+
+  try {
+
+    const raw =
+      localStorage.getItem(
+        DRIVER_CACHE_KEY
+      );
+
+
+    if (!raw) {
+
+      return [];
+
+    }
+
+
+    const data =
+      JSON.parse(
+        raw
+      );
+
+
+    return Array.isArray(
+      data
+    )
+      ? data
+      : [];
+
+  } catch (_) {
+
+    return [];
+
+  }
+
+}
+
+
+function saveCachedDrivers(
+  drivers
+) {
+
+  try {
+
+    localStorage.setItem(
+      DRIVER_CACHE_KEY,
+
+      JSON.stringify(
+        drivers
+      )
+    );
+
+  } catch (_) {
+
+  }
+
+}
+
+
+function getRecentDrivers() {
+
+  try {
+
+    const raw =
+      localStorage.getItem(
+        RECENT_STORAGE_KEY
+      );
+
+
+    const data =
+      JSON.parse(
+        raw || '[]'
+      );
+
+
+    return Array.isArray(
+      data
+    )
+      ? data
+      : [];
+
+  } catch (_) {
+
+    return [];
+
+  }
+
+}
+
+
+function saveRecentDriver(
+  driver
+) {
+
+  if (!driver) {
+
+    return;
+
+  }
+
+
+  let list =
+    getRecentDrivers();
+
+
+  list =
+    list.filter(
+      function(item) {
+
+        return (
+          item.driverKey !==
+          driver.driverKey
+        );
+
+      }
+    );
+
+
+  list.unshift({
+
+    driverKey:
+      driver.driverKey,
+
+    displayName:
+      driver.displayName
+
+  });
+
+
+  try {
+
+    localStorage.setItem(
+      RECENT_STORAGE_KEY,
+
+      JSON.stringify(
+        list.slice(
+          0,
+          10
+        )
+      )
+
+    );
+
+  } catch (_) {
+
+  }
+
+}
+
+
+function saveLastDriver(
+  driver
+) {
+
+  if (!driver) {
+
+    return;
+
+  }
+
+
+  try {
+
+    localStorage.setItem(
+      LAST_DRIVER_KEY,
+
+      JSON.stringify({
+
+        driverKey:
+          driver.driverKey,
+
+        displayName:
+          driver.displayName
+
+      })
+
+    );
+
+  } catch (_) {
+
+  }
+
+}
+
+
+function getLastDriver() {
+
+  try {
+
+    const raw =
+      localStorage.getItem(
+        LAST_DRIVER_KEY
+      );
+
+
+    if (!raw) {
+
+      return null;
+
+    }
+
+
+    return JSON.parse(
+      raw
+    );
+
+  } catch (_) {
+
+    return null;
+
+  }
 
 }
 
@@ -1534,7 +2205,8 @@ function callServer(
 
       params.append(
         'idToken',
-        state.idToken || ''
+        state.idToken ||
+        ''
       );
 
 
@@ -1545,11 +2217,13 @@ function callServer(
 
           params.append(
             key,
+
             data[key] == null
               ? ''
               : String(
                   data[key]
                 )
+
           );
 
         }
@@ -1560,9 +2234,11 @@ function callServer(
         API_URL,
         {
 
-          method: 'POST',
+          method:
+            'POST',
 
-          mode: 'no-cors',
+          mode:
+            'no-cors',
 
           headers: {
 
@@ -1575,11 +2251,11 @@ function callServer(
             params.toString()
 
         }
-      ).catch(
+      )
+      .catch(
         function(error) {
 
           console.warn(
-            'POST:',
             error
           );
 
@@ -1612,7 +2288,8 @@ function pollResult(
 ) {
 
   if (
-    attempt >= 50
+    attempt >=
+    50
   ) {
 
     reject(
@@ -1670,7 +2347,8 @@ function pollResult(
 
       window[
         callback
-      ] = undefined;
+      ] =
+        undefined;
 
     }
 
@@ -1696,8 +2374,11 @@ function pollResult(
       if (
         response &&
         (
-          response.status === 'pending' ||
-          response.status === 'processing'
+          response.status ===
+          'pending' ||
+
+          response.status ===
+          'processing'
         )
       ) {
 
@@ -1733,7 +2414,8 @@ function pollResult(
 
       if (
         !response ||
-        response.ok !== true
+        response.ok !==
+        true
       ) {
 
         reject(
@@ -1744,7 +2426,6 @@ function pollResult(
               : 'Apps Script APIエラー'
           )
         );
-
 
         return;
 
@@ -1813,230 +2494,6 @@ function pollResult(
 
 
 // ============================================================
-// CACHE
-// ============================================================
-
-function getCachedDrivers() {
-
-  try {
-
-    const raw =
-      localStorage.getItem(
-        DRIVER_CACHE_KEY
-      );
-
-
-    if (!raw) {
-
-      return [];
-
-    }
-
-
-    const parsed =
-      JSON.parse(
-        raw
-      );
-
-
-    return Array.isArray(
-      parsed
-    )
-      ? parsed
-      : [];
-
-  } catch (_) {
-
-    return [];
-
-  }
-
-}
-
-
-function saveCachedDrivers(
-  drivers
-) {
-
-  try {
-
-    localStorage.setItem(
-      DRIVER_CACHE_KEY,
-      JSON.stringify(
-        drivers
-      )
-    );
-
-  } catch (_) {
-
-  }
-
-}
-
-
-// ============================================================
-// RECENT DRIVER
-// ============================================================
-
-function getRecentDrivers() {
-
-  try {
-
-    const raw =
-      localStorage.getItem(
-        RECENT_STORAGE_KEY
-      );
-
-
-    const parsed =
-      JSON.parse(
-        raw || '[]'
-      );
-
-
-    return Array.isArray(
-      parsed
-    )
-      ? parsed
-      : [];
-
-  } catch (_) {
-
-    return [];
-
-  }
-
-}
-
-
-function saveRecentDriver(
-  driver
-) {
-
-  if (!driver) {
-
-    return;
-
-  }
-
-
-  let list =
-    getRecentDrivers();
-
-
-  list =
-    list.filter(
-      function(item) {
-
-        return (
-          item.driverKey !==
-          driver.driverKey
-        );
-
-      }
-    );
-
-
-  list.unshift({
-
-    driverKey:
-      driver.driverKey,
-
-    displayName:
-      driver.displayName
-
-  });
-
-
-  try {
-
-    localStorage.setItem(
-      RECENT_STORAGE_KEY,
-
-      JSON.stringify(
-        list.slice(
-          0,
-          10
-        )
-      )
-    );
-
-  } catch (_) {
-
-  }
-
-}
-
-
-// ============================================================
-// LAST DRIVER
-// ============================================================
-
-function saveLastDriver(
-  driver
-) {
-
-  if (!driver) {
-
-    return;
-
-  }
-
-
-  try {
-
-    localStorage.setItem(
-      LAST_DRIVER_KEY,
-
-      JSON.stringify({
-
-        driverKey:
-          driver.driverKey,
-
-        displayName:
-          driver.displayName
-
-      })
-    );
-
-  } catch (_) {
-
-  }
-
-}
-
-
-function getLastDriver() {
-
-  try {
-
-    const raw =
-      localStorage.getItem(
-        LAST_DRIVER_KEY
-      );
-
-
-    if (!raw) {
-
-      return null;
-
-    }
-
-
-    return JSON.parse(
-      raw
-    );
-
-  } catch (_) {
-
-    return null;
-
-  }
-
-}
-
-
-// ============================================================
 // DRIVER
 // ============================================================
 
@@ -2061,14 +2518,15 @@ function findDriver(
         );
 
       }
-    ) || null
+    ) ||
+    null
   );
 
 }
 
 
 // ============================================================
-// DRIVER SELECT
+// DRIVER LIST
 // ============================================================
 
 function renderDrivers() {
@@ -2252,7 +2710,8 @@ async function selectDriver(
 
 
   if (
-    source === 'manual'
+    source ===
+    'manual'
   ) {
 
     state.manualSelected =
@@ -2303,13 +2762,13 @@ async function selectDriver(
 
 
 // ============================================================
-// LOAD DRIVER LIST
+// LOAD DRIVERS
 // ============================================================
 
 async function loadDrivers() {
 
   /*
-   * まず前回保存した人物一覧を即表示
+   * 最初に端末保存済み人物一覧
    */
 
   const cached =
@@ -2356,7 +2815,7 @@ async function loadDrivers() {
 
 
   /*
-   * 最新人物一覧は裏で取得
+   * 最新一覧を取得
    */
 
   try {
@@ -2385,11 +2844,6 @@ async function loadDrivers() {
 
       renderDrivers();
 
-
-      /*
-       * まだ人物未選択なら
-       * 前回人物を選択欄に表示
-       */
 
       if (
         !state.driver
@@ -2427,7 +2881,7 @@ async function loadDrivers() {
   } catch (error) {
 
     console.warn(
-      '人物一覧取得失敗:',
+      '人物一覧取得失敗',
       error
     );
 
@@ -2442,7 +2896,7 @@ async function loadDrivers() {
 
 function withTimeout(
   promise,
-  milliseconds
+  ms
 ) {
 
   return Promise.race([
@@ -2460,7 +2914,7 @@ function withTimeout(
             );
 
           },
-          milliseconds
+          ms
         );
 
       }
@@ -2472,14 +2926,14 @@ function withTimeout(
 
 
 // ============================================================
-// LIFF AUTO DETECT
+// LIFF
 // ============================================================
 
 async function initLiff() {
 
   try {
 
-    const initResult =
+    const initialized =
       await withTimeout(
         liff.init({
 
@@ -2490,17 +2944,19 @@ async function initLiff() {
             true
 
         }),
+
         AUTO_DETECT_TIMEOUT_MS
+
       );
 
 
     /*
-     * 2.5秒以上かかる場合
-     * 手動選択を優先
+     * 遅くても手動選択可能
      */
 
     if (
-      initResult === null
+      initialized ===
+      null
     ) {
 
       if (
@@ -2512,7 +2968,6 @@ async function initLiff() {
         );
 
       }
-
 
       return;
 
@@ -2533,14 +2988,14 @@ async function initLiff() {
 
       }
 
-
       return;
 
     }
 
 
     state.idToken =
-      liff.getIDToken() || '';
+      liff.getIDToken() ||
+      '';
 
 
     if (
@@ -2562,8 +3017,7 @@ async function initLiff() {
 
 
     /*
-     * 手動選択済みなら
-     * 後から自動判別で上書きしない
+     * 手動選択済みなら上書きしない
      */
 
     if (
@@ -2620,11 +3074,10 @@ async function initLiff() {
 
     }
 
-
   } catch (error) {
 
     console.warn(
-      '自動判別:',
+      '自動判別失敗',
       error
     );
 
@@ -2700,9 +3153,11 @@ async function loadDriverState() {
     state.workState =
       result[0] || {
 
-        hasWork: false,
+        hasWork:
+          false,
 
-        startTime: ''
+        startTime:
+          ''
 
       };
 
@@ -2710,9 +3165,11 @@ async function loadDriverState() {
     state.summary =
       result[1] || {
 
-        previousOvertime: '0:00',
+        previousOvertime:
+          '0:00',
 
-        monthlyOvertime: '0:00'
+        monthlyOvertime:
+          '0:00'
 
       };
 
@@ -2728,7 +3185,6 @@ async function loadDriverState() {
   } catch (error) {
 
     console.warn(
-      '人物情報取得失敗:',
       error
     );
 
@@ -2775,7 +3231,7 @@ function renderSummary() {
 
 
 // ============================================================
-// HISTORY
+// HISTORY TIME
 // ============================================================
 
 function normalizeDisplayTime(
@@ -2884,6 +3340,10 @@ function normalizeDisplayTime(
 }
 
 
+// ============================================================
+// HISTORY
+// ============================================================
+
 function renderHistory(
   history
 ) {
@@ -2897,24 +3357,19 @@ function renderHistory(
 
 
   /*
-   * savedAtが大きいもの
-   * ＝後から送信されたもの
-   * を上にする
+   * 新しい順
    */
 
   list.sort(
-    function(a, b) {
+    function(a,b) {
 
       return (
-
         Number(
           b.savedAt || 0
         ) -
-
         Number(
           a.savedAt || 0
         )
-
       );
 
     }
@@ -2945,7 +3400,8 @@ function renderHistory(
 
 
         const type =
-          item.type === '退勤'
+          item.type ===
+            '退勤'
             ? '退勤'
             : '出勤';
 
@@ -2968,25 +3424,17 @@ function renderHistory(
           );
 
 
-        let timeText =
-          '';
+        const timeText =
+          type ===
+            '退勤'
 
+            ? (
+              startTime +
+              '→' +
+              endTime
+            )
 
-        if (
-          type === '退勤'
-        ) {
-
-          timeText =
-            startTime +
-            '→' +
-            endTime;
-
-        } else {
-
-          timeText =
-            reportTime;
-
-        }
+            : reportTime;
 
 
         return (
@@ -3026,7 +3474,7 @@ function renderHistory(
 
 
 // ============================================================
-// HISTORY RELOAD
+// HISTORY RETRY
 // ============================================================
 
 async function reloadHistoryWithRetry() {
@@ -3080,7 +3528,6 @@ async function reloadHistoryWithRetry() {
         renderHistory(
           history
         );
-
 
         return;
 
@@ -3144,7 +3591,8 @@ function setMode(
 
 
   if (
-    mode === 'in'
+    mode ===
+    'in'
   ) {
 
     el.inMode.classList.add(
@@ -3216,7 +3664,8 @@ function setMode(
 
 
     el.startTime.value =
-      state.workState.startTime || '';
+      state.workState.startTime ||
+      '';
 
 
     if (
@@ -3308,26 +3757,31 @@ function prepareImage(
                     image.width,
                     image.height
                   )
+
                 );
 
 
               const width =
                 Math.max(
                   1,
+
                   Math.round(
                     image.width *
                     scale
                   )
+
                 );
 
 
               const height =
                 Math.max(
                   1,
+
                   Math.round(
                     image.height *
                     scale
                   )
+
                 );
 
 
@@ -3349,7 +3803,8 @@ function prepareImage(
                 canvas.getContext(
                   '2d',
                   {
-                    alpha: false
+                    alpha:
+                      false
                   }
                 );
 
@@ -3459,7 +3914,8 @@ async function runOcr(
               const percent =
                 Math.round(
                   Number(
-                    message.progress || 0
+                    message.progress ||
+                    0
                   ) *
                   100
                 );
@@ -3490,14 +3946,15 @@ async function runOcr(
 
 
   return String(
-    result.data.text || ''
+    result.data.text ||
+    ''
   );
 
 }
 
 
 // ============================================================
-// PHOTO
+// PROCESS PHOTO
 // ============================================================
 
 async function processPhoto(
@@ -3615,7 +4072,8 @@ async function processPhoto(
 
 
     if (
-      state.mode === 'in'
+      state.mode ===
+      'in'
     ) {
 
       el.reportTime.value =
@@ -3659,7 +4117,8 @@ async function processPhoto(
 
 
     if (
-      draft.previousOvertime != null
+      draft.previousOvertime !=
+      null
     ) {
 
       state.summary.previousOvertime =
@@ -3669,7 +4128,8 @@ async function processPhoto(
 
 
     if (
-      draft.monthlyOvertime != null
+      draft.monthlyOvertime !=
+      null
     ) {
 
       state.summary.monthlyOvertime =
@@ -3698,9 +4158,11 @@ async function processPhoto(
 
         el.previewWrap.scrollIntoView({
 
-          behavior: 'smooth',
+          behavior:
+            'smooth',
 
-          block: 'start'
+          block:
+            'start'
 
         });
 
@@ -3747,16 +4209,18 @@ function refreshMessage() {
 
   const extra =
     (
-      el.extraMessage.value || ''
+      el.extraMessage.value ||
+      ''
     ).trim();
 
 
-  // ----------------------------------------------------------
-  // 出勤
-  // ----------------------------------------------------------
+  /*
+   * 出勤
+   */
 
   if (
-    state.mode === 'in'
+    state.mode ===
+    'in'
   ) {
 
     const reportDate =
@@ -3765,7 +4229,8 @@ function refreshMessage() {
 
 
     const reportTime =
-      el.reportTime.value || '';
+      el.reportTime.value ||
+      '';
 
 
     const dateLabel =
@@ -3784,7 +4249,7 @@ function refreshMessage() {
 
       '出勤いたしました。\n' +
 
-      '本日もよろしくお願いいたします。\n' +
+      '本日もよろしくお願いいたします.\n' +
 
       '残業)' +
 
@@ -3823,9 +4288,9 @@ function refreshMessage() {
   }
 
 
-  // ----------------------------------------------------------
-  // 退勤
-  // ----------------------------------------------------------
+  /*
+   * 退勤
+   */
 
   const reportDate =
     el.reportDate.value ||
@@ -3833,19 +4298,23 @@ function refreshMessage() {
 
 
   const startTime =
-    el.startTime.value || '';
+    el.startTime.value ||
+    '';
 
 
   const endTime =
-    el.endTime.value || '';
+    el.endTime.value ||
+    '';
 
 
   const nextDate =
-    el.nextDate.value || '';
+    el.nextDate.value ||
+    '';
 
 
   const nextTime =
-    el.nextTime.value || '';
+    el.nextTime.value ||
+    '';
 
 
   let message =
@@ -3863,9 +4332,7 @@ function refreshMessage() {
     '稼働）' +
 
     startTime +
-
     '-' +
-
     endTime +
 
     '\n' +
@@ -3936,6 +4403,7 @@ async function sendAttendance() {
       '人物を選択してください。'
     );
 
+
     return;
 
   }
@@ -3950,6 +4418,7 @@ async function sendAttendance() {
       '先に写真を選択してください。'
     );
 
+
     return;
 
   }
@@ -3963,13 +4432,15 @@ async function sendAttendance() {
       '報告日を確認してください。'
     );
 
+
     return;
 
   }
 
 
   if (
-    state.mode === 'in' &&
+    state.mode ===
+      'in' &&
     !el.reportTime.value
   ) {
 
@@ -3977,13 +4448,15 @@ async function sendAttendance() {
       '出勤時間を確認してください。'
     );
 
+
     return;
 
   }
 
 
   if (
-    state.mode === 'out' &&
+    state.mode ===
+      'out' &&
     (
       !el.startTime.value ||
       !el.endTime.value
@@ -3993,6 +4466,7 @@ async function sendAttendance() {
     alert(
       '出勤時間と退勤時間を確認してください。'
     );
+
 
     return;
 
@@ -4028,28 +4502,43 @@ async function sendAttendance() {
             el.reportDate.value,
 
           reportTime:
-            state.mode === 'in'
+            state.mode ===
+              'in'
+
               ? el.reportTime.value
+
               : el.endTime.value,
 
           startTime:
-            state.mode === 'out'
+            state.mode ===
+              'out'
+
               ? el.startTime.value
+
               : el.reportTime.value,
 
           endTime:
-            state.mode === 'out'
+            state.mode ===
+              'out'
+
               ? el.endTime.value
+
               : '',
 
           nextDate:
-            state.mode === 'out'
+            state.mode ===
+              'out'
+
               ? el.nextDate.value
+
               : '',
 
           nextTime:
-            state.mode === 'out'
+            state.mode ===
+              'out'
+
               ? el.nextTime.value
+
               : '',
 
           message:
@@ -4061,7 +4550,8 @@ async function sendAttendance() {
 
     if (
       !result ||
-      result.ok !== true
+      result.ok !==
+      true
     ) {
 
       throw new Error(
@@ -4109,9 +4599,11 @@ async function sendAttendance() {
       state.workState =
         workState || {
 
-          hasWork: false,
+          hasWork:
+            false,
 
-          startTime: ''
+          startTime:
+            ''
 
         };
 
@@ -4143,7 +4635,7 @@ async function sendAttendance() {
 
 
 // ============================================================
-// DATE
+// DATE HELPERS
 // ============================================================
 
 function todayDate() {
@@ -4155,6 +4647,7 @@ function todayDate() {
   return (
 
     d.getFullYear() +
+
     '-' +
 
     String(
@@ -4163,6 +4656,7 @@ function todayDate() {
       2,
       '0'
     ) +
+
     '-' +
 
     String(
@@ -4191,6 +4685,7 @@ function tomorrowDate() {
   return (
 
     d.getFullYear() +
+
     '-' +
 
     String(
@@ -4199,6 +4694,7 @@ function tomorrowDate() {
       2,
       '0'
     ) +
+
     '-' +
 
     String(
@@ -4268,12 +4764,6 @@ function formatJapaneseDate(
   }
 
 
-  const year =
-    Number(
-      match[1]
-    );
-
-
   const month =
     Number(
       match[2]
@@ -4288,13 +4778,18 @@ function formatJapaneseDate(
 
   const date =
     new Date(
-      year,
+      Number(
+        match[1]
+      ),
+
       month - 1,
+
       day
     );
 
 
   const weekdays = [
+
     '日',
     '月',
     '火',
@@ -4302,6 +4797,7 @@ function formatJapaneseDate(
     '木',
     '金',
     '土'
+
   ];
 
 
@@ -4347,7 +4843,9 @@ function formatShortDate(
     Number(
       match[2]
     ) +
+
     '/' +
+
     Number(
       match[3]
     )
@@ -4361,9 +4859,7 @@ function getNextLabel(
   value
 ) {
 
-  if (
-    !value
-  ) {
+  if (!value) {
 
     return '次回';
 
@@ -4400,7 +4896,8 @@ function getNextLabel(
 
 
   if (
-    diff === 1
+    diff ===
+    1
   ) {
 
     return '明日';
@@ -4409,7 +4906,8 @@ function getNextLabel(
 
 
   if (
-    diff === 2
+    diff ===
+    2
   ) {
 
     return '明後日';
@@ -4423,7 +4921,7 @@ function getNextLabel(
 
 
 // ============================================================
-// ESCAPE
+// UTILITY
 // ============================================================
 
 function escapeHtml(
@@ -4463,10 +4961,6 @@ function escapeHtml(
 
 }
 
-
-// ============================================================
-// SLEEP
-// ============================================================
 
 function sleep(
   milliseconds
@@ -4597,6 +5091,7 @@ el.photoInput.addEventListener(
   el.nextDate,
   el.nextTime,
   el.extraMessage
+
 ].forEach(
   function(input) {
 
@@ -4630,7 +5125,7 @@ window.addEventListener(
   function() {
 
     /*
-     * 日付を即セット
+     * 画面を即表示
      */
 
     el.reportDate.value =
@@ -4650,18 +5145,13 @@ window.addEventListener(
     );
 
 
-    /*
-     * ★ 自動判別完了を待たない
-     */
-
     setStatus(
       '👤 人物を選択できます'
     );
 
 
     /*
-     * 前回取得した人物一覧を
-     * その場で表示
+     * 前回保存した人物一覧
      */
 
     const cachedDrivers =
@@ -4678,14 +5168,6 @@ window.addEventListener(
 
       renderDrivers();
 
-
-      /*
-       * 前回使った人物を
-       * 選択欄に表示
-       *
-       * ただし、この時点では
-       * 勝手に報告人物として確定しない。
-       */
 
       const last =
         getLastDriver();
@@ -4716,12 +5198,10 @@ window.addEventListener(
 
 
     /*
-     * ★ ここから2つを同時実行
+     * 人物一覧と自動判別を
+     * 同時に開始
      *
-     * 1. 最新人物一覧
-     * 2. LINE本人自動判別
-     *
-     * お互いを待たない。
+     * 自動判別完了を待たない
      */
 
     loadDrivers();
