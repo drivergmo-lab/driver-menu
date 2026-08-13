@@ -7,16 +7,21 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
 
   <title>運転手MENU</title>
 
+  <!-- LINE LIFF -->
   <script
     src="https://static.line-scdn.net/liff/edge/2/sdk.js"
   ></script>
 
-  <!-- Google Cloud不要。端末側でOCRするための無料ライブラリ -->
+  <!--
+    完全無料OCR
+    Google Cloud Visionは使用しません。
+    OCRはスマホ/PCのブラウザ上でTesseract.jsを実行します。
+  -->
   <script
     src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"
   ></script>
@@ -26,58 +31,58 @@
 
     :root {
 
-      --bg:
-        #eef9ff;
+      --bg1: #e7f7ff;
+      --bg2: #f8fcff;
 
-      --card:
-        #ffffff;
+      --card: #ffffff;
 
-      --line:
-        #d5eaf7;
+      --line: #d5eaf7;
 
-      --text:
-        #17324d;
+      --text: #17324d;
 
-      --muted:
-        #6b8296;
+      --muted: #71889a;
 
-      --blue:
-        #1676c7;
+      --blue: #1676c7;
 
-      --blue2:
-        #2d88d8;
+      --blue2: #2d88d8;
 
-      --green:
-        #18824e;
+      --green: #18824e;
 
-      --soft:
-        #f6fbfe;
+      --green-bg: #eefbf3;
+
+      --soft: #f7fcff;
+
+      --danger: #c93b3b;
 
       --shadow:
         0 12px 34px
-        rgba(
-          40,
-          92,
-          128,
-          .10
-        );
+        rgba(40, 92, 128, .10);
 
     }
 
 
     * {
-      box-sizing:
-        border-box;
+
+      box-sizing: border-box;
+
+    }
+
+
+    html,
+    body {
+
+      margin: 0;
+      padding: 0;
+
+      width: 100%;
+      min-height: 100%;
+
     }
 
 
     body {
 
-      margin:
-        0;
-
-      min-height:
-        100vh;
+      min-height: 100vh;
 
       font-family:
         -apple-system,
@@ -89,8 +94,9 @@
 
       background:
         linear-gradient(
-          #e6f7ff,
-          #f8fcff
+          180deg,
+          var(--bg1),
+          var(--bg2)
         );
 
       color:
@@ -99,47 +105,72 @@
     }
 
 
-    .page {
+    button,
+    input,
+    select,
+    textarea {
 
-      width:
-        min(
-          760px,
-          100%
-        );
-
-      margin:
-        0 auto;
-
-      padding:
-        12px 10px 24px;
+      font-family: inherit;
 
     }
 
 
+    .page {
+
+      width: 100%;
+
+      max-width: 760px;
+
+      margin: 0 auto;
+
+      padding:
+        12px
+        10px
+        calc(
+          24px +
+          env(safe-area-inset-bottom)
+        );
+
+    }
+
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
     .hero {
 
-      position:
-        relative;
+      position: relative;
 
-      overflow:
-        hidden;
+      overflow: hidden;
 
       padding:
         22px 14px 18px;
 
-      border-radius:
-        26px;
+      border-radius: 26px;
 
-      text-align:
-        center;
+      text-align: center;
 
       background:
+
+        radial-gradient(
+          circle at 18% 18%,
+          rgba(255,255,255,.88) 0 7%,
+          transparent 7.5%
+        ),
+
+        radial-gradient(
+          circle at 82% 20%,
+          rgba(255,255,255,.88) 0 7%,
+          transparent 7.5%
+        ),
+
         linear-gradient(
           180deg,
-          #bfeaff,
-          #e9f9ff 72%,
-          #98dc83 72%,
-          #7ccf71 100%
+          #bfeaff 0%,
+          #e8f9ff 78%,
+          #8bd07c 78%,
+          #73c768 100%
         );
 
       box-shadow:
@@ -150,53 +181,52 @@
 
     .hero-car {
 
-      font-size:
-        48px;
+      position: relative;
 
-      line-height:
-        1;
+      z-index: 2;
+
+      font-size: 48px;
+
+      line-height: 1;
 
     }
 
 
     .hero h1 {
 
+      position: relative;
+
+      z-index: 2;
+
       margin:
-        6px 0 0;
+        7px 0 0;
 
       color:
         var(--blue);
 
-      font-size:
-        32px;
+      font-size: 32px;
 
-      line-height:
-        1.1;
+      line-height: 1.1;
 
-      font-weight:
-        900;
+      font-weight: 900;
 
     }
 
 
+    /* =========================================================
+       MAIN CARD
+       ========================================================= */
+
     .card {
 
-      margin-top:
-        12px;
+      margin-top: 12px;
 
-      padding:
-        13px;
+      padding: 13px;
 
-      border-radius:
-        24px;
+      border-radius: 24px;
 
       background:
-        rgba(
-          255,
-          255,
-          255,
-          .97
-        );
+        rgba(255,255,255,.97);
 
       box-shadow:
         var(--shadow);
@@ -204,69 +234,93 @@
     }
 
 
+    /* =========================================================
+       STATUS
+       ========================================================= */
+
     .status {
 
-      width:
-        fit-content;
+      display: flex;
 
-      min-height:
-        42px;
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 6px;
+
+      width: fit-content;
+
+      min-height: 44px;
+
+      max-width: 100%;
 
       margin:
-        0 auto 10px;
+        0 auto 11px;
 
       padding:
-        9px 16px;
-
-      border-radius:
-        999px;
-
-      background:
-        #f3fbff;
+        9px 17px;
 
       border:
         1px solid
         var(--line);
 
+      border-radius: 999px;
+
+      background:
+        #f3fbff;
+
       color:
         var(--blue);
 
-      font-weight:
-        900;
+      font-size: 16px;
 
-      text-align:
-        center;
+      font-weight: 900;
+
+      text-align: center;
 
     }
 
 
     .status.done {
 
+      color:
+        var(--green);
+
       background:
-        #eefbf3;
+        var(--green-bg);
 
       border-color:
         #ccefd8;
 
+    }
+
+
+    .status.error {
+
       color:
-        var(--green);
+        var(--danger);
+
+      background:
+        #fff3f3;
+
+      border-color:
+        #f0cccc;
 
     }
 
 
-    .select-box,
-    .mode-box,
-    .preview-box,
-    .field-box,
-    .message-box,
-    .history-box {
+    /* =========================================================
+       COMMON BOX
+       ========================================================= */
+
+    .box {
 
       border:
         1px solid
         var(--line);
 
       border-radius:
-        16px;
+        17px;
 
       background:
         var(--soft);
@@ -274,7 +328,11 @@
     }
 
 
-    .select-box {
+    /* =========================================================
+       DRIVER
+       ========================================================= */
+
+    .driver-box {
 
       padding:
         10px 12px;
@@ -282,22 +340,20 @@
     }
 
 
-    label.title {
+    .label {
 
-      display:
-        block;
+      display: block;
 
-      margin-bottom:
-        6px;
+      margin-bottom: 6px;
 
       color:
         #637c90;
 
-      font-size:
-        13px;
+      font-size: 13px;
 
-      font-weight:
-        900;
+      line-height: 1.3;
+
+      font-weight: 900;
 
     }
 
@@ -306,271 +362,271 @@
     input[type="time"],
     input[type="date"] {
 
-      width:
-        100%;
+      display: block;
 
-      height:
-        44px;
+      width: 100%;
+
+      height: 46px;
+
+      min-height: 46px;
+
+      margin: 0;
+
+      padding:
+        0 11px;
 
       border:
         1px solid
         #cfe4f3;
 
-      border-radius:
-        12px;
+      border-radius: 13px;
 
-      padding:
-        0 10px;
+      outline: none;
 
       background:
-        #fff;
+        #ffffff;
 
       color:
         var(--text);
 
-      font-size:
-        16px;
+      font-size: 16px;
 
-      font-weight:
-        800;
-
-      outline:
-        none;
+      font-weight: 800;
 
     }
 
 
+    select:focus,
+    input:focus {
+
+      border-color:
+        #67b6ea;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(103,182,234,.14);
+
+    }
+
+
+    /* =========================================================
+       MODE
+       ========================================================= */
+
     .mode-box {
 
-      display:
-        grid;
+      display: grid;
 
       grid-template-columns:
         1fr 1fr;
 
-      gap:
-        8px;
+      gap: 8px;
 
-      padding:
-        8px;
+      margin-top: 10px;
 
-      margin-top:
-        10px;
+      padding: 8px;
+
+      border:
+        1px solid
+        var(--line);
+
+      border-radius: 17px;
+
+      background:
+        var(--soft);
 
     }
 
 
     .mode-btn {
 
-      border:
-        0;
+      min-height: 74px;
 
-      border-radius:
-        14px;
+      padding: 10px;
 
-      min-height:
-        68px;
+      border: 0;
+
+      border-radius: 15px;
 
       background:
         #e7f4fb;
 
       color:
-        #6c8293;
+        #738a9a;
 
-      font-size:
-        22px;
+      font-size: 23px;
 
-      font-weight:
-        900;
+      font-weight: 900;
 
-      cursor:
-        pointer;
+      cursor: pointer;
+
+      transition:
+        transform .12s ease,
+        opacity .12s ease;
+
+    }
+
+
+    .mode-btn:active {
+
+      transform:
+        scale(.99);
 
     }
 
 
     .mode-btn.active.in {
 
-      background:
-        linear-gradient(
-          #73cdf8,
-          #7dd77a
-        );
-
       color:
         #084e78;
+
+      background:
+        linear-gradient(
+          180deg,
+          #70cdfb,
+          #aee9ff 60%,
+          #79d272
+        );
 
     }
 
 
     .mode-btn.active.out {
 
+      color:
+        #ffffff;
+
       background:
         linear-gradient(
+          180deg,
           #1b357c,
           #0e1e4d
         );
 
-      color:
-        #fff;
-
     }
 
 
-    .upload-btn,
-    .send-btn {
-
-      width:
-        100%;
-
-      min-height:
-        50px;
-
-      border:
-        0;
-
-      border-radius:
-        16px;
-
-      font-family:
-        inherit;
-
-      font-size:
-        18px;
-
-      font-weight:
-        900;
-
-      cursor:
-        pointer;
-
-    }
-
+    /* =========================================================
+       PHOTO
+       ========================================================= */
 
     .upload-btn {
 
-      margin-top:
-        10px;
+      display: block;
 
-      background:
-        #eaf7ff;
+      width: 100%;
+
+      min-height: 54px;
+
+      margin-top: 11px;
+
+      padding:
+        12px 14px;
 
       border:
         1px solid
         #cfe8f7;
 
+      border-radius: 17px;
+
+      background:
+        #eaf7ff;
+
       color:
         var(--blue);
 
-    }
+      font-size: 17px;
 
+      font-weight: 900;
 
-    .send-btn {
-
-      margin-top:
-        10px;
-
-      background:
-        linear-gradient(
-          #56baf0,
-          #2d88d8
-        );
-
-      color:
-        #fff;
+      cursor: pointer;
 
     }
 
 
-    .send-btn:disabled {
+    .upload-btn:active {
 
-      opacity:
-        .45;
-
-      cursor:
-        not-allowed;
+      transform:
+        translateY(1px);
 
     }
 
 
     .notice {
 
-      display:
-        none;
+      display: none;
 
-      margin-top:
-        10px;
+      margin-top: 10px;
 
       padding:
         10px 12px;
 
-      border-radius:
-        12px;
+      border-radius: 13px;
 
       background:
         #f7fcff;
 
+      border:
+        1px solid
+        var(--line);
+
       color:
         #5c7588;
 
-      font-size:
-        13px;
+      font-size: 13px;
 
-      line-height:
-        1.45;
+      line-height: 1.5;
 
-      text-align:
-        center;
+      text-align: center;
 
     }
 
 
     .notice.show {
 
-      display:
-        block;
+      display: block;
 
     }
 
 
-    .preview-box {
+    .preview-wrap {
 
-      display:
-        none;
+      display: none;
 
-      margin-top:
-        12px;
+      margin-top: 12px;
 
-      padding:
-        12px;
+      padding: 12px;
+
+      border:
+        1px solid
+        var(--line);
+
+      border-radius: 19px;
+
+      background:
+        #ffffff;
 
     }
 
 
-    .preview-box.show {
+    .preview-wrap.show {
 
-      display:
-        block;
+      display: block;
 
     }
 
 
     .photo-preview {
 
-      display:
-        block;
+      display: block;
 
-      width:
-        100%;
+      width: 100%;
 
-      max-height:
-        360px;
+      max-height: 390px;
 
-      object-fit:
-        contain;
+      object-fit: contain;
 
-      border-radius:
-        14px;
+      border-radius: 15px;
 
       background:
         #eef4f8;
@@ -578,79 +634,96 @@
     }
 
 
-    .ocr-title {
+    /* =========================================================
+       OCR
+       ========================================================= */
+
+    .section-title {
 
       margin:
-        12px 0 6px;
+        14px 0 7px;
 
       color:
         var(--blue);
 
-      font-weight:
-        900;
+      font-size: 18px;
+
+      font-weight: 900;
+
+      text-align: center;
 
     }
 
 
     .ocr-text {
 
-      max-height:
-        150px;
+      max-height: 145px;
 
-      overflow:
-        auto;
+      overflow: auto;
 
-      padding:
-        10px;
-
-      border-radius:
-        12px;
-
-      background:
-        #fff;
+      padding: 10px;
 
       border:
         1px solid
         var(--line);
 
+      border-radius: 12px;
+
+      background:
+        #f9fdff;
+
       color:
         #526c80;
 
-      font-size:
-        12px;
+      font-size: 12px;
 
-      white-space:
-        pre-wrap;
+      line-height: 1.5;
+
+      white-space: pre-wrap;
+
+      word-break: break-word;
 
     }
 
+
+    /* =========================================================
+       FIELDS
+       ========================================================= */
 
     .fields {
 
-      display:
-        grid;
+      display: grid;
 
       grid-template-columns:
-        1fr 1fr;
+        minmax(0,1fr)
+        minmax(0,1fr);
 
-      gap:
-        8px;
+      gap: 8px;
 
-      margin-top:
-        10px;
-
-    }
-
-
-    .field-box {
-
-      padding:
-        10px;
+      margin-top: 11px;
 
     }
 
 
-    .field-box.full {
+    .field {
+
+      min-width: 0;
+
+      padding: 9px;
+
+      border:
+        1px solid
+        var(--line);
+
+      border-radius: 14px;
+
+      background:
+        #f9fdff;
+
+    }
+
+
+    .field.full {
 
       grid-column:
         1 / -1;
@@ -658,43 +731,64 @@
     }
 
 
-    .field-box .title {
+    .field .label {
 
-      margin-bottom:
-        5px;
+      margin-bottom: 4px;
+
+      font-size: 12px;
 
     }
 
 
-    .summary {
+    .field input {
 
-      margin-top:
-        10px;
+      height: 42px;
+
+      min-height: 42px;
 
       padding:
-        10px 12px;
+        0 4px;
+
+      font-size: 18px;
+
+      font-weight: 900;
+
+      text-align: center;
+
+    }
+
+
+    /* =========================================================
+       SUMMARY
+       ========================================================= */
+
+    .summary {
+
+      grid-column:
+        1 / -1;
+
+      padding:
+        11px 10px;
 
       border:
         1px solid
         var(--line);
 
-      border-radius:
-        12px;
+      border-radius: 14px;
 
       background:
-        #fff;
+        #f7fcff;
 
       color:
         #446276;
 
-      text-align:
-        center;
+      font-size: 14px;
 
-      font-size:
-        13px;
+      line-height: 1.6;
 
-      font-weight:
-        800;
+      font-weight: 800;
+
+      text-align: center;
 
     }
 
@@ -704,50 +798,116 @@
       color:
         var(--blue);
 
+      font-size: 16px;
+
     }
 
 
+    /* =========================================================
+       MESSAGE
+       ========================================================= */
+
     .message-box {
 
-      margin-top:
-        10px;
+      margin-top: 11px;
 
       padding:
-        12px;
+        13px 14px;
+
+      border:
+        1px solid
+        var(--line);
+
+      border-radius: 16px;
 
       background:
-        #fff;
+        #f4fbff;
 
     }
 
 
     .message-preview {
 
-      white-space:
-        pre-line;
-
-      font-size:
-        14px;
-
-      line-height:
-        1.75;
+      min-height: 120px;
 
       color:
         #15446e;
 
+      font-size: 14px;
+
+      line-height: 1.8;
+
+      font-weight: 600;
+
+      white-space: pre-line;
+
+      word-break: break-word;
+
     }
 
 
-    .history-box {
+    /* =========================================================
+       SEND
+       ========================================================= */
 
-      margin-top:
-        16px;
+    .send-btn {
+
+      display: block;
+
+      width: 100%;
+
+      min-height: 55px;
+
+      margin-top: 11px;
 
       padding:
-        12px;
+        13px 14px;
+
+      border: 0;
+
+      border-radius: 17px;
 
       background:
-        #fff;
+        linear-gradient(
+          180deg,
+          #56baf0,
+          #2d88d8
+        );
+
+      color:
+        #ffffff;
+
+      font-size: 19px;
+
+      font-weight: 900;
+
+      cursor: pointer;
+
+    }
+
+
+    .send-btn:disabled {
+
+      opacity: .45;
+
+      cursor: not-allowed;
+
+    }
+
+
+    /* =========================================================
+       HISTORY
+       ========================================================= */
+
+    .history {
+
+      margin-top: 17px;
+
+      padding-top: 14px;
+
+      border-top:
+        1px solid
+        #e1edf5;
 
     }
 
@@ -755,41 +915,34 @@
     .history-title {
 
       margin:
-        0 0 8px;
+        0 0 10px;
 
       color:
         var(--blue);
 
-      font-size:
-        20px;
+      font-size: 21px;
 
-      text-align:
-        center;
+      font-weight: 900;
 
-      font-weight:
-        900;
+      text-align: center;
 
     }
 
 
     .history-list {
 
-      list-style:
-        none;
+      list-style: none;
 
-      padding:
-        0;
+      margin: 0;
 
-      margin:
-        0;
+      padding: 0;
 
     }
 
 
-    .history-list li {
+    .history-item {
 
-      display:
-        grid;
+      display: grid;
 
       grid-template-columns:
         auto
@@ -798,99 +951,201 @@
         1fr
         auto;
 
-      gap:
-        6px;
+      align-items: center;
 
-      align-items:
-        center;
+      gap: 6px;
 
       padding:
-        9px 2px;
+        10px 2px;
 
       border-bottom:
         1px solid
         #edf4fa;
 
-      font-size:
-        12px;
+      color:
+        #536b7c;
 
-      white-space:
-        nowrap;
+      font-size: 12px;
+
+      line-height: 1.4;
+
+      white-space: nowrap;
 
     }
 
 
-    .history-list .type {
+    .history-date {
+
+      color:
+        #71889a;
+
+      font-weight: 800;
+
+    }
+
+
+    .history-type {
 
       color:
         var(--blue);
 
-      font-weight:
-        900;
+      font-weight: 900;
 
     }
 
 
-    .history-list .time {
+    .history-time {
 
       color:
         var(--text);
 
-      font-weight:
-        900;
+      font-weight: 900;
 
     }
 
 
-    .history-list .sent {
+    .history-sent {
 
       color:
-        #70879a;
+        #71889a;
+
+      text-align: right;
 
     }
 
 
-    .history-list .ok {
+    .history-ok {
 
       color:
         var(--green);
 
-      font-weight:
-        900;
+      font-weight: 900;
 
     }
 
 
-    .muted {
+    .empty {
+
+      padding:
+        10px;
 
       color:
         #8095a5;
 
-      text-align:
-        center;
+      text-align: center;
+
+    }
+
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    .footer {
+
+      padding:
+        15px 0 4px;
+
+      color:
+        #8aa0b2;
+
+      font-size: 13px;
+
+      text-align: center;
 
     }
 
 
     .hidden {
 
-      display:
-        none !important;
+      display: none !important;
 
     }
 
 
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
     @media (max-width:480px) {
 
-      .fields {
+      .page {
 
-        grid-template-columns:
-          1fr 1fr;
+        padding:
+          12px
+          10px
+          calc(
+            22px +
+            env(safe-area-inset-bottom)
+          );
 
       }
 
 
-      .history-list li {
+      .hero {
+
+        padding:
+          20px 12px 17px;
+
+        border-radius: 24px;
+
+      }
+
+
+      .hero-car {
+
+        font-size: 45px;
+
+      }
+
+
+      .hero h1 {
+
+        font-size: 31px;
+
+      }
+
+
+      .card {
+
+        padding: 12px;
+
+        border-radius: 22px;
+
+      }
+
+
+      .mode-btn {
+
+        min-height: 70px;
+
+        font-size: 22px;
+
+      }
+
+
+      .fields {
+
+        gap: 7px;
+
+      }
+
+
+      .field {
+
+        padding: 8px;
+
+      }
+
+
+      .field input {
+
+        font-size: 18px;
+
+      }
+
+
+      .history-item {
 
         grid-template-columns:
           auto
@@ -898,19 +1153,18 @@
           auto
           1fr;
 
-        white-space:
-          nowrap;
+        gap: 4px;
+
+        font-size: 11px;
 
       }
 
 
-      .history-list .ok {
+      .history-ok {
 
-        grid-column:
-          4;
+        grid-column: 4;
 
-        text-align:
-          right;
+        text-align: right;
 
       }
 
@@ -925,6 +1179,11 @@
 
 <div class="page">
 
+
+  <!-- =======================================================
+       HEADER
+       ======================================================= -->
+
   <header class="hero">
 
     <div class="hero-car">
@@ -938,8 +1197,14 @@
   </header>
 
 
+  <!-- =======================================================
+       MAIN
+       ======================================================= -->
+
   <main class="card">
 
+
+    <!-- STATUS -->
 
     <div
       id="status"
@@ -949,15 +1214,16 @@
     </div>
 
 
-    <div class="select-box">
+    <!-- DRIVER -->
+
+    <section class="box driver-box">
 
       <label
-        class="title"
+        class="label"
         for="driverSelect"
       >
         人物選択
       </label>
-
 
       <select
         id="driverSelect"
@@ -969,17 +1235,19 @@
 
       </select>
 
-    </div>
+    </section>
 
 
-    <div class="mode-box">
+    <!-- MODE -->
+
+    <section class="mode-box">
 
       <button
         id="inMode"
         class="mode-btn active in"
         type="button"
       >
-        出勤
+        ☀️ 出勤
       </button>
 
 
@@ -988,18 +1256,20 @@
         class="mode-btn"
         type="button"
       >
-        退勤
+        🌙 退勤
       </button>
 
-    </div>
+    </section>
 
+
+    <!-- FILE -->
 
     <input
       id="photoInput"
+      class="hidden"
       type="file"
       accept="image/*"
       capture="environment"
-      class="hidden"
     >
 
 
@@ -1008,7 +1278,7 @@
       class="upload-btn"
       type="button"
     >
-      📷 写真をアップロードして読み取る
+      📷 写真を選択して読み取る
     </button>
 
 
@@ -1018,21 +1288,25 @@
     ></div>
 
 
+    <!-- =====================================================
+         PREVIEW
+         ===================================================== -->
+
     <section
       id="previewWrap"
-      class="preview-box"
+      class="preview-wrap"
     >
 
 
       <img
         id="photoPreview"
         class="photo-preview"
-        alt="アップロードした勤怠写真"
+        alt="勤怠写真"
       >
 
 
-      <div class="ocr-title">
-        OCR読み取り結果
+      <div class="section-title">
+        🔎 写真の読み取り結果
       </div>
 
 
@@ -1042,18 +1316,19 @@
       ></div>
 
 
+      <!-- FIELDS -->
+
       <div class="fields">
 
 
-        <div class="field-box">
+        <div class="field">
 
           <label
-            class="title"
+            class="label"
             for="reportDate"
           >
             報告日
           </label>
-
 
           <input
             id="reportDate"
@@ -1063,15 +1338,15 @@
         </div>
 
 
-        <div class="field-box">
+        <div class="field">
 
           <label
-            class="title"
+            id="reportTimeLabel"
+            class="label"
             for="reportTime"
           >
-            読み取り時間
+            出勤時間
           </label>
-
 
           <input
             id="reportTime"
@@ -1081,18 +1356,19 @@
         </div>
 
 
+        <!-- 退勤用 -->
+
         <div
           id="startField"
-          class="field-box hidden"
+          class="field hidden"
         >
 
           <label
-            class="title"
+            class="label"
             for="startTime"
           >
             出勤時間
           </label>
-
 
           <input
             id="startTime"
@@ -1104,16 +1380,15 @@
 
         <div
           id="endField"
-          class="field-box hidden"
+          class="field hidden"
         >
 
           <label
-            class="title"
+            class="label"
             for="endTime"
           >
             退勤時間
           </label>
-
 
           <input
             id="endTime"
@@ -1125,16 +1400,15 @@
 
         <div
           id="nextDateField"
-          class="field-box hidden"
+          class="field hidden"
         >
 
           <label
-            class="title"
+            class="label"
             for="nextDate"
           >
             次回出勤日
           </label>
-
 
           <input
             id="nextDate"
@@ -1146,16 +1420,15 @@
 
         <div
           id="nextTimeField"
-          class="field-box hidden"
+          class="field hidden"
         >
 
           <label
-            class="title"
+            class="label"
             for="nextTime"
           >
             次回出勤時間
           </label>
-
 
           <input
             id="nextTime"
@@ -1166,16 +1439,18 @@
         </div>
 
 
+        <!-- SUMMARY -->
+
         <div
           id="summary"
-          class="summary field-box full"
+          class="summary"
         >
           前回残業
           <strong>
             0:00
           </strong>
-         　
-          今月合計
+
+          　月間合計
           <strong>
             0:00
           </strong>
@@ -1185,20 +1460,26 @@
       </div>
 
 
-      <div class="message-box">
+      <!-- MESSAGE -->
 
-        <div class="ocr-title">
-          送信する文章
+      <section class="message-box">
+
+        <div
+          class="section-title"
+          style="margin-top:0;"
+        >
+          📝 送信内容
         </div>
-
 
         <div
           id="messagePreview"
           class="message-preview"
         ></div>
 
-      </div>
+      </section>
 
+
+      <!-- SEND -->
 
       <button
         id="sendBtn"
@@ -1206,27 +1487,30 @@
         type="button"
         disabled
       >
-        写真＋報告文章を送信
+        📤 写真＋報告文章を送信
       </button>
 
 
     </section>
 
 
-    <section class="history-box">
+    <!-- =====================================================
+         HISTORY
+         ===================================================== -->
+
+    <section class="history">
 
       <h2 class="history-title">
         🕘 今日の履歴
       </h2>
-
 
       <ul
         id="historyList"
         class="history-list"
       >
 
-        <li class="muted">
-          人物を選択すると履歴を取得します
+        <li class="empty">
+          人物を選択すると履歴を表示します
         </li>
 
       </ul>
@@ -1237,16 +1521,10 @@
   </main>
 
 
-  <div
-    style="
-      text-align:center;
-      color:#8aa0b2;
-      font-size:13px;
-      padding:14px 0;
-    "
-  >
+  <footer class="footer">
     勤怠管理Bot
-  </div>
+  </footer>
+
 
 </div>
 
@@ -1254,13 +1532,29 @@
 <script>
 
 
+// ============================================================
+// ★★★★★ 設定 ★★★★★
+// ============================================================
+
 const API_URL =
-  'https://script.google.com/macros/s/AKfycbzQKsnHaMXieJriEYudokiGBkR3KrtpDm8HVpX1G9PyNqnKrGkoXbCDDiMEhbdgDVia/exec';
+  'https://script.google.com/macros/s/AKfycbxohd0FrxlbAut88V825oeCR9hFSAI__22K8G0FXAPb9cjtqxmJ7yfwt98_NHiCm-U/exec';
 
 
 const LIFF_ID =
   '2011011273-HIdBF1sM';
 
+
+const RECENT_STORAGE_KEY =
+  'driver_menu_recent_v3';
+
+
+const MAX_RECENT =
+  10;
+
+
+// ============================================================
+// STATE
+// ============================================================
 
 const state = {
 
@@ -1279,26 +1573,32 @@ const state = {
   draft:
     null,
 
-  workState:
-    {
-      hasWork:
-        false,
+  workState: {
 
-      startTime:
-        ''
-    },
+    hasWork:
+      false,
 
-  summary:
-    {
-      previousOvertime:
-        '0:00',
+    startTime:
+      ''
 
-      monthlyOvertime:
-        '0:00'
-    }
+  },
+
+  summary: {
+
+    previousOvertime:
+      '0:00',
+
+    monthlyOvertime:
+      '0:00'
+
+  }
 
 };
 
+
+// ============================================================
+// ELEMENTS
+// ============================================================
 
 const el = {
 
@@ -1355,6 +1655,11 @@ const el = {
   reportDate:
     document.getElementById(
       'reportDate'
+    ),
+
+  reportTimeLabel:
+    document.getElementById(
+      'reportTimeLabel'
     ),
 
   reportTime:
@@ -1426,13 +1731,93 @@ const el = {
 
 
 // ============================================================
+// STATUS
+// ============================================================
+
+function setStatus(
+  text,
+  type
+) {
+
+  el.status.textContent =
+    text;
+
+
+  el.status.classList.remove(
+    'done',
+    'error'
+  );
+
+
+  if (
+    type === 'done'
+  ) {
+
+    el.status.classList.add(
+      'done'
+    );
+
+  }
+
+
+  if (
+    type === 'error'
+  ) {
+
+    el.status.classList.add(
+      'error'
+    );
+
+  }
+
+}
+
+
+// ============================================================
+// NOTICE
+// ============================================================
+
+function showNotice(
+  text
+) {
+
+  el.notice.textContent =
+    text;
+
+
+  el.notice.classList.add(
+    'show'
+  );
+
+}
+
+
+function hideNotice() {
+
+  el.notice.textContent =
+    '';
+
+
+  el.notice.classList.remove(
+    'show'
+  );
+
+}
+
+
+// ============================================================
 // API
 // ============================================================
 
 function callServer(
   operation,
-  data = {}
+  data
 ) {
+
+  data =
+    data ||
+    {};
+
 
   return new Promise(
     function(
@@ -1496,6 +1881,12 @@ function callServer(
       );
 
 
+      /*
+       * POST
+       *
+       * Apps Script側でCacheServiceへ結果を保存。
+       */
+
       fetch(
         API_URL,
         {
@@ -1521,6 +1912,7 @@ function callServer(
         function(error) {
 
           console.warn(
+            'POST:',
             error
           );
 
@@ -1528,7 +1920,11 @@ function callServer(
       );
 
 
-      pollApiResult_(
+      /*
+       * JSONPで結果取得
+       */
+
+      pollResult(
         requestId,
         resolve,
         reject,
@@ -1540,7 +1936,11 @@ function callServer(
 }
 
 
-function pollApiResult_(
+// ============================================================
+// POLL
+// ============================================================
+
+function pollResult(
   requestId,
   resolve,
   reject,
@@ -1548,13 +1948,12 @@ function pollApiResult_(
 ) {
 
   if (
-    attempt >=
-    40
+    attempt >= 50
   ) {
 
     reject(
       new Error(
-        'Apps Script APIの応答が返りませんでした'
+        'Apps Scriptから応答がありませんでした'
       )
     );
 
@@ -1562,11 +1961,15 @@ function pollApiResult_(
   }
 
 
-  const callbackName =
+  const callback =
     'gasCallback_' +
     Date.now() +
     '_' +
-    attempt;
+    attempt +
+    '_' +
+    Math.random()
+      .toString(36)
+      .slice(2);
 
 
   const script =
@@ -1588,19 +1991,20 @@ function pollApiResult_(
       script.parentNode.removeChild(
         script
       );
+
     }
 
 
     try {
 
       delete window[
-        callbackName
+        callback
       ];
 
     } catch (_) {
 
       window[
-        callbackName
+        callback
       ] = undefined;
 
     }
@@ -1609,7 +2013,7 @@ function pollApiResult_(
 
 
   window[
-    callbackName
+    callback
   ] = function(
     response
   ) {
@@ -1617,6 +2021,7 @@ function pollApiResult_(
     if (
       finished
     ) {
+
       return;
     }
 
@@ -1638,7 +2043,7 @@ function pollApiResult_(
       setTimeout(
         function() {
 
-          pollApiResult_(
+          pollResult(
             requestId,
             resolve,
             reject,
@@ -1675,6 +2080,7 @@ function pollApiResult_(
         )
       );
 
+
       return;
     }
 
@@ -1692,12 +2098,9 @@ function pollApiResult_(
       if (
         finished
       ) {
+
         return;
       }
-
-
-      finished =
-        true;
 
 
       cleanup();
@@ -1706,7 +2109,7 @@ function pollApiResult_(
       setTimeout(
         function() {
 
-          pollApiResult_(
+          pollResult(
             requestId,
             resolve,
             reject,
@@ -1729,7 +2132,7 @@ function pollApiResult_(
     ) +
     '&callback=' +
     encodeURIComponent(
-      callbackName
+      callback
     ) +
     '&_=' +
     Date.now();
@@ -1738,54 +2141,135 @@ function pollApiResult_(
   document.body.appendChild(
     script
   );
+
 }
 
 
 // ============================================================
-// 表示
+// RECENT DRIVER
 // ============================================================
 
-function status(
-  text
+function getRecentDrivers() {
+
+  try {
+
+    const value =
+      localStorage.getItem(
+        RECENT_STORAGE_KEY
+      );
+
+
+    const parsed =
+      JSON.parse(
+        value ||
+        '[]'
+      );
+
+
+    return Array.isArray(
+      parsed
+    )
+      ? parsed
+      : [];
+
+
+  } catch (_) {
+
+    return [];
+
+  }
+
+}
+
+
+function saveRecentDriver(
+  driver
 ) {
 
-  el.status.textContent =
-    text;
+  if (!driver) {
+
+    return;
+  }
 
 
-  el.status.classList.toggle(
-    'done',
-    text === '✓ 完了'
-  );
+  let list =
+    getRecentDrivers();
+
+
+  list =
+    list.filter(
+      function(item) {
+
+        return (
+          item.driverKey !==
+          driver.driverKey
+        );
+
+      }
+    );
+
+
+  list.unshift({
+
+    driverKey:
+      driver.driverKey,
+
+    displayName:
+      driver.displayName
+
+  });
+
+
+  try {
+
+    localStorage.setItem(
+      RECENT_STORAGE_KEY,
+      JSON.stringify(
+        list.slice(
+          0,
+          MAX_RECENT
+        )
+      )
+    );
+
+  } catch (_) {
+
+  }
+
 }
 
 
 // ============================================================
-// 人物
+// DRIVER
 // ============================================================
 
 function findDriver(
-  key
+  driverKey
 ) {
 
-  if (!key) {
+  if (!driverKey) {
+
     return null;
   }
 
 
   return (
+
     state.drivers.find(
       function(driver) {
 
         return (
           driver.driverKey ===
-          key
+          driverKey
         );
 
       }
     ) ||
+
     null
+
   );
+
 }
 
 
@@ -1799,12 +2283,26 @@ function renderDrivers() {
     getRecentDrivers();
 
 
-  const recentKeys =
-    new Set(
-      recent.map(
-        function(x) {
+  const activeRecent =
+    recent
+      .map(
+        function(item) {
 
-          return x.driverKey;
+          return findDriver(
+            item.driverKey
+          );
+
+        }
+      )
+      .filter(Boolean);
+
+
+  const usedKeys =
+    new Set(
+      activeRecent.map(
+        function(driver) {
+
+          return driver.driverKey;
 
         }
       )
@@ -1812,7 +2310,7 @@ function renderDrivers() {
 
 
   if (
-    recent.length
+    activeRecent.length
   ) {
 
     const group =
@@ -1825,7 +2323,7 @@ function renderDrivers() {
       '最近使った人物';
 
 
-    recent.forEach(
+    activeRecent.forEach(
       function(driver) {
 
         const option =
@@ -1839,6 +2337,7 @@ function renderDrivers() {
 
 
         option.textContent =
+          '★ ' +
           driver.displayName;
 
 
@@ -1862,7 +2361,7 @@ function renderDrivers() {
       function(driver) {
 
         return (
-          !recentKeys.has(
+          !usedKeys.has(
             driver.driverKey
           )
         );
@@ -1882,7 +2381,7 @@ function renderDrivers() {
 
 
     group.label =
-      'その他の人物';
+      '人物一覧';
 
 
     others.forEach(
@@ -1929,133 +2428,75 @@ function renderDrivers() {
 }
 
 
-function getRecentDrivers() {
+// ============================================================
+// SELECT DRIVER
+// ============================================================
 
-  try {
-
-    return JSON.parse(
-      localStorage.getItem(
-        'driverRecent'
-      ) ||
-      '[]'
-    );
-
-  } catch (_) {
-
-    return [];
-
-  }
-
-}
-
-
-function saveRecent() {
-
-  if (
-    !state.driver
-  ) {
-
-    return;
-  }
-
-
-  let list =
-    getRecentDrivers();
-
-
-  list =
-    list.filter(
-      function(x) {
-
-        return (
-          x.driverKey !==
-          state.driver.driverKey
-        );
-
-      }
-    );
-
-
-  list.unshift({
-
-    driverKey:
-      state.driver.driverKey,
-
-    displayName:
-      state.driver.displayName
-
-  });
-
-
-  localStorage.setItem(
-    'driverRecent',
-    JSON.stringify(
-      list.slice(
-        0,
-        10
-      )
-    )
-  );
-}
-
-
-function selectDriver(
+async function selectDriver(
   driver
 ) {
 
+  state.driver =
+    driver || null;
+
+
+  state.draft =
+    null;
+
+
+  el.previewWrap.classList.remove(
+    'show'
+  );
+
+
+  el.sendBtn.disabled =
+    true;
+
+
   if (!driver) {
 
-    state.driver =
-      null;
-
-
-    el.sendBtn.disabled =
-      true;
-
-
-    status(
-      '人物選択待ち'
+    setStatus(
+      '👤 人物選択待ち'
     );
 
 
     el.historyList.innerHTML =
-      '<li class="muted">人物を選択してください</li>';
+      '<li class="empty">人物を選択してください</li>';
 
 
     return;
   }
-
-
-  state.driver =
-    driver;
 
 
   el.driverSelect.value =
     driver.driverKey;
 
 
-  status(
-    '✓ 完了'
+  saveRecentDriver(
+    driver
   );
 
 
-  saveRecent();
+  setStatus(
+    '✓ 完了',
+    'done'
+  );
 
 
-  loadServerState();
+  await loadDriverState();
 
 }
 
 
 // ============================================================
-// データ読み込み
+// LOAD DRIVERS
 // ============================================================
 
 async function loadDrivers() {
 
   try {
 
-    const list =
+    const result =
       await callServer(
         'getDriverList'
       );
@@ -2063,9 +2504,9 @@ async function loadDrivers() {
 
     state.drivers =
       Array.isArray(
-        list
+        result
       )
-        ? list
+        ? result
         : [];
 
 
@@ -2079,8 +2520,8 @@ async function loadDrivers() {
     );
 
 
-    status(
-      '人物選択待ち'
+    setStatus(
+      '👤 人物選択待ち'
     );
 
   }
@@ -2088,7 +2529,11 @@ async function loadDrivers() {
 }
 
 
-async function loadServerState() {
+// ============================================================
+// SERVER STATE
+// ============================================================
+
+async function loadDriverState() {
 
   if (
     !state.driver
@@ -2100,22 +2545,36 @@ async function loadServerState() {
 
   try {
 
-    const results =
+    const result =
       await Promise.all([
 
         callServer(
           'getWorkState',
           {
+
             selectedDriverKey:
               state.driver.driverKey
+
           }
         ),
 
         callServer(
           'getAttendanceSummary',
           {
+
             selectedDriverKey:
               state.driver.driverKey
+
+          }
+        ),
+
+        callServer(
+          'getTodayHistory',
+          {
+
+            selectedDriverKey:
+              state.driver.driverKey
+
           }
         )
 
@@ -2123,7 +2582,8 @@ async function loadServerState() {
 
 
     state.workState =
-      results[0] || {
+      result[0] ||
+      {
 
         hasWork:
           false,
@@ -2135,7 +2595,8 @@ async function loadServerState() {
 
 
     state.summary =
-      results[1] || {
+      result[1] ||
+      {
 
         previousOvertime:
           '0:00',
@@ -2149,46 +2610,8 @@ async function loadServerState() {
     renderSummary();
 
 
-    await loadHistory();
-
-
-  } catch (error) {
-
-    console.warn(
-      error
-    );
-
-  }
-
-}
-
-
-async function loadHistory() {
-
-  if (
-    !state.driver
-  ) {
-
-    return;
-  }
-
-
-  try {
-
-    const list =
-      await callServer(
-        'getTodayHistory',
-        {
-
-          selectedDriverKey:
-            state.driver.driverKey
-
-        }
-      );
-
-
     renderHistory(
-      list ||
+      result[2] ||
       []
     );
 
@@ -2204,109 +2627,28 @@ async function loadHistory() {
 }
 
 
-function renderHistory(
-  list
-) {
-
-  if (
-    !list.length
-  ) {
-
-    el.historyList.innerHTML =
-      '<li class="muted">まだ履歴はありません</li>';
-
-    return;
-  }
-
-
-  el.historyList.innerHTML =
-    list
-
-      .map(
-        function(x) {
-
-          const time =
-            x.type === '退勤'
-
-              ? (
-                (
-                  x.startTime ||
-                  ''
-                ) +
-                '→' +
-                (
-                  x.endTime ||
-                  ''
-                )
-              )
-
-              : (
-                x.reportTime ||
-                ''
-              );
-
-
-          return (
-
-            '<li>' +
-
-            '<span>' +
-              escapeHtml(
-                x.date
-              ) +
-            '</span>' +
-
-            '<span class="type">' +
-              escapeHtml(
-                x.type
-              ) +
-            '</span>' +
-
-            '<span class="time">' +
-              escapeHtml(
-                time
-              ) +
-            '</span>' +
-
-            '<span class="sent">' +
-              '送信 ' +
-              escapeHtml(
-                x.sentTime
-              ) +
-            '</span>' +
-
-            '<span class="ok">' +
-              '✓' +
-              escapeHtml(
-                x.status ||
-                '完了'
-              ) +
-            '</span>' +
-
-            '</li>'
-
-          );
-
-        }
-      )
-
-      .join('');
-
-}
-
+// ============================================================
+// SUMMARY
+// ============================================================
 
 function renderSummary() {
 
   el.summary.innerHTML =
 
-    '前回残業 <strong>' +
+    '前回残業 ' +
+
+    '<strong>' +
 
     escapeHtml(
       state.summary.previousOvertime ||
       '0:00'
     ) +
 
-    '</strong>　今月合計 <strong>' +
+    '</strong>' +
+
+    '　月間合計 ' +
+
+    '<strong>' +
 
     escapeHtml(
       state.summary.monthlyOvertime ||
@@ -2319,7 +2661,147 @@ function renderSummary() {
 
 
 // ============================================================
-// モード
+// HISTORY
+// ============================================================
+
+function renderHistory(
+  history
+) {
+
+  const list =
+    Array.isArray(
+      history
+    )
+      ? history
+      : [];
+
+
+  /*
+   * 念のため表示側でも新しい順にする
+   */
+
+  list.sort(
+    function(a, b) {
+
+      return (
+        Number(
+          b.savedAt ||
+          0
+        ) -
+        Number(
+          a.savedAt ||
+          0
+        )
+      );
+
+    }
+  );
+
+
+  if (
+    !list.length
+  ) {
+
+    el.historyList.innerHTML =
+      '<li class="empty">まだ履歴はありません</li>';
+
+    return;
+  }
+
+
+  el.historyList.innerHTML =
+    list
+      .map(
+        function(item) {
+
+          let attendanceTime =
+            '';
+
+
+          if (
+            item.type ===
+            '退勤'
+          ) {
+
+            attendanceTime =
+
+              String(
+                item.startTime ||
+                ''
+              ) +
+
+              '→' +
+
+              String(
+                item.endTime ||
+                ''
+              );
+
+
+          } else {
+
+            attendanceTime =
+              String(
+                item.reportTime ||
+                ''
+              );
+
+          }
+
+
+          return (
+
+            '<li class="history-item">' +
+
+              '<span class="history-date">' +
+                escapeHtml(
+                  item.date ||
+                  ''
+                ) +
+              '</span>' +
+
+              '<span class="history-type">' +
+                escapeHtml(
+                  item.type ||
+                  ''
+                ) +
+              '</span>' +
+
+              '<span class="history-time">' +
+                escapeHtml(
+                  attendanceTime
+                ) +
+              '</span>' +
+
+              '<span class="history-sent">' +
+                '送信 ' +
+                escapeHtml(
+                  item.sentTime ||
+                  ''
+                ) +
+              '</span>' +
+
+              '<span class="history-ok">' +
+                '✓' +
+                escapeHtml(
+                  item.status ||
+                  '完了'
+                ) +
+              '</span>' +
+
+            '</li>'
+
+          );
+
+        }
+      )
+      .join('');
+
+}
+
+
+// ============================================================
+// MODE
 // ============================================================
 
 function setMode(
@@ -2334,16 +2816,8 @@ function setMode(
     null;
 
 
-  el.inMode.classList.toggle(
-    'active',
-    mode === 'in'
-  );
-
-
-  el.outMode.classList.toggle(
-    'active',
-    mode === 'out'
-  );
+  el.photoInput.value =
+    '';
 
 
   el.previewWrap.classList.remove(
@@ -2355,16 +2829,30 @@ function setMode(
     true;
 
 
-  el.photoInput.value =
-    '';
+  hideNotice();
 
 
-  el.notice.textContent =
-    '';
+  el.inMode.classList.toggle(
+    'active',
+    mode === 'in'
+  );
 
 
-  el.notice.classList.remove(
-    'show'
+  el.inMode.classList.toggle(
+    'in',
+    true
+  );
+
+
+  el.outMode.classList.toggle(
+    'active',
+    mode === 'out'
+  );
+
+
+  el.outMode.classList.toggle(
+    'out',
+    true
   );
 
 
@@ -2372,17 +2860,29 @@ function setMode(
     mode === 'in'
   ) {
 
+    el.reportTimeLabel.textContent =
+      '出勤時間';
+
+
+    el.reportTime.parentElement.classList.remove(
+      'hidden'
+    );
+
+
     el.startField.classList.add(
       'hidden'
     );
+
 
     el.endField.classList.add(
       'hidden'
     );
 
+
     el.nextDateField.classList.add(
       'hidden'
     );
+
 
     el.nextTimeField.classList.add(
       'hidden'
@@ -2391,29 +2891,59 @@ function setMode(
 
   } else {
 
+    /*
+     * 退勤はOCR時刻をendTimeへ入れるので
+     * reportTime欄は非表示
+     */
+
+    el.reportTime.parentElement.classList.add(
+      'hidden'
+    );
+
+
     el.startField.classList.remove(
       'hidden'
     );
+
 
     el.endField.classList.remove(
       'hidden'
     );
 
+
     el.nextDateField.classList.remove(
       'hidden'
     );
+
 
     el.nextTimeField.classList.remove(
       'hidden'
     );
 
 
-    el.nextDate.value =
-      tomorrow();
+    el.startTime.value =
+      state.workState.startTime ||
+      '';
 
 
-    el.nextTime.value =
-      '08:00';
+    if (
+      !el.nextDate.value
+    ) {
+
+      el.nextDate.value =
+        tomorrowDate();
+
+    }
+
+
+    if (
+      !el.nextTime.value
+    ) {
+
+      el.nextTime.value =
+        '08:00';
+
+    }
 
   }
 
@@ -2421,10 +2951,10 @@ function setMode(
 
 
 // ============================================================
-// LINE / LIFF
+// LIFF
 // ============================================================
 
-async function autoDetect() {
+async function initLiff() {
 
   try {
 
@@ -2443,9 +2973,14 @@ async function autoDetect() {
       !liff.isLoggedIn()
     ) {
 
-      status(
-        '人物選択待ち'
+      /*
+       * LINE内でなければ人物手動選択でも使用可能。
+       */
+
+      setStatus(
+        '👤 人物選択待ち'
       );
+
 
       return;
     }
@@ -2454,6 +2989,19 @@ async function autoDetect() {
     state.idToken =
       liff.getIDToken() ||
       '';
+
+
+    if (
+      !state.idToken
+    ) {
+
+      setStatus(
+        '👤 人物選択待ち'
+      );
+
+
+      return;
+    }
 
 
     const info =
@@ -2467,30 +3015,42 @@ async function autoDetect() {
       info.found
     ) {
 
-      selectDriver(
+      const driver =
         findDriver(
           info.driverKey
-        )
-      );
+        );
 
-    } else {
 
-      status(
-        '人物選択待ち'
-      );
+      if (
+        driver
+      ) {
+
+        await selectDriver(
+          driver
+        );
+
+
+        return;
+      }
 
     }
+
+
+    setStatus(
+      '👤 人物選択待ち'
+    );
 
 
   } catch (error) {
 
     console.error(
+      'LIFF:',
       error
     );
 
 
-    status(
-      '人物選択待ち'
+    setStatus(
+      '👤 人物選択待ち'
     );
 
   }
@@ -2499,10 +3059,10 @@ async function autoDetect() {
 
 
 // ============================================================
-// 画像圧縮
+// IMAGE PREPARE
 // ============================================================
 
-function imageToDataUrl(
+function prepareImage(
   file
 ) {
 
@@ -2516,27 +3076,75 @@ function imageToDataUrl(
         new FileReader();
 
 
+      reader.onerror =
+        function() {
+
+          reject(
+            new Error(
+              '写真を読み込めませんでした'
+            )
+          );
+
+        };
+
+
       reader.onload =
         function() {
 
-          const img =
+          const image =
             new Image();
 
 
-          img.onload =
+          image.onerror =
             function() {
 
-              const max =
+              reject(
+                new Error(
+                  '画像を開けませんでした'
+                )
+              );
+
+            };
+
+
+          image.onload =
+            function() {
+
+              /*
+               * OCR精度と通信サイズのバランス。
+               */
+
+              const maxSide =
                 1800;
 
 
               const scale =
                 Math.min(
                   1,
-                  max /
+                  maxSide /
                   Math.max(
-                    img.width,
-                    img.height
+                    image.width,
+                    image.height
+                  )
+                );
+
+
+              const width =
+                Math.max(
+                  1,
+                  Math.round(
+                    image.width *
+                    scale
+                  )
+                );
+
+
+              const height =
+                Math.max(
+                  1,
+                  Math.round(
+                    image.height *
+                    scale
                   )
                 );
 
@@ -2548,60 +3156,73 @@ function imageToDataUrl(
 
 
               canvas.width =
-                Math.round(
-                  img.width *
-                  scale
-                );
+                width;
 
 
               canvas.height =
-                Math.round(
-                  img.height *
-                  scale
-                );
+                height;
 
 
               const ctx =
                 canvas.getContext(
                   '2d',
                   {
+
                     alpha:
                       false
+
                   }
                 );
 
 
-              ctx.drawImage(
-                img,
+              ctx.fillStyle =
+                '#ffffff';
+
+
+              ctx.fillRect(
                 0,
                 0,
-                canvas.width,
-                canvas.height
+                width,
+                height
               );
 
 
-              resolve(
+              ctx.drawImage(
+                image,
+                0,
+                0,
+                width,
+                height
+              );
+
+
+              const dataUrl =
                 canvas.toDataURL(
                   'image/jpeg',
-                  0.86
-                )
-              );
+                  .86
+                );
+
+
+              resolve({
+
+                dataUrl:
+                  dataUrl,
+
+                width:
+                  width,
+
+                height:
+                  height
+
+              });
 
             };
 
 
-          img.onerror =
-            reject;
-
-
-          img.src =
+          image.src =
             reader.result;
 
         };
-
-
-      reader.onerror =
-        reject;
 
 
       reader.readAsDataURL(
@@ -2610,14 +3231,15 @@ function imageToDataUrl(
 
     }
   );
+
 }
 
 
 // ============================================================
-// 無料OCR
+// OCR
 // ============================================================
 
-async function runBrowserOcr(
+async function runOcr(
   dataUrl
 ) {
 
@@ -2626,7 +3248,7 @@ async function runBrowserOcr(
   ) {
 
     throw new Error(
-      'OCRライブラリの読み込みに失敗しました。通信環境を確認してください。'
+      '無料OCRライブラリを読み込めませんでした'
     );
   }
 
@@ -2641,67 +3263,68 @@ async function runBrowserOcr(
       {
 
         logger:
-          function(
-            message
-          ) {
+          function(message) {
 
             if (
               !message
             ) {
+
               return;
             }
 
 
             if (
               message.status ===
-                'recognizing text' &&
-              message.progress
+              'recognizing text'
             ) {
 
-              el.notice.textContent =
-
-                '写真を読み取り中... ' +
-
+              const percent =
                 Math.round(
-                  message.progress *
+                  Number(
+                    message.progress ||
+                    0
+                  ) *
                   100
-                ) +
+                );
 
-                '%';
+
+              showNotice(
+                '写真を読み取り中... ' +
+                percent +
+                '%'
+              );
 
             }
 
-          },
-
-        tessedit_pageseg_mode:
-          6
+          }
 
       }
 
     );
 
 
-  return (
+  if (
+    !result ||
+    !result.data
+  ) {
 
-    result &&
-    result.data
+    return '';
+  }
 
-      ? String(
-          result.data.text ||
-          ''
-        )
 
-      : ''
-
+  return String(
+    result.data.text ||
+    ''
   );
+
 }
 
 
 // ============================================================
-// 写真アップロード
+// PHOTO SELECT
 // ============================================================
 
-async function uploadPhoto(
+async function processPhoto(
   file
 ) {
 
@@ -2710,54 +3333,69 @@ async function uploadPhoto(
   ) {
 
     alert(
-      '先に人物を選択してください'
+      '先に人物を選択してください。'
     );
+
 
     return;
   }
 
 
-  el.notice.classList.add(
-    'show'
-  );
+  if (!file) {
+
+    return;
+  }
 
 
-  el.notice.textContent =
-    '写真を準備しています...';
+  state.draft =
+    null;
 
 
   el.sendBtn.disabled =
     true;
 
 
+  showNotice(
+    '写真を準備しています...'
+  );
+
+
   try {
 
-    const dataUrl =
-      await imageToDataUrl(
+    /*
+     * 画像圧縮
+     */
+
+    const prepared =
+      await prepareImage(
         file
       );
 
 
     el.photoPreview.src =
-      dataUrl;
+      prepared.dataUrl;
 
 
     /*
-     * Google Cloudを使わず、
-     * この端末内でOCR
+     * 無料OCR
      */
 
     const ocrText =
-      await runBrowserOcr(
-        dataUrl
+      await runOcr(
+        prepared.dataUrl
       );
 
 
-    el.notice.textContent =
-      '読み取り結果を確認しています...';
+    showNotice(
+      '読み取り結果を保存しています...'
+    );
 
 
-    const result =
+    /*
+     * Apps Scriptへ
+     */
+
+    const draft =
       await callServer(
         'ocrPhoto',
         {
@@ -2769,10 +3407,11 @@ async function uploadPhoto(
             state.mode,
 
           imageBase64:
-            dataUrl,
+            prepared.dataUrl,
 
           fileName:
-            file.name,
+            file.name ||
+            'attendance.jpg',
 
           ocrText:
             ocrText
@@ -2781,9 +3420,24 @@ async function uploadPhoto(
       );
 
 
-    state.draft =
-      result;
+    if (
+      !draft ||
+      !draft.draftId
+    ) {
 
+      throw new Error(
+        '写真の下書きを作成できませんでした'
+      );
+    }
+
+
+    state.draft =
+      draft;
+
+
+    /*
+     * 画面表示
+     */
 
     el.previewWrap.classList.add(
       'show'
@@ -2791,36 +3445,96 @@ async function uploadPhoto(
 
 
     el.ocrText.textContent =
-      result.ocrText ||
-      '(文字を読み取れませんでした。時間を手入力してください)';
+      draft.ocrText ||
+      '文字を読み取れませんでした。時刻を確認して入力してください。';
 
 
     el.reportDate.value =
-      result.reportDate ||
-      today();
+      draft.reportDate ||
+      todayDate();
 
 
     if (
       state.mode === 'in'
     ) {
 
+      /*
+       * 例：
+       * 写真OCR 09:20
+       * ↓
+       * 本人が09:30へ修正可能
+       */
+
       el.reportTime.value =
-        result.ocrTime ||
-        nowTime();
+        draft.ocrTime ||
+        currentTime();
 
 
     } else {
 
+      /*
+       * 朝に確定した出勤時間を
+       * サーバーから復元。
+       */
+
       el.startTime.value =
-        result.startTime ||
+        draft.startTime ||
         state.workState.startTime ||
         '';
 
 
+      /*
+       * 退勤写真OCR時間
+       */
+
       el.endTime.value =
-        result.endTime ||
-        result.ocrTime ||
-        nowTime();
+        draft.endTime ||
+        draft.ocrTime ||
+        currentTime();
+
+
+      if (
+        !el.nextDate.value
+      ) {
+
+        el.nextDate.value =
+          tomorrowDate();
+
+      }
+
+
+      if (
+        !el.nextTime.value
+      ) {
+
+        el.nextTime.value =
+          '08:00';
+
+      }
+
+    }
+
+
+    /*
+     * サーバー側集計値を反映
+     */
+
+    if (
+      draft.previousOvertime != null
+    ) {
+
+      state.summary.previousOvertime =
+        draft.previousOvertime;
+
+    }
+
+
+    if (
+      draft.monthlyOvertime != null
+    ) {
+
+      state.summary.monthlyOvertime =
+        draft.monthlyOvertime;
 
     }
 
@@ -2835,8 +3549,31 @@ async function uploadPhoto(
       false;
 
 
-    el.notice.textContent =
-      '読み取り完了。時間を確認・修正して送信してください。';
+    showNotice(
+      '読み取り完了。内容を確認・修正してから送信してください。'
+    );
+
+
+    /*
+     * 内容修正欄までスクロール
+     */
+
+    setTimeout(
+      function() {
+
+        el.previewWrap.scrollIntoView({
+
+          behavior:
+            'smooth',
+
+          block:
+            'start'
+
+        });
+
+      },
+      100
+    );
 
 
   } catch (error) {
@@ -2846,9 +3583,14 @@ async function uploadPhoto(
     );
 
 
-    el.notice.textContent =
+    showNotice(
       error.message ||
-      'OCRに失敗しました。時間を手入力してください。';
+      '写真の読み取りに失敗しました'
+    );
+
+
+    el.sendBtn.disabled =
+      true;
 
   }
 
@@ -2856,7 +3598,7 @@ async function uploadPhoto(
 
 
 // ============================================================
-// メッセージ生成
+// MESSAGE
 // ============================================================
 
 function refreshMessage() {
@@ -2869,15 +3611,15 @@ function refreshMessage() {
   }
 
 
-  let msg =
-    '';
-
-
   if (
     state.mode === 'in'
   ) {
 
-    msg =
+    /*
+     * 出勤報告
+     */
+
+    el.messagePreview.textContent =
 
       'お疲れ様でございます。\n\n' +
 
@@ -2904,117 +3646,195 @@ function refreshMessage() {
       '本日もよろしくお願い申し上げます。';
 
 
-  } else {
-
-    const d =
-      el.reportDate.value ||
-      today();
+    return;
+  }
 
 
-    const next =
-      el.nextDate.value ||
-      '';
+  /*
+   * 退勤報告
+   */
+
+  const reportDate =
+    el.reportDate.value ||
+    todayDate();
 
 
-    const nextT =
-      el.nextTime.value ||
-      '';
+  const startTime =
+    el.startTime.value ||
+    '';
 
 
-    const nextLine =
-      next
-
-        ? (
-          '出勤）' +
-          shortDate(
-            next
-          ) +
-          ' ' +
-          nextT +
-          '\n\n' +
-
-          nextLabel(
-            next
-          ) +
-
-          'もよろしくお願いいたします。'
-        )
-
-        : '';
+  const endTime =
+    el.endTime.value ||
+    '';
 
 
-    msg =
+  const nextDate =
+    el.nextDate.value ||
+    '';
 
-      'お疲れ様でございます。\n\n' +
 
-      '業務完了いたしました。\n\n' +
+  const nextTime =
+    el.nextTime.value ||
+    '';
 
-      d.replace(
-        /-/g,
-        '/'
+
+  let nextBlock =
+    '';
+
+
+  if (
+    nextDate
+  ) {
+
+    nextBlock =
+
+      '\n\n' +
+
+      '出勤）' +
+
+      formatShortDate(
+        nextDate
       ) +
 
-      '\n稼働）' +
-
       (
-        el.startTime.value ||
-        ''
-      ) +
-
-      '-' +
-
-      (
-        el.endTime.value ||
-        ''
+        nextTime
+          ? ' ' +
+            nextTime
+          : ''
       ) +
 
       '\n\n' +
 
-      '本日は失礼させていただきます。\n\n' +
+      getNextLabel(
+        nextDate
+      ) +
 
-      nextLine;
+      'もよろしくお願いいたします。';
 
   }
 
 
   el.messagePreview.textContent =
-    msg;
+
+    'お疲れ様でございます。\n\n' +
+
+    '業務完了いたしました。\n\n' +
+
+    reportDate.replace(
+      /-/g,
+      '/'
+    ) +
+
+    '\n' +
+
+    '稼働）' +
+
+    startTime +
+
+    '-' +
+
+    endTime +
+
+    '\n\n' +
+
+    '本日は失礼させていただきます。' +
+
+    nextBlock;
 
 }
 
 
 // ============================================================
-// 送信
+// SEND
 // ============================================================
 
-async function sendDraft() {
+async function sendAttendance() {
 
   if (
-    !state.draft ||
     !state.driver
   ) {
 
+    alert(
+      '人物を選択してください。'
+    );
+
+
     return;
   }
+
+
+  if (
+    !state.draft ||
+    !state.draft.draftId
+  ) {
+
+    alert(
+      '先に写真を選択してください。'
+    );
+
+
+    return;
+  }
+
+
+  if (
+    !el.reportDate.value
+  ) {
+
+    alert(
+      '報告日を確認してください。'
+    );
+
+
+    return;
+  }
+
+
+  if (
+    state.mode === 'in' &&
+    !el.reportTime.value
+  ) {
+
+    alert(
+      '出勤時間を確認してください。'
+    );
+
+
+    return;
+  }
+
+
+  if (
+    state.mode === 'out' &&
+    (
+      !el.startTime.value ||
+      !el.endTime.value
+    )
+  ) {
+
+    alert(
+      '出勤時間と退勤時間を確認してください。'
+    );
+
+
+    return;
+  }
+
+
+  refreshMessage();
 
 
   el.sendBtn.disabled =
     true;
 
 
-  el.notice.classList.add(
-    'show'
+  showNotice(
+    '写真＋報告文章を送信しています...'
   );
 
 
-  el.notice.textContent =
-    '写真＋報告文章を送信中です...';
-
-
   try {
-
-    refreshMessage();
-
 
     const result =
       await callServer(
@@ -3030,39 +3850,39 @@ async function sendDraft() {
           reportDate:
             el.reportDate.value,
 
+          /*
+           * 出勤の場合：
+           * 人間が確認・修正した確定時刻
+           */
+
           reportTime:
             state.mode === 'in'
-
               ? el.reportTime.value
-
               : el.endTime.value,
+
+          /*
+           * 退勤の場合：
+           * 朝に確定して保存した出勤時刻
+           */
 
           startTime:
             state.mode === 'out'
-
               ? el.startTime.value
-
               : el.reportTime.value,
 
           endTime:
             state.mode === 'out'
-
               ? el.endTime.value
-
               : '',
 
           nextDate:
             state.mode === 'out'
-
               ? el.nextDate.value
-
               : '',
 
           nextTime:
             state.mode === 'out'
-
               ? el.nextTime.value
-
               : '',
 
           message:
@@ -3074,24 +3894,30 @@ async function sendDraft() {
 
     if (
       !result ||
-      !result.ok
+      result.ok !== true
     ) {
 
       throw new Error(
-        '送信に失敗しました'
+        '送信処理が完了しませんでした'
       );
     }
 
 
-    el.notice.textContent =
-      '送信完了しました。';
+    showNotice(
+      '✓ 写真＋報告文章を送信しました。'
+    );
 
 
-    saveRecent();
-
+    /*
+     * 下書き解除
+     */
 
     state.draft =
       null;
+
+
+    el.photoInput.value =
+      '';
 
 
     el.previewWrap.classList.remove(
@@ -3099,11 +3925,30 @@ async function sendDraft() {
     );
 
 
-    el.photoInput.value =
-      '';
+    /*
+     * サーバーから再読込
+     *
+     * 出勤時間・履歴をスマホではなく
+     * スプレッドシートから復元する。
+     */
+
+    await loadDriverState();
 
 
-    await loadServerState();
+    /*
+     * 出勤後なら
+     * workStateに出勤時間が保存される。
+     */
+
+    if (
+      state.mode === 'in'
+    ) {
+
+      setMode(
+        'in'
+      );
+
+    }
 
 
   } catch (error) {
@@ -3113,12 +3958,17 @@ async function sendDraft() {
     );
 
 
-    el.notice.textContent =
+    showNotice(
       error.message ||
-      '送信に失敗しました';
+      '送信に失敗しました'
+    );
 
 
   } finally {
+
+    /*
+     * 写真が残っている場合だけ再度押せる
+     */
 
     el.sendBtn.disabled =
       !state.draft;
@@ -3129,17 +3979,340 @@ async function sendDraft() {
 
 
 // ============================================================
-// イベント
+// DATE
+// ============================================================
+
+function todayDate() {
+
+  const date =
+    new Date();
+
+
+  return (
+
+    date.getFullYear() +
+
+    '-' +
+
+    String(
+      date.getMonth() + 1
+    ).padStart(
+      2,
+      '0'
+    ) +
+
+    '-' +
+
+    String(
+      date.getDate()
+    ).padStart(
+      2,
+      '0'
+    )
+
+  );
+
+}
+
+
+function tomorrowDate() {
+
+  const date =
+    new Date();
+
+
+  date.setDate(
+    date.getDate() + 1
+  );
+
+
+  return (
+
+    date.getFullYear() +
+
+    '-' +
+
+    String(
+      date.getMonth() + 1
+    ).padStart(
+      2,
+      '0'
+    ) +
+
+    '-' +
+
+    String(
+      date.getDate()
+    ).padStart(
+      2,
+      '0'
+    )
+
+  );
+
+}
+
+
+function currentTime() {
+
+  const date =
+    new Date();
+
+
+  return (
+
+    String(
+      date.getHours()
+    ).padStart(
+      2,
+      '0'
+    ) +
+
+    ':' +
+
+    String(
+      date.getMinutes()
+    ).padStart(
+      2,
+      '0'
+    )
+
+  );
+
+}
+
+
+function formatShortDate(
+  yyyyMmDd
+) {
+
+  const match =
+    String(
+      yyyyMmDd ||
+      ''
+    ).match(
+      /^(\d{4})-(\d{2})-(\d{2})$/
+    );
+
+
+  if (!match) {
+
+    return yyyyMmDd ||
+      '';
+
+  }
+
+
+  return (
+
+    Number(
+      match[2]
+    ) +
+
+    '/' +
+
+    Number(
+      match[3]
+    )
+
+  );
+
+}
+
+
+// ============================================================
+// NEXT LABEL
+// ============================================================
+
+function getNextLabel(
+  yyyyMmDd
+) {
+
+  if (!yyyyMmDd) {
+
+    return '次回';
+
+  }
+
+
+  const now =
+    new Date();
+
+
+  const today =
+    new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate()
+    );
+
+
+  const target =
+    new Date(
+      yyyyMmDd +
+      'T00:00:00'
+    );
+
+
+  const diff =
+    Math.round(
+      (
+        target -
+        today
+      ) /
+      86400000
+    );
+
+
+  if (
+    diff === 1
+  ) {
+
+    return '明日';
+
+  }
+
+
+  if (
+    diff === 2
+  ) {
+
+    return '明後日';
+
+  }
+
+
+  /*
+   * 来週判定
+   */
+
+  const todayDay =
+    today.getDay() === 0
+      ? 7
+      : today.getDay();
+
+
+  const monday =
+    new Date(
+      today
+    );
+
+
+  monday.setDate(
+    today.getDate() -
+    (
+      todayDay -
+      1
+    )
+  );
+
+
+  const nextMonday =
+    new Date(
+      monday
+    );
+
+
+  nextMonday.setDate(
+    monday.getDate() +
+    7
+  );
+
+
+  const targetDay =
+    target.getDay() === 0
+      ? 7
+      : target.getDay();
+
+
+  const targetMonday =
+    new Date(
+      target
+    );
+
+
+  targetMonday.setDate(
+    target.getDate() -
+    (
+      targetDay -
+      1
+    )
+  );
+
+
+  if (
+    targetMonday.getTime() ===
+    nextMonday.getTime()
+  ) {
+
+    return '来週';
+
+  }
+
+
+  return '次回';
+
+}
+
+
+// ============================================================
+// HTML ESCAPE
+// ============================================================
+
+function escapeHtml(
+  value
+) {
+
+  return String(
+    value == null
+      ? ''
+      : value
+  )
+
+    .replace(
+      /&/g,
+      '&amp;'
+    )
+
+    .replace(
+      /</g,
+      '&lt;'
+    )
+
+    .replace(
+      />/g,
+      '&gt;'
+    )
+
+    .replace(
+      /"/g,
+      '&quot;'
+    )
+
+    .replace(
+      /'/g,
+      '&#39;'
+    );
+
+}
+
+
+// ============================================================
+// EVENTS
 // ============================================================
 
 el.driverSelect.addEventListener(
   'change',
   function() {
 
-    selectDriver(
+    const driver =
       findDriver(
         el.driverSelect.value
-      )
+      );
+
+
+    selectDriver(
+      driver
     );
 
   }
@@ -3179,8 +4352,9 @@ el.uploadBtn.addEventListener(
     ) {
 
       alert(
-        '先に人物を選択してください'
+        '先に人物を選択してください。'
       );
+
 
       return;
     }
@@ -3196,12 +4370,17 @@ el.photoInput.addEventListener(
   'change',
   function() {
 
+    const file =
+      el.photoInput.files &&
+      el.photoInput.files[0];
+
+
     if (
-      el.photoInput.files[0]
+      file
     ) {
 
-      uploadPhoto(
-        el.photoInput.files[0]
+      processPhoto(
+        file
       );
 
     }
@@ -3211,22 +4390,22 @@ el.photoInput.addEventListener(
 
 
 [
-  'reportDate',
-  'reportTime',
-  'startTime',
-  'endTime',
-  'nextDate',
-  'nextTime'
+  el.reportDate,
+  el.reportTime,
+  el.startTime,
+  el.endTime,
+  el.nextDate,
+  el.nextTime
 ].forEach(
-  function(id) {
+  function(input) {
 
-    el[id].addEventListener(
+    input.addEventListener(
       'input',
       refreshMessage
     );
 
 
-    el[id].addEventListener(
+    input.addEventListener(
       'change',
       refreshMessage
     );
@@ -3237,20 +4416,47 @@ el.photoInput.addEventListener(
 
 el.sendBtn.addEventListener(
   'click',
-  sendDraft
+  sendAttendance
 );
 
+
+// ============================================================
+// START
+// ============================================================
 
 window.addEventListener(
   'load',
   async function() {
+
+    /*
+     * 初期値
+     */
+
+    el.reportDate.value =
+      todayDate();
+
+
+    el.nextDate.value =
+      tomorrowDate();
+
+
+    el.nextTime.value =
+      '08:00';
+
 
     setMode(
       'in'
     );
 
 
-    status(
+    /*
+     * 人物一覧を先に取得。
+     *
+     * これによりLIFF自動判別が失敗しても
+     * 手動選択が使える。
+     */
+
+    setStatus(
       '⏳ 自動判別中...'
     );
 
@@ -3258,247 +4464,34 @@ window.addEventListener(
     await loadDrivers();
 
 
-    await autoDetect();
+    /*
+     * LINE本人判定
+     */
+
+    await initLiff();
+
+
+    /*
+     * 自動判別できなかった場合でも
+     * 「自動判別中」のままにしない。
+     */
+
+    if (
+      !state.driver
+    ) {
+
+      setStatus(
+        '👤 人物選択待ち'
+      );
+
+    }
 
   }
 );
 
 
-// ============================================================
-// Utility
-// ============================================================
-
-function today() {
-
-  const d =
-    new Date();
-
-
-  return (
-
-    d.getFullYear() +
-    '-' +
-    String(
-      d.getMonth() + 1
-    ).padStart(
-      2,
-      '0'
-    ) +
-    '-' +
-    String(
-      d.getDate()
-    ).padStart(
-      2,
-      '0'
-    )
-
-  );
-}
-
-
-function nowTime() {
-
-  const d =
-    new Date();
-
-
-  return (
-
-    String(
-      d.getHours()
-    ).padStart(
-      2,
-      '0'
-    ) +
-
-    ':' +
-
-    String(
-      d.getMinutes()
-    ).padStart(
-      2,
-      '0'
-    )
-
-  );
-}
-
-
-function tomorrow() {
-
-  const d =
-    new Date();
-
-
-  d.setDate(
-    d.getDate() +
-    1
-  );
-
-
-  return (
-
-    d.getFullYear() +
-    '-' +
-    String(
-      d.getMonth() + 1
-    ).padStart(
-      2,
-      '0'
-    ) +
-    '-' +
-    String(
-      d.getDate()
-    ).padStart(
-      2,
-      '0'
-    )
-
-  );
-}
-
-
-function shortDate(
-  value
-) {
-
-  const parts =
-    String(
-      value ||
-      ''
-    ).split(
-      '-'
-    );
-
-
-  if (
-    parts.length !== 3
-  ) {
-
-    return value;
-  }
-
-
-  return (
-
-    Number(
-      parts[1]
-    ) +
-
-    '/' +
-
-    Number(
-      parts[2]
-    )
-
-  );
-}
-
-
-function nextLabel(
-  value
-) {
-
-  if (!value) {
-    return '次回';
-  }
-
-
-  const now =
-    new Date();
-
-
-  const target =
-    new Date(
-      value +
-      'T00:00:00'
-    );
-
-
-  const todayDate =
-    new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate()
-    );
-
-
-  const targetDate =
-    new Date(
-      target.getFullYear(),
-      target.getMonth(),
-      target.getDate()
-    );
-
-
-  const diff =
-    Math.round(
-      (
-        targetDate -
-        todayDate
-      ) /
-      86400000
-    );
-
-
-  if (
-    diff === 1
-  ) {
-
-    return '明日';
-  }
-
-
-  if (
-    diff === 2
-  ) {
-
-    return '明後日';
-  }
-
-
-  return '次回';
-
-}
-
-
-function escapeHtml(
-  value
-) {
-
-  return String(
-    value ||
-    ''
-  )
-
-    .replace(
-      /&/g,
-      '&amp;'
-    )
-
-    .replace(
-      /</g,
-      '&lt;'
-    )
-
-    .replace(
-      />/g,
-      '&gt;'
-    )
-
-    .replace(
-      /"/g,
-      '&quot;'
-    )
-
-    .replace(
-      /'/g,
-      '&#39;'
-    );
-
-}
-
 </script>
 
 </body>
+
 </html>
