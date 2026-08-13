@@ -12,6 +12,7 @@
 
   <title>運転手MENU</title>
 
+  <!-- LINE LIFF -->
   <script
     src="https://static.line-scdn.net/liff/edge/2/sdk.js"
   ></script>
@@ -122,6 +123,10 @@
     }
 
 
+    /* =========================================================
+       HERO
+       ========================================================= */
+
     .hero {
 
       position: relative;
@@ -176,6 +181,10 @@
     }
 
 
+    /* =========================================================
+       MAIN CARD
+       ========================================================= */
+
     .card {
 
       margin-top: 12px;
@@ -192,6 +201,10 @@
 
     }
 
+
+    /* =========================================================
+       STATUS
+       ========================================================= */
 
     .status {
 
@@ -258,6 +271,10 @@
     }
 
 
+    /* =========================================================
+       COMMON BOX
+       ========================================================= */
+
     .box {
 
       border:
@@ -272,6 +289,10 @@
 
     }
 
+
+    /* =========================================================
+       DRIVER
+       ========================================================= */
 
     .driver-box {
 
@@ -332,7 +353,8 @@
 
 
     select:focus,
-    input:focus {
+    input:focus,
+    textarea:focus {
 
       border-color:
         #67b6ea;
@@ -343,6 +365,10 @@
 
     }
 
+
+    /* =========================================================
+       MODE
+       ========================================================= */
 
     .mode-box {
 
@@ -361,7 +387,8 @@
         1px solid
         var(--line);
 
-      border-radius: 17px;
+      border-radius:
+        17px;
 
       background:
         var(--soft);
@@ -371,11 +398,13 @@
 
     .mode-btn {
 
-      min-height: 74px;
+      min-height:
+        74px;
 
       border: 0;
 
-      border-radius: 15px;
+      border-radius:
+        15px;
 
       background:
         #e7f4fb;
@@ -383,11 +412,17 @@
       color:
         #738a9a;
 
-      font-size: 23px;
+      font-size:
+        23px;
 
-      font-weight: 900;
+      font-weight:
+        900;
 
-      cursor: pointer;
+      cursor:
+        pointer;
+
+      transition:
+        .15s ease;
 
     }
 
@@ -405,6 +440,10 @@
           #79d272
         );
 
+      box-shadow:
+        0 5px 12px
+        rgba(67, 170, 225, .18);
+
     }
 
 
@@ -416,12 +455,20 @@
       background:
         linear-gradient(
           180deg,
-          #1b357c,
-          #0e1e4d
+          #5b73c9,
+          #1b357c
         );
+
+      box-shadow:
+        0 5px 12px
+        rgba(39, 68, 145, .24);
 
     }
 
+
+    /* =========================================================
+       UPLOAD
+       ========================================================= */
 
     .upload-btn {
 
@@ -440,7 +487,8 @@
         1px solid
         #cfe8f7;
 
-      border-radius: 17px;
+      border-radius:
+        17px;
 
       background:
         #eaf7ff;
@@ -448,11 +496,22 @@
       color:
         var(--blue);
 
-      font-size: 17px;
+      font-size:
+        17px;
 
-      font-weight: 900;
+      font-weight:
+        900;
 
-      cursor: pointer;
+      cursor:
+        pointer;
+
+    }
+
+
+    .upload-btn:active {
+
+      transform:
+        translateY(1px);
 
     }
 
@@ -466,7 +525,8 @@
       padding:
         10px 12px;
 
-      border-radius: 13px;
+      border-radius:
+        13px;
 
       background:
         #f7fcff;
@@ -478,35 +538,47 @@
       color:
         #5c7588;
 
-      font-size: 13px;
+      font-size:
+        13px;
 
-      line-height: 1.5;
+      line-height:
+        1.5;
 
-      text-align: center;
+      text-align:
+        center;
 
     }
 
 
     .notice.show {
 
-      display: block;
+      display:
+        block;
 
     }
 
 
+    /* =========================================================
+       PREVIEW
+       ========================================================= */
+
     .preview-wrap {
 
-      display: none;
+      display:
+        none;
 
-      margin-top: 12px;
+      margin-top:
+        12px;
 
-      padding: 12px;
+      padding:
+        12px;
 
       border:
         1px solid
         var(--line);
 
-      border-radius: 19px;
+      border-radius:
+        19px;
 
       background:
         #ffffff;
@@ -516,28 +588,38 @@
 
     .preview-wrap.show {
 
-      display: block;
+      display:
+        block;
 
     }
 
 
     .photo-preview {
 
-      display: block;
+      display:
+        block;
 
-      width: 100%;
+      width:
+        100%;
 
-      max-height: 390px;
+      max-height:
+        390px;
 
-      object-fit: contain;
+      object-fit:
+        contain;
 
-      border-radius: 15px;
+      border-radius:
+        15px;
 
       background:
         #eef4f8;
 
     }
 
+
+    /* =========================================================
+       TITLES
+       ========================================================= */
 
     .section-title {
 
@@ -547,28 +629,39 @@
       color:
         var(--blue);
 
-      font-size: 18px;
+      font-size:
+        18px;
 
-      font-weight: 900;
+      font-weight:
+        900;
 
-      text-align: center;
+      text-align:
+        center;
 
     }
 
 
+    /* =========================================================
+       OCR
+       ========================================================= */
+
     .ocr-text {
 
-      max-height: 145px;
+      max-height:
+        145px;
 
-      overflow: auto;
+      overflow:
+        auto;
 
-      padding: 10px;
+      padding:
+        10px;
 
       border:
         1px solid
         var(--line);
 
-      border-radius: 12px;
+      border-radius:
+        12px;
 
       background:
         #f9fdff;
@@ -576,43 +669,57 @@
       color:
         #526c80;
 
-      font-size: 12px;
+      font-size:
+        12px;
 
-      line-height: 1.5;
+      line-height:
+        1.5;
 
-      white-space: pre-wrap;
+      white-space:
+        pre-wrap;
 
-      word-break: break-word;
+      word-break:
+        break-word;
 
     }
 
 
+    /* =========================================================
+       FIELDS
+       ========================================================= */
+
     .fields {
 
-      display: grid;
+      display:
+        grid;
 
       grid-template-columns:
         minmax(0,1fr)
         minmax(0,1fr);
 
-      gap: 8px;
+      gap:
+        8px;
 
-      margin-top: 11px;
+      margin-top:
+        11px;
 
     }
 
 
     .field {
 
-      min-width: 0;
+      min-width:
+        0;
 
-      padding: 9px;
+      padding:
+        9px;
 
       border:
         1px solid
         var(--line);
 
-      border-radius: 14px;
+      border-radius:
+        14px;
 
       background:
         #f9fdff;
@@ -630,16 +737,24 @@
 
     .field input {
 
-      height: 42px;
+      height:
+        42px;
 
-      font-size: 18px;
+      font-size:
+        18px;
 
-      font-weight: 900;
+      font-weight:
+        900;
 
-      text-align: center;
+      text-align:
+        center;
 
     }
 
+
+    /* =========================================================
+       SUMMARY
+       ========================================================= */
 
     .summary {
 
@@ -653,7 +768,8 @@
         1px solid
         var(--line);
 
-      border-radius: 14px;
+      border-radius:
+        14px;
 
       background:
         #f7fcff;
@@ -661,11 +777,14 @@
       color:
         #446276;
 
-      font-size: 14px;
+      font-size:
+        14px;
 
-      font-weight: 800;
+      font-weight:
+        800;
 
-      text-align: center;
+      text-align:
+        center;
 
     }
 
@@ -675,14 +794,20 @@
       color:
         var(--blue);
 
-      font-size: 16px;
+      font-size:
+        16px;
 
     }
 
 
+    /* =========================================================
+       MESSAGE
+       ========================================================= */
+
     .message-box {
 
-      margin-top: 11px;
+      margin-top:
+        11px;
 
       padding:
         13px 14px;
@@ -691,7 +816,8 @@
         1px solid
         var(--line);
 
-      border-radius: 16px;
+      border-radius:
+        16px;
 
       background:
         #f4fbff;
@@ -699,42 +825,133 @@
     }
 
 
-    .message-preview {
+    .extra-message-label {
 
-      min-height: 120px;
+      margin-top:
+        10px;
+
+      margin-bottom:
+        6px;
 
       color:
-        #15446e;
+        #637c90;
 
-      font-size: 14px;
+      font-size:
+        13px;
 
-      line-height: 1.8;
-
-      font-weight: 600;
-
-      white-space: pre-line;
-
-      word-break: break-word;
+      font-weight:
+        900;
 
     }
 
 
+    .extra-message {
+
+      width:
+        100%;
+
+      min-height:
+        84px;
+
+      resize:
+        vertical;
+
+      padding:
+        10px;
+
+      border:
+        1px solid
+        #cfe4f3;
+
+      border-radius:
+        13px;
+
+      background:
+        #ffffff;
+
+      color:
+        var(--text);
+
+      font-size:
+        14px;
+
+      line-height:
+        1.6;
+
+      outline:
+        none;
+
+    }
+
+
+    .message-preview {
+
+      min-height:
+        130px;
+
+      margin-top:
+        13px;
+
+      padding:
+        12px;
+
+      border:
+        1px solid
+        #dcecf6;
+
+      border-radius:
+        13px;
+
+      background:
+        #ffffff;
+
+      color:
+        #15446e;
+
+      font-size:
+        14px;
+
+      line-height:
+        1.85;
+
+      font-weight:
+        600;
+
+      white-space:
+        pre-line;
+
+      word-break:
+        break-word;
+
+    }
+
+
+    /* =========================================================
+       SEND
+       ========================================================= */
+
     .send-btn {
 
-      display: block;
+      display:
+        block;
 
-      width: 100%;
+      width:
+        100%;
 
-      min-height: 55px;
+      min-height:
+        55px;
 
-      margin-top: 11px;
+      margin-top:
+        11px;
 
       padding:
         13px 14px;
 
-      border: 0;
+      border:
+        0;
 
-      border-radius: 17px;
+      border-radius:
+        17px;
 
       background:
         linear-gradient(
@@ -746,29 +963,40 @@
       color:
         #ffffff;
 
-      font-size: 19px;
+      font-size:
+        19px;
 
-      font-weight: 900;
+      font-weight:
+        900;
 
-      cursor: pointer;
+      cursor:
+        pointer;
 
     }
 
 
     .send-btn:disabled {
 
-      opacity: .45;
+      opacity:
+        .45;
 
-      cursor: not-allowed;
+      cursor:
+        not-allowed;
 
     }
 
 
+    /* =========================================================
+       HISTORY
+       ========================================================= */
+
     .history {
 
-      margin-top: 17px;
+      margin-top:
+        17px;
 
-      padding-top: 14px;
+      padding-top:
+        14px;
 
       border-top:
         1px solid
@@ -785,29 +1013,36 @@
       color:
         var(--blue);
 
-      font-size: 21px;
+      font-size:
+        21px;
 
-      font-weight: 900;
+      font-weight:
+        900;
 
-      text-align: center;
+      text-align:
+        center;
 
     }
 
 
     .history-list {
 
-      list-style: none;
+      list-style:
+        none;
 
-      margin: 0;
+      margin:
+        0;
 
-      padding: 0;
+      padding:
+        0;
 
     }
 
 
     .history-item {
 
-      display: grid;
+      display:
+        grid;
 
       grid-template-columns:
         auto
@@ -816,9 +1051,11 @@
         1fr
         auto;
 
-      align-items: center;
+      align-items:
+        center;
 
-      gap: 6px;
+      gap:
+        6px;
 
       padding:
         10px 2px;
@@ -830,9 +1067,11 @@
       color:
         #536b7c;
 
-      font-size: 12px;
+      font-size:
+        12px;
 
-      white-space: nowrap;
+      white-space:
+        nowrap;
 
     }
 
@@ -842,7 +1081,8 @@
       color:
         var(--blue);
 
-      font-weight: 900;
+      font-weight:
+        900;
 
     }
 
@@ -852,7 +1092,8 @@
       color:
         var(--text);
 
-      font-weight: 900;
+      font-weight:
+        900;
 
     }
 
@@ -862,7 +1103,8 @@
       color:
         #71889a;
 
-      text-align: right;
+      text-align:
+        right;
 
     }
 
@@ -872,7 +1114,8 @@
       color:
         var(--green);
 
-      font-weight: 900;
+      font-weight:
+        900;
 
     }
 
@@ -885,10 +1128,15 @@
       color:
         #8095a5;
 
-      text-align: center;
+      text-align:
+        center;
 
     }
 
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
 
     .footer {
 
@@ -898,9 +1146,11 @@
       color:
         #8aa0b2;
 
-      font-size: 13px;
+      font-size:
+        13px;
 
-      text-align: center;
+      text-align:
+        center;
 
     }
 
@@ -912,6 +1162,10 @@
 
     }
 
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
 
     @media (max-width:480px) {
 
@@ -951,6 +1205,10 @@
 <div class="page">
 
 
+  <!-- =======================================================
+       HERO
+       ======================================================= -->
+
   <header class="hero">
 
     <div class="hero-car">
@@ -964,8 +1222,14 @@
   </header>
 
 
+  <!-- =======================================================
+       MAIN CARD
+       ======================================================= -->
+
   <main class="card">
 
+
+    <!-- STATUS -->
 
     <div
       id="status"
@@ -974,6 +1238,8 @@
       ⏳ 自動判別中...
     </div>
 
+
+    <!-- DRIVER -->
 
     <section class="box driver-box">
 
@@ -998,6 +1264,8 @@
     </section>
 
 
+    <!-- MODE -->
+
     <section class="mode-box">
 
       <button
@@ -1019,6 +1287,8 @@
 
     </section>
 
+
+    <!-- FILE -->
 
     <input
       id="photoInput"
@@ -1043,6 +1313,10 @@
       class="notice"
     ></div>
 
+
+    <!-- =====================================================
+         PREVIEW
+         ===================================================== -->
 
     <section
       id="previewWrap"
@@ -1071,6 +1345,8 @@
       <div class="fields">
 
 
+        <!-- 報告日 -->
+
         <div class="field">
 
           <label
@@ -1087,6 +1363,8 @@
 
         </div>
 
+
+        <!-- 出勤時刻 -->
 
         <div
           class="field"
@@ -1109,6 +1387,8 @@
         </div>
 
 
+        <!-- 退勤時 出勤時間 -->
+
         <div
           id="startField"
           class="field hidden"
@@ -1128,6 +1408,8 @@
 
         </div>
 
+
+        <!-- 退勤時間 -->
 
         <div
           id="endField"
@@ -1149,6 +1431,8 @@
         </div>
 
 
+        <!-- 次回出勤日 -->
+
         <div
           id="nextDateField"
           class="field hidden"
@@ -1168,6 +1452,8 @@
 
         </div>
 
+
+        <!-- 次回出勤時間 -->
 
         <div
           id="nextTimeField"
@@ -1190,6 +1476,8 @@
         </div>
 
 
+        <!-- 残業 -->
+
         <div
           id="summary"
           class="summary"
@@ -1205,6 +1493,10 @@
       </div>
 
 
+      <!-- =====================================================
+           MESSAGE
+           ===================================================== -->
+
       <section class="message-box">
 
         <div
@@ -1215,6 +1507,23 @@
         </div>
 
 
+        <!-- 任意の追加文章 -->
+
+        <div class="extra-message-label">
+          追加文章（任意）
+        </div>
+
+
+        <textarea
+          id="extraMessage"
+          class="extra-message"
+          rows="3"
+          placeholder="例：本日は○○へ直行いたします。"
+        ></textarea>
+
+
+        <!-- 自動生成文章 -->
+
         <div
           id="messagePreview"
           class="message-preview"
@@ -1222,6 +1531,8 @@
 
       </section>
 
+
+      <!-- SEND -->
 
       <button
         id="sendBtn"
@@ -1235,6 +1546,10 @@
 
     </section>
 
+
+    <!-- =====================================================
+         HISTORY
+         ===================================================== -->
 
     <section class="history">
 
@@ -1272,7 +1587,7 @@
 
 
 // ============================================================
-// ★★★ 今回のバージョン70 URL ★★★
+// API / LIFF
 // ============================================================
 
 const API_URL =
@@ -1286,6 +1601,10 @@ const LIFF_ID =
 const RECENT_STORAGE_KEY =
   'driver_menu_recent_v3';
 
+
+// ============================================================
+// STATE
+// ============================================================
 
 const state = {
 
@@ -1326,6 +1645,10 @@ const state = {
 
 };
 
+
+// ============================================================
+// ELEMENTS
+// ============================================================
 
 const el = {
 
@@ -1442,6 +1765,11 @@ const el = {
   summary:
     document.getElementById(
       'summary'
+    ),
+
+  extraMessage:
+    document.getElementById(
+      'extraMessage'
     ),
 
   messagePreview:
@@ -1657,7 +1985,7 @@ function callServer(
 
 
 // ============================================================
-// POLL
+// API POLL
 // ============================================================
 
 function pollResult(
@@ -1866,7 +2194,7 @@ function pollResult(
 
 
 // ============================================================
-// RECENT
+// RECENT DRIVER
 // ============================================================
 
 function getRecentDrivers() {
@@ -2246,7 +2574,7 @@ async function loadDrivers() {
 
 
 // ============================================================
-// STATE
+// LOAD DRIVER STATE
 // ============================================================
 
 async function loadDriverState() {
@@ -2391,6 +2719,10 @@ function renderHistory(
       ? history
       : [];
 
+
+  /*
+   * 新しい履歴を上
+   */
 
   list.sort(
     function(a, b) {
@@ -2544,21 +2876,35 @@ function setMode(
   hideNotice();
 
 
-  el.inMode.classList.toggle(
+  /*
+   * いったん両方の選択状態を解除
+   */
+
+  el.inMode.classList.remove(
     'active',
-    mode === 'in'
+    'in'
   );
 
 
-  el.outMode.classList.toggle(
+  el.outMode.classList.remove(
     'active',
-    mode === 'out'
+    'out'
   );
 
+
+  /*
+   * 出勤
+   */
 
   if (
     mode === 'in'
   ) {
+
+    el.inMode.classList.add(
+      'active',
+      'in'
+    );
+
 
     el.reportTimeField.classList.remove(
       'hidden'
@@ -2590,6 +2936,16 @@ function setMode(
 
 
   } else {
+
+    /*
+     * 退勤
+     */
+
+    el.outMode.classList.add(
+      'active',
+      'out'
+    );
+
 
     el.reportTimeField.classList.add(
       'hidden'
@@ -2746,7 +3102,7 @@ async function initLiff() {
 
 
 // ============================================================
-// IMAGE
+// IMAGE PREPARE
 // ============================================================
 
 function prepareImage(
@@ -3017,7 +3373,6 @@ async function processPhoto(
       '先に人物を選択してください。'
     );
 
-
     return;
   }
 
@@ -3051,6 +3406,10 @@ async function processPhoto(
     el.photoPreview.src =
       prepared.dataUrl;
 
+
+    /*
+     * 無料OCR
+     */
 
     const ocrText =
       await runOcr(
@@ -3118,9 +3477,18 @@ async function processPhoto(
       todayDate();
 
 
+    /*
+     * 出勤
+     */
+
     if (
       state.mode === 'in'
     ) {
+
+      /*
+       * OCRで読んだ時間を初期値にする。
+       * 人間が修正可能。
+       */
 
       el.reportTime.value =
         draft.ocrTime ||
@@ -3128,6 +3496,12 @@ async function processPhoto(
 
 
     } else {
+
+      /*
+       * 退勤
+       *
+       * 朝に保存した確定出勤時間を取得。
+       */
 
       el.startTime.value =
         draft.startTime ||
@@ -3194,7 +3568,7 @@ async function processPhoto(
 
 
     showNotice(
-      '読み取り完了。内容を確認・修正してから送信してください。'
+      '読み取り完了。時間と文章を確認・修正してから送信してください。'
     );
 
 
@@ -3250,17 +3624,74 @@ function refreshMessage() {
   }
 
 
+  /*
+   * 任意の追加文章
+   */
+
+  const extra =
+    (
+      el.extraMessage.value ||
+      ''
+    ).trim();
+
+
+  /* ==========================================================
+     出勤
+     ========================================================== */
+
   if (
     state.mode === 'in'
   ) {
 
-    el.messagePreview.textContent =
+    const reportDate =
+      el.reportDate.value ||
+      todayDate();
 
-      'お疲れ様でございます。\n\n' +
 
-      '出社いたしました。\n\n' +
+    /*
+     * OCR値ではなく、
+     * 画面上で本人が確認・修正した確定時間
+     */
 
-      '残業）' +
+    const reportTime =
+      el.reportTime.value ||
+      '';
+
+
+    /*
+     * 例
+     * 2026-08-12
+     * ↓
+     * 8/12(水)
+     */
+
+    const dateLabel =
+      formatJapaneseDate(
+        reportDate
+      );
+
+
+    /*
+     * 指定された基本文章
+     */
+
+    let message =
+
+      'お疲れ様でございます.\n';
+
+    message =
+
+      'お疲れ様でございます。\n' +
+
+      dateLabel +
+
+      reportTime +
+
+      '出勤いたしました。\n' +
+
+      '本日もよろしくお願いいたします。\n\n\n' +
+
+      '残業)' +
 
       (
         state.summary.previousOvertime ||
@@ -3269,21 +3700,40 @@ function refreshMessage() {
 
       '\n' +
 
-      '累計）' +
+      '合計)' +
 
       (
         state.summary.monthlyOvertime ||
         '0:00'
-      ) +
+      );
 
-      '\n\n' +
 
-      '本日もよろしくお願い申し上げます。';
+    /*
+     * 追加文章は最後
+     */
+
+    if (
+      extra
+    ) {
+
+      message +=
+        '\n' +
+        extra;
+
+    }
+
+
+    el.messagePreview.textContent =
+      message;
 
 
     return;
   }
 
+
+  /* ==========================================================
+     退勤
+     ========================================================== */
 
   const reportDate =
     el.reportDate.value ||
@@ -3310,15 +3760,56 @@ function refreshMessage() {
     '';
 
 
-  let nextBlock =
-    '';
+  let message =
 
+    'お疲れ様でございます。\n\n' +
+
+    '業務完了いたしました。\n\n' +
+
+    reportDate.replace(
+      /-/g,
+      '/'
+    ) +
+
+    '\n' +
+
+    '稼働）' +
+
+    startTime +
+
+    '-' +
+
+    endTime +
+
+    '\n\n' +
+
+    '本日は失礼させていただきます。';
+
+
+  /*
+   * 追加文章は退勤時も最後
+   */
+
+  if (
+    extra
+  ) {
+
+    message +=
+      '\n\n' +
+      extra;
+
+  }
+
+
+  /*
+   * 次回出勤
+   */
 
   if (
     nextDate
   ) {
 
-    nextBlock =
+    message +=
 
       '\n\n' +
 
@@ -3330,8 +3821,7 @@ function refreshMessage() {
 
       (
         nextTime
-          ? ' ' +
-            nextTime
+          ? ' ' + nextTime
           : ''
       ) +
 
@@ -3347,29 +3837,95 @@ function refreshMessage() {
 
 
   el.messagePreview.textContent =
+    message;
 
-    'お疲れ様でございます。\n\n' +
+}
 
-    '業務完了いたしました。\n\n' +
 
-    reportDate.replace(
-      /-/g,
-      '/'
-    ) +
+// ============================================================
+// JAPANESE DATE
+// ============================================================
 
-    '\n稼働）' +
+function formatJapaneseDate(
+  value
+) {
 
-    startTime +
+  const match =
+    String(
+      value ||
+      ''
+    ).match(
+      /^(\d{4})-(\d{2})-(\d{2})$/
+    );
 
-    '-' +
 
-    endTime +
+  if (!match) {
 
-    '\n\n' +
+    return (
+      String(
+        value ||
+        ''
+      ).replace(
+        /-/g,
+        '/'
+      ) +
+      ' '
+    );
 
-    '本日は失礼させていただきます。' +
+  }
 
-    nextBlock;
+
+  const year =
+    Number(
+      match[1]
+    );
+
+
+  const month =
+    Number(
+      match[2]
+    );
+
+
+  const day =
+    Number(
+      match[3]
+    );
+
+
+  const date =
+    new Date(
+      year,
+      month - 1,
+      day
+    );
+
+
+  const weekdays = [
+
+    '日',
+    '月',
+    '火',
+    '水',
+    '木',
+    '金',
+    '土'
+
+  ];
+
+
+  return (
+
+    month +
+    '/' +
+    day +
+    '(' +
+    weekdays[
+      date.getDay()
+    ] +
+    ')'
+
+  );
 
 }
 
@@ -3445,6 +4001,10 @@ async function sendAttendance() {
     return;
   }
 
+
+  /*
+   * 最新の入力内容で文章を再生成
+   */
 
   refreshMessage();
 
@@ -3522,6 +4082,10 @@ async function sendAttendance() {
     );
 
 
+    /*
+     * 下書きをクリア
+     */
+
     state.draft =
       null;
 
@@ -3534,6 +4098,10 @@ async function sendAttendance() {
       'show'
     );
 
+
+    /*
+     * 送信後、サーバーから履歴を再取得
+     */
 
     await loadDriverState();
 
@@ -3562,7 +4130,7 @@ async function sendAttendance() {
 
 
 // ============================================================
-// DATE
+// DATE UTILITY
 // ============================================================
 
 function todayDate() {
@@ -3574,14 +4142,18 @@ function todayDate() {
   return (
 
     d.getFullYear() +
+
     '-' +
+
     String(
       d.getMonth() + 1
     ).padStart(
       2,
       '0'
     ) +
+
     '-' +
+
     String(
       d.getDate()
     ).padStart(
@@ -3608,14 +4180,18 @@ function tomorrowDate() {
   return (
 
     d.getFullYear() +
+
     '-' +
+
     String(
       d.getMonth() + 1
     ).padStart(
       2,
       '0'
     ) +
+
     '-' +
+
     String(
       d.getDate()
     ).padStart(
@@ -3683,7 +4259,9 @@ function formatShortDate(
     Number(
       match[2]
     ) +
+
     '/' +
+
     Number(
       match[3]
     )
@@ -3889,13 +4467,19 @@ el.photoInput.addEventListener(
 );
 
 
+/*
+ * 入力が変わるたび
+ * 文章を自動再生成
+ */
+
 [
   el.reportDate,
   el.reportTime,
   el.startTime,
   el.endTime,
   el.nextDate,
-  el.nextTime
+  el.nextTime,
+  el.extraMessage
 ].forEach(
   function(input) {
 
@@ -3945,6 +4529,9 @@ window.addEventListener(
     );
 
 
+    refreshMessage();
+
+
     setStatus(
       '⏳ 自動判別中...'
     );
@@ -3972,4 +4559,5 @@ window.addEventListener(
 </script>
 
 </body>
+
 </html>
