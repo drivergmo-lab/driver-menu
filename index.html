@@ -22,6 +22,7 @@
     src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"
   ></script>
 
+
   <style>
 
     :root {
@@ -101,7 +102,9 @@
     input,
     select,
     textarea {
+
       font-family: inherit;
+
     }
 
 
@@ -272,7 +275,7 @@
 
 
     /* =========================================================
-       COMMON BOX
+       COMMON
        ========================================================= */
 
     .box {
@@ -281,18 +284,13 @@
         1px solid
         var(--line);
 
-      border-radius:
-        17px;
+      border-radius: 17px;
 
       background:
         var(--soft);
 
     }
 
-
-    /* =========================================================
-       DRIVER
-       ========================================================= */
 
     .driver-box {
 
@@ -367,7 +365,7 @@
 
 
     /* =========================================================
-       MODE
+       出勤・退勤
        ========================================================= */
 
     .mode-box {
@@ -387,8 +385,7 @@
         1px solid
         var(--line);
 
-      border-radius:
-        17px;
+      border-radius: 17px;
 
       background:
         var(--soft);
@@ -398,13 +395,11 @@
 
     .mode-btn {
 
-      min-height:
-        74px;
+      min-height: 74px;
 
       border: 0;
 
-      border-radius:
-        15px;
+      border-radius: 15px;
 
       background:
         #e7f4fb;
@@ -412,20 +407,19 @@
       color:
         #738a9a;
 
-      font-size:
-        23px;
+      font-size: 23px;
 
-      font-weight:
-        900;
+      font-weight: 900;
 
-      cursor:
-        pointer;
+      cursor: pointer;
 
       transition:
         .15s ease;
 
     }
 
+
+    /* 出勤選択中 */
 
     .mode-btn.active.in {
 
@@ -442,10 +436,12 @@
 
       box-shadow:
         0 5px 12px
-        rgba(67, 170, 225, .18);
+        rgba(67,170,225,.18);
 
     }
 
+
+    /* 退勤選択中 */
 
     .mode-btn.active.out {
 
@@ -461,13 +457,13 @@
 
       box-shadow:
         0 5px 12px
-        rgba(39, 68, 145, .24);
+        rgba(39,68,145,.24);
 
     }
 
 
     /* =========================================================
-       UPLOAD
+       PHOTO
        ========================================================= */
 
     .upload-btn {
@@ -487,8 +483,7 @@
         1px solid
         #cfe8f7;
 
-      border-radius:
-        17px;
+      border-radius: 17px;
 
       background:
         #eaf7ff;
@@ -496,14 +491,11 @@
       color:
         var(--blue);
 
-      font-size:
-        17px;
+      font-size: 17px;
 
-      font-weight:
-        900;
+      font-weight: 900;
 
-      cursor:
-        pointer;
+      cursor: pointer;
 
     }
 
@@ -525,8 +517,7 @@
       padding:
         10px 12px;
 
-      border-radius:
-        13px;
+      border-radius: 13px;
 
       background:
         #f7fcff;
@@ -538,47 +529,35 @@
       color:
         #5c7588;
 
-      font-size:
-        13px;
+      font-size: 13px;
 
-      line-height:
-        1.5;
+      line-height: 1.5;
 
-      text-align:
-        center;
+      text-align: center;
 
     }
 
 
     .notice.show {
 
-      display:
-        block;
+      display: block;
 
     }
 
 
-    /* =========================================================
-       PREVIEW
-       ========================================================= */
-
     .preview-wrap {
 
-      display:
-        none;
+      display: none;
 
-      margin-top:
-        12px;
+      margin-top: 12px;
 
-      padding:
-        12px;
+      padding: 12px;
 
       border:
         1px solid
         var(--line);
 
-      border-radius:
-        19px;
+      border-radius: 19px;
 
       background:
         #ffffff;
@@ -588,38 +567,28 @@
 
     .preview-wrap.show {
 
-      display:
-        block;
+      display: block;
 
     }
 
 
     .photo-preview {
 
-      display:
-        block;
+      display: block;
 
-      width:
-        100%;
+      width: 100%;
 
-      max-height:
-        390px;
+      max-height: 390px;
 
-      object-fit:
-        contain;
+      object-fit: contain;
 
-      border-radius:
-        15px;
+      border-radius: 15px;
 
       background:
         #eef4f8;
 
     }
 
-
-    /* =========================================================
-       TITLES
-       ========================================================= */
 
     .section-title {
 
@@ -629,39 +598,28 @@
       color:
         var(--blue);
 
-      font-size:
-        18px;
+      font-size: 18px;
 
-      font-weight:
-        900;
+      font-weight: 900;
 
-      text-align:
-        center;
+      text-align: center;
 
     }
 
 
-    /* =========================================================
-       OCR
-       ========================================================= */
-
     .ocr-text {
 
-      max-height:
-        145px;
+      max-height: 145px;
 
-      overflow:
-        auto;
+      overflow: auto;
 
-      padding:
-        10px;
+      padding: 10px;
 
       border:
         1px solid
         var(--line);
 
-      border-radius:
-        12px;
+      border-radius: 12px;
 
       background:
         #f9fdff;
@@ -669,57 +627,47 @@
       color:
         #526c80;
 
-      font-size:
-        12px;
+      font-size: 12px;
 
-      line-height:
-        1.5;
+      line-height: 1.5;
 
-      white-space:
-        pre-wrap;
+      white-space: pre-wrap;
 
-      word-break:
-        break-word;
+      word-break: break-word;
 
     }
 
 
     /* =========================================================
-       FIELDS
+       INPUT
        ========================================================= */
 
     .fields {
 
-      display:
-        grid;
+      display: grid;
 
       grid-template-columns:
         minmax(0,1fr)
         minmax(0,1fr);
 
-      gap:
-        8px;
+      gap: 8px;
 
-      margin-top:
-        11px;
+      margin-top: 11px;
 
     }
 
 
     .field {
 
-      min-width:
-        0;
+      min-width: 0;
 
-      padding:
-        9px;
+      padding: 9px;
 
       border:
         1px solid
         var(--line);
 
-      border-radius:
-        14px;
+      border-radius: 14px;
 
       background:
         #f9fdff;
@@ -737,24 +685,16 @@
 
     .field input {
 
-      height:
-        42px;
+      height: 42px;
 
-      font-size:
-        18px;
+      font-size: 18px;
 
-      font-weight:
-        900;
+      font-weight: 900;
 
-      text-align:
-        center;
+      text-align: center;
 
     }
 
-
-    /* =========================================================
-       SUMMARY
-       ========================================================= */
 
     .summary {
 
@@ -768,8 +708,7 @@
         1px solid
         var(--line);
 
-      border-radius:
-        14px;
+      border-radius: 14px;
 
       background:
         #f7fcff;
@@ -777,14 +716,11 @@
       color:
         #446276;
 
-      font-size:
-        14px;
+      font-size: 14px;
 
-      font-weight:
-        800;
+      font-weight: 800;
 
-      text-align:
-        center;
+      text-align: center;
 
     }
 
@@ -794,8 +730,7 @@
       color:
         var(--blue);
 
-      font-size:
-        16px;
+      font-size: 16px;
 
     }
 
@@ -806,8 +741,7 @@
 
     .message-box {
 
-      margin-top:
-        11px;
+      margin-top: 11px;
 
       padding:
         13px 14px;
@@ -816,8 +750,7 @@
         1px solid
         var(--line);
 
-      border-radius:
-        16px;
+      border-radius: 16px;
 
       background:
         #f4fbff;
@@ -827,44 +760,35 @@
 
     .extra-message-label {
 
-      margin-top:
-        10px;
+      margin-top: 10px;
 
-      margin-bottom:
-        6px;
+      margin-bottom: 6px;
 
       color:
         #637c90;
 
-      font-size:
-        13px;
+      font-size: 13px;
 
-      font-weight:
-        900;
+      font-weight: 900;
 
     }
 
 
     .extra-message {
 
-      width:
-        100%;
+      width: 100%;
 
-      min-height:
-        84px;
+      min-height: 84px;
 
-      resize:
-        vertical;
+      resize: vertical;
 
-      padding:
-        10px;
+      padding: 10px;
 
       border:
         1px solid
         #cfe4f3;
 
-      border-radius:
-        13px;
+      border-radius: 13px;
 
       background:
         #ffffff;
@@ -872,35 +796,28 @@
       color:
         var(--text);
 
-      font-size:
-        14px;
+      font-size: 14px;
 
-      line-height:
-        1.6;
+      line-height: 1.6;
 
-      outline:
-        none;
+      outline: none;
 
     }
 
 
     .message-preview {
 
-      min-height:
-        130px;
+      min-height: 130px;
 
-      margin-top:
-        13px;
+      margin-top: 13px;
 
-      padding:
-        12px;
+      padding: 12px;
 
       border:
         1px solid
         #dcecf6;
 
-      border-radius:
-        13px;
+      border-radius: 13px;
 
       background:
         #ffffff;
@@ -908,20 +825,19 @@
       color:
         #15446e;
 
-      font-size:
-        14px;
+      font-size: 14px;
 
-      line-height:
-        1.85;
+      /*
+       * 行間を以前より詰める
+       */
 
-      font-weight:
-        600;
+      line-height: 1.55;
 
-      white-space:
-        pre-line;
+      font-weight: 600;
 
-      word-break:
-        break-word;
+      white-space: pre-line;
+
+      word-break: break-word;
 
     }
 
@@ -932,26 +848,20 @@
 
     .send-btn {
 
-      display:
-        block;
+      display: block;
 
-      width:
-        100%;
+      width: 100%;
 
-      min-height:
-        55px;
+      min-height: 55px;
 
-      margin-top:
-        11px;
+      margin-top: 11px;
 
       padding:
         13px 14px;
 
-      border:
-        0;
+      border: 0;
 
-      border-radius:
-        17px;
+      border-radius: 17px;
 
       background:
         linear-gradient(
@@ -963,25 +873,20 @@
       color:
         #ffffff;
 
-      font-size:
-        19px;
+      font-size: 19px;
 
-      font-weight:
-        900;
+      font-weight: 900;
 
-      cursor:
-        pointer;
+      cursor: pointer;
 
     }
 
 
     .send-btn:disabled {
 
-      opacity:
-        .45;
+      opacity: .45;
 
-      cursor:
-        not-allowed;
+      cursor: not-allowed;
 
     }
 
@@ -992,11 +897,9 @@
 
     .history {
 
-      margin-top:
-        17px;
+      margin-top: 17px;
 
-      padding-top:
-        14px;
+      padding-top: 14px;
 
       border-top:
         1px solid
@@ -1013,36 +916,29 @@
       color:
         var(--blue);
 
-      font-size:
-        21px;
+      font-size: 21px;
 
-      font-weight:
-        900;
+      font-weight: 900;
 
-      text-align:
-        center;
+      text-align: center;
 
     }
 
 
     .history-list {
 
-      list-style:
-        none;
+      list-style: none;
 
-      margin:
-        0;
+      margin: 0;
 
-      padding:
-        0;
+      padding: 0;
 
     }
 
 
     .history-item {
 
-      display:
-        grid;
+      display: grid;
 
       grid-template-columns:
         auto
@@ -1051,11 +947,9 @@
         1fr
         auto;
 
-      align-items:
-        center;
+      align-items: center;
 
-      gap:
-        6px;
+      gap: 6px;
 
       padding:
         10px 2px;
@@ -1067,11 +961,9 @@
       color:
         #536b7c;
 
-      font-size:
-        12px;
+      font-size: 12px;
 
-      white-space:
-        nowrap;
+      white-space: nowrap;
 
     }
 
@@ -1081,8 +973,7 @@
       color:
         var(--blue);
 
-      font-weight:
-        900;
+      font-weight: 900;
 
     }
 
@@ -1092,8 +983,7 @@
       color:
         var(--text);
 
-      font-weight:
-        900;
+      font-weight: 900;
 
     }
 
@@ -1103,8 +993,7 @@
       color:
         #71889a;
 
-      text-align:
-        right;
+      text-align: right;
 
     }
 
@@ -1114,29 +1003,22 @@
       color:
         var(--green);
 
-      font-weight:
-        900;
+      font-weight: 900;
 
     }
 
 
     .empty {
 
-      padding:
-        10px;
+      padding: 10px;
 
       color:
         #8095a5;
 
-      text-align:
-        center;
+      text-align: center;
 
     }
 
-
-    /* =========================================================
-       FOOTER
-       ========================================================= */
 
     .footer {
 
@@ -1146,11 +1028,9 @@
       color:
         #8aa0b2;
 
-      font-size:
-        13px;
+      font-size: 13px;
 
-      text-align:
-        center;
+      text-align: center;
 
     }
 
@@ -1162,10 +1042,6 @@
 
     }
 
-
-    /* =========================================================
-       MOBILE
-       ========================================================= */
 
     @media (max-width:480px) {
 
@@ -1206,7 +1082,7 @@
 
 
   <!-- =======================================================
-       HERO
+       HEADER
        ======================================================= -->
 
   <header class="hero">
@@ -1223,7 +1099,7 @@
 
 
   <!-- =======================================================
-       MAIN CARD
+       MAIN
        ======================================================= -->
 
   <main class="card">
@@ -1288,7 +1164,7 @@
     </section>
 
 
-    <!-- FILE -->
+    <!-- PHOTO INPUT -->
 
     <input
       id="photoInput"
@@ -1364,7 +1240,7 @@
         </div>
 
 
-        <!-- 出勤時刻 -->
+        <!-- 出勤時間 -->
 
         <div
           class="field"
@@ -1387,7 +1263,7 @@
         </div>
 
 
-        <!-- 退勤時 出勤時間 -->
+        <!-- 退勤時：出勤時間 -->
 
         <div
           id="startField"
@@ -1484,8 +1360,9 @@
         >
           前回残業
           <strong>0:00</strong>
-         　
-          月間合計
+
+         　月間合計
+
           <strong>0:00</strong>
         </div>
 
@@ -1507,8 +1384,6 @@
         </div>
 
 
-        <!-- 任意の追加文章 -->
-
         <div class="extra-message-label">
           追加文章（任意）
         </div>
@@ -1518,11 +1393,9 @@
           id="extraMessage"
           class="extra-message"
           rows="3"
-          placeholder="例：本日は○○へ直行いたします。"
+          placeholder="【MEMO】"
         ></textarea>
 
-
-        <!-- 自動生成文章 -->
 
         <div
           id="messagePreview"
@@ -1587,11 +1460,11 @@
 
 
 // ============================================================
-// API / LIFF
+// ★ API URL
 // ============================================================
 
 const API_URL =
-  'https://script.google.com/macros/s/AKfycbw4U0tqpx0u-Ei-5_wdEvlapjvxFZ6oJAGB7OwH118ZuzZXLH8dN6CO9EzNYdtqg0tX/exec';
+  'https://script.google.com/macros/s/AKfycby70LA44uJ0JX0C-LQ6KqJlxyXnktM8ZXyrdE_YPlAf54--zJMG9X8nI1SVYz-ESJQ1/exec';
 
 
 const LIFF_ID =
@@ -1844,6 +1717,7 @@ function showNotice(
   el.notice.textContent =
     text;
 
+
   el.notice.classList.add(
     'show'
   );
@@ -1855,6 +1729,7 @@ function hideNotice() {
 
   el.notice.textContent =
     '';
+
 
   el.notice.classList.remove(
     'show'
@@ -1981,11 +1856,12 @@ function callServer(
 
     }
   );
+
 }
 
 
 // ============================================================
-// API POLL
+// POLL
 // ============================================================
 
 function pollResult(
@@ -2005,7 +1881,9 @@ function pollResult(
       )
     );
 
+
     return;
+
   }
 
 
@@ -2071,6 +1949,7 @@ function pollResult(
     ) {
 
       return;
+
     }
 
 
@@ -2104,6 +1983,7 @@ function pollResult(
 
 
       return;
+
     }
 
 
@@ -2130,6 +2010,7 @@ function pollResult(
 
 
       return;
+
     }
 
 
@@ -2148,6 +2029,7 @@ function pollResult(
       ) {
 
         return;
+
       }
 
 
@@ -2237,6 +2119,7 @@ function saveRecentDriver(
   if (!driver) {
 
     return;
+
   }
 
 
@@ -2298,6 +2181,7 @@ function findDriver(
   if (!driverKey) {
 
     return null;
+
   }
 
 
@@ -2481,7 +2365,8 @@ async function selectDriver(
 ) {
 
   state.driver =
-    driver || null;
+    driver ||
+    null;
 
 
   state.draft =
@@ -2509,6 +2394,7 @@ async function selectDriver(
 
 
     return;
+
   }
 
 
@@ -2584,6 +2470,7 @@ async function loadDriverState() {
   ) {
 
     return;
+
   }
 
 
@@ -2672,6 +2559,90 @@ async function loadDriverState() {
 
 
 // ============================================================
+// HISTORY RETRY
+// ============================================================
+
+async function reloadHistoryWithRetry() {
+
+  if (
+    !state.driver
+  ) {
+
+    return;
+
+  }
+
+
+  for (
+    let i = 0;
+    i < 3;
+    i++
+  ) {
+
+    try {
+
+      await new Promise(
+        function(resolve) {
+
+          setTimeout(
+            resolve,
+            i === 0
+              ? 300
+              : 800
+          );
+
+        }
+      );
+
+
+      const history =
+        await callServer(
+          'getTodayHistory',
+          {
+
+            selectedDriverKey:
+              state.driver.driverKey
+
+          }
+        );
+
+
+      if (
+        Array.isArray(
+          history
+        )
+      ) {
+
+        renderHistory(
+          history
+        );
+
+
+        if (
+          history.length > 0
+        ) {
+
+          return;
+
+        }
+
+      }
+
+
+    } catch (error) {
+
+      console.warn(
+        error
+      );
+
+    }
+
+  }
+
+}
+
+
+// ============================================================
 // SUMMARY
 // ============================================================
 
@@ -2716,12 +2687,12 @@ function renderHistory(
     Array.isArray(
       history
     )
-      ? history
+      ? history.slice()
       : [];
 
 
   /*
-   * 新しい履歴を上
+   * 新しい履歴が上
    */
 
   list.sort(
@@ -2749,7 +2720,9 @@ function renderHistory(
     el.historyList.innerHTML =
       '<li class="empty">まだ履歴はありません</li>';
 
+
     return;
+
   }
 
 
@@ -2758,39 +2731,28 @@ function renderHistory(
       .map(
         function(item) {
 
-          let attendanceTime =
-            '';
-
-
-          if (
+          const attendanceTime =
             item.type ===
-            '退勤'
-          ) {
+              '退勤'
 
-            attendanceTime =
+              ? (
+                  String(
+                    item.startTime ||
+                    ''
+                  ) +
 
-              String(
-                item.startTime ||
-                ''
-              ) +
+                  '→' +
 
-              '→' +
+                  String(
+                    item.endTime ||
+                    ''
+                  )
+                )
 
-              String(
-                item.endTime ||
-                ''
-              );
-
-
-          } else {
-
-            attendanceTime =
-              String(
-                item.reportTime ||
-                ''
-              );
-
-          }
+              : String(
+                  item.reportTime ||
+                  ''
+                );
 
 
           return (
@@ -2877,7 +2839,7 @@ function setMode(
 
 
   /*
-   * いったん両方の選択状態を解除
+   * 選択色を一旦解除
    */
 
   el.inMode.classList.remove(
@@ -2892,13 +2854,13 @@ function setMode(
   );
 
 
-  /*
-   * 出勤
-   */
-
   if (
     mode === 'in'
   ) {
+
+    /*
+     * 出勤選択中
+     */
 
     el.inMode.classList.add(
       'active',
@@ -2938,7 +2900,7 @@ function setMode(
   } else {
 
     /*
-     * 退勤
+     * 退勤選択中
      */
 
     el.outMode.classList.add(
@@ -3030,6 +2992,7 @@ async function initLiff() {
 
 
       return;
+
     }
 
 
@@ -3048,6 +3011,7 @@ async function initLiff() {
 
 
       return;
+
     }
 
 
@@ -3076,7 +3040,9 @@ async function initLiff() {
 
 
         return;
+
       }
+
     }
 
 
@@ -3102,7 +3068,7 @@ async function initLiff() {
 
 
 // ============================================================
-// IMAGE PREPARE
+// IMAGE
 // ============================================================
 
 function prepareImage(
@@ -3287,6 +3253,7 @@ async function runOcr(
     throw new Error(
       '無料OCRライブラリを読み込めませんでした'
     );
+
   }
 
 
@@ -3307,6 +3274,7 @@ async function runOcr(
             ) {
 
               return;
+
             }
 
 
@@ -3346,6 +3314,7 @@ async function runOcr(
   ) {
 
     return '';
+
   }
 
 
@@ -3373,12 +3342,16 @@ async function processPhoto(
       '先に人物を選択してください。'
     );
 
+
     return;
+
   }
 
 
   if (!file) {
+
     return;
+
   }
 
 
@@ -3408,7 +3381,7 @@ async function processPhoto(
 
 
     /*
-     * 無料OCR
+     * ブラウザでOCR
      */
 
     const ocrText =
@@ -3421,6 +3394,10 @@ async function processPhoto(
       '読み取り結果を保存しています...'
     );
 
+
+    /*
+     * Apps Scriptへ保存
+     */
 
     const draft =
       await callServer(
@@ -3455,6 +3432,7 @@ async function processPhoto(
       throw new Error(
         '写真の下書きを作成できませんでした'
       );
+
     }
 
 
@@ -3472,22 +3450,27 @@ async function processPhoto(
       '文字を読み取れませんでした。時間を確認して入力してください。';
 
 
+    /*
+     * OCR日付
+     */
+
     el.reportDate.value =
       draft.reportDate ||
       todayDate();
 
 
-    /*
-     * 出勤
-     */
-
     if (
-      state.mode === 'in'
+      state.mode ===
+      'in'
     ) {
 
       /*
-       * OCRで読んだ時間を初期値にする。
-       * 人間が修正可能。
+       * OCR時間を初期値にする。
+       *
+       * 例：
+       * OCR 16:29
+       * ↓
+       * 人間が16:30へ修正可能
        */
 
       el.reportTime.value =
@@ -3498,9 +3481,7 @@ async function processPhoto(
     } else {
 
       /*
-       * 退勤
-       *
-       * 朝に保存した確定出勤時間を取得。
+       * 朝に確定した出勤時間
        */
 
       el.startTime.value =
@@ -3508,6 +3489,10 @@ async function processPhoto(
         state.workState.startTime ||
         '';
 
+
+      /*
+       * 退勤写真のOCR時間
+       */
 
       el.endTime.value =
         draft.endTime ||
@@ -3620,13 +3605,11 @@ function refreshMessage() {
   if (
     !state.driver
   ) {
+
     return;
+
   }
 
-
-  /*
-   * 任意の追加文章
-   */
 
   const extra =
     (
@@ -3640,7 +3623,8 @@ function refreshMessage() {
      ========================================================== */
 
   if (
-    state.mode === 'in'
+    state.mode ===
+    'in'
   ) {
 
     const reportDate =
@@ -3649,21 +3633,14 @@ function refreshMessage() {
 
 
     /*
-     * OCR値ではなく、
-     * 画面上で本人が確認・修正した確定時間
+     * OCRの元時間ではなく
+     * 本人が画面で確認・修正した時間を使う
      */
 
     const reportTime =
       el.reportTime.value ||
       '';
 
-
-    /*
-     * 例
-     * 2026-08-12
-     * ↓
-     * 8/12(水)
-     */
 
     const dateLabel =
       formatJapaneseDate(
@@ -3672,14 +3649,18 @@ function refreshMessage() {
 
 
     /*
-     * 指定された基本文章
+     * 出勤文章
+     *
+     * お疲れ様でございます。
+     * 8/13(木)16:30出勤いたしました。
+     * 本日もよろしくお願いいたします。
+     *
+     * 残業)0:00
+     * 合計)0:00
+     * MEMO
      */
 
     let message =
-
-      'お疲れ様でございます.\n';
-
-    message =
 
       'お疲れ様でございます。\n' +
 
@@ -3689,7 +3670,7 @@ function refreshMessage() {
 
       '出勤いたしました。\n' +
 
-      '本日もよろしくお願いいたします。\n\n\n' +
+      '本日もよろしくお願いいたします。\n\n' +
 
       '残業)' +
 
@@ -3709,7 +3690,7 @@ function refreshMessage() {
 
 
     /*
-     * 追加文章は最後
+     * MEMOは一番最後
      */
 
     if (
@@ -3728,6 +3709,7 @@ function refreshMessage() {
 
 
     return;
+
   }
 
 
@@ -3787,7 +3769,7 @@ function refreshMessage() {
 
 
   /*
-   * 追加文章は退勤時も最後
+   * MEMO
    */
 
   if (
@@ -3821,7 +3803,8 @@ function refreshMessage() {
 
       (
         nextTime
-          ? ' ' + nextTime
+          ? ' ' +
+            nextTime
           : ''
       ) +
 
@@ -3868,8 +3851,7 @@ function formatJapaneseDate(
       ).replace(
         /-/g,
         '/'
-      ) +
-      ' '
+      )
     );
 
   }
@@ -3917,12 +3899,17 @@ function formatJapaneseDate(
   return (
 
     month +
+
     '/' +
+
     day +
+
     '(' +
+
     weekdays[
       date.getDay()
     ] +
+
     ')'
 
   );
@@ -3944,7 +3931,9 @@ async function sendAttendance() {
       '人物を選択してください。'
     );
 
+
     return;
+
   }
 
 
@@ -3957,7 +3946,9 @@ async function sendAttendance() {
       '先に写真を選択してください。'
     );
 
+
     return;
+
   }
 
 
@@ -3969,12 +3960,15 @@ async function sendAttendance() {
       '報告日を確認してください。'
     );
 
+
     return;
+
   }
 
 
   if (
-    state.mode === 'in' &&
+    state.mode ===
+    'in' &&
     !el.reportTime.value
   ) {
 
@@ -3982,12 +3976,15 @@ async function sendAttendance() {
       '出勤時間を確認してください。'
     );
 
+
     return;
+
   }
 
 
   if (
-    state.mode === 'out' &&
+    state.mode ===
+    'out' &&
     (
       !el.startTime.value ||
       !el.endTime.value
@@ -3998,12 +3995,14 @@ async function sendAttendance() {
       '出勤時間と退勤時間を確認してください。'
     );
 
+
     return;
+
   }
 
 
   /*
-   * 最新の入力内容で文章を再生成
+   * 送信直前に最新入力内容で文章再生成
    */
 
   refreshMessage();
@@ -4035,27 +4034,37 @@ async function sendAttendance() {
             el.reportDate.value,
 
           reportTime:
-            state.mode === 'in'
+            state.mode ===
+              'in'
+
               ? el.reportTime.value
               : el.endTime.value,
 
           startTime:
-            state.mode === 'out'
+            state.mode ===
+              'out'
+
               ? el.startTime.value
               : el.reportTime.value,
 
           endTime:
-            state.mode === 'out'
+            state.mode ===
+              'out'
+
               ? el.endTime.value
               : '',
 
           nextDate:
-            state.mode === 'out'
+            state.mode ===
+              'out'
+
               ? el.nextDate.value
               : '',
 
           nextTime:
-            state.mode === 'out'
+            state.mode ===
+              'out'
+
               ? el.nextTime.value
               : '',
 
@@ -4074,6 +4083,31 @@ async function sendAttendance() {
       throw new Error(
         '送信処理が完了しませんでした'
       );
+
+    }
+
+
+    /*
+     * ========================================================
+     * ★ 送信直後に履歴を即表示
+     * ========================================================
+     */
+
+    if (
+      result.history
+    ) {
+
+      const current =
+        getCurrentRenderedHistory();
+
+
+      renderHistory(
+        [
+          result.history,
+          ...current
+        ]
+      );
+
     }
 
 
@@ -4083,7 +4117,7 @@ async function sendAttendance() {
 
 
     /*
-     * 下書きをクリア
+     * 下書き解除
      */
 
     state.draft =
@@ -4100,10 +4134,58 @@ async function sendAttendance() {
 
 
     /*
-     * 送信後、サーバーから履歴を再取得
+     * ========================================================
+     * ★ スプレッドシートから履歴を再取得
+     * ========================================================
      */
 
-    await loadDriverState();
+    await reloadHistoryWithRetry();
+
+
+    /*
+     * 出勤状態も更新
+     */
+
+    if (
+      state.driver
+    ) {
+
+      try {
+
+        const workState =
+          await callServer(
+            'getWorkState',
+            {
+
+              selectedDriverKey:
+                state.driver.driverKey
+
+            }
+          );
+
+
+        state.workState =
+          workState ||
+          {
+
+            hasWork:
+              false,
+
+            startTime:
+              ''
+
+          };
+
+
+      } catch (error) {
+
+        console.warn(
+          error
+        );
+
+      }
+
+    }
 
 
   } catch (error) {
@@ -4130,7 +4212,155 @@ async function sendAttendance() {
 
 
 // ============================================================
-// DATE UTILITY
+// CURRENT HISTORY
+// ============================================================
+
+function getCurrentRenderedHistory() {
+
+  const items = [];
+
+
+  const rows =
+    el.historyList.querySelectorAll(
+      '.history-item'
+    );
+
+
+  rows.forEach(
+    function(row) {
+
+      const spans =
+        row.querySelectorAll(
+          'span'
+        );
+
+
+      if (
+        spans.length < 5
+      ) {
+
+        return;
+
+      }
+
+
+      const date =
+        spans[0]
+          .textContent
+          .trim();
+
+
+      const type =
+        spans[1]
+          .textContent
+          .trim();
+
+
+      const time =
+        spans[2]
+          .textContent
+          .trim();
+
+
+      const sent =
+        spans[3]
+          .textContent
+          .replace(
+            '送信',
+            ''
+          )
+          .trim();
+
+
+      const status =
+        spans[4]
+          .textContent
+          .replace(
+            '✓',
+            ''
+          )
+          .trim();
+
+
+      let reportTime =
+        '';
+
+
+      let startTime =
+        '';
+
+
+      let endTime =
+        '';
+
+
+      if (
+        type === '退勤'
+      ) {
+
+        const parts =
+          time.split(
+            '→'
+          );
+
+
+        startTime =
+          parts[0] ||
+          '';
+
+
+        endTime =
+          parts[1] ||
+          '';
+
+
+      } else {
+
+        reportTime =
+          time;
+
+      }
+
+
+      items.push({
+
+        date:
+          date,
+
+        type:
+          type,
+
+        reportTime:
+          reportTime,
+
+        startTime:
+          startTime,
+
+        endTime:
+          endTime,
+
+        sentTime:
+          sent,
+
+        status:
+          status,
+
+        savedAt:
+          0
+
+      });
+
+    }
+  );
+
+
+  return items;
+
+}
+
+
+// ============================================================
+// DATE
 // ============================================================
 
 function todayDate() {
@@ -4434,7 +4664,9 @@ el.uploadBtn.addEventListener(
         '先に人物を選択してください。'
       );
 
+
       return;
+
     }
 
 
@@ -4468,8 +4700,8 @@ el.photoInput.addEventListener(
 
 
 /*
- * 入力が変わるたび
- * 文章を自動再生成
+ * 日付・時刻・MEMOが変更されたら
+ * 送信文章を即時更新
  */
 
 [
@@ -4524,12 +4756,13 @@ window.addEventListener(
       '08:00';
 
 
+    /*
+     * 出勤を初期選択
+     */
+
     setMode(
       'in'
     );
-
-
-    refreshMessage();
 
 
     setStatus(
@@ -4537,8 +4770,16 @@ window.addEventListener(
     );
 
 
+    /*
+     * 人物一覧
+     */
+
     await loadDrivers();
 
+
+    /*
+     * LINE自動判定
+     */
 
     await initLiff();
 
@@ -4555,6 +4796,7 @@ window.addEventListener(
 
   }
 );
+
 
 </script>
 
