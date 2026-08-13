@@ -2,7 +2,6 @@
 <html lang="ja">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -12,70 +11,40 @@
 
   <title>運転手MENU</title>
 
-  <!-- LINE LIFF -->
-  <script
-    src="https://static.line-scdn.net/liff/edge/2/sdk.js"
-  ></script>
-
-  <!-- 完全無料OCR -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"
-  ></script>
-
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 
   <style>
 
     :root {
-
       --bg1: #e7f7ff;
       --bg2: #f8fcff;
-
       --card: #ffffff;
-
       --line: #d5eaf7;
-
       --text: #17324d;
-
       --muted: #71889a;
-
       --blue: #1676c7;
-
       --green: #18824e;
-
       --green-bg: #eefbf3;
-
       --soft: #f7fcff;
-
       --danger: #c93b3b;
-
-      --shadow:
-        0 12px 34px rgba(40, 92, 128, .10);
-
+      --shadow: 0 12px 34px rgba(40, 92, 128, .10);
     }
-
 
     * {
       box-sizing: border-box;
-      max-width: 100%;
     }
-
 
     html,
     body {
-
       margin: 0;
       padding: 0;
-
       width: 100%;
       min-height: 100%;
-
       overflow-x: hidden;
-
     }
 
-
     body {
-
       min-height: 100vh;
 
       font-family:
@@ -93,53 +62,36 @@
           var(--bg2)
         );
 
-      color:
-        var(--text);
-
+      color: var(--text);
     }
-
 
     button,
     input,
     select,
     textarea {
-
       font-family: inherit;
-      max-width: 100%;
-
+      box-sizing: border-box;
     }
 
-
     .page {
-
       width: 100%;
-
       max-width: 760px;
-
       margin: 0 auto;
 
       padding:
         12px 10px
-        calc(
-          24px +
-          env(safe-area-inset-bottom)
-        );
-
+        calc(24px + env(safe-area-inset-bottom));
     }
 
-
-    /* =========================================================
+    /* ========================================================
        HERO
-       ========================================================= */
+       ======================================================== */
 
     .hero {
-
       position: relative;
-
       overflow: hidden;
 
-      padding:
-        22px 14px 18px;
+      padding: 22px 14px 18px;
 
       border-radius: 26px;
 
@@ -154,349 +106,204 @@
           #73c768 100%
         );
 
-      box-shadow:
-        var(--shadow);
-
+      box-shadow: var(--shadow);
     }
-
 
     .hero-car {
-
       font-size: 48px;
-
       line-height: 1;
-
     }
-
 
     .hero h1 {
+      margin: 7px 0 0;
 
-      margin:
-        7px 0 0;
+      color: var(--blue);
 
-      color:
-        var(--blue);
-
-      font-size:
-        32px;
-
-      line-height:
-        1.1;
-
-      font-weight:
-        900;
-
+      font-size: 32px;
+      line-height: 1.1;
+      font-weight: 900;
     }
 
-
-    /* =========================================================
-       MAIN CARD
-       ========================================================= */
+    /* ========================================================
+       MAIN
+       ======================================================== */
 
     .card {
-
       width: 100%;
 
-      margin-top:
-        12px;
+      margin-top: 12px;
+      padding: 13px;
 
-      padding:
-        13px;
+      border-radius: 24px;
 
-      border-radius:
-        24px;
+      background: rgba(255,255,255,.97);
 
-      background:
-        rgba(255,255,255,.97);
+      box-shadow: var(--shadow);
 
-      box-shadow:
-        var(--shadow);
-
-      overflow:
-        hidden;
-
+      overflow: hidden;
     }
 
-
-    /* =========================================================
+    /* ========================================================
        STATUS
-       ========================================================= */
+       ======================================================== */
 
     .status {
+      display: flex;
 
-      display:
-        flex;
+      align-items: center;
+      justify-content: center;
 
-      align-items:
-        center;
+      width: fit-content;
+      max-width: 100%;
 
-      justify-content:
-        center;
+      min-height: 44px;
 
-      width:
-        fit-content;
+      margin: 0 auto 11px;
 
-      min-height:
-        44px;
+      padding: 9px 17px;
 
-      margin:
-        0 auto 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
 
-      padding:
-        9px 17px;
+      background: #f3fbff;
 
-      border:
-        1px solid
-        var(--line);
+      color: var(--blue);
 
-      border-radius:
-        999px;
+      font-size: 15px;
+      font-weight: 900;
 
-      background:
-        #f3fbff;
-
-      color:
-        var(--blue);
-
-      font-size:
-        16px;
-
-      font-weight:
-        900;
-
-      transition:
-        .2s ease;
-
+      text-align: center;
     }
-
 
     .status.done {
+      color: var(--green);
 
-      color:
-        var(--green);
+      background: var(--green-bg);
 
-      background:
-        var(--green-bg);
-
-      border-color:
-        #ccefd8;
-
+      border-color: #ccefd8;
     }
-
 
     .status.error {
+      color: var(--danger);
 
-      color:
-        var(--danger);
+      background: #fff3f3;
 
-      background:
-        #fff3f3;
-
-      border-color:
-        #f0cccc;
-
+      border-color: #f0cccc;
     }
 
-
-    /* =========================================================
+    /* ========================================================
        DRIVER
-       ========================================================= */
+       ======================================================== */
 
     .box {
+      width: 100%;
 
-      width:
-        100%;
+      border: 1px solid var(--line);
+      border-radius: 17px;
 
-      border:
-        1px solid
-        var(--line);
+      background: var(--soft);
 
-      border-radius:
-        17px;
-
-      background:
-        var(--soft);
-
-      overflow:
-        hidden;
-
+      overflow: hidden;
     }
-
 
     .driver-box {
-
-      padding:
-        10px 12px;
-
+      padding: 10px 12px;
     }
-
 
     .label {
+      display: block;
 
-      display:
-        block;
+      margin-bottom: 6px;
 
-      margin-bottom:
-        6px;
+      color: #637c90;
 
-      color:
-        #637c90;
-
-      font-size:
-        13px;
-
-      font-weight:
-        900;
-
+      font-size: 13px;
+      font-weight: 900;
     }
-
 
     select,
     input[type="time"],
     input[type="date"] {
+      display: block;
 
-      display:
-        block;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
 
-      width:
-        100%;
+      height: 46px;
 
-      max-width:
-        100%;
+      border: 1px solid #cfe4f3;
+      border-radius: 13px;
 
-      min-width:
-        0;
+      padding: 0 9px;
 
-      height:
-        46px;
+      outline: none;
 
-      border:
-        1px solid
-        #cfe4f3;
+      background: #ffffff;
 
-      border-radius:
-        13px;
+      color: var(--text);
 
-      padding:
-        0 10px;
-
-      outline:
-        none;
-
-      background:
-        #ffffff;
-
-      color:
-        var(--text);
-
-      font-size:
-        16px;
-
-      font-weight:
-        800;
-
+      font-size: 16px;
+      font-weight: 800;
     }
-
 
     select:focus,
     input:focus,
     textarea:focus {
-
-      border-color:
-        #67b6ea;
+      border-color: #67b6ea;
 
       box-shadow:
         0 0 0 3px
-        rgba(
-          103,
-          182,
-          234,
-          .14
-        );
-
+        rgba(103, 182, 234, .14);
     }
 
-
-    /* =========================================================
+    /* ========================================================
        MODE
-       ========================================================= */
+       ======================================================== */
 
     .mode-box {
-
-      display:
-        grid;
+      display: grid;
 
       grid-template-columns:
-        minmax(0,1fr)
-        minmax(0,1fr);
+        minmax(0, 1fr)
+        minmax(0, 1fr);
 
-      gap:
-        8px;
+      gap: 8px;
 
-      width:
-        100%;
+      width: 100%;
 
-      margin-top:
-        10px;
+      margin-top: 10px;
+      padding: 8px;
 
-      padding:
-        8px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
 
-      border:
-        1px solid
-        var(--line);
+      background: var(--soft);
 
-      border-radius:
-        17px;
-
-      background:
-        var(--soft);
-
-      overflow:
-        hidden;
-
+      overflow: hidden;
     }
-
 
     .mode-btn {
+      min-width: 0;
+      min-height: 74px;
 
-      min-width:
-        0;
+      border: 0;
+      border-radius: 15px;
 
-      min-height:
-        74px;
+      background: #e7f4fb;
 
-      border:
-        0;
+      color: #738a9a;
 
-      border-radius:
-        15px;
+      font-size: 23px;
+      font-weight: 900;
 
-      background:
-        #e7f4fb;
+      cursor: pointer;
 
-      color:
-        #738a9a;
-
-      font-size:
-        23px;
-
-      font-weight:
-        900;
-
-      cursor:
-        pointer;
-
-      transition:
-        .15s ease;
-
+      transition: .15s ease;
     }
 
-
     .mode-btn.active.in {
-
-      color:
-        #084e78;
+      color: #084e78;
 
       background:
         linear-gradient(
@@ -508,20 +315,11 @@
 
       box-shadow:
         0 5px 12px
-        rgba(
-          67,
-          170,
-          225,
-          .18
-        );
-
+        rgba(67, 170, 225, .18);
     }
 
-
     .mode-btn.active.out {
-
-      color:
-        #ffffff;
+      color: #ffffff;
 
       background:
         linear-gradient(
@@ -532,558 +330,311 @@
 
       box-shadow:
         0 5px 12px
-        rgba(
-          39,
-          68,
-          145,
-          .24
-        );
-
+        rgba(39, 68, 145, .24);
     }
 
-
-    /* =========================================================
+    /* ========================================================
        PHOTO
-       ========================================================= */
+       ======================================================== */
 
     .upload-btn {
+      display: block;
 
-      display:
-        block;
+      width: 100%;
+      min-height: 54px;
 
-      width:
-        100%;
+      margin-top: 11px;
 
-      min-height:
-        54px;
+      padding: 12px 14px;
 
-      margin-top:
-        11px;
+      border: 1px solid #cfe8f7;
+      border-radius: 17px;
 
-      padding:
-        12px 14px;
+      background: #eaf7ff;
 
-      border:
-        1px solid
-        #cfe8f7;
+      color: var(--blue);
 
-      border-radius:
-        17px;
+      font-size: 17px;
+      font-weight: 900;
 
-      background:
-        #eaf7ff;
-
-      color:
-        var(--blue);
-
-      font-size:
-        17px;
-
-      font-weight:
-        900;
-
-      cursor:
-        pointer;
-
+      cursor: pointer;
     }
-
 
     .upload-btn:active {
-
-      transform:
-        translateY(1px);
-
+      transform: translateY(1px);
     }
-
 
     .notice {
+      display: none;
 
-      display:
-        none;
+      width: 100%;
 
-      width:
-        100%;
+      margin-top: 10px;
 
-      margin-top:
-        10px;
+      padding: 10px 12px;
 
-      padding:
-        10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
 
-      border-radius:
-        13px;
+      background: #f7fcff;
 
-      background:
-        #f7fcff;
+      color: #5c7588;
 
-      border:
-        1px solid
-        var(--line);
+      font-size: 13px;
+      line-height: 1.5;
 
-      color:
-        #5c7588;
-
-      font-size:
-        13px;
-
-      line-height:
-        1.5;
-
-      text-align:
-        center;
-
+      text-align: center;
     }
-
 
     .notice.show {
-
-      display:
-        block;
-
+      display: block;
     }
 
-
-    /* =========================================================
+    /* ========================================================
        PREVIEW
-       ========================================================= */
+       ======================================================== */
 
     .preview-wrap {
+      display: none;
 
-      display:
-        none;
+      width: 100%;
 
-      width:
-        100%;
+      margin-top: 12px;
 
-      margin-top:
-        12px;
+      padding: 12px;
 
-      padding:
-        12px;
+      border: 1px solid var(--line);
+      border-radius: 19px;
 
-      border:
-        1px solid
-        var(--line);
+      background: #ffffff;
 
-      border-radius:
-        19px;
-
-      background:
-        #ffffff;
-
-      overflow:
-        hidden;
-
+      overflow: hidden;
     }
-
 
     .preview-wrap.show {
-
-      display:
-        block;
-
+      display: block;
     }
-
 
     .photo-preview {
+      display: block;
 
-      display:
-        block;
+      width: 100%;
+      max-width: 100%;
+      max-height: 390px;
 
-      width:
-        100%;
+      object-fit: contain;
 
-      max-width:
-        100%;
+      border-radius: 15px;
 
-      max-height:
-        390px;
-
-      object-fit:
-        contain;
-
-      border-radius:
-        15px;
-
-      background:
-        #eef4f8;
-
+      background: #eef4f8;
     }
-
-
-    /* =========================================================
-       OCR TEXT
-       ========================================================= */
-
-    .ocr-text {
-
-      display:
-        none !important;
-
-    }
-
 
     .section-title {
+      margin: 14px 0 8px;
 
-      margin:
-        14px 0 8px;
+      color: var(--blue);
 
-      color:
-        var(--blue);
+      font-size: 18px;
+      font-weight: 900;
 
-      font-size:
-        18px;
-
-      font-weight:
-        900;
-
-      text-align:
-        center;
-
+      text-align: center;
     }
 
+    /* OCRの生データは表示しない */
 
-    /* =========================================================
-       FIELDS
-       ========================================================= */
+    .ocr-text {
+      display: none !important;
+    }
+
+    /* ========================================================
+       INPUT FIELDS
+       ======================================================== */
 
     .fields {
-
-      display:
-        grid;
+      display: grid;
 
       grid-template-columns:
-        minmax(0,1fr)
-        minmax(0,1fr);
+        minmax(0, 1fr)
+        minmax(0, 1fr);
 
-      gap:
-        8px;
+      gap: 8px;
 
-      width:
-        100%;
+      width: 100%;
 
-      margin-top:
-        11px;
-
+      margin-top: 11px;
     }
-
 
     .field {
+      width: 100%;
+      min-width: 0;
 
-      width:
-        100%;
+      padding: 8px;
 
-      min-width:
-        0;
+      border: 1px solid var(--line);
+      border-radius: 14px;
 
-      padding:
-        8px;
+      background: #f9fdff;
 
-      border:
-        1px solid
-        var(--line);
-
-      border-radius:
-        14px;
-
-      background:
-        #f9fdff;
-
-      overflow:
-        hidden;
-
+      overflow: hidden;
     }
-
 
     .field input {
+      display: block;
 
-      display:
-        block;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
 
-      width:
-        100%;
+      height: 42px;
 
-      min-width:
-        0;
+      padding: 0 6px;
 
-      max-width:
-        100%;
+      border-radius: 12px;
 
-      height:
-        42px;
+      font-size: 16px;
+      font-weight: 900;
 
-      padding:
-        0 8px;
-
-      font-size:
-        16px;
-
-      font-weight:
-        900;
-
-      text-align:
-        center;
-
-      overflow:
-        hidden;
-
+      text-align: center;
     }
-
 
     input[type="date"] {
-
-      font-size:
-        15px;
-
+      font-size: 14px;
     }
-
 
     input[type="time"] {
-
-      font-size:
-        17px;
-
+      font-size: 17px;
     }
-
 
     .summary {
+      grid-column: 1 / -1;
 
-      grid-column:
-        1 / -1;
+      width: 100%;
+      min-width: 0;
 
-      width:
-        100%;
+      padding: 11px 8px;
 
-      min-width:
-        0;
+      border: 1px solid var(--line);
+      border-radius: 14px;
 
-      padding:
-        11px 8px;
+      background: #f7fcff;
 
-      border:
-        1px solid
-        var(--line);
+      color: #446276;
 
-      border-radius:
-        14px;
+      font-size: 14px;
+      font-weight: 800;
 
-      background:
-        #f7fcff;
+      text-align: center;
 
-      color:
-        #446276;
-
-      font-size:
-        14px;
-
-      font-weight:
-        800;
-
-      text-align:
-        center;
-
-      overflow:
-        hidden;
-
+      overflow: hidden;
     }
-
 
     .summary strong {
+      color: var(--blue);
 
-      color:
-        var(--blue);
-
-      font-size:
-        16px;
-
+      font-size: 16px;
     }
 
-
-    /* =========================================================
+    /* ========================================================
        MESSAGE
-       ========================================================= */
+       ======================================================== */
 
     .message-box {
+      width: 100%;
+      min-width: 0;
 
-      width:
-        100%;
+      margin-top: 11px;
 
-      min-width:
-        0;
+      padding: 13px;
 
-      margin-top:
-        11px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
 
-      padding:
-        13px;
+      background: #f4fbff;
 
-      border:
-        1px solid
-        var(--line);
-
-      border-radius:
-        16px;
-
-      background:
-        #f4fbff;
-
-      overflow:
-        hidden;
-
+      overflow: hidden;
     }
-
 
     .extra-message-label {
+      margin-top: 8px;
+      margin-bottom: 6px;
 
-      margin-top:
-        8px;
+      color: #637c90;
 
-      margin-bottom:
-        6px;
-
-      color:
-        #637c90;
-
-      font-size:
-        13px;
-
-      font-weight:
-        900;
-
+      font-size: 13px;
+      font-weight: 900;
     }
-
 
     .extra-message {
+      display: block;
 
-      display:
-        block;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
 
-      width:
-        100%;
+      min-height: 84px;
 
-      min-width:
-        0;
+      resize: vertical;
 
-      max-width:
-        100%;
+      padding: 10px;
 
-      min-height:
-        84px;
+      border: 1px solid #cfe4f3;
+      border-radius: 13px;
 
-      resize:
-        vertical;
+      background: #ffffff;
 
-      padding:
-        10px;
+      color: var(--text);
 
-      border:
-        1px solid
-        #cfe4f3;
+      font-size: 14px;
+      line-height: 1.6;
 
-      border-radius:
-        13px;
-
-      background:
-        #ffffff;
-
-      color:
-        var(--text);
-
-      font-size:
-        14px;
-
-      line-height:
-        1.6;
-
-      outline:
-        none;
-
-      overflow-x:
-        hidden;
-
+      outline: none;
     }
-
 
     .message-preview {
+      width: 100%;
+      min-width: 0;
 
-      width:
-        100%;
+      min-height: 130px;
 
-      min-width:
-        0;
+      margin-top: 13px;
 
-      min-height:
-        130px;
+      padding: 12px;
 
-      margin-top:
-        13px;
+      border: 1px solid #dcecf6;
+      border-radius: 13px;
 
-      padding:
-        12px;
+      background: #ffffff;
 
-      border:
-        1px solid
-        #dcecf6;
+      color: #15446e;
 
-      border-radius:
-        13px;
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 600;
 
-      background:
-        #ffffff;
+      white-space: pre-line;
 
-      color:
-        #15446e;
+      word-break: break-word;
+      overflow-wrap: anywhere;
 
-      font-size:
-        14px;
-
-      line-height:
-        1.55;
-
-      font-weight:
-        600;
-
-      white-space:
-        pre-line;
-
-      word-break:
-        break-word;
-
-      overflow-wrap:
-        anywhere;
-
-      overflow:
-        hidden;
-
+      overflow: hidden;
     }
 
-
-    /* =========================================================
+    /* ========================================================
        SEND
-       ========================================================= */
+       ======================================================== */
 
     .send-btn {
+      display: block;
 
-      display:
-        block;
+      width: 100%;
+      min-height: 55px;
 
-      width:
-        100%;
+      margin-top: 11px;
 
-      min-height:
-        55px;
+      padding: 13px 14px;
 
-      margin-top:
-        11px;
-
-      padding:
-        13px 14px;
-
-      border:
-        0;
-
-      border-radius:
-        17px;
+      border: 0;
+      border-radius: 17px;
 
       background:
         linear-gradient(
@@ -1092,313 +643,180 @@
           #2d88d8
         );
 
-      color:
-        #ffffff;
+      color: #ffffff;
 
-      font-size:
-        19px;
+      font-size: 19px;
+      font-weight: 900;
 
-      font-weight:
-        900;
-
-      cursor:
-        pointer;
-
+      cursor: pointer;
     }
-
 
     .send-btn:disabled {
+      opacity: .45;
 
-      opacity:
-        .45;
-
-      cursor:
-        not-allowed;
-
+      cursor: not-allowed;
     }
 
-
-    /* =========================================================
+    /* ========================================================
        HISTORY
-       ========================================================= */
+       ======================================================== */
 
     .history {
+      width: 100%;
 
-      width:
-        100%;
+      margin-top: 17px;
 
-      margin-top:
-        17px;
+      padding-top: 14px;
 
-      padding-top:
-        14px;
+      border-top: 1px solid #e1edf5;
 
-      border-top:
-        1px solid
-        #e1edf5;
-
-      overflow:
-        hidden;
-
+      overflow: hidden;
     }
-
 
     .history-title {
+      margin: 0 0 10px;
 
-      margin:
-        0 0 10px;
+      color: var(--blue);
 
-      color:
-        var(--blue);
+      font-size: 21px;
+      font-weight: 900;
 
-      font-size:
-        21px;
-
-      font-weight:
-        900;
-
-      text-align:
-        center;
-
+      text-align: center;
     }
-
 
     .history-list {
+      width: 100%;
 
-      width:
-        100%;
+      list-style: none;
 
-      list-style:
-        none;
-
-      margin:
-        0;
-
-      padding:
-        0;
-
+      margin: 0;
+      padding: 0;
     }
-
 
     .history-item {
+      display: flex;
 
-      display:
-        flex;
+      align-items: center;
 
-      align-items:
-        center;
+      gap: 8px;
 
-      gap:
-        8px;
+      width: 100%;
+      min-width: 0;
 
-      width:
-        100%;
+      min-height: 46px;
 
-      min-width:
-        0;
+      padding: 10px 2px;
 
-      min-height:
-        46px;
+      border-bottom: 1px solid #edf4fa;
 
-      padding:
-        10px 2px;
+      color: #536b7c;
 
-      border-bottom:
-        1px solid
-        #edf4fa;
+      font-size: 13px;
+      font-weight: 700;
 
-      color:
-        #536b7c;
+      white-space: nowrap;
 
-      font-size:
-        13px;
-
-      font-weight:
-        700;
-
-      white-space:
-        nowrap;
-
-      overflow:
-        hidden;
-
+      overflow: hidden;
     }
-
 
     .history-date {
+      flex: 0 0 42px;
 
-      flex:
-        0 0 42px;
-
-      color:
-        #687f90;
-
+      color: #687f90;
     }
-
 
     .history-type {
+      flex: 0 0 42px;
 
-      flex:
-        0 0 42px;
+      color: var(--blue);
 
-      color:
-        var(--blue);
-
-      font-weight:
-        900;
-
+      font-weight: 900;
     }
-
 
     .history-time {
+      flex: 1 1 auto;
 
-      flex:
-        1 1 auto;
+      min-width: 0;
 
-      min-width:
-        0;
+      color: var(--text);
 
-      color:
-        var(--text);
+      font-weight: 900;
 
-      font-weight:
-        900;
+      overflow: hidden;
 
-      overflow:
-        hidden;
-
-      text-overflow:
-        ellipsis;
-
+      text-overflow: ellipsis;
     }
-
 
     .history-ok {
+      flex: 0 0 auto;
 
-      flex:
-        0 0 auto;
+      color: var(--green);
 
-      color:
-        var(--green);
-
-      font-weight:
-        900;
-
+      font-weight: 900;
     }
-
 
     .empty {
+      padding: 10px;
 
-      padding:
-        10px;
+      color: #8095a5;
 
-      color:
-        #8095a5;
-
-      text-align:
-        center;
-
+      text-align: center;
     }
-
 
     .footer {
+      padding: 15px 0 4px;
 
-      padding:
-        15px 0 4px;
+      color: #8aa0b2;
 
-      color:
-        #8aa0b2;
+      font-size: 13px;
 
-      font-size:
-        13px;
-
-      text-align:
-        center;
-
+      text-align: center;
     }
-
 
     .hidden {
-
-      display:
-        none !important;
-
+      display: none !important;
     }
 
-
-    /* =========================================================
+    /* ========================================================
        MOBILE
-       ========================================================= */
+       ======================================================== */
 
-    @media (max-width:420px) {
+    @media (max-width: 420px) {
 
       .page {
-
-        padding-left:
-          8px;
-
-        padding-right:
-          8px;
-
+        padding-left: 8px;
+        padding-right: 8px;
       }
-
 
       .card {
-
-        padding:
-          10px;
-
+        padding: 10px;
       }
-
 
       .mode-btn {
+        min-height: 68px;
 
-        min-height:
-          68px;
-
-        font-size:
-          20px;
-
+        font-size: 20px;
       }
-
 
       .field {
-
-        padding:
-          7px;
-
+        padding: 6px;
       }
-
 
       .field input {
-
-        font-size:
-          15px;
-
+        padding-left: 3px;
+        padding-right: 3px;
       }
-
 
       input[type="date"] {
-
-        font-size:
-          13px;
-
+        font-size: 12px;
       }
-
 
       input[type="time"] {
-
-        font-size:
-          16px;
-
+        font-size: 16px;
       }
 
-
       .history-item {
-
-        font-size:
-          12px;
-
+        font-size: 12px;
       }
 
     }
@@ -1412,10 +830,9 @@
 
 <div class="page">
 
-
-  <!-- =======================================================
+  <!-- ========================================================
        HEADER
-       ======================================================= -->
+       ======================================================== -->
 
   <header class="hero">
 
@@ -1430,22 +847,21 @@
   </header>
 
 
+  <!-- ========================================================
+       MAIN
+       ======================================================== -->
+
   <main class="card">
-
-
-    <!-- STATUS -->
 
     <div
       id="status"
       class="status"
     >
-      👤 人物選択・または自動判別
+      👤 人物を選択できます
     </div>
 
 
-    <!-- =====================================================
-         DRIVER
-         ===================================================== -->
+    <!-- 人物選択 -->
 
     <section class="box driver-box">
 
@@ -1456,10 +872,7 @@
         人物選択
       </label>
 
-
-      <select
-        id="driverSelect"
-      >
+      <select id="driverSelect">
 
         <option value="">
           人物を選択してください
@@ -1470,7 +883,7 @@
     </section>
 
 
-    <!-- MODE -->
+    <!-- 出勤 / 退勤 -->
 
     <section class="mode-box">
 
@@ -1481,7 +894,6 @@
       >
         ☀️ 出勤
       </button>
-
 
       <button
         id="outMode"
@@ -1494,7 +906,14 @@
     </section>
 
 
-    <!-- PHOTO -->
+    <!--
+      captureを付けていないので、
+
+      ・その場で撮影
+      ・過去写真を選択
+
+      の両方が利用可能
+    -->
 
     <input
       id="photoInput"
@@ -1519,15 +938,14 @@
     ></div>
 
 
-    <!-- =====================================================
-         PHOTO PREVIEW
-         ===================================================== -->
+    <!-- ======================================================
+         写真確認
+         ====================================================== -->
 
     <section
       id="previewWrap"
       class="preview-wrap"
     >
-
 
       <img
         id="photoPreview"
@@ -1542,7 +960,6 @@
 
 
       <div class="fields">
-
 
         <!-- 報告日 -->
 
@@ -1586,7 +1003,7 @@
         </div>
 
 
-        <!-- 退勤時：出勤時間 -->
+        <!-- 退勤時の出勤時間 -->
 
         <div
           id="startField"
@@ -1692,13 +1109,12 @@
 
         </div>
 
-
       </div>
 
 
-      <!-- ===================================================
-           MESSAGE
-           =================================================== -->
+      <!-- ====================================================
+           送信内容
+           ==================================================== -->
 
       <section class="message-box">
 
@@ -1731,8 +1147,6 @@
       </section>
 
 
-      <!-- SEND -->
-
       <button
         id="sendBtn"
         class="send-btn"
@@ -1742,13 +1156,12 @@
         📤 写真＋報告文章を送信
       </button>
 
-
     </section>
 
 
-    <!-- =====================================================
-         HISTORY
-         ===================================================== -->
+    <!-- ======================================================
+         今日の履歴
+         ====================================================== -->
 
     <section class="history">
 
@@ -1770,51 +1183,50 @@
 
     </section>
 
-
   </main>
 
 
   <footer class="footer">
-    勤怠管理Bot
+    運転手Bot
   </footer>
-
 
 </div>
 
 
 <script>
 
-
 // ============================================================
-// API
+// ★ 最新 Apps Script URL
 // ============================================================
 
 const API_URL =
-  'https://script.google.com/macros/s/AKfycbx0VJPtDwT10m-PJf_ofhHBYNSnLu7DNgCIti7Tdzc9-m5MMXu96G9x1H5AQ0Blb1vM/exec';
+  'https://script.google.com/macros/s/AKfycbxUMjEbzsDobOSlGoXpAtXBujfHSlVmTFSmd1ep4EMO_WHV5x3AZrATH2A9po6XqDsY/exec';
 
+
+// ============================================================
+// LIFF
+// ============================================================
 
 const LIFF_ID =
   '2011011273-HIdBF1sM';
 
 
 // ============================================================
-// CACHE
+// LOCAL STORAGE
 // ============================================================
 
 const RECENT_STORAGE_KEY =
-  'driver_menu_recent_v4';
-
+  'driver_menu_recent_v5';
 
 const DRIVER_CACHE_KEY =
-  'driver_menu_driver_list_v1';
-
+  'driver_menu_driver_list_v2';
 
 const LAST_DRIVER_KEY =
-  'driver_menu_last_driver_v1';
+  'driver_menu_last_driver_v2';
 
 
 // ============================================================
-// AUTO DETECT TIMEOUT
+// 自動判別は最大2.5秒
 // ============================================================
 
 const AUTO_DETECT_TIMEOUT_MS =
@@ -1827,41 +1239,31 @@ const AUTO_DETECT_TIMEOUT_MS =
 
 const state = {
 
-  idToken:
-    '',
+  idToken: '',
 
-  drivers:
-    [],
+  drivers: [],
 
-  driver:
-    null,
+  driver: null,
 
-  mode:
-    'in',
+  mode: 'in',
 
-  draft:
-    null,
+  draft: null,
 
-  autoDetecting:
-    false,
+  manualSelected: false,
 
   workState: {
 
-    hasWork:
-      false,
+    hasWork: false,
 
-    startTime:
-      ''
+    startTime: ''
 
   },
 
   summary: {
 
-    previousOvertime:
-      '0:00',
+    previousOvertime: '0:00',
 
-    monthlyOvertime:
-      '0:00'
+    monthlyOvertime: '0:00'
 
   }
 
@@ -1869,7 +1271,7 @@ const state = {
 
 
 // ============================================================
-// ELEMENTS
+// ELEMENT
 // ============================================================
 
 const el = {
@@ -2027,8 +1429,7 @@ function setStatus(
 
 
   if (
-    type ===
-    'done'
+    type === 'done'
   ) {
 
     el.status.classList.add(
@@ -2039,8 +1440,7 @@ function setStatus(
 
 
   if (
-    type ===
-    'error'
+    type === 'error'
   ) {
 
     el.status.classList.add(
@@ -2063,7 +1463,6 @@ function showNotice(
   el.notice.textContent =
     text;
 
-
   el.notice.classList.add(
     'show'
   );
@@ -2076,258 +1475,9 @@ function hideNotice() {
   el.notice.textContent =
     '';
 
-
   el.notice.classList.remove(
     'show'
   );
-
-}
-
-
-// ============================================================
-// CACHE - DRIVER LIST
-// ============================================================
-
-function getCachedDrivers() {
-
-  try {
-
-    const raw =
-      localStorage.getItem(
-        DRIVER_CACHE_KEY
-      );
-
-
-    if (!raw) {
-
-      return [];
-
-    }
-
-
-    const data =
-      JSON.parse(
-        raw
-      );
-
-
-    return Array.isArray(
-      data
-    )
-      ? data
-      : [];
-
-
-  } catch (error) {
-
-    return [];
-
-  }
-
-}
-
-
-function saveCachedDrivers(
-  drivers
-) {
-
-  try {
-
-    localStorage.setItem(
-      DRIVER_CACHE_KEY,
-      JSON.stringify(
-        drivers
-      )
-    );
-
-  } catch (error) {
-
-    console.warn(
-      error
-    );
-
-  }
-
-}
-
-
-// ============================================================
-// CACHE - RECENT DRIVER
-// ============================================================
-
-function getRecentDrivers() {
-
-  try {
-
-    const raw =
-      localStorage.getItem(
-        RECENT_STORAGE_KEY
-      );
-
-
-    if (!raw) {
-
-      return [];
-
-    }
-
-
-    const parsed =
-      JSON.parse(
-        raw
-      );
-
-
-    return Array.isArray(
-      parsed
-    )
-      ? parsed
-      : [];
-
-
-  } catch (error) {
-
-    return [];
-
-  }
-
-}
-
-
-function saveRecentDriver(
-  driver
-) {
-
-  if (!driver) {
-
-    return;
-
-  }
-
-
-  let list =
-    getRecentDrivers();
-
-
-  list =
-    list.filter(
-      function(item) {
-
-        return (
-          item.driverKey !==
-          driver.driverKey
-        );
-
-      }
-    );
-
-
-  list.unshift({
-
-    driverKey:
-      driver.driverKey,
-
-    displayName:
-      driver.displayName
-
-  });
-
-
-  try {
-
-    localStorage.setItem(
-      RECENT_STORAGE_KEY,
-
-      JSON.stringify(
-        list.slice(
-          0,
-          10
-        )
-      )
-
-    );
-
-  } catch (error) {
-
-    console.warn(
-      error
-    );
-
-  }
-
-}
-
-
-// ============================================================
-// CACHE - LAST DRIVER
-// ============================================================
-
-function saveLastDriver(
-  driver
-) {
-
-  if (!driver) {
-
-    return;
-
-  }
-
-
-  try {
-
-    localStorage.setItem(
-      LAST_DRIVER_KEY,
-
-      JSON.stringify({
-
-        driverKey:
-          driver.driverKey,
-
-        displayName:
-          driver.displayName
-
-      })
-
-    );
-
-  } catch (error) {
-
-    console.warn(
-      error
-    );
-
-  }
-
-}
-
-
-function getLastDriver() {
-
-  try {
-
-    const raw =
-      localStorage.getItem(
-        LAST_DRIVER_KEY
-      );
-
-
-    if (!raw) {
-
-      return null;
-
-    }
-
-
-    return JSON.parse(
-      raw
-    );
-
-
-  } catch (error) {
-
-    return null;
-
-  }
 
 }
 
@@ -2342,8 +1492,7 @@ function callServer(
 ) {
 
   data =
-    data ||
-    {};
+    data || {};
 
 
   return new Promise(
@@ -2385,8 +1534,7 @@ function callServer(
 
       params.append(
         'idToken',
-        state.idToken ||
-        ''
+        state.idToken || ''
       );
 
 
@@ -2412,11 +1560,9 @@ function callServer(
         API_URL,
         {
 
-          method:
-            'POST',
+          method: 'POST',
 
-          mode:
-            'no-cors',
+          mode: 'no-cors',
 
           headers: {
 
@@ -2466,8 +1612,7 @@ function pollResult(
 ) {
 
   if (
-    attempt >=
-    50
+    attempt >= 50
   ) {
 
     reject(
@@ -2475,7 +1620,6 @@ function pollResult(
         'Apps Scriptから応答がありませんでした'
       )
     );
-
 
     return;
 
@@ -2526,8 +1670,7 @@ function pollResult(
 
       window[
         callback
-      ] =
-        undefined;
+      ] = undefined;
 
     }
 
@@ -2553,11 +1696,8 @@ function pollResult(
       if (
         response &&
         (
-          response.status ===
-            'pending' ||
-
-          response.status ===
-            'processing'
+          response.status === 'pending' ||
+          response.status === 'processing'
         )
       ) {
 
@@ -2593,8 +1733,7 @@ function pollResult(
 
       if (
         !response ||
-        response.ok !==
-          true
+        response.ok !== true
       ) {
 
         reject(
@@ -2674,6 +1813,230 @@ function pollResult(
 
 
 // ============================================================
+// CACHE
+// ============================================================
+
+function getCachedDrivers() {
+
+  try {
+
+    const raw =
+      localStorage.getItem(
+        DRIVER_CACHE_KEY
+      );
+
+
+    if (!raw) {
+
+      return [];
+
+    }
+
+
+    const parsed =
+      JSON.parse(
+        raw
+      );
+
+
+    return Array.isArray(
+      parsed
+    )
+      ? parsed
+      : [];
+
+  } catch (_) {
+
+    return [];
+
+  }
+
+}
+
+
+function saveCachedDrivers(
+  drivers
+) {
+
+  try {
+
+    localStorage.setItem(
+      DRIVER_CACHE_KEY,
+      JSON.stringify(
+        drivers
+      )
+    );
+
+  } catch (_) {
+
+  }
+
+}
+
+
+// ============================================================
+// RECENT DRIVER
+// ============================================================
+
+function getRecentDrivers() {
+
+  try {
+
+    const raw =
+      localStorage.getItem(
+        RECENT_STORAGE_KEY
+      );
+
+
+    const parsed =
+      JSON.parse(
+        raw || '[]'
+      );
+
+
+    return Array.isArray(
+      parsed
+    )
+      ? parsed
+      : [];
+
+  } catch (_) {
+
+    return [];
+
+  }
+
+}
+
+
+function saveRecentDriver(
+  driver
+) {
+
+  if (!driver) {
+
+    return;
+
+  }
+
+
+  let list =
+    getRecentDrivers();
+
+
+  list =
+    list.filter(
+      function(item) {
+
+        return (
+          item.driverKey !==
+          driver.driverKey
+        );
+
+      }
+    );
+
+
+  list.unshift({
+
+    driverKey:
+      driver.driverKey,
+
+    displayName:
+      driver.displayName
+
+  });
+
+
+  try {
+
+    localStorage.setItem(
+      RECENT_STORAGE_KEY,
+
+      JSON.stringify(
+        list.slice(
+          0,
+          10
+        )
+      )
+    );
+
+  } catch (_) {
+
+  }
+
+}
+
+
+// ============================================================
+// LAST DRIVER
+// ============================================================
+
+function saveLastDriver(
+  driver
+) {
+
+  if (!driver) {
+
+    return;
+
+  }
+
+
+  try {
+
+    localStorage.setItem(
+      LAST_DRIVER_KEY,
+
+      JSON.stringify({
+
+        driverKey:
+          driver.driverKey,
+
+        displayName:
+          driver.displayName
+
+      })
+    );
+
+  } catch (_) {
+
+  }
+
+}
+
+
+function getLastDriver() {
+
+  try {
+
+    const raw =
+      localStorage.getItem(
+        LAST_DRIVER_KEY
+      );
+
+
+    if (!raw) {
+
+      return null;
+
+    }
+
+
+    return JSON.parse(
+      raw
+    );
+
+  } catch (_) {
+
+    return null;
+
+  }
+
+}
+
+
+// ============================================================
 // DRIVER
 // ============================================================
 
@@ -2689,7 +2052,6 @@ function findDriver(
 
 
   return (
-
     state.drivers.find(
       function(driver) {
 
@@ -2699,26 +2061,27 @@ function findDriver(
         );
 
       }
-    ) ||
-
-    null
-
+    ) || null
   );
 
 }
 
 
+// ============================================================
+// DRIVER SELECT
+// ============================================================
+
 function renderDrivers() {
 
+  const selectedKey =
+    state.driver
+      ? state.driver.driverKey
+      : el.driverSelect.value;
+
+
   el.driverSelect.innerHTML =
-    '';
+    '<option value="">人物を選択してください</option>';
 
-
-  /*
-   * ----------------------------------------------------------
-   * 最近使用
-   * ----------------------------------------------------------
-   */
 
   const recent =
     getRecentDrivers();
@@ -2738,7 +2101,7 @@ function renderDrivers() {
       .filter(Boolean);
 
 
-  const usedKeys =
+  const used =
     new Set(
       recentDrivers.map(
         function(driver) {
@@ -2797,18 +2160,12 @@ function renderDrivers() {
   }
 
 
-  /*
-   * ----------------------------------------------------------
-   * 全人物
-   * ----------------------------------------------------------
-   */
-
   const others =
     state.drivers.filter(
       function(driver) {
 
         return (
-          !usedKeys.has(
+          !used.has(
             driver.driverKey
           )
         );
@@ -2863,21 +2220,24 @@ function renderDrivers() {
   }
 
 
-  /*
-   * 現在選択中
-   */
-
   if (
-    state.driver
+    selectedKey &&
+    findDriver(
+      selectedKey
+    )
   ) {
 
     el.driverSelect.value =
-      state.driver.driverKey;
+      selectedKey;
 
   }
 
 }
 
+
+// ============================================================
+// SELECT DRIVER
+// ============================================================
 
 async function selectDriver(
   driver,
@@ -2887,6 +2247,16 @@ async function selectDriver(
   if (!driver) {
 
     return;
+
+  }
+
+
+  if (
+    source === 'manual'
+  ) {
+
+    state.manualSelected =
+      true;
 
   }
 
@@ -2912,43 +2282,34 @@ async function selectDriver(
   renderDrivers();
 
 
+  el.driverSelect.value =
+    driver.driverKey;
+
+
   setStatus(
     '✓ ' +
-    driver.displayName +
-    ' を選択中',
+    driver.displayName,
     'done'
   );
 
 
-  /*
-   * 履歴などは選択後に取得
-   */
+  el.historyList.innerHTML =
+    '<li class="empty">履歴を読み込んでいます...</li>';
+
 
   await loadDriverState();
-
-
-  if (
-    source ===
-    'manual'
-  ) {
-
-    showNotice(
-      '人物を選択しました。'
-    );
-
-  }
 
 }
 
 
 // ============================================================
-// LOAD DRIVERS
+// LOAD DRIVER LIST
 // ============================================================
 
 async function loadDrivers() {
 
   /*
-   * 最初にキャッシュを表示
+   * まず前回保存した人物一覧を即表示
    */
 
   const cached =
@@ -2966,36 +2327,26 @@ async function loadDrivers() {
     renderDrivers();
 
 
-    /*
-     * 前回人物を候補として保持
-     */
-
     const last =
       getLastDriver();
 
 
     if (
-      last &&
-      !state.driver
+      last
     ) {
 
-      const cachedDriver =
+      const driver =
         findDriver(
           last.driverKey
         );
 
 
       if (
-        cachedDriver
+        driver
       ) {
 
-        /*
-         * 自動判別を待たず
-         * セレクトに前回人物を表示
-         */
-
         el.driverSelect.value =
-          cachedDriver.driverKey;
+          driver.driverKey;
 
       }
 
@@ -3005,7 +2356,7 @@ async function loadDrivers() {
 
 
   /*
-   * 本サーバーから最新一覧を取得
+   * 最新人物一覧は裏で取得
    */
 
   try {
@@ -3036,29 +2387,36 @@ async function loadDrivers() {
 
 
       /*
-       * 前回人物がある場合、
-       * 最新一覧側へ反映
+       * まだ人物未選択なら
+       * 前回人物を選択欄に表示
        */
 
-      const last =
-        getLastDriver();
-
-
       if (
-        last &&
         !state.driver
       ) {
 
-        const driver =
-          findDriver(
-            last.driverKey
-          );
+        const last =
+          getLastDriver();
 
 
-        if (driver) {
+        if (
+          last
+        ) {
 
-          el.driverSelect.value =
-            driver.driverKey;
+          const driver =
+            findDriver(
+              last.driverKey
+            );
+
+
+          if (
+            driver
+          ) {
+
+            el.driverSelect.value =
+              driver.driverKey;
+
+          }
 
         }
 
@@ -3069,7 +2427,7 @@ async function loadDrivers() {
   } catch (error) {
 
     console.warn(
-      '人物一覧取得失敗',
+      '人物一覧取得失敗:',
       error
     );
 
@@ -3079,12 +2437,12 @@ async function loadDrivers() {
 
 
 // ============================================================
-// AUTO DETECT TIMEOUT
+// TIMEOUT
 // ============================================================
 
-function timeoutPromise(
+function withTimeout(
   promise,
-  ms
+  milliseconds
 ) {
 
   return Promise.race([
@@ -3092,9 +2450,7 @@ function timeoutPromise(
     promise,
 
     new Promise(
-      function(
-        resolve
-      ) {
+      function(resolve) {
 
         setTimeout(
           function() {
@@ -3104,7 +2460,7 @@ function timeoutPromise(
             );
 
           },
-          ms
+          milliseconds
         );
 
       }
@@ -3116,26 +2472,15 @@ function timeoutPromise(
 
 
 // ============================================================
-// LIFF
+// LIFF AUTO DETECT
 // ============================================================
 
 async function initLiff() {
 
-  state.autoDetecting =
-    true;
-
-
   try {
 
-    /*
-     * LIFF初期化自体を2.5秒まで待つ
-     *
-     * それ以上かかっても
-     * 画面は手動選択できる
-     */
-
-    const initialized =
-      await timeoutPromise(
+    const initResult =
+      await withTimeout(
         liff.init({
 
           liffId:
@@ -3149,14 +2494,24 @@ async function initLiff() {
       );
 
 
+    /*
+     * 2.5秒以上かかる場合
+     * 手動選択を優先
+     */
+
     if (
-      initialized ===
-      null
+      initResult === null
     ) {
 
-      finishAutoDetect(
-        '👤 自動判別が遅いため、手動選択できます'
-      );
+      if (
+        !state.driver
+      ) {
+
+        setStatus(
+          '👤 人物を選択してください'
+        );
+
+      }
 
 
       return;
@@ -3168,9 +2523,15 @@ async function initLiff() {
       !liff.isLoggedIn()
     ) {
 
-      finishAutoDetect(
-        '👤 人物を選択してください'
-      );
+      if (
+        !state.driver
+      ) {
+
+        setStatus(
+          '👤 人物を選択してください'
+        );
+
+      }
 
 
       return;
@@ -3179,35 +2540,39 @@ async function initLiff() {
 
 
     state.idToken =
-      liff.getIDToken() ||
-      '';
+      liff.getIDToken() || '';
 
 
     if (
       !state.idToken
     ) {
 
-      finishAutoDetect(
-        '👤 人物を選択してください'
-      );
-
-
       return;
 
     }
 
 
-    /*
-     * 自動人物判定
-     */
-
     const info =
-      await timeoutPromise(
+      await withTimeout(
         callServer(
           'getDriverInfo'
         ),
         AUTO_DETECT_TIMEOUT_MS
       );
+
+
+    /*
+     * 手動選択済みなら
+     * 後から自動判別で上書きしない
+     */
+
+    if (
+      state.manualSelected
+    ) {
+
+      return;
+
+    }
 
 
     if (
@@ -3221,7 +2586,9 @@ async function initLiff() {
         );
 
 
-      if (driver) {
+      if (
+        driver
+      ) {
 
         await selectDriver(
           driver,
@@ -3229,12 +2596,9 @@ async function initLiff() {
         );
 
 
-        state.autoDetecting =
-          false;
-
-
         setStatus(
-          '✓ 自動判別完了',
+          '✓ ' +
+          driver.displayName,
           'done'
         );
 
@@ -3246,27 +2610,34 @@ async function initLiff() {
     }
 
 
-    /*
-     * 自動判別できなかった場合
-     * 手動選択を継続
-     */
+    if (
+      !state.driver
+    ) {
 
-    finishAutoDetect(
-      '👤 人物を選択してください'
-    );
+      setStatus(
+        '👤 人物を選択してください'
+      );
+
+    }
 
 
   } catch (error) {
 
     console.warn(
-      '自動判別失敗',
+      '自動判別:',
       error
     );
 
 
-    finishAutoDetect(
-      '👤 人物を選択してください'
-    );
+    if (
+      !state.driver
+    ) {
+
+      setStatus(
+        '👤 人物を選択してください'
+      );
+
+    }
 
   }
 
@@ -3274,48 +2645,7 @@ async function initLiff() {
 
 
 // ============================================================
-// AUTO DETECT END
-// ============================================================
-
-function finishAutoDetect(
-  message
-) {
-
-  state.autoDetecting =
-    false;
-
-
-  /*
-   * 手動選択済みなら
-   * その状態を優先
-   */
-
-  if (
-    state.driver
-  ) {
-
-    setStatus(
-      '✓ ' +
-      state.driver.displayName +
-      ' を選択中',
-      'done'
-    );
-
-
-    return;
-
-  }
-
-
-  setStatus(
-    message
-  );
-
-}
-
-
-// ============================================================
-// LOAD DRIVER STATE
+// DRIVER STATE
 // ============================================================
 
 async function loadDriverState() {
@@ -3368,27 +2698,21 @@ async function loadDriverState() {
 
 
     state.workState =
-      result[0] ||
-      {
+      result[0] || {
 
-        hasWork:
-          false,
+        hasWork: false,
 
-        startTime:
-          ''
+        startTime: ''
 
       };
 
 
     state.summary =
-      result[1] ||
-      {
+      result[1] || {
 
-        previousOvertime:
-          '0:00',
+        previousOvertime: '0:00',
 
-        monthlyOvertime:
-          '0:00'
+        monthlyOvertime: '0:00'
 
       };
 
@@ -3397,102 +2721,20 @@ async function loadDriverState() {
 
 
     renderHistory(
-      result[2] ||
-      []
+      result[2] || []
     );
 
 
   } catch (error) {
 
     console.warn(
-      '人物データ取得失敗',
+      '人物情報取得失敗:',
       error
     );
 
-  }
 
-}
-
-
-// ============================================================
-// HISTORY RELOAD
-// ============================================================
-
-async function reloadHistoryWithRetry() {
-
-  if (
-    !state.driver
-  ) {
-
-    return;
-
-  }
-
-
-  for (
-    let i = 0;
-    i < 3;
-    i++
-  ) {
-
-    try {
-
-      await new Promise(
-        function(resolve) {
-
-          setTimeout(
-            resolve,
-            i === 0
-              ? 300
-              : 700
-          );
-
-        }
-      );
-
-
-      const history =
-        await callServer(
-          'getTodayHistory',
-          {
-
-            selectedDriverKey:
-              state.driver.driverKey
-
-          }
-        );
-
-
-      if (
-        Array.isArray(
-          history
-        )
-      ) {
-
-        renderHistory(
-          history
-        );
-
-
-        if (
-          history.length >
-          0
-        ) {
-
-          return;
-
-        }
-
-      }
-
-
-    } catch (error) {
-
-      console.warn(
-        error
-      );
-
-    }
+    el.historyList.innerHTML =
+      '<li class="empty">履歴を取得できませんでした</li>';
 
   }
 
@@ -3533,7 +2775,7 @@ function renderSummary() {
 
 
 // ============================================================
-// TIME FORMAT
+// HISTORY
 // ============================================================
 
 function normalizeDisplayTime(
@@ -3546,33 +2788,6 @@ function normalizeDisplayTime(
   ) {
 
     return '';
-
-  }
-
-
-  if (
-    value instanceof Date
-  ) {
-
-    return (
-
-      String(
-        value.getHours()
-      ).padStart(
-        2,
-        '0'
-      ) +
-
-      ':' +
-
-      String(
-        value.getMinutes()
-      ).padStart(
-        2,
-        '0'
-      )
-
-    );
 
   }
 
@@ -3590,19 +2805,21 @@ function normalizeDisplayTime(
   }
 
 
-  const hm =
+  const simple =
     text.match(
       /^(\d{1,2}):(\d{2})$/
     );
 
 
-  if (hm) {
+  if (
+    simple
+  ) {
 
     return (
 
       String(
         Number(
-          hm[1]
+          simple[1]
         )
       ).padStart(
         2,
@@ -3613,7 +2830,7 @@ function normalizeDisplayTime(
 
       String(
         Number(
-          hm[2]
+          simple[2]
         )
       ).padStart(
         2,
@@ -3625,54 +2842,21 @@ function normalizeDisplayTime(
   }
 
 
-  const dt =
-    text.match(
-      /(?:19|20)\d{2}.*?(\d{1,2}):(\d{2}):\d{2}/
-    );
-
-
-  if (dt) {
-
-    return (
-
-      String(
-        Number(
-          dt[1]
-        )
-      ).padStart(
-        2,
-        '0'
-      ) +
-
-      ':' +
-
-      String(
-        Number(
-          dt[2]
-        )
-      ).padStart(
-        2,
-        '0'
-      )
-
-    );
-
-  }
-
-
-  const tm =
+  const match =
     text.match(
       /(\d{1,2}):(\d{2})(?::\d{2})?/
     );
 
 
-  if (tm) {
+  if (
+    match
+  ) {
 
     return (
 
       String(
         Number(
-          tm[1]
+          match[1]
         )
       ).padStart(
         2,
@@ -3683,7 +2867,7 @@ function normalizeDisplayTime(
 
       String(
         Number(
-          tm[2]
+          match[2]
         )
       ).padStart(
         2,
@@ -3700,10 +2884,6 @@ function normalizeDisplayTime(
 }
 
 
-// ============================================================
-// HISTORY
-// ============================================================
-
 function renderHistory(
   history
 ) {
@@ -3717,21 +2897,24 @@ function renderHistory(
 
 
   /*
-   * 最新送信を上に
+   * savedAtが大きいもの
+   * ＝後から送信されたもの
+   * を上にする
    */
 
   list.sort(
     function(a, b) {
 
       return (
+
         Number(
-          b.savedAt ||
-          0
+          b.savedAt || 0
         ) -
+
         Number(
-          a.savedAt ||
-          0
+          a.savedAt || 0
         )
+
       );
 
     }
@@ -3752,98 +2935,166 @@ function renderHistory(
 
 
   el.historyList.innerHTML =
-    list
-      .map(
-        function(item) {
+    list.map(
+      function(item) {
 
-          const date =
-            String(
-              item.date ||
-              ''
-            );
-
-
-          const type =
-            item.type ===
-              '退勤'
-
-              ? '退勤'
-
-              : '出勤';
-
-
-          const startTime =
-            normalizeDisplayTime(
-              item.startTime
-            );
-
-
-          const endTime =
-            normalizeDisplayTime(
-              item.endTime
-            );
-
-
-          const reportTime =
-            normalizeDisplayTime(
-              item.reportTime
-            );
-
-
-          let timeText;
-
-
-          if (
-            type ===
-            '退勤'
-          ) {
-
-            timeText =
-              startTime +
-              '→' +
-              endTime;
-
-          } else {
-
-            timeText =
-              reportTime;
-
-          }
-
-
-          return (
-
-            '<li class="history-item">' +
-
-              '<span class="history-date">' +
-                escapeHtml(
-                  date
-                ) +
-              '</span>' +
-
-              '<span class="history-type">' +
-                escapeHtml(
-                  type
-                ) +
-              '</span>' +
-
-              '<span class="history-time">' +
-                escapeHtml(
-                  timeText
-                ) +
-              '</span>' +
-
-              '<span class="history-ok">' +
-                '✓完了' +
-              '</span>' +
-
-            '</li>'
-
+        const date =
+          String(
+            item.date || ''
           );
 
+
+        const type =
+          item.type === '退勤'
+            ? '退勤'
+            : '出勤';
+
+
+        const reportTime =
+          normalizeDisplayTime(
+            item.reportTime
+          );
+
+
+        const startTime =
+          normalizeDisplayTime(
+            item.startTime
+          );
+
+
+        const endTime =
+          normalizeDisplayTime(
+            item.endTime
+          );
+
+
+        let timeText =
+          '';
+
+
+        if (
+          type === '退勤'
+        ) {
+
+          timeText =
+            startTime +
+            '→' +
+            endTime;
+
+        } else {
+
+          timeText =
+            reportTime;
+
         }
-      )
-      .join('');
+
+
+        return (
+
+          '<li class="history-item">' +
+
+            '<span class="history-date">' +
+              escapeHtml(
+                date
+              ) +
+            '</span>' +
+
+            '<span class="history-type">' +
+              escapeHtml(
+                type
+              ) +
+            '</span>' +
+
+            '<span class="history-time">' +
+              escapeHtml(
+                timeText
+              ) +
+            '</span>' +
+
+            '<span class="history-ok">' +
+              '✓完了' +
+            '</span>' +
+
+          '</li>'
+
+        );
+
+      }
+    ).join('');
+
+}
+
+
+// ============================================================
+// HISTORY RELOAD
+// ============================================================
+
+async function reloadHistoryWithRetry() {
+
+  if (
+    !state.driver
+  ) {
+
+    return;
+
+  }
+
+
+  for (
+    let i = 0;
+    i < 3;
+    i++
+  ) {
+
+    try {
+
+      if (
+        i > 0
+      ) {
+
+        await sleep(
+          600
+        );
+
+      }
+
+
+      const history =
+        await callServer(
+          'getTodayHistory',
+          {
+
+            selectedDriverKey:
+              state.driver.driverKey
+
+          }
+        );
+
+
+      if (
+        Array.isArray(
+          history
+        )
+      ) {
+
+        renderHistory(
+          history
+        );
+
+
+        return;
+
+      }
+
+    } catch (error) {
+
+      console.warn(
+        error
+      );
+
+    }
+
+  }
 
 }
 
@@ -3893,8 +3144,7 @@ function setMode(
 
 
   if (
-    mode ===
-    'in'
+    mode === 'in'
   ) {
 
     el.inMode.classList.add(
@@ -3966,8 +3216,7 @@ function setMode(
 
 
     el.startTime.value =
-      state.workState.startTime ||
-      '';
+      state.workState.startTime || '';
 
 
     if (
@@ -4053,6 +3302,7 @@ function prepareImage(
               const scale =
                 Math.min(
                   1,
+
                   maxSide /
                   Math.max(
                     image.width,
@@ -4099,8 +3349,7 @@ function prepareImage(
                 canvas.getContext(
                   '2d',
                   {
-                    alpha:
-                      false
+                    alpha: false
                   }
                 );
 
@@ -4178,7 +3427,7 @@ async function runOcr(
   ) {
 
     throw new Error(
-      '無料OCRライブラリを読み込めませんでした'
+      '無料OCRを読み込めませんでした'
     );
 
   }
@@ -4210,8 +3459,7 @@ async function runOcr(
               const percent =
                 Math.round(
                   Number(
-                    message.progress ||
-                    0
+                    message.progress || 0
                   ) *
                   100
                 );
@@ -4242,15 +3490,14 @@ async function runOcr(
 
 
   return String(
-    result.data.text ||
-    ''
+    result.data.text || ''
   );
 
 }
 
 
 // ============================================================
-// PHOTO PROCESS
+// PHOTO
 // ============================================================
 
 async function processPhoto(
@@ -4271,7 +3518,9 @@ async function processPhoto(
   }
 
 
-  if (!file) {
+  if (
+    !file
+  ) {
 
     return;
 
@@ -4366,14 +3615,12 @@ async function processPhoto(
 
 
     if (
-      state.mode ===
-      'in'
+      state.mode === 'in'
     ) {
 
       el.reportTime.value =
         draft.ocrTime ||
         currentTime();
-
 
     } else {
 
@@ -4412,8 +3659,7 @@ async function processPhoto(
 
 
     if (
-      draft.previousOvertime !=
-      null
+      draft.previousOvertime != null
     ) {
 
       state.summary.previousOvertime =
@@ -4423,8 +3669,7 @@ async function processPhoto(
 
 
     if (
-      draft.monthlyOvertime !=
-      null
+      draft.monthlyOvertime != null
     ) {
 
       state.summary.monthlyOvertime =
@@ -4444,7 +3689,7 @@ async function processPhoto(
 
 
     showNotice(
-      '読み取り完了。時間と文章を確認・修正してから送信してください。'
+      '読み取り完了。日付・時間・文章を確認してください。'
     );
 
 
@@ -4453,11 +3698,9 @@ async function processPhoto(
 
         el.previewWrap.scrollIntoView({
 
-          behavior:
-            'smooth',
+          behavior: 'smooth',
 
-          block:
-            'start'
+          block: 'start'
 
         });
 
@@ -4504,18 +3747,16 @@ function refreshMessage() {
 
   const extra =
     (
-      el.extraMessage.value ||
-      ''
+      el.extraMessage.value || ''
     ).trim();
 
 
-  /*
-   * 出勤
-   */
+  // ----------------------------------------------------------
+  // 出勤
+  // ----------------------------------------------------------
 
   if (
-    state.mode ===
-    'in'
+    state.mode === 'in'
   ) {
 
     const reportDate =
@@ -4524,8 +3765,7 @@ function refreshMessage() {
 
 
     const reportTime =
-      el.reportTime.value ||
-      '';
+      el.reportTime.value || '';
 
 
     const dateLabel =
@@ -4544,7 +3784,7 @@ function refreshMessage() {
 
       '出勤いたしました。\n' +
 
-      '本日もよろしくお願いいたします。\n\n' +
+      '本日もよろしくお願いいたします。\n' +
 
       '残業)' +
 
@@ -4568,7 +3808,7 @@ function refreshMessage() {
     ) {
 
       message +=
-        '\n' +
+        '\n【MEMO】\n' +
         extra;
 
     }
@@ -4583,9 +3823,9 @@ function refreshMessage() {
   }
 
 
-  /*
-   * 退勤
-   */
+  // ----------------------------------------------------------
+  // 退勤
+  // ----------------------------------------------------------
 
   const reportDate =
     el.reportDate.value ||
@@ -4593,43 +3833,42 @@ function refreshMessage() {
 
 
   const startTime =
-    el.startTime.value ||
-    '';
+    el.startTime.value || '';
 
 
   const endTime =
-    el.endTime.value ||
-    '';
+    el.endTime.value || '';
 
 
   const nextDate =
-    el.nextDate.value ||
-    '';
+    el.nextDate.value || '';
 
 
   const nextTime =
-    el.nextTime.value ||
-    '';
+    el.nextTime.value || '';
 
 
   let message =
 
-    'お疲れ様でございます。\n\n' +
+    'お疲れ様でございます。\n' +
 
     '業務完了いたしました。\n\n' +
 
-    reportDate.replace(
-      /-/g,
-      '/'
+    formatJapaneseDate(
+      reportDate
     ) +
 
-    '\n稼働）' +
+    '\n' +
+
+    '稼働）' +
 
     startTime +
+
     '-' +
+
     endTime +
 
-    '\n\n' +
+    '\n' +
 
     '本日は失礼させていただきます。';
 
@@ -4639,7 +3878,7 @@ function refreshMessage() {
   ) {
 
     message +=
-      '\n\n' +
+      '\n\n【MEMO】\n' +
       extra;
 
   }
@@ -4666,7 +3905,7 @@ function refreshMessage() {
           : ''
       ) +
 
-      '\n\n' +
+      '\n' +
 
       getNextLabel(
         nextDate
@@ -4679,89 +3918,6 @@ function refreshMessage() {
 
   el.messagePreview.textContent =
     message;
-
-}
-
-
-// ============================================================
-// DATE
-// ============================================================
-
-function formatJapaneseDate(
-  value
-) {
-
-  const match =
-    String(
-      value ||
-      ''
-    ).match(
-      /^(\d{4})-(\d{2})-(\d{2})$/
-    );
-
-
-  if (!match) {
-
-    return (
-      String(
-        value ||
-        ''
-      ).replace(
-        /-/g,
-        '/'
-      )
-    );
-
-  }
-
-
-  const month =
-    Number(
-      match[2]
-    );
-
-
-  const day =
-    Number(
-      match[3]
-    );
-
-
-  const date =
-    new Date(
-      Number(
-        match[1]
-      ),
-      month - 1,
-      day
-    );
-
-
-  const weekdays = [
-
-    '日',
-    '月',
-    '火',
-    '水',
-    '木',
-    '金',
-    '土'
-
-  ];
-
-
-  return (
-
-    month +
-    '/' +
-    day +
-    '(' +
-    weekdays[
-      date.getDay()
-    ] +
-    ')'
-
-  );
 
 }
 
@@ -4780,7 +3936,6 @@ async function sendAttendance() {
       '人物を選択してください。'
     );
 
-
     return;
 
   }
@@ -4795,7 +3950,6 @@ async function sendAttendance() {
       '先に写真を選択してください。'
     );
 
-
     return;
 
   }
@@ -4809,15 +3963,13 @@ async function sendAttendance() {
       '報告日を確認してください。'
     );
 
-
     return;
 
   }
 
 
   if (
-    state.mode ===
-      'in' &&
+    state.mode === 'in' &&
     !el.reportTime.value
   ) {
 
@@ -4825,15 +3977,13 @@ async function sendAttendance() {
       '出勤時間を確認してください。'
     );
 
-
     return;
 
   }
 
 
   if (
-    state.mode ===
-      'out' &&
+    state.mode === 'out' &&
     (
       !el.startTime.value ||
       !el.endTime.value
@@ -4843,7 +3993,6 @@ async function sendAttendance() {
     alert(
       '出勤時間と退勤時間を確認してください。'
     );
-
 
     return;
 
@@ -4879,32 +4028,27 @@ async function sendAttendance() {
             el.reportDate.value,
 
           reportTime:
-            state.mode ===
-              'in'
+            state.mode === 'in'
               ? el.reportTime.value
               : el.endTime.value,
 
           startTime:
-            state.mode ===
-              'out'
+            state.mode === 'out'
               ? el.startTime.value
               : el.reportTime.value,
 
           endTime:
-            state.mode ===
-              'out'
+            state.mode === 'out'
               ? el.endTime.value
               : '',
 
           nextDate:
-            state.mode ===
-              'out'
+            state.mode === 'out'
               ? el.nextDate.value
               : '',
 
           nextTime:
-            state.mode ===
-              'out'
+            state.mode === 'out'
               ? el.nextTime.value
               : '',
 
@@ -4917,30 +4061,11 @@ async function sendAttendance() {
 
     if (
       !result ||
-      result.ok !==
-        true
+      result.ok !== true
     ) {
 
       throw new Error(
         '送信処理が完了しませんでした'
-      );
-
-    }
-
-
-    if (
-      result.history
-    ) {
-
-      const current =
-        getCurrentRenderedHistory();
-
-
-      renderHistory(
-        [
-          result.history,
-          ...current
-        ]
       );
 
     }
@@ -4982,23 +4107,16 @@ async function sendAttendance() {
 
 
       state.workState =
-        workState ||
-        {
+        workState || {
 
-          hasWork:
-            false,
+          hasWork: false,
 
-          startTime:
-            ''
+          startTime: ''
 
         };
 
 
-    } catch (error) {
-
-      console.warn(
-        error
-      );
+    } catch (_) {
 
     }
 
@@ -5016,10 +4134,8 @@ async function sendAttendance() {
     );
 
 
-  } finally {
-
     el.sendBtn.disabled =
-      !state.draft;
+      false;
 
   }
 
@@ -5027,136 +4143,7 @@ async function sendAttendance() {
 
 
 // ============================================================
-// CURRENT HISTORY
-// ============================================================
-
-function getCurrentRenderedHistory() {
-
-  const items = [];
-
-
-  const rows =
-    el.historyList.querySelectorAll(
-      '.history-item'
-    );
-
-
-  rows.forEach(
-    function(row) {
-
-      const spans =
-        row.querySelectorAll(
-          'span'
-        );
-
-
-      if (
-        spans.length <
-        4
-      ) {
-
-        return;
-
-      }
-
-
-      const date =
-        spans[0]
-          .textContent
-          .trim();
-
-
-      const type =
-        spans[1]
-          .textContent
-          .trim();
-
-
-      const time =
-        spans[2]
-          .textContent
-          .trim();
-
-
-      let reportTime =
-        '';
-
-
-      let startTime =
-        '';
-
-
-      let endTime =
-        '';
-
-
-      if (
-        type ===
-        '退勤'
-      ) {
-
-        const parts =
-          time.split(
-            '→'
-          );
-
-
-        startTime =
-          parts[0] ||
-          '';
-
-
-        endTime =
-          parts[1] ||
-          '';
-
-      } else {
-
-        reportTime =
-          time;
-
-      }
-
-
-      items.push({
-
-        date:
-          date,
-
-        type:
-          type,
-
-        reportTime:
-          reportTime,
-
-        startTime:
-          startTime,
-
-        endTime:
-          endTime,
-
-        sentTime:
-          '',
-
-        status:
-          '完了',
-
-        savedAt:
-          0
-
-      });
-
-    }
-  );
-
-
-  return items;
-
-}
-
-
-// ============================================================
-// DATE UTIL
+// DATE
 // ============================================================
 
 function todayDate() {
@@ -5169,6 +4156,7 @@ function todayDate() {
 
     d.getFullYear() +
     '-' +
+
     String(
       d.getMonth() + 1
     ).padStart(
@@ -5176,6 +4164,7 @@ function todayDate() {
       '0'
     ) +
     '-' +
+
     String(
       d.getDate()
     ).padStart(
@@ -5203,6 +4192,7 @@ function tomorrowDate() {
 
     d.getFullYear() +
     '-' +
+
     String(
       d.getMonth() + 1
     ).padStart(
@@ -5210,6 +4200,7 @@ function tomorrowDate() {
       '0'
     ) +
     '-' +
+
     String(
       d.getDate()
     ).padStart(
@@ -5236,7 +4227,9 @@ function currentTime() {
       2,
       '0'
     ) +
+
     ':' +
+
     String(
       d.getMinutes()
     ).padStart(
@@ -5249,23 +4242,102 @@ function currentTime() {
 }
 
 
+function formatJapaneseDate(
+  value
+) {
+
+  const match =
+    String(
+      value || ''
+    ).match(
+      /^(\d{4})-(\d{2})-(\d{2})$/
+    );
+
+
+  if (
+    !match
+  ) {
+
+    return String(
+      value || ''
+    ).replace(
+      /-/g,
+      '/'
+    );
+
+  }
+
+
+  const year =
+    Number(
+      match[1]
+    );
+
+
+  const month =
+    Number(
+      match[2]
+    );
+
+
+  const day =
+    Number(
+      match[3]
+    );
+
+
+  const date =
+    new Date(
+      year,
+      month - 1,
+      day
+    );
+
+
+  const weekdays = [
+    '日',
+    '月',
+    '火',
+    '水',
+    '木',
+    '金',
+    '土'
+  ];
+
+
+  return (
+
+    month +
+    '/' +
+    day +
+    '(' +
+    weekdays[
+      date.getDay()
+    ] +
+    ')'
+
+  );
+
+}
+
+
 function formatShortDate(
   value
 ) {
 
   const match =
     String(
-      value ||
-      ''
+      value || ''
     ).match(
       /^(\d{4})-(\d{2})-(\d{2})$/
     );
 
 
-  if (!match) {
+  if (
+    !match
+  ) {
 
-    return value ||
-      '';
+    return value || '';
 
   }
 
@@ -5285,15 +4357,13 @@ function formatShortDate(
 }
 
 
-// ============================================================
-// NEXT LABEL
-// ============================================================
-
 function getNextLabel(
   value
 ) {
 
-  if (!value) {
+  if (
+    !value
+  ) {
 
     return '次回';
 
@@ -5330,8 +4400,7 @@ function getNextLabel(
 
 
   if (
-    diff ===
-    1
+    diff === 1
   ) {
 
     return '明日';
@@ -5340,8 +4409,7 @@ function getNextLabel(
 
 
   if (
-    diff ===
-    2
+    diff === 2
   ) {
 
     return '明後日';
@@ -5392,6 +4460,28 @@ function escapeHtml(
       /'/g,
       '&#39;'
     );
+
+}
+
+
+// ============================================================
+// SLEEP
+// ============================================================
+
+function sleep(
+  milliseconds
+) {
+
+  return new Promise(
+    function(resolve) {
+
+      setTimeout(
+        resolve,
+        milliseconds
+      );
+
+    }
+  );
 
 }
 
@@ -5540,7 +4630,7 @@ window.addEventListener(
   function() {
 
     /*
-     * 日付などは即時セット
+     * 日付を即セット
      */
 
     el.reportDate.value =
@@ -5561,12 +4651,7 @@ window.addEventListener(
 
 
     /*
-     * --------------------------------------------------------
-     * ここが今回の重要変更
-     *
-     * 「人物一覧」と「LINE自動判別」を
-     * 待たずに同時開始する。
-     * --------------------------------------------------------
+     * ★ 自動判別完了を待たない
      */
 
     setStatus(
@@ -5575,8 +4660,8 @@ window.addEventListener(
 
 
     /*
-     * キャッシュされた人物一覧を
-     * 即時表示
+     * 前回取得した人物一覧を
+     * その場で表示
      */
 
     const cachedDrivers =
@@ -5594,6 +4679,14 @@ window.addEventListener(
       renderDrivers();
 
 
+      /*
+       * 前回使った人物を
+       * 選択欄に表示
+       *
+       * ただし、この時点では
+       * 勝手に報告人物として確定しない。
+       */
+
       const last =
         getLastDriver();
 
@@ -5608,7 +4701,9 @@ window.addEventListener(
           );
 
 
-        if (driver) {
+        if (
+          driver
+        ) {
 
           el.driverSelect.value =
             driver.driverKey;
@@ -5621,17 +4716,16 @@ window.addEventListener(
 
 
     /*
-     * サーバーから最新人物一覧取得
+     * ★ ここから2つを同時実行
+     *
+     * 1. 最新人物一覧
+     * 2. LINE本人自動判別
+     *
+     * お互いを待たない。
      */
 
     loadDrivers();
 
-
-    /*
-     * 自動判別は完全に別処理
-     *
-     * これをawaitしない
-     */
 
     initLiff();
 
