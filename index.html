@@ -28,18 +28,9 @@ html,body{
   padding:0;
   width:100%;
   min-height:100%;
-  font-family:
-    "Hiragino Sans",
-    "Yu Gothic",
-    "Meiryo",
-    sans-serif;
+  font-family:"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
   color:var(--text);
-  background:
-    linear-gradient(
-      180deg,
-      var(--bg1),
-      var(--bg2)
-    );
+  background:linear-gradient(180deg,var(--bg1),var(--bg2));
 }
 
 body{
@@ -54,9 +45,7 @@ body{
 }
 
 
-/* ==============================
-   タイトル
-   ============================== */
+/* タイトル */
 
 .hero{
   position:relative;
@@ -64,12 +53,7 @@ body{
   text-align:center;
   padding:28px 16px 24px;
   border-radius:30px;
-  background:
-    linear-gradient(
-      180deg,
-      #bfeaff,
-      #e9f9ff
-    );
+  background:linear-gradient(180deg,#bfeaff,#e9f9ff);
   box-shadow:var(--shadow-soft);
 }
 
@@ -110,9 +94,7 @@ body{
 }
 
 
-/* ==============================
-   メイン
-   ============================== */
+/* メイン */
 
 .main-card{
   margin-top:14px;
@@ -123,9 +105,7 @@ body{
 }
 
 
-/* ==============================
-   人物状態
-   ============================== */
+/* 人物状態 */
 
 .driver-pill{
   display:flex;
@@ -156,9 +136,7 @@ body{
 }
 
 
-/* ==============================
-   人物選択
-   ============================== */
+/* 人物選択 */
 
 .manual-select-area{
   margin-bottom:12px;
@@ -189,9 +167,7 @@ body{
 }
 
 
-/* ==============================
-   出勤・退勤
-   ============================== */
+/* 出勤・退勤 */
 
 .attendance-buttons{
   display:grid;
@@ -211,18 +187,12 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  box-shadow:
-    0 8px 18px
-    rgba(39,96,139,.10);
-  transition:
-    transform .12s ease,
-    opacity .12s ease;
+  box-shadow:0 8px 18px rgba(39,96,139,.10);
+  transition:transform .12s ease,opacity .12s ease;
 }
 
 .attendance-btn:active{
-  transform:
-    translateY(1px)
-    scale(.99);
+  transform:translateY(1px) scale(.99);
 }
 
 .attendance-btn:disabled{
@@ -241,32 +211,28 @@ body{
 
 .btn-in{
   color:#0a4c7d;
-  background:
-    linear-gradient(
-      180deg,
-      #77d2ff,
-      #c8efff 58%,
-      #8ed777
-    );
+  background:linear-gradient(
+    180deg,
+    #77d2ff,
+    #c8efff 58%,
+    #8ed777
+  );
   border:1px solid #a8ddf7;
 }
 
 .btn-out{
   color:#fff;
-  background:
-    linear-gradient(
-      180deg,
-      #142c78,
-      #10215c 60%,
-      #07163f
-    );
+  background:linear-gradient(
+    180deg,
+    #142c78,
+    #10215c 60%,
+    #07163f
+  );
   border:1px solid #6077c5;
 }
 
 
-/* ==============================
-   案内
-   ============================== */
+/* 案内 */
 
 .guide{
   margin:10px 4px 8px;
@@ -277,44 +243,25 @@ body{
 }
 
 
-/* ==============================
-   内容修正
-   ============================== */
+/* 修正エリア */
 
 .edit-panel{
   display:none;
-  margin-top:10px;
+  margin-top:8px;
   padding:13px;
   background:#fff;
   border-radius:22px;
   box-shadow:var(--shadow-soft);
-  border:
-    1px solid
-    rgba(216,235,247,.9);
+  border:1px solid rgba(216,235,247,.9);
 }
 
 .edit-panel.show{
   display:block;
 }
 
-.edit-title{
-  margin:0 0 10px;
-  color:#1676c7;
-  font-size:26px;
-  font-weight:900;
-  text-align:center;
-}
-
-.edit-title:before{
-  content:"✎ ";
-  color:#68aee6;
-}
-
 .two-column{
   display:grid;
-  grid-template-columns:
-    minmax(0,1fr)
-    minmax(0,1fr);
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
   gap:7px;
   margin-bottom:7px;
 }
@@ -353,10 +300,7 @@ body{
 }
 
 
-/* ==============================
-   送信文章
-   空行を詰める
-   ============================== */
+/* 送信文章 */
 
 .preview{
   display:none;
@@ -367,7 +311,7 @@ body{
   background:#f4faff;
   color:#14446e;
   font-size:14px;
-  line-height:1.45;
+  line-height:1.4;
   font-weight:600;
   white-space:pre-line;
 }
@@ -377,9 +321,7 @@ body{
 }
 
 
-/* ==============================
-   送信
-   ============================== */
+/* 送信ボタン */
 
 .send-btn{
   width:100%;
@@ -387,12 +329,11 @@ body{
   padding:14px 12px;
   border:0;
   border-radius:18px;
-  background:
-    linear-gradient(
-      180deg,
-      #56baf0,
-      #2d88d8
-    );
+  background:linear-gradient(
+    180deg,
+    #56baf0,
+    #2d88d8
+  );
   color:#fff;
   font-size:20px;
   font-weight:900;
@@ -404,15 +345,12 @@ body{
 }
 
 
-/* ==============================
-   履歴
-   ============================== */
+/* 履歴 */
 
 .history{
   margin-top:18px;
   padding-top:14px;
-  border-top:
-    1px solid #e2eef6;
+  border-top:1px solid #e2eef6;
 }
 
 .history h3{
@@ -435,8 +373,7 @@ body{
 
 .history-list li{
   padding:9px 0;
-  border-bottom:
-    1px solid #edf4fa;
+  border-bottom:1px solid #edf4fa;
   color:#496173;
   font-size:14px;
 }
@@ -458,9 +395,7 @@ body{
 }
 
 
-/* ==============================
-   スマホ
-   ============================== */
+/* スマホ */
 
 @media(max-width:480px){
 
@@ -517,13 +452,9 @@ body{
   }
 
   .edit-panel{
-    margin-top:8px;
+    margin-top:6px;
     padding:13px 12px;
     border-radius:20px;
-  }
-
-  .edit-title{
-    font-size:25px;
   }
 
   .field input{
@@ -534,8 +465,8 @@ body{
   .preview{
     line-height:1.4;
   }
-}
 
+}
 </style>
 </head>
 
@@ -547,9 +478,7 @@ body{
   <h1>🚙 運転手MENU</h1>
 </header>
 
-
 <main class="main-card">
-
 
 <div
   id="statusPill"
@@ -558,9 +487,7 @@ body{
   <span
     id="statusIcon"
     class="status-icon"
-  >
-    ⏳
-  </span>
+  >⏳</span>
 
   <span id="statusText">
     自動判別中...
@@ -602,7 +529,6 @@ body{
     </span>
   </button>
 
-
   <button
     id="btnOut"
     class="attendance-btn btn-out"
@@ -627,12 +553,8 @@ body{
   class="edit-panel"
 >
 
-  <h2 class="edit-title">
-    内容修正
-  </h2>
+  <!-- 「内容修正」の見出しは削除済み -->
 
-
-  <!-- 出勤 -->
 
   <div id="inFields">
 
@@ -651,8 +573,6 @@ body{
 
   </div>
 
-
-  <!-- 退勤 -->
 
   <div
     id="outFields"
@@ -673,7 +593,6 @@ body{
         >
 
       </div>
-
 
       <div class="field">
 
@@ -705,7 +624,6 @@ body{
         >
 
       </div>
-
 
       <div class="field">
 
@@ -745,9 +663,7 @@ body{
 
 <section class="history">
 
-  <h3>
-    今日の履歴
-  </h3>
+  <h3>今日の履歴</h3>
 
   <ul
     id="historyList"
@@ -760,7 +676,6 @@ body{
 
 </section>
 
-
 </main>
 
 
@@ -772,10 +687,6 @@ body{
 
 
 <script>
-
-/* ==============================
-   設定
-   ============================== */
 
 const API_URL =
   'https://script.google.com/macros/s/AKfycbwcdo-FzaXTmRj2mVv-REGhopjLeDcr4XRkBO4s3v1mRKSjsjHHXu6Rh2N4I0Vi_ymv/exec';
@@ -880,10 +791,6 @@ const state = {
 };
 
 
-/* ==============================
-   日付
-   ============================== */
-
 function todayKey(){
 
   const d =
@@ -964,9 +871,7 @@ function week(d){
     '木',
     '金',
     '土'
-  ][
-    d.getDay()
-  ];
+  ][d.getDay()];
 
 }
 
@@ -974,9 +879,7 @@ function week(d){
 function dateLabel(d){
 
   return (
-    (
-      d.getMonth()+1
-    ) +
+    (d.getMonth()+1) +
     '/' +
     d.getDate() +
     '(' +
@@ -992,9 +895,7 @@ function dateSlash(d){
   return (
     d.getFullYear() +
     '/' +
-    (
-      d.getMonth()+1
-    ) +
+    (d.getMonth()+1) +
     '/' +
     d.getDate()
   );
@@ -1015,10 +916,6 @@ function tomorrow(){
 
 }
 
-
-/* ==============================
-   状態
-   ============================== */
 
 function setStatus(s){
 
@@ -1047,6 +944,7 @@ function setStatus(s){
       );
 
     return;
+
   }
 
 
@@ -1062,6 +960,7 @@ function setStatus(s){
       '人物選択待ち';
 
     return;
+
   }
 
 
@@ -1073,10 +972,6 @@ function setStatus(s){
 
 }
 
-
-/* ==============================
-   最近使った人物
-   ============================== */
 
 function recent(){
 
@@ -1140,10 +1035,6 @@ function saveRecent(d){
 
 }
 
-
-/* ==============================
-   人物
-   ============================== */
 
 function findDriver(key){
 
@@ -1232,10 +1123,6 @@ function syncDriver(){
 
 }
 
-
-/* ==============================
-   人物一覧
-   ============================== */
 
 function renderDrivers(){
 
@@ -1378,10 +1265,6 @@ function renderDrivers(){
 }
 
 
-/* ==============================
-   Apps Script
-   ============================== */
-
 function callServer(
   operation,
   data = {}
@@ -1477,10 +1360,6 @@ function callServer(
 }
 
 
-/* ==============================
-   API結果待ち
-   ============================== */
-
 function poll(
   requestId,
   resolve,
@@ -1500,6 +1379,7 @@ function poll(
     );
 
     return;
+
   }
 
 
@@ -1566,6 +1446,7 @@ function poll(
         );
 
         return;
+
       }
 
 
@@ -1577,13 +1458,15 @@ function poll(
 
         reject(
           new Error(
-            response
+            response &&
+            response.error
               ? response.error
               : 'Apps Script APIエラー'
           )
         );
 
         return;
+
       }
 
 
@@ -1637,10 +1520,6 @@ function poll(
 }
 
 
-/* ==============================
-   人物一覧取得
-   ============================== */
-
 async function loadDrivers(){
 
   try{
@@ -1671,10 +1550,6 @@ async function loadDrivers(){
 
 }
 
-
-/* ==============================
-   出勤状態保存
-   ============================== */
 
 function saveWork(){
 
@@ -1742,10 +1617,6 @@ function loadWork(){
 }
 
 
-/* ==============================
-   次回出勤表現
-   ============================== */
-
 function nextLabel(
   target
 ){
@@ -1801,11 +1672,7 @@ function nextLabel(
 }
 
 
-/* ==============================
-   出勤文章
-
-   ★ 空行なし
-   ============================== */
+/* 出勤文章：空行なし */
 
 function inMessage(){
 
@@ -1822,10 +1689,6 @@ function inMessage(){
 
 }
 
-
-/* ==============================
-   退勤文章
-   ============================== */
 
 function outMessage(){
 
@@ -1879,10 +1742,6 @@ function outMessage(){
 }
 
 
-/* ==============================
-   プレビュー
-   ============================== */
-
 function refresh(){
 
   const message =
@@ -1907,10 +1766,6 @@ function refresh(){
 
 }
 
-
-/* ==============================
-   出勤・退勤切替
-   ============================== */
 
 function setMode(
   mode
@@ -2036,10 +1891,6 @@ function setMode(
 }
 
 
-/* ==============================
-   履歴
-   ============================== */
-
 function renderHistory(){
 
   if(
@@ -2050,6 +1901,7 @@ function renderHistory(){
       '<li class="empty">まだ履歴はありません</li>';
 
     return;
+
   }
 
 
@@ -2151,10 +2003,6 @@ function addHistory(
 }
 
 
-/* ==============================
-   イベント
-   ============================== */
-
 e.driver.onchange =
   () => {
 
@@ -2189,6 +2037,7 @@ e.in.onclick =
       );
 
       return;
+
     }
 
 
@@ -2212,6 +2061,7 @@ e.out.onclick =
       );
 
       return;
+
     }
 
 
@@ -2256,10 +2106,6 @@ e.nextDate.onchange =
   refresh;
 
 
-/* ==============================
-   送信
-   ============================== */
-
 e.send.onclick =
   async () => {
 
@@ -2272,6 +2118,7 @@ e.send.onclick =
       );
 
       return;
+
     }
 
 
@@ -2292,6 +2139,7 @@ e.send.onclick =
         );
 
         return;
+
       }
 
 
@@ -2317,6 +2165,7 @@ e.send.onclick =
         );
 
         return;
+
       }
 
 
@@ -2360,7 +2209,8 @@ e.send.onclick =
       ){
 
         throw new Error(
-          result
+          result &&
+          result.error
             ? result.error
             : '送信に失敗しました'
         );
@@ -2412,10 +2262,6 @@ e.send.onclick =
   };
 
 
-/* ==============================
-   LIFF自動判別
-   ============================== */
-
 async function autoDetect(){
 
   setStatus(
@@ -2445,6 +2291,7 @@ async function autoDetect(){
       );
 
       return;
+
     }
 
 
@@ -2462,6 +2309,7 @@ async function autoDetect(){
       );
 
       return;
+
     }
 
 
@@ -2477,6 +2325,7 @@ async function autoDetect(){
     ){
 
       return;
+
     }
 
 
@@ -2499,6 +2348,7 @@ async function autoDetect(){
         );
 
         return;
+
       }
 
     }
@@ -2524,10 +2374,6 @@ async function autoDetect(){
 
 }
 
-
-/* ==============================
-   起動
-   ============================== */
 
 window.addEventListener(
   'load',
