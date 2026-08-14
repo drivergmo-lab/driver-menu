@@ -2,19 +2,13 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1.0,viewport-fit=cover"
->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>運転手MENU</title>
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-
-<!-- 無料OCR -->
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 
 <style>
-
 :root{
   --bg1:#e8f7ff;
   --bg2:#f7fcff;
@@ -37,18 +31,9 @@ body{
   padding:0;
   width:100%;
   min-height:100%;
-  font-family:
-    "Hiragino Sans",
-    "Yu Gothic",
-    "Meiryo",
-    sans-serif;
+  font-family:"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
   color:var(--text);
-  background:
-    linear-gradient(
-      180deg,
-      var(--bg1),
-      var(--bg2)
-    );
+  background:linear-gradient(180deg,var(--bg1),var(--bg2));
 }
 
 body{
@@ -71,21 +56,10 @@ body{
   position:relative;
   overflow:hidden;
   text-align:center;
-
-  padding:
-    22px 12px 18px;
-
+  padding:22px 12px 18px;
   border-radius:24px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #bfeaff,
-      #e9f9ff
-    );
-
-  box-shadow:
-    var(--shadow-soft);
+  background:linear-gradient(180deg,#bfeaff,#e9f9ff);
+  box-shadow:var(--shadow-soft);
 }
 
 .hero:before{
@@ -95,7 +69,6 @@ body{
   right:-10%;
   bottom:0;
   height:40%;
-
   background:
     radial-gradient(
       ellipse at 10% 100%,
@@ -107,26 +80,19 @@ body{
       #69be68 0 22%,
       transparent 23%
     );
-
   opacity:.75;
 }
 
 .hero h1{
   position:relative;
   z-index:1;
-
   margin:0;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   gap:6px;
-
   white-space:nowrap;
-
   color:#1676c7;
-
   font-size:26px;
   line-height:1.2;
   font-weight:700;
@@ -140,11 +106,8 @@ body{
 .main-card{
   margin-top:10px;
   padding:12px;
-
   background:var(--card);
-
   border-radius:22px;
-
   box-shadow:var(--shadow);
 }
 
@@ -158,30 +121,16 @@ body{
   align-items:center;
   justify-content:center;
   gap:8px;
-
   width:fit-content;
   max-width:100%;
-
   min-height:42px;
-
-  margin:
-    0 auto 10px;
-
-  padding:
-    8px 15px;
-
+  margin:0 auto 10px;
+  padding:8px 15px;
   border-radius:999px;
-
   background:#f3fbff;
-
-  border:
-    1px solid
-    #dceff9;
-
+  border:1px solid #dceff9;
   color:#1676c7;
-
   font-size:15px;
-
   font-weight:900;
 }
 
@@ -202,50 +151,29 @@ body{
 
 .manual-select-area{
   margin-bottom:10px;
-
-  padding:
-    10px 12px;
-
-  border:
-    1px solid
-    #dceff9;
-
+  padding:10px 12px;
+  border:1px solid #dceff9;
   border-radius:16px;
-
   background:#f9fdff;
 }
 
 .manual-select-label{
   display:block;
-
   margin-bottom:6px;
-
   color:#61798e;
-
   font-size:13px;
-
   font-weight:800;
 }
 
 .driver-select{
   width:100%;
   height:44px;
-
-  padding:
-    0 10px;
-
-  border:
-    1px solid
-    #cfe5f5;
-
+  padding:0 10px;
+  border:1px solid #cfe5f5;
   border-radius:12px;
-
   background:#fff;
-
   color:#17324d;
-
   font-size:15px;
-
   font-weight:800;
 }
 
@@ -256,41 +184,24 @@ body{
 
 .attendance-buttons{
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
+  grid-template-columns:1fr 1fr;
   gap:7px;
 }
 
 .attendance-btn{
   position:relative;
-
   width:100%;
-
   height:72px;
   min-height:72px;
-
   border:0;
-
   border-radius:16px;
-
   overflow:hidden;
-
   cursor:pointer;
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
-  box-shadow:
-    0 8px 18px
-    rgba(39,96,139,.10);
-
+  box-shadow:0 8px 18px rgba(39,96,139,.10);
   opacity:.45;
-
   transition:
     opacity .15s ease,
     filter .15s ease,
@@ -307,9 +218,7 @@ body{
 }
 
 .attendance-btn:active{
-  transform:
-    translateY(1px)
-    scale(.99);
+  transform:translateY(1px) scale(.99);
 }
 
 .attendance-btn:disabled{
@@ -319,17 +228,13 @@ body{
 .attendance-text{
   position:relative;
   z-index:3;
-
   font-size:25px;
-
   font-weight:900;
-
   line-height:1;
 }
 
 .btn-in{
   color:#0a4c7d;
-
   background:
     linear-gradient(
       180deg,
@@ -337,15 +242,11 @@ body{
       #c8efff 58%,
       #8ed777
     );
-
-  border:
-    1px solid
-    #a8ddf7;
+  border:1px solid #a8ddf7;
 }
 
 .btn-out{
   color:#fff;
-
   background:
     linear-gradient(
       180deg,
@@ -353,15 +254,12 @@ body{
       #10215c 60%,
       #07163f
     );
-
-  border:
-    1px solid
-    #6077c5;
+  border:1px solid #6077c5;
 }
 
 
 /* =========================================================
-   写真ボタン
+   写真
    ========================================================= */
 
 .photo-area{
@@ -374,46 +272,28 @@ body{
 
 .photo-btn{
   display:flex;
-
   align-items:center;
   justify-content:center;
-
   width:100%;
-
   min-height:52px;
-
-  padding:
-    10px 12px;
-
-  border:
-    1px solid
-    #cfe8f7;
-
+  padding:10px 12px;
+  border:1px solid #cfe8f7;
   border-radius:16px;
-
   background:#eaf7ff;
-
   color:#1676c7;
-
   font-size:17px;
-
   font-weight:900;
-
   cursor:pointer;
 }
 
 .photo-btn:active{
-  transform:
-    translateY(1px);
+  transform:translateY(1px);
 }
 
 .photo-hint{
   margin-top:5px;
-
   color:#7d95a6;
-
   font-size:11px;
-
   text-align:center;
 }
 
@@ -424,26 +304,14 @@ body{
 
 .notice{
   display:none;
-
   margin-top:8px;
-
-  padding:
-    8px 10px;
-
-  border:
-    1px solid
-    #dceff9;
-
+  padding:8px 10px;
+  border:1px solid #dceff9;
   border-radius:12px;
-
   background:#f7fcff;
-
   color:#61798e;
-
   font-size:12px;
-
   line-height:1.45;
-
   text-align:center;
 }
 
@@ -458,26 +326,12 @@ body{
 
 .edit-panel{
   display:none;
-
   margin-top:8px;
-
   padding:12px;
-
   background:#fff;
-
   border-radius:20px;
-
-  box-shadow:
-    var(--shadow-soft);
-
-  border:
-    1px solid
-    rgba(
-      216,
-      235,
-      247,
-      .9
-    );
+  box-shadow:var(--shadow-soft);
+  border:1px solid rgba(216,235,247,.9);
 }
 
 .edit-panel.show{
@@ -491,17 +345,10 @@ body{
 
 .photo-preview-wrap{
   display:none;
-
   margin-bottom:10px;
-
   padding:8px;
-
-  border:
-    1px solid
-    var(--line);
-
+  border:1px solid var(--line);
   border-radius:16px;
-
   background:#f8fcff;
 }
 
@@ -511,21 +358,16 @@ body{
 
 .photo-preview{
   display:block;
-
   width:100%;
-
-  max-height:280px;
-
+  max-height:260px;
   object-fit:contain;
-
   border-radius:12px;
-
   background:#edf4f8;
 }
 
 
 /* =========================================================
-   フィールド
+   入力欄
    ========================================================= */
 
 .field{
@@ -534,109 +376,87 @@ body{
 
 .field label{
   display:block;
-
-  margin:
-    0 0 3px;
-
+  margin:0 0 3px;
   color:#61798e;
-
   font-size:12px;
-
   font-weight:800;
 }
 
 .field input{
   width:100%;
-
   height:40px;
-
-  padding:0;
-
-  border:
-    1px solid
-    #cfe5f5;
-
+  padding:0 6px;
+  border:1px solid #cfe5f5;
   border-radius:13px;
-
   background:#fff;
-
   color:#0d2340;
-
   font-size:20px;
-
   font-weight:900;
-
   text-align:center;
-
   outline:none;
 }
 
 .field input:focus{
   border-color:#63b4ea;
+  box-shadow:0 0 0 3px rgba(99,180,234,.14);
+}
 
-  box-shadow:
-    0 0 0 3px
-    rgba(
-      99,
-      180,
-      234,
-      .14
-    );
+.two-column{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:7px;
+  margin-bottom:7px;
 }
 
 .single-field{
   margin-bottom:8px;
 }
 
-.two-column{
-  display:grid;
-
-  grid-template-columns:
-    minmax(0,1fr)
-    minmax(0,1fr);
-
-  gap:7px;
-
-  margin-bottom:7px;
-}
-
-#reportDate{
-  font-size:14px;
-}
-
+#reportDate,
+#outReportDate,
 #nextDate{
   font-size:14px;
 }
 
 
 /* =========================================================
-   OCR状態
+   日付・時間レイアウト
+   ========================================================= */
+
+.out-date-row{
+  margin-bottom:7px;
+}
+
+.out-time-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:7px;
+  margin-bottom:7px;
+}
+
+.next-date-row{
+  margin-bottom:7px;
+}
+
+.next-time-row{
+  margin-bottom:7px;
+}
+
+
+/* =========================================================
+   OCR
    ========================================================= */
 
 .ocr-result-note{
   display:none;
-
-  margin:
-    8px 0;
-
-  padding:
-    8px 10px;
-
-  border:
-    1px solid
-    #d9edf9;
-
+  margin:8px 0;
+  padding:8px 10px;
+  border:1px solid #d9edf9;
   border-radius:12px;
-
-  background:
-    #f4fbff;
-
+  background:#f4fbff;
   color:#557389;
-
   font-size:11px;
-
   line-height:1.45;
-
   text-align:center;
 }
 
@@ -651,32 +471,17 @@ body{
 
 .preview{
   display:none;
-
   margin-top:9px;
-
-  padding:
-    13px 15px;
-
-  border:
-    1px solid
-    var(--line);
-
+  padding:13px 15px;
+  border:1px solid var(--line);
   border-radius:18px;
-
   background:#f4faff;
-
   color:#14446e;
-
   font-size:14px;
-
   line-height:1.4;
-
   font-weight:600;
-
   white-space:pre-line;
-
   word-break:break-word;
-
   overflow-wrap:anywhere;
 }
 
@@ -691,95 +496,57 @@ body{
 
 .extra-label{
   display:block;
-
-  margin:
-    10px 0 5px;
-
+  margin:10px 0 5px;
   color:#61798e;
-
   font-size:12px;
-
   font-weight:800;
 }
 
 .extra-message{
   width:100%;
-
   min-height:78px;
-
-  padding:
-    9px 10px;
-
+  padding:9px 10px;
   resize:vertical;
-
-  border:
-    1px solid
-    #cfe5f5;
-
+  border:1px solid #cfe5f5;
   border-radius:13px;
-
   background:#fff;
-
   color:#17324d;
-
   font-family:inherit;
-
   font-size:13px;
-
   line-height:1.5;
-
   outline:none;
 }
 
 .extra-message:focus{
   border-color:#63b4ea;
-
-  box-shadow:
-    0 0 0 3px
-    rgba(
-      99,
-      180,
-      234,
-      .14
-    );
+  box-shadow:0 0 0 3px rgba(99,180,234,.14);
 }
 
 
 /* =========================================================
-   送信ボタン
+   送信
    ========================================================= */
 
 .send-btn{
   width:100%;
-
   margin-top:7px;
-
-  padding:
-    14px 12px;
-
+  padding:14px 12px;
   border:0;
-
   border-radius:18px;
-
   background:
     linear-gradient(
       180deg,
       #56baf0,
       #2d88d8
     );
-
   color:#fff;
-
   font-size:20px;
-
   font-weight:900;
-
   cursor:pointer;
 }
 
 .send-btn:disabled{
   opacity:.55;
-
   cursor:not-allowed;
 }
 
@@ -790,24 +557,15 @@ body{
 
 .history{
   margin-top:18px;
-
   padding-top:14px;
-
-  border-top:
-    1px solid
-    #e2eef6;
+  border-top:1px solid #e2eef6;
 }
 
 .history h3{
-  margin:
-    0 0 10px;
-
+  margin:0 0 10px;
   color:#1676c7;
-
   font-size:20px;
-
   font-weight:900;
-
   text-align:center;
 }
 
@@ -817,46 +575,27 @@ body{
 
 .history-list{
   list-style:none;
-
   margin:0;
-
   padding:0;
 }
 
 .history-list li{
-  padding:
-    9px 0;
-
-  border-bottom:
-    1px solid
-    #edf4fa;
-
+  padding:9px 0;
+  border-bottom:1px solid #edf4fa;
   color:#496173;
-
   font-size:13px;
-
   line-height:1.4;
 }
 
 .history-list .empty{
   color:#7a90a3;
-
   text-align:center;
 }
 
-
-/* =========================================================
-   footer
-   ========================================================= */
-
 .footer{
-  padding:
-    14px 10px 4px;
-
+  padding:14px 10px 4px;
   color:#8aa0b2;
-
   font-size:13px;
-
   text-align:center;
 }
 
@@ -866,106 +605,72 @@ body{
 
 
 /* =========================================================
-   PC
-   ========================================================= */
-
-@media(
-  min-width:481px
-){
-
-  .page{
-    padding:
-      18px 14px 28px;
-  }
-
-  .hero{
-    padding:
-      28px 16px 24px;
-  }
-
-  .hero h1{
-    font-size:30px;
-  }
-
-  .attendance-btn{
-    height:88px;
-    min-height:88px;
-  }
-
-  .attendance-text{
-    font-size:28px;
-  }
-
-}
-
-
-/* =========================================================
    スマホ
    ========================================================= */
 
-@media(
-  max-width:480px
-){
+@media(max-width:480px){
 
-  .photo-preview{
-    max-height:260px;
+  .page{
+    padding:12px 10px 20px;
+  }
+
+  .hero{
+    padding:22px 12px 18px;
+    border-radius:24px;
+  }
+
+  .hero h1{
+    font-size:26px;
+  }
+
+  .main-card{
+    margin-top:10px;
+    padding:12px;
+    border-radius:22px;
+  }
+
+  .attendance-buttons{
+    gap:7px;
+  }
+
+  .attendance-btn{
+    height:72px;
+    min-height:72px;
+  }
+
+  .attendance-text{
+    font-size:25px;
   }
 
   .edit-panel{
-    scroll-margin-top:70px;
+    padding:12px;
+  }
+
+  .preview{
+    line-height:1.4;
   }
 
 }
-
 </style>
 </head>
-
 
 <body>
 
 <div class="page">
 
-
 <header class="hero">
   <h1>🚙 運転手MENU</h1>
 </header>
 
-
 <main class="main-card">
 
-
-<!-- =======================================================
-     STATUS
-     ======================================================= -->
-
-<div
-  id="statusPill"
-  class="driver-pill"
->
-
-  <span
-    id="statusIcon"
-    class="status-icon"
-  >
-    ⏳
-  </span>
-
-  <span
-    id="statusText"
-  >
-    自動判別中...
-  </span>
-
+<div id="statusPill" class="driver-pill">
+  <span id="statusIcon" class="status-icon">⏳</span>
+  <span id="statusText">自動判別中...</span>
 </div>
 
 
-<!-- =======================================================
-     人物
-     ======================================================= -->
-
-<div
-  class="manual-select-area"
->
+<div class="manual-select-area">
 
   <label
     class="manual-select-label"
@@ -974,28 +679,17 @@ body{
     人物選択
   </label>
 
-
   <select
     id="driverSelect"
     class="driver-select"
   >
-
-    <option value="">
-      人物を選択してください
-    </option>
-
+    <option value="">人物を選択してください</option>
   </select>
 
 </div>
 
 
-<!-- =======================================================
-     出勤・退勤
-     ======================================================= -->
-
-<div
-  class="attendance-buttons"
->
+<div class="attendance-buttons">
 
   <button
     id="btnIn"
@@ -1007,7 +701,6 @@ body{
       ☀️ 出勤
     </span>
   </button>
-
 
   <button
     id="btnOut"
@@ -1022,10 +715,6 @@ body{
 
 </div>
 
-
-<!-- =======================================================
-     写真
-     ======================================================= -->
 
 <div class="photo-area">
 
@@ -1052,27 +741,13 @@ body{
 </div>
 
 
-<!-- =======================================================
-     通知
-     ======================================================= -->
+<div id="notice" class="notice"></div>
 
-<div
-  id="notice"
-  class="notice"
-></div>
-
-
-<!-- =======================================================
-     編集
-     ======================================================= -->
 
 <section
   id="editPanel"
   class="edit-panel"
 >
-
-
-  <!-- 写真 -->
 
   <div
     id="photoPreviewWrap"
@@ -1088,8 +763,6 @@ body{
   </div>
 
 
-  <!-- OCR -->
-
   <div
     id="ocrNote"
     class="ocr-result-note"
@@ -1100,18 +773,16 @@ body{
        出勤
        ===================================================== -->
 
-  <div
-    id="inFields"
-  >
+  <div id="inFields">
 
-    <div
-      class="two-column"
-    >
+    <!-- 1. 出勤日 / 2. 出勤時間 -->
+
+    <div class="out-time-row">
 
       <div class="field">
 
         <label for="reportDate">
-          日付
+          出勤日
         </label>
 
         <input
@@ -1125,7 +796,7 @@ body{
       <div class="field">
 
         <label for="clockInTime">
-          時間
+          出勤時間
         </label>
 
         <input
@@ -1149,19 +820,39 @@ body{
     class="hidden"
   >
 
-    <div
-      class="two-column"
-    >
+    <!-- 1. 出勤日 -->
+
+    <div class="out-date-row">
 
       <div class="field">
 
         <label for="outReportDate">
-          日付
+          出勤日
         </label>
 
         <input
           id="outReportDate"
           type="date"
+        >
+
+      </div>
+
+    </div>
+
+
+    <!-- 2. 出勤時間 / 3. 退勤時間 -->
+
+    <div class="out-time-row">
+
+      <div class="field">
+
+        <label for="editClockInTime">
+          出勤時間
+        </label>
+
+        <input
+          id="editClockInTime"
+          type="time"
         >
 
       </div>
@@ -1183,23 +874,29 @@ body{
     </div>
 
 
-    <div
-      class="two-column"
-    >
+    <!-- 4. 次回出勤日 -->
+
+    <div class="next-date-row">
 
       <div class="field">
 
-        <label for="editClockInTime">
-          出勤時間
+        <label for="nextDate">
+          次回出勤日
         </label>
 
         <input
-          id="editClockInTime"
-          type="time"
+          id="nextDate"
+          type="date"
         >
 
       </div>
 
+    </div>
+
+
+    <!-- 5. 次回出勤時間 -->
+
+    <div class="next-time-row">
 
       <div class="field">
 
@@ -1217,20 +914,6 @@ body{
 
     </div>
 
-
-    <div class="field">
-
-      <label for="nextDate">
-        次回出勤日
-      </label>
-
-      <input
-        id="nextDate"
-        type="date"
-      >
-
-    </div>
-
   </div>
 
 
@@ -1243,10 +926,6 @@ body{
     class="preview"
   ></div>
 
-
-  <!-- =====================================================
-       追加文章
-       ===================================================== -->
 
   <label
     class="extra-label"
@@ -1263,10 +942,6 @@ body{
   ></textarea>
 
 
-  <!-- =====================================================
-       送信
-       ===================================================== -->
-
   <button
     id="sendBtn"
     class="send-btn"
@@ -1276,13 +951,8 @@ body{
     写真＋報告文章を送信
   </button>
 
-
 </section>
 
-
-<!-- =======================================================
-     履歴
-     ======================================================= -->
 
 <section class="history">
 
@@ -1290,20 +960,16 @@ body{
     今日の履歴
   </h3>
 
-
   <ul
     id="historyList"
     class="history-list"
   >
-
     <li class="empty">
       まだ履歴はありません
     </li>
-
   </ul>
 
 </section>
-
 
 </main>
 
@@ -1311,7 +977,6 @@ body{
 <footer class="footer">
   勤怠管理Bot
 </footer>
-
 
 </div>
 
@@ -1329,13 +994,13 @@ const LIFF_ID =
   '2011011273-HIdBF1sM';
 
 const RECENT_KEY =
-  'driver_menu_recent_drivers_v4';
+  'driver_menu_recent_drivers_v5';
 
 const HISTORY_KEY =
-  'driver_menu_attendance_history_v4';
+  'driver_menu_attendance_history_v5';
 
 const WORK_KEY =
-  'driver_menu_work_state_v4';
+  'driver_menu_work_state_v5';
 
 
 /* ============================================================
@@ -1430,10 +1095,6 @@ const e = {
 };
 
 
-/* ============================================================
-   STATE
-   ============================================================ */
-
 const state = {
 
   driver:
@@ -1464,7 +1125,7 @@ const state = {
 
 
 /* ============================================================
-   STATUS
+   status
    ============================================================ */
 
 function setStatus(
@@ -1479,8 +1140,7 @@ function setStatus(
 
 
   if(
-    mode ===
-    'done'
+    mode === 'done'
   ){
 
     e.icon.textContent =
@@ -1489,11 +1149,9 @@ function setStatus(
     e.statusText.textContent =
       '完了';
 
-    e.status
-      .classList
-      .add(
-        'done'
-      );
+    e.status.classList.add(
+      'done'
+    );
 
     return;
 
@@ -1501,8 +1159,7 @@ function setStatus(
 
 
   if(
-    mode ===
-    'waiting'
+    mode === 'waiting'
   ){
 
     e.icon.textContent =
@@ -1526,7 +1183,7 @@ function setStatus(
 
 
 /* ============================================================
-   通知
+   notice
    ============================================================ */
 
 function showNotice(
@@ -1536,11 +1193,9 @@ function showNotice(
   e.notice.textContent =
     text;
 
-  e.notice
-    .classList
-    .add(
-      'show'
-    );
+  e.notice.classList.add(
+    'show'
+  );
 
 }
 
@@ -1550,17 +1205,15 @@ function hideNotice(){
   e.notice.textContent =
     '';
 
-  e.notice
-    .classList
-    .remove(
-      'show'
-    );
+  e.notice.classList.remove(
+    'show'
+  );
 
 }
 
 
 /* ============================================================
-   日付
+   date
    ============================================================ */
 
 function todayDate(){
@@ -1568,23 +1221,16 @@ function todayDate(){
   const d =
     new Date();
 
-
   return (
     d.getFullYear() +
     '-' +
     String(
       d.getMonth()+1
-    ).padStart(
-      2,
-      '0'
-    ) +
+    ).padStart(2,'0') +
     '-' +
     String(
       d.getDate()
-    ).padStart(
-      2,
-      '0'
-    )
+    ).padStart(2,'0')
   );
 
 }
@@ -1599,23 +1245,16 @@ function tomorrowDate(){
     d.getDate()+1
   );
 
-
   return (
     d.getFullYear() +
     '-' +
     String(
       d.getMonth()+1
-    ).padStart(
-      2,
-      '0'
-    ) +
+    ).padStart(2,'0') +
     '-' +
     String(
       d.getDate()
-    ).padStart(
-      2,
-      '0'
-    )
+    ).padStart(2,'0')
   );
 
 }
@@ -1626,21 +1265,14 @@ function currentTime(){
   const d =
     new Date();
 
-
   return (
     String(
       d.getHours()
-    ).padStart(
-      2,
-      '0'
-    ) +
+    ).padStart(2,'0') +
     ':' +
     String(
       d.getMinutes()
-    ).padStart(
-      2,
-      '0'
-    )
+    ).padStart(2,'0')
   );
 
 }
@@ -1652,20 +1284,15 @@ function jpDate(
 
   const m =
     String(
-      value ||
-      ''
+      value || ''
     ).match(
       /^(\d{4})-(\d{2})-(\d{2})$/
     );
 
-
-  if(
-    !m
-  ){
+  if(!m){
 
     return String(
-      value ||
-      ''
+      value || ''
     ).replace(
       /-/g,
       '/'
@@ -1673,30 +1300,12 @@ function jpDate(
 
   }
 
-
-  const year =
-    Number(
-      m[1]
-    );
-
-  const month =
-    Number(
-      m[2]
-    );
-
-  const day =
-    Number(
-      m[3]
-    );
-
-
   const d =
     new Date(
-      year,
-      month-1,
-      day
+      Number(m[1]),
+      Number(m[2])-1,
+      Number(m[3])
     );
-
 
   const week = [
     '日',
@@ -1708,11 +1317,10 @@ function jpDate(
     '土'
   ];
 
-
   return (
-    month +
+    Number(m[2]) +
     '/' +
-    day +
+    Number(m[3]) +
     '(' +
     week[
       d.getDay()
@@ -1729,35 +1337,21 @@ function slashDate(
 
   const m =
     String(
-      value ||
-      ''
+      value || ''
     ).match(
       /^(\d{4})-(\d{2})-(\d{2})$/
     );
 
-
-  if(
-    !m
-  ){
-
-    return value ||
-      '';
-
+  if(!m){
+    return value || '';
   }
 
-
   return (
-    Number(
-      m[1]
-    ) +
+    Number(m[1]) +
     '/' +
-    Number(
-      m[2]
-    ) +
+    Number(m[2]) +
     '/' +
-    Number(
-      m[3]
-    )
+    Number(m[3])
   );
 
 }
@@ -1775,14 +1369,10 @@ function getRecentDrivers(){
       JSON.parse(
         localStorage.getItem(
           RECENT_KEY
-        ) ||
-        '[]'
+        ) || '[]'
       );
 
-
-    return Array.isArray(
-      value
-    )
+    return Array.isArray(value)
       ? value
       : [];
 
@@ -1807,7 +1397,6 @@ function saveRecentDriver(
 
   }
 
-
   let list =
     getRecentDrivers()
       .filter(
@@ -1815,7 +1404,6 @@ function saveRecentDriver(
           item.driverKey !==
           driver.driverKey
       );
-
 
   list.unshift({
 
@@ -1833,10 +1421,7 @@ function saveRecentDriver(
     RECENT_KEY,
 
     JSON.stringify(
-      list.slice(
-        0,
-        10
-      )
+      list.slice(0,10)
     )
 
   );
@@ -1856,15 +1441,12 @@ function loadHistory(){
       JSON.parse(
         localStorage.getItem(
           HISTORY_KEY
-        ) ||
-        '[]'
+        ) || '[]'
       );
 
 
     state.history =
-      Array.isArray(
-        value
-      )
+      Array.isArray(value)
         ? value
         : [];
 
@@ -1884,13 +1466,10 @@ function loadHistory(){
 function saveHistory(){
 
   localStorage.setItem(
-
     HISTORY_KEY,
-
     JSON.stringify(
       state.history
     )
-
   );
 
 }
@@ -2006,8 +1585,7 @@ function loadWork(){
       JSON.parse(
         localStorage.getItem(
           WORK_KEY
-        ) ||
-        'null'
+        ) || 'null'
       );
 
 
@@ -2034,7 +1612,7 @@ function loadWork(){
 
 
 /* ============================================================
-   drivers
+   driver
    ============================================================ */
 
 function findDriver(
@@ -2079,8 +1657,8 @@ function renderDrivers(){
   const recentKeys =
     new Set(
       recent.map(
-        driver =>
-          driver.driverKey
+        item =>
+          item.driverKey
       )
     );
 
@@ -2094,7 +1672,6 @@ function renderDrivers(){
         'optgroup'
       );
 
-
     group.label =
       '最近使った人物';
 
@@ -2107,13 +1684,11 @@ function renderDrivers(){
             'option'
           );
 
-
         option.value =
           item.driverKey;
 
         option.textContent =
           item.displayName;
-
 
         group.appendChild(
           option
@@ -2148,7 +1723,6 @@ function renderDrivers(){
         'optgroup'
       );
 
-
     group.label =
       'その他の人物';
 
@@ -2161,13 +1735,11 @@ function renderDrivers(){
             'option'
           );
 
-
         option.value =
           driver.driverKey;
 
         option.textContent =
           driver.displayName;
-
 
         group.appendChild(
           option
@@ -2184,9 +1756,7 @@ function renderDrivers(){
   }
 
 
-  if(
-    current
-  ){
+  if(current){
 
     e.driver.value =
       current;
@@ -2247,7 +1817,7 @@ function selectDriver(
 
 function callServer(
   operation,
-  data = {}
+  data={}
 ){
 
   return new Promise(
@@ -2281,26 +1851,20 @@ function callServer(
           requestId,
 
         idToken:
-          state.idToken ||
-          '',
+          state.idToken || '',
 
         ...data
 
       }).forEach(
         (
-          [
-            key,
-            value
-          ]
+          [key,value]
         ) => {
 
           params.append(
             key,
             value == null
               ? ''
-              : String(
-                  value
-                )
+              : String(value)
           );
 
         }
@@ -2310,23 +1874,14 @@ function callServer(
       fetch(
         API_URL,
         {
-
-          method:
-            'POST',
-
-          mode:
-            'no-cors',
-
-          headers: {
-
+          method:'POST',
+          mode:'no-cors',
+          headers:{
             'Content-Type':
               'application/x-www-form-urlencoded;charset=UTF-8'
-
           },
-
           body:
             params.toString()
-
         }
       )
       .catch(
@@ -2358,8 +1913,7 @@ function pollApi(
 ){
 
   if(
-    attempt >=
-    45
+    attempt >= 45
   ){
 
     reject(
@@ -2441,8 +1995,7 @@ function pollApi(
 
       if(
         !response ||
-        response.ok !==
-          true
+        response.ok !== true
       ){
 
         reject(
@@ -2562,46 +2115,35 @@ function setMode(
     mode;
 
 
-  e.btnIn
-    .classList
-    .remove(
-      'active'
-    );
+  e.btnIn.classList.remove(
+    'active'
+  );
 
-  e.btnOut
-    .classList
-    .remove(
-      'active'
-    );
+  e.btnOut.classList.remove(
+    'active'
+  );
 
 
   if(
-    mode ===
-    'in'
+    mode === 'in'
   ){
 
-    e.btnIn
-      .classList
-      .add(
-        'active'
-      );
+    e.btnIn.classList.add(
+      'active'
+    );
 
   }else{
 
-    e.btnOut
-      .classList
-      .add(
-        'active'
-      );
+    e.btnOut.classList.add(
+      'active'
+    );
 
   }
 
 
-  e.editPanel
-    .classList
-    .add(
-      'show'
-    );
+  e.editPanel.classList.add(
+    'show'
+  );
 
 
   e.sendBtn.disabled =
@@ -2609,21 +2151,16 @@ function setMode(
 
 
   if(
-    mode ===
-    'in'
+    mode === 'in'
   ){
 
-    e.inFields
-      .classList
-      .remove(
-        'hidden'
-      );
+    e.inFields.classList.remove(
+      'hidden'
+    );
 
-    e.outFields
-      .classList
-      .add(
-        'hidden'
-      );
+    e.outFields.classList.add(
+      'hidden'
+    );
 
     e.reportDate.value =
       todayDate();
@@ -2633,17 +2170,13 @@ function setMode(
 
   }else{
 
-    e.inFields
-      .classList
-      .add(
-        'hidden'
-      );
+    e.inFields.classList.add(
+      'hidden'
+    );
 
-    e.outFields
-      .classList
-      .remove(
-        'hidden'
-      );
+    e.outFields.classList.remove(
+      'hidden'
+    );
 
     loadWork();
 
@@ -2651,8 +2184,7 @@ function setMode(
       todayDate();
 
     e.editClockInTime.value =
-      state.startTime ||
-      '';
+      state.startTime || '';
 
     e.clockOutTime.value =
       currentTime();
@@ -2681,7 +2213,7 @@ function setMode(
 
 
 /* ============================================================
-   image preparation
+   image
    ============================================================ */
 
 function prepareImage(
@@ -2699,15 +2231,12 @@ function prepareImage(
 
 
       reader.onerror =
-        () => {
-
+        () =>
           reject(
             new Error(
               '写真を読み込めませんでした'
             )
           );
-
-        };
 
 
       reader.onload =
@@ -2718,15 +2247,12 @@ function prepareImage(
 
 
           image.onerror =
-            () => {
-
+            () =>
               reject(
                 new Error(
                   '画像を開けませんでした'
                 )
               );
-
-            };
 
 
           image.onload =
@@ -2739,37 +2265,31 @@ function prepareImage(
               const scale =
                 Math.min(
                   1,
-
                   maxSide /
                     Math.max(
                       image.width,
                       image.height
                     )
-
                 );
 
 
               const width =
                 Math.max(
                   1,
-
                   Math.round(
                     image.width *
                     scale
                   )
-
                 );
 
 
               const height =
                 Math.max(
                   1,
-
                   Math.round(
                     image.height *
                     scale
                   )
-
                 );
 
 
@@ -2816,15 +2336,11 @@ function prepareImage(
               );
 
 
-              const dataUrl =
+              resolve(
                 canvas.toDataURL(
                   'image/jpeg',
                   .86
-                );
-
-
-              resolve(
-                dataUrl
+                )
               );
 
             };
@@ -2867,13 +2383,9 @@ async function runOcr(
 
   const result =
     await Tesseract.recognize(
-
       dataUrl,
-
       'eng',
-
       {
-
         logger:
           message => {
 
@@ -2886,8 +2398,7 @@ async function runOcr(
               const percent =
                 Math.round(
                   Number(
-                    message.progress ||
-                    0
+                    message.progress || 0
                   ) *
                   100
                 );
@@ -2902,20 +2413,16 @@ async function runOcr(
             }
 
           }
-
       }
-
     );
 
 
   return String(
-
     result &&
     result.data &&
     result.data.text
       ? result.data.text
       : ''
-
   );
 
 }
@@ -2989,11 +2496,9 @@ async function processPhoto(
       imageBase64;
 
 
-    e.photoPreviewWrap
-      .classList
-      .add(
-        'show'
-      );
+    e.photoPreviewWrap.classList.add(
+      'show'
+    );
 
 
     const ocrText =
@@ -3048,11 +2553,9 @@ async function processPhoto(
       draft;
 
 
-    e.editPanel
-      .classList
-      .add(
-        'show'
-      );
+    e.editPanel.classList.add(
+      'show'
+    );
 
 
     applyDraftToFields();
@@ -3073,11 +2576,9 @@ async function processPhoto(
         : '写真から日時を読み取れませんでした。手入力で修正できます。';
 
 
-    e.ocrNote
-      .classList
-      .add(
-        'show'
-      );
+    e.ocrNote.classList.add(
+      'show'
+    );
 
 
     e.sendBtn.disabled =
@@ -3086,7 +2587,6 @@ async function processPhoto(
 
     refreshMessage();
 
-
     hideNotice();
 
 
@@ -3094,11 +2594,8 @@ async function processPhoto(
       () => {
 
         e.editPanel.scrollIntoView({
-          behavior:
-            'smooth',
-
-          block:
-            'start'
+          behavior:'smooth',
+          block:'start'
         });
 
       },
@@ -3128,7 +2625,7 @@ async function processPhoto(
 
 
 /* ============================================================
-   draft反映
+   draft
    ============================================================ */
 
 function applyDraftToFields(){
@@ -3153,8 +2650,7 @@ function applyDraftToFields(){
 
 
   if(
-    state.mode ===
-    'in'
+    state.mode === 'in'
   ){
 
     e.reportDate.value =
@@ -3191,7 +2687,7 @@ function applyDraftToFields(){
 
 
 /* ============================================================
-   文章
+   message
    ============================================================ */
 
 function memoText(){
@@ -3210,22 +2706,17 @@ function buildInMessage(){
     e.reportDate.value ||
     todayDate();
 
-
   const time =
     e.clockInTime.value ||
     currentTime();
 
 
   let message =
-
     'お疲れ様でございます.\n' +
-
     jpDate(date) +
     time +
     '出勤いたしました.\n' +
-
     '本日もよろしくお願いいたします.\n\n' +
-
     '残業)' +
     (
       state.draft &&
@@ -3233,9 +2724,7 @@ function buildInMessage(){
         ? state.draft.previousOvertime
         : '0:00'
     ) +
-
     '\n' +
-
     '合計)' +
     (
       state.draft &&
@@ -3243,9 +2732,7 @@ function buildInMessage(){
         ? state.draft.monthlyOvertime
         : '0:00'
     ) +
-
     '\n' +
-
     '【MEMO】';
 
 
@@ -3270,11 +2757,18 @@ function buildInMessage(){
 
 
 function nextLabel(
-  date
+  value
 ){
 
   const now =
     new Date();
+
+
+  const target =
+    new Date(
+      value +
+      'T00:00:00'
+    );
 
 
   const today =
@@ -3282,13 +2776,6 @@ function nextLabel(
       now.getFullYear(),
       now.getMonth(),
       now.getDate()
-    );
-
-
-  const target =
-    new Date(
-      date +
-      'T00:00:00'
     );
 
 
@@ -3303,8 +2790,7 @@ function nextLabel(
 
 
   if(
-    diff ===
-    1
+    diff === 1
   ){
 
     return '明日';
@@ -3313,8 +2799,7 @@ function nextLabel(
 
 
   if(
-    diff ===
-    2
+    diff === 2
   ){
 
     return '明後日';
@@ -3333,58 +2818,45 @@ function buildOutMessage(){
     e.outReportDate.value ||
     todayDate();
 
-
   const start =
     e.editClockInTime.value ||
     state.startTime ||
     '00:00';
 
-
   const end =
     e.clockOutTime.value ||
     currentTime();
 
-
   const nextDate =
     e.nextDate.value ||
     tomorrowDate();
-
 
   const nextTime =
     e.nextTime.value ||
     '08:00';
 
 
+  /*
+   * ★ 余白行なし
+   */
+
   let message =
-
-    'お疲れ様でございます.\n\n' +
-
-    '業務完了いたしました.\n\n' +
-
-    slashDate(date) +
-    '\n' +
-
+    'お疲れ様でございます.\n' +
+    '業務完了いたしました.\n' +
+    slashDate(date) + '\n' +
     '稼働)' +
     start +
     '-' +
     end +
-
-    '\n\n' +
-
-    '本日は失礼させていただきます.\n\n' +
-
+    '\n' +
+    '本日は失礼させていただきます.\n' +
     '出勤) ' +
     jpDate(nextDate) +
     ' ' +
     nextTime +
-
-    '\n\n' +
-
-    nextLabel(
-      nextDate
-    ) +
-    'もよろしくお願いいたします.\n\n' +
-
+    '\n' +
+    nextLabel(nextDate) +
+    'もよろしくお願いいたします.\n' +
     '【MEMO】';
 
 
@@ -3420,8 +2892,7 @@ function refreshMessage(){
 
 
   const message =
-    state.mode ===
-      'in'
+    state.mode === 'in'
       ? buildInMessage()
       : buildOutMessage();
 
@@ -3430,11 +2901,9 @@ function refreshMessage(){
     message;
 
 
-  e.preview
-    .classList
-    .add(
-      'show'
-    );
+  e.preview.classList.add(
+    'show'
+  );
 
 
   return message;
@@ -3443,7 +2912,7 @@ function refreshMessage(){
 
 
 /* ============================================================
-   送信
+   send
    ============================================================ */
 
 async function sendAttendance(){
@@ -3514,38 +2983,32 @@ async function sendAttendance(){
             state.mode,
 
           reportDate:
-            state.mode ===
-              'in'
+            state.mode === 'in'
               ? e.reportDate.value
               : e.outReportDate.value,
 
           reportTime:
-            state.mode ===
-              'in'
+            state.mode === 'in'
               ? e.clockInTime.value
               : e.clockOutTime.value,
 
           startTime:
-            state.mode ===
-              'out'
+            state.mode === 'out'
               ? e.editClockInTime.value
               : e.clockInTime.value,
 
           endTime:
-            state.mode ===
-              'out'
+            state.mode === 'out'
               ? e.clockOutTime.value
               : '',
 
           nextDate:
-            state.mode ===
-              'out'
+            state.mode === 'out'
               ? e.nextDate.value
               : '',
 
           nextTime:
-            state.mode ===
-              'out'
+            state.mode === 'out'
               ? e.nextTime.value
               : '',
 
@@ -3558,8 +3021,7 @@ async function sendAttendance(){
 
     if(
       !result ||
-      result.ok !==
-        true
+      result.ok !== true
     ){
 
       throw new Error(
@@ -3574,8 +3036,7 @@ async function sendAttendance(){
 
     addHistory(
       (
-        state.mode ===
-          'in'
+        state.mode === 'in'
           ? '出勤'
           : '退勤'
       ) +
@@ -3584,8 +3045,7 @@ async function sendAttendance(){
 
 
     if(
-      state.mode ===
-      'in'
+      state.mode === 'in'
     ){
 
       state.startTime =
@@ -3597,8 +3057,7 @@ async function sendAttendance(){
 
 
     if(
-      state.mode ===
-      'out'
+      state.mode === 'out'
     ){
 
       state.startTime =
@@ -3614,49 +3073,33 @@ async function sendAttendance(){
     );
 
 
-    /*
-     * 送信後に選択状態を解除
-     */
+    e.btnIn.classList.remove(
+      'active'
+    );
 
-    e.btnIn
-      .classList
-      .remove(
-        'active'
-      );
-
-    e.btnOut
-      .classList
-      .remove(
-        'active'
-      );
+    e.btnOut.classList.remove(
+      'active'
+    );
 
 
-    e.editPanel
-      .classList
-      .remove(
-        'show'
-      );
+    e.editPanel.classList.remove(
+      'show'
+    );
 
 
-    e.photoPreviewWrap
-      .classList
-      .remove(
-        'show'
-      );
+    e.photoPreviewWrap.classList.remove(
+      'show'
+    );
 
 
-    e.ocrNote
-      .classList
-      .remove(
-        'show'
-      );
+    e.ocrNote.classList.remove(
+      'show'
+    );
 
 
-    e.preview
-      .classList
-      .remove(
-        'show'
-      );
+    e.preview.classList.remove(
+      'show'
+    );
 
 
     e.photoInput.value =
@@ -3694,7 +3137,7 @@ async function sendAttendance(){
 
 
 /* ============================================================
-   LIFF自動判別
+   LIFF
    ============================================================ */
 
 async function autoDetect(){
@@ -3775,9 +3218,7 @@ async function autoDetect(){
         );
 
 
-      if(
-        driver
-      ){
+      if(driver){
 
         selectDriver(
           driver,
@@ -3814,7 +3255,7 @@ async function autoDetect(){
 
 
 /* ============================================================
-   Utility
+   utility
    ============================================================ */
 
 function escapeHtml(
@@ -3851,7 +3292,7 @@ function escapeHtml(
 
 
 /* ============================================================
-   イベント
+   events
    ============================================================ */
 
 e.driver.addEventListener(
@@ -3945,8 +3386,6 @@ e.btnOut.addEventListener(
 );
 
 
-/* 写真ボタン */
-
 e.photoBtn.addEventListener(
   'click',
   () => {
@@ -3983,8 +3422,6 @@ e.photoBtn.addEventListener(
 );
 
 
-/* 写真選択 */
-
 e.photoInput.addEventListener(
   'change',
   () => {
@@ -4007,8 +3444,6 @@ e.photoInput.addEventListener(
   }
 );
 
-
-/* 入力変更 */
 
 [
   e.reportDate,
@@ -4036,8 +3471,6 @@ e.photoInput.addEventListener(
   }
 );
 
-
-/* 送信 */
 
 e.sendBtn.addEventListener(
   'click',
