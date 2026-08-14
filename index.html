@@ -9,252 +9,1137 @@
 .driver-pill.done{color:#16804a;background:#eefbf3;border-color:#ccefd8}.status-icon{font-size:18px}
 .manual-select-area{margin-bottom:12px;padding:10px 12px;border:1px solid #dceff9;border-radius:16px;background:#f9fdff}.manual-select-label{display:block;margin-bottom:6px;color:#61798e;font-size:13px;font-weight:800}
 .driver-select{width:100%;height:46px;padding:0 10px;border:1px solid #cfe5f5;border-radius:12px;background:#fff;color:#17324d;font-size:16px;font-weight:800}
-.attendance-buttons{display:grid;grid-template-columns:1fr 1fr;gap:12px}.attendance-btn{position:relative;width:100%;height:170px;border:0;border-radius:24px;overflow:hidden;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 22px rgba(39,96,139,.12)}.attendance-btn:disabled{opacity:.45}.attendance-text{position:relative;z-index:3;font-size:38px;font-weight:900}.btn-in{color:#0a4c7d;background:linear-gradient(180deg,#77d2ff,#c8efff 58%,#8ed777)}.btn-out{color:#fff;background:linear-gradient(180deg,#142c78,#10215c 60%,#07163f)}
-.guide{margin:16px 4px 10px;color:#1676c7;font-size:15px;font-weight:800;text-align:center}
-.edit-panel{display:none;margin-top:14px;padding:13px;background:#fff;border-radius:22px;box-shadow:var(--shadow-soft)}.edit-panel.show{display:block}.edit-title{margin:0 0 10px;color:#1676c7;font-size:26px;font-weight:900;text-align:center}.edit-title:before{content:"✎ ";color:#68aee6}
-.two-column{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7px;margin-bottom:7px}.field{min-width:0}.field label{display:block;margin-bottom:3px;color:#61798e;font-size:12px;font-weight:800}.field input{width:100%;height:40px;padding:0;border:1px solid #cfe5f5;border-radius:13px;background:#fff;color:#0d2340;font-size:20px;font-weight:900;text-align:center}.single-field{margin-bottom:8px}#nextDate{font-size:15px}
+.attendance-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.attendance-btn{position:relative;width:100%;height:88px;min-height:88px;border:0;border-radius:18px;overflow:hidden;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(39,96,139,.10);transition:transform .12s ease,opacity .12s ease}
+.attendance-btn:active{transform:translateY(1px) scale(.99)}.attendance-btn:disabled{opacity:.45;cursor:not-allowed}
+.attendance-text{position:relative;z-index:3;font-size:28px;font-weight:900;line-height:1;letter-spacing:.02em}
+.btn-in{color:#0a4c7d;background:linear-gradient(180deg,#77d2ff,#c8efff 58%,#8ed777);border:1px solid #a8ddf7}
+.btn-out{color:#fff;background:linear-gradient(180deg,#142c78,#10215c 60%,#07163f);border:1px solid #6077c5}
+.guide{margin:10px 4px 8px;color:#1676c7;font-size:14px;font-weight:800;text-align:center}
+.edit-panel{display:none;margin-top:10px;padding:13px;background:#fff;border-radius:22px;box-shadow:var(--shadow-soft);border:1px solid rgba(216,235,247,.9)}.edit-panel.show{display:block}
+.edit-title{margin:0 0 10px;color:#1676c7;font-size:26px;font-weight:900;text-align:center}.edit-title:before{content:"✎ ";color:#68aee6}
+.two-column{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7px;margin-bottom:7px}.field{min-width:0}.field label{display:block;margin-bottom:3px;color:#61798e;font-size:12px;font-weight:800}
+.field input{width:100%;height:40px;padding:0;border:1px solid #cfe5f5;border-radius:13px;background:#fff;color:#0d2340;font-size:20px;font-weight:900;text-align:center}
+.single-field{margin-bottom:8px}#nextDate{font-size:15px}
 .preview{display:none;margin-top:9px;padding:13px 15px;border:1px solid var(--line);border-radius:18px;background:#f4faff;color:#14446e;font-size:14px;line-height:1.7;font-weight:600;white-space:pre-line}.preview.show{display:block}
-.send-btn{width:100%;margin-top:7px;padding:14px 12px;border:0;border-radius:18px;background:linear-gradient(180deg,#56baf0,#2d88d8);color:#fff;font-size:20px;font-weight:900}.send-btn:disabled{opacity:.55}
-.history{margin-top:18px;padding-top:14px;border-top:1px solid #e2eef6}.history h3{margin:0 0 10px;color:#1676c7;font-size:20px;font-weight:900;text-align:center}.history h3:before{content:"🕘 "}.history-list{list-style:none;margin:0;padding:0}.history-list li{padding:9px 0;border-bottom:1px solid #edf4fa;color:#496173;font-size:14px}.history-list .empty{text-align:center;color:#7a90a3}.footer{padding:14px 10px 4px;color:#8aa0b2;font-size:14px;text-align:center}.hidden{display:none!important}
-@media(max-width:480px){.page{padding:12px 10px 20px}.hero{padding:22px 12px 18px;border-radius:24px}.hero h1{font-size:26px;gap:6px}.main-card{margin-top:10px;padding:12px;border-radius:22px}.attendance-buttons{gap:8px}.attendance-btn{height:126px;border-radius:18px}.attendance-text{font-size:30px}.edit-title{font-size:25px}.field input{font-size:20px}}
+.send-btn{width:100%;margin-top:7px;padding:14px 12px;border:0;border-radius:18px;background:linear-gradient(180deg,#56baf0,#2d88d8);color:#fff;font-size:20px;font-weight:900}.send-btn:disabled{opacity:.55;cursor:not-allowed}
+.history{margin-top:18px;padding-top:14px;border-top:1px solid #e2eef6}.history h3{margin:0 0 10px;color:#1676c7;font-size:20px;font-weight:900;text-align:center}.history h3:before{content:"🕘 "}.history-list{list-style:none;margin:0;padding:0}.history-list li{padding:9px 0;border-bottom:1px solid #edf4fa;color:#496173;font-size:14px}.history-list .empty{text-align:center;color:#7a90a3}
+.footer{padding:14px 10px 4px;color:#8aa0b2;font-size:14px;text-align:center}.hidden{display:none!important}
+@media(max-width:480px){
+.page{padding:12px 10px 20px}
+.hero{padding:22px 12px 18px;border-radius:24px}
+.hero h1{font-size:26px;gap:6px}
+.main-card{margin-top:10px;padding:12px;border-radius:22px}
+.driver-pill{min-height:42px;margin:0 auto 10px;padding:8px 15px;font-size:15px}
+.driver-select{height:44px;font-size:15px}
+.attendance-buttons{gap:7px}
+.attendance-btn{height:72px;min-height:72px;border-radius:16px}
+.attendance-text{font-size:25px}
+.guide{margin-top:8px;margin-bottom:6px;font-size:13px}
+.edit-panel{margin-top:8px;padding:13px 12px;border-radius:20px}
+.edit-title{font-size:25px}
+.field input{height:40px;font-size:20px}
+}
 </style></head><body><div class="page">
 
 <header class="hero"><h1>🚙 運転手MENU</h1></header>
 
 <main class="main-card">
-<div id="statusPill" class="driver-pill"><span id="statusIcon" class="status-icon">⏳</span><span id="statusText">自動判別中...</span></div>
 
-<div class="manual-select-area"><label class="manual-select-label" for="driverSelect">人物選択</label><select id="driverSelect" class="driver-select"><option value="">人物を選択してください</option></select></div>
+<div id="statusPill" class="driver-pill">
+<span id="statusIcon" class="status-icon">⏳</span>
+<span id="statusText">自動判別中...</span>
+</div>
+
+<div class="manual-select-area">
+<label class="manual-select-label" for="driverSelect">人物選択</label>
+<select id="driverSelect" class="driver-select">
+<option value="">人物を選択してください</option>
+</select>
+</div>
 
 <div class="attendance-buttons">
-<button id="btnIn" class="attendance-btn btn-in" type="button" disabled><span class="attendance-text">☀️ 出勤</span></button>
-<button id="btnOut" class="attendance-btn btn-out" type="button" disabled><span class="attendance-text">🌙 退勤</span></button>
+<button id="btnIn" class="attendance-btn btn-in" type="button" disabled>
+<span class="attendance-text">☀️ 出勤</span>
+</button>
+
+<button id="btnOut" class="attendance-btn btn-out" type="button" disabled>
+<span class="attendance-text">🌙 退勤</span>
+</button>
 </div>
 
 <div class="guide">必要な場合は修正お願いします。</div>
 
 <section id="editPanel" class="edit-panel">
+
 <h2 class="edit-title">内容修正</h2>
 
-<div id="inFields"><div class="field single-field"><label for="clockInTime">出勤時間</label><input id="clockInTime" type="time"></div></div>
+<div id="inFields">
+<div class="field single-field">
+<label for="clockInTime">出勤時間</label>
+<input id="clockInTime" type="time">
+</div>
+</div>
 
 <div id="outFields" class="hidden">
+
 <div class="two-column">
-<div class="field"><label for="editClockInTime">出勤時間</label><input id="editClockInTime" type="time"></div>
-<div class="field"><label for="clockOutTime">退勤時間</label><input id="clockOutTime" type="time"></div>
+<div class="field">
+<label for="editClockInTime">出勤時間</label>
+<input id="editClockInTime" type="time">
 </div>
+
+<div class="field">
+<label for="clockOutTime">退勤時間</label>
+<input id="clockOutTime" type="time">
+</div>
+</div>
+
 <div class="two-column">
-<div class="field"><label for="nextDate">次回出勤日</label><input id="nextDate" type="date"></div>
-<div class="field"><label for="nextTime">次回出勤時間</label><input id="nextTime" type="time"></div>
+<div class="field">
+<label for="nextDate">次回出勤日</label>
+<input id="nextDate" type="date">
 </div>
+
+<div class="field">
+<label for="nextTime">次回出勤時間</label>
+<input id="nextTime" type="time">
+</div>
+</div>
+
 </div>
 
 <div id="preview" class="preview"></div>
-<button id="sendBtn" class="send-btn" type="button" disabled>送信</button>
+
+<button id="sendBtn" class="send-btn" type="button" disabled>
+送信
+</button>
+
 </section>
 
-<section class="history"><h3>今日の履歴</h3><ul id="historyList" class="history-list"><li class="empty">まだ履歴はありません</li></ul></section>
+<section class="history">
+
+<h3>今日の履歴</h3>
+
+<ul id="historyList" class="history-list">
+<li class="empty">まだ履歴はありません</li>
+</ul>
+
+</section>
+
 </main>
 
-<footer class="footer">勤怠管理Bot</footer>
+<footer class="footer">
+勤怠管理Bot
+</footer>
+
 </div>
 
 <script>
+
 const API_URL='https://script.google.com/macros/s/AKfycbwcdo-FzaXTmRj2mVv-REGhopjLeDcr4XRkBO4s3v1mRKSjsjHHXu6Rh2N4I0Vi_ymv/exec';
 const LIFF_ID='2011011273-HIdBF1sM';
-const RECENT_KEY='driver_menu_recent_drivers_v1',HISTORY_KEY='driver_menu_attendance_history_v1',WORK_KEY='driver_menu_work_state_v1';
-const $=id=>document.getElementById(id);
-const e={status:$('statusPill'),icon:$('statusIcon'),statusText:$('statusText'),driver:$('driverSelect'),in:$('btnIn'),out:$('btnOut'),panel:$('editPanel'),inFields:$('inFields'),outFields:$('outFields'),inTime:$('clockInTime'),editIn:$('editClockInTime'),outTime:$('clockOutTime'),nextDate:$('nextDate'),nextTime:$('nextTime'),preview:$('preview'),send:$('sendBtn'),history:$('historyList')};
-const state={driver:null,idToken:'',mode:null,start:'',history:[],drivers:[],manual:false};
 
-const todayKey=()=>{let d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
-const time=d=>`${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
-const dateInput=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-const week=d=>['日','月','火','水','木','金','土'][d.getDay()];
-const dateLabel=d=>`${d.getMonth()+1}/${d.getDate()}(${week(d)})`;
-const dateSlash=d=>`${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()}`;
-const tomorrow=()=>{let d=new Date();d.setDate(d.getDate()+1);return d};
+const RECENT_KEY='driver_menu_recent_drivers_v1';
+const HISTORY_KEY='driver_menu_attendance_history_v1';
+const WORK_KEY='driver_menu_work_state_v1';
+
+const $=id=>document.getElementById(id);
+
+const e={
+status:$('statusPill'),
+icon:$('statusIcon'),
+statusText:$('statusText'),
+driver:$('driverSelect'),
+in:$('btnIn'),
+out:$('btnOut'),
+panel:$('editPanel'),
+inFields:$('inFields'),
+outFields:$('outFields'),
+inTime:$('clockInTime'),
+editIn:$('editClockInTime'),
+outTime:$('clockOutTime'),
+nextDate:$('nextDate'),
+nextTime:$('nextTime'),
+preview:$('preview'),
+send:$('sendBtn'),
+history:$('historyList')
+};
+
+const state={
+driver:null,
+idToken:'',
+mode:null,
+start:'',
+history:[],
+drivers:[],
+manual:false
+};
+
+function todayKey(){
+let d=new Date();
+return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function time(d){
+return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+}
+
+function dateInput(d){
+return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function week(d){
+return ['日','月','火','水','木','金','土'][d.getDay()];
+}
+
+function dateLabel(d){
+return `${d.getMonth()+1}/${d.getDate()}(${week(d)})`;
+}
+
+function dateSlash(d){
+return `${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()}`;
+}
+
+function tomorrow(){
+let d=new Date();
+d.setDate(d.getDate()+1);
+return d;
+}
 
 function setStatus(s){
- e.status.classList.remove('done');
- if(s==='done'){e.icon.textContent='✓';e.statusText.textContent='完了';e.status.classList.add('done')}
- else if(s==='waiting'){e.icon.textContent='👤';e.statusText.textContent='人物選択待ち'}
- else{e.icon.textContent='⏳';e.statusText.textContent='自動判別中...'}
+e.status.classList.remove('done');
+
+if(s==='done'){
+e.icon.textContent='✓';
+e.statusText.textContent='完了';
+e.status.classList.add('done');
+return;
+}
+
+if(s==='waiting'){
+e.icon.textContent='👤';
+e.statusText.textContent='人物選択待ち';
+return;
+}
+
+e.icon.textContent='⏳';
+e.statusText.textContent='自動判別中...';
 }
 
 function recent(){
- try{return JSON.parse(localStorage.getItem(RECENT_KEY)||'[]')}catch(_){return[]}
+try{
+return JSON.parse(
+localStorage.getItem(RECENT_KEY)||'[]'
+);
+}catch(_){
+return[];
 }
+}
+
 function saveRecent(d){
- if(!d)return;
- let a=recent().filter(x=>x.driverKey!==d.driverKey);
- a.unshift({driverKey:d.driverKey,displayName:d.displayName});
- localStorage.setItem(RECENT_KEY,JSON.stringify(a.slice(0,10)));
+if(!d)return;
+
+let a=
+recent().filter(
+x=>x.driverKey!==d.driverKey
+);
+
+a.unshift({
+driverKey:d.driverKey,
+displayName:d.displayName
+});
+
+localStorage.setItem(
+RECENT_KEY,
+JSON.stringify(a.slice(0,10))
+);
 }
-function findDriver(k){return state.drivers.find(d=>d.driverKey===k)||recent().find(d=>d.driverKey===k)||null}
+
+function findDriver(k){
+return state.drivers.find(
+d=>d.driverKey===k
+)||recent().find(
+d=>d.driverKey===k
+)||null;
+}
+
 function selectDriver(d,manual=true){
- if(!d)return;
- state.driver=d;state.manual=manual;saveRecent(d);
- e.driver.value=d.driverKey;e.in.disabled=e.out.disabled=e.send.disabled=false;
- loadWork();setStatus('done');
+if(!d)return;
+
+state.driver=d;
+state.manual=manual;
+
+saveRecent(d);
+
+e.driver.value=d.driverKey;
+e.in.disabled=false;
+e.out.disabled=false;
+
+loadWork();
+setStatus('done');
 }
-function syncDriver(){let d=findDriver(e.driver.value);if(d){selectDriver(d,true);return true}return false}
+
+function syncDriver(){
+let d=findDriver(e.driver.value);
+
+if(d){
+selectDriver(d,true);
+return true;
+}
+
+return false;
+}
 
 function renderDrivers(){
- let current=state.driver?.driverKey||e.driver.value;
- e.driver.innerHTML='<option value="">人物を選択してください</option>';
- let r=recent(),used=new Set(r.map(x=>x.driverKey));
- if(r.length){
-  let g=document.createElement('optgroup');g.label='最近使った人物';
-  r.forEach(x=>{let d=findDriver(x.driverKey)||x,o=document.createElement('option');o.value=d.driverKey;o.textContent=d.displayName;g.appendChild(o)});
-  e.driver.appendChild(g);
- }
- let others=state.drivers.filter(d=>!used.has(d.driverKey));
- if(others.length){
-  let g=document.createElement('optgroup');g.label='その他の人物';
-  others.forEach(d=>{let o=document.createElement('option');o.value=d.driverKey;o.textContent=d.displayName;g.appendChild(o)});
-  e.driver.appendChild(g);
- }
- if(current)e.driver.value=current;
+
+let current=
+state.driver?.driverKey ||
+e.driver.value;
+
+e.driver.innerHTML=
+'<option value="">人物を選択してください</option>';
+
+let r=recent();
+let used=
+new Set(
+r.map(x=>x.driverKey)
+);
+
+if(r.length){
+
+let g=document.createElement('optgroup');
+
+g.label='最近使った人物';
+
+r.forEach(x=>{
+
+let d=
+findDriver(x.driverKey)||x;
+
+let o=
+document.createElement('option');
+
+o.value=d.driverKey;
+o.textContent=d.displayName;
+
+g.appendChild(o);
+
+});
+
+e.driver.appendChild(g);
+
+}
+
+let others=
+state.drivers.filter(
+d=>!used.has(d.driverKey)
+);
+
+if(others.length){
+
+let g=
+document.createElement('optgroup');
+
+g.label='その他の人物';
+
+others.forEach(d=>{
+
+let o=
+document.createElement('option');
+
+o.value=d.driverKey;
+o.textContent=d.displayName;
+
+g.appendChild(o);
+
+});
+
+e.driver.appendChild(g);
+
+}
+
+if(current){
+e.driver.value=current;
+}
+
 }
 
 function callServer(operation,data={}){
- return new Promise((resolve,reject)=>{
-  let id='req_'+Date.now()+'_'+Math.random().toString(36).slice(2),p=new URLSearchParams();
-  Object.entries({action:'api',operation,requestId:id,idToken:state.idToken||'',...data}).forEach(([k,v])=>p.append(k,v??''));
-  fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:p}).catch(()=>{});
-  poll(id,resolve,reject,0);
- });
+
+return new Promise(
+(resolve,reject)=>{
+
+let id=
+'req_'+
+Date.now()+
+'_'+
+Math.random()
+.toString(36)
+.slice(2);
+
+let p=
+new URLSearchParams();
+
+Object.entries({
+action:'api',
+operation,
+requestId:id,
+idToken:state.idToken||'',
+...data
+})
+.forEach(
+([k,v])=>
+p.append(
+k,
+v??''
+)
+);
+
+fetch(
+API_URL,
+{
+method:'POST',
+mode:'no-cors',
+headers:{
+'Content-Type':
+'application/x-www-form-urlencoded;charset=UTF-8'
+},
+body:p
 }
-function poll(id,resolve,reject,n){
- if(n>=40)return reject(new Error('Apps Script APIから応答がありません'));
- let cb='gas_'+Date.now()+'_'+n,s=document.createElement('script');
- const clean=()=>{s.remove();try{delete window[cb]}catch(_){}};
- window[cb]=r=>{
-  clean();
-  if(r&&(r.status==='pending'||r.status==='processing'))return setTimeout(()=>poll(id,resolve,reject,n+1),500);
-  if(!r||r.ok!==true)return reject(new Error(r?.error||'Apps Script APIエラー'));
-  resolve(r.data);
- };
- s.onerror=()=>{clean();setTimeout(()=>poll(id,resolve,reject,n+1),500)};
- s.src=`${API_URL}?action=pollApi&requestId=${encodeURIComponent(id)}&callback=${cb}&_=${Date.now()}`;
- document.body.appendChild(s);
+).catch(()=>{});
+
+poll(
+id,
+resolve,
+reject,
+0
+);
+
+}
+);
+
+}
+
+function poll(
+id,
+resolve,
+reject,
+n
+){
+
+if(n>=40){
+return reject(
+new Error(
+'Apps Script APIから応答がありません'
+)
+);
+}
+
+let cb=
+'gas_'+
+Date.now()+
+'_'+
+n;
+
+let s=
+document.createElement(
+'script'
+);
+
+const clean=()=>{
+s.remove();
+try{
+delete window[cb];
+}catch(_){}
+};
+
+window[cb]=r=>{
+
+clean();
+
+if(
+r&&
+(
+r.status==='pending'||
+r.status==='processing'
+)
+){
+return setTimeout(
+()=>poll(
+id,
+resolve,
+reject,
+n+1
+),
+500
+);
+}
+
+if(
+!r||
+r.ok!==true
+){
+return reject(
+new Error(
+r?.error||
+'Apps Script APIエラー'
+)
+);
+}
+
+resolve(r.data);
+
+};
+
+s.onerror=()=>{
+clean();
+
+setTimeout(
+()=>poll(
+id,
+resolve,
+reject,
+n+1
+),
+500
+);
+};
+
+s.src=
+`${API_URL}?action=pollApi&requestId=${encodeURIComponent(id)}&callback=${cb}&_=${Date.now()}`;
+
+document.body.appendChild(s);
+
 }
 
 async function loadDrivers(){
- try{
-  let list=await callServer('getDriverList');
-  state.drivers=Array.isArray(list)?list:[];
-  renderDrivers();
- }catch(err){console.error(err)}
+
+try{
+
+let list=
+await callServer(
+'getDriverList'
+);
+
+state.drivers=
+Array.isArray(list)
+?list
+:[];
+
+renderDrivers();
+
+}catch(err){
+
+console.error(err);
+
+}
+
 }
 
 function saveWork(){
- if(!state.driver)return;
- localStorage.setItem(WORK_KEY,JSON.stringify({date:todayKey(),driverKey:state.driver.driverKey,startTime:state.start}));
+
+if(!state.driver)return;
+
+localStorage.setItem(
+WORK_KEY,
+JSON.stringify({
+
+date:todayKey(),
+
+driverKey:
+state.driver.driverKey,
+
+startTime:
+state.start
+
+})
+);
+
 }
+
 function loadWork(){
- try{
-  let x=JSON.parse(localStorage.getItem(WORK_KEY)||'null');
-  if(x&&x.date===todayKey()&&(!state.driver||x.driverKey===state.driver.driverKey))state.start=x.startTime||'';
- }catch(_){}
+
+try{
+
+let x=
+JSON.parse(
+localStorage.getItem(
+WORK_KEY
+)||'null'
+);
+
+if(
+x&&
+x.date===todayKey()&&
+(
+!state.driver||
+x.driverKey===state.driver.driverKey
+)
+){
+state.start=
+x.startTime||'';
+}
+
+}catch(_){}
+
 }
 
 function nextLabel(target){
- let a=new Date(),t=new Date(target.getFullYear(),target.getMonth(),target.getDate()),today=new Date(a.getFullYear(),a.getMonth(),a.getDate());
- let diff=Math.round((t-today)/86400000);
- if(diff===1)return'明日';
- if(diff===2)return'明後日';
- return'次回';
+
+let a=new Date();
+
+let t=
+new Date(
+target.getFullYear(),
+target.getMonth(),
+target.getDate()
+);
+
+let today=
+new Date(
+a.getFullYear(),
+a.getMonth(),
+a.getDate()
+);
+
+let diff=
+Math.round(
+(t-today)/
+86400000
+);
+
+if(diff===1)return'明日';
+
+if(diff===2)return'明後日';
+
+return'次回';
+
 }
 
 function inMessage(){
- let d=new Date();
- return `お疲れ様でございます。\n\n${dateLabel(d)}出勤いたしました。\n\n本日もよろしくお願いいたします。`;
+
+let d=new Date();
+
+return(
+`お疲れ様でございます。\n\n`+
+`${dateLabel(d)}出勤いたしました。\n\n`+
+`本日もよろしくお願いいたします。`
+);
+
 }
+
 function outMessage(){
- let d=new Date(),next=e.nextDate.value?new Date(e.nextDate.value+'T00:00:00'):tomorrow();
- let start=e.editIn.value||state.start||'00:00',end=e.outTime.value||'00:00';
- return `お疲れ様でございます。\n\n業務完了いたしました。\n\n${dateSlash(d)}\n稼働)${start}-${end}\n\n本日は失礼させていただきます。\n\n出勤) ${dateLabel(next)} ${e.nextTime.value||'08:00'}\n\n${nextLabel(next)}もよろしくお願いいたします。`;
+
+let d=new Date();
+
+let next=
+e.nextDate.value
+?new Date(
+e.nextDate.value+
+'T00:00:00'
+)
+:tomorrow();
+
+let start=
+e.editIn.value||
+state.start||
+'00:00';
+
+let end=
+e.outTime.value||
+'00:00';
+
+return(
+`お疲れ様でございます。\n\n`+
+`業務完了いたしました。\n\n`+
+`${dateSlash(d)}\n`+
+`稼働)${start}-${end}\n\n`+
+`本日は失礼させていただきます。\n\n`+
+`出勤) ${dateLabel(next)} ${e.nextTime.value||'08:00'}\n\n`+
+`${nextLabel(next)}もよろしくお願いいたします。`
+);
+
 }
+
 function refresh(){
- let m=state.mode==='in'?inMessage():outMessage();
- e.preview.textContent=m;e.preview.classList.add('show');return m;
+
+let m=
+state.mode==='in'
+?inMessage()
+:outMessage();
+
+e.preview.textContent=m;
+
+e.preview.classList.add(
+'show'
+);
+
+return m;
 }
 
 function setMode(mode){
- state.mode=mode;e.panel.classList.add('show');
- let now=new Date();
- if(mode==='in'){
-  e.inFields.classList.remove('hidden');e.outFields.classList.add('hidden');
-  e.send.textContent='出勤送信';e.inTime.value=time(now);state.start=e.inTime.value;
- }else{
-  e.inFields.classList.add('hidden');e.outFields.classList.remove('hidden');
-  e.send.textContent='退勤送信';loadWork();e.editIn.value=state.start||time(now);e.outTime.value=time(now);e.nextDate.value=dateInput(tomorrow());e.nextTime.value='08:00';
- }
- refresh();
+
+state.mode=mode;
+
+e.panel.classList.add(
+'show'
+);
+
+let now=new Date();
+
+if(mode==='in'){
+
+e.inFields.classList.remove(
+'hidden'
+);
+
+e.outFields.classList.add(
+'hidden'
+);
+
+e.send.textContent=
+'出勤送信';
+
+e.inTime.value=
+time(now);
+
+state.start=
+e.inTime.value;
+
+}else{
+
+e.inFields.classList.add(
+'hidden'
+);
+
+e.outFields.classList.remove(
+'hidden'
+);
+
+e.send.textContent=
+'退勤送信';
+
+loadWork();
+
+e.editIn.value=
+state.start||
+time(now);
+
+e.outTime.value=
+time(now);
+
+e.nextDate.value=
+dateInput(tomorrow());
+
+e.nextTime.value=
+'08:00';
+
+}
+
+refresh();
+
+setTimeout(
+function(){
+
+const isMobile=
+window.matchMedia(
+'(max-width:480px)'
+).matches;
+
+if(isMobile){
+
+e.panel.scrollIntoView({
+
+behavior:'smooth',
+
+block:'center'
+
+});
+
+}
+
+},
+150
+);
+
 }
 
 function renderHistory(){
- if(!state.history.length){e.history.innerHTML='<li class="empty">まだ履歴はありません</li>';return}
- e.history.innerHTML=state.history.map(x=>`<li>${x.time}　${x.text}</li>`).join('');
+
+if(!state.history.length){
+
+e.history.innerHTML=
+'<li class="empty">まだ履歴はありません</li>';
+
+return;
+
 }
+
+e.history.innerHTML=
+state.history.map(
+x=>
+`<li>${x.time}　${x.text}</li>`
+)
+.join('');
+
+}
+
 function loadHistory(){
- try{state.history=JSON.parse(localStorage.getItem(HISTORY_KEY)||'[]');if(!Array.isArray(state.history))state.history=[]}catch(_){state.history=[]}
- renderHistory();
+
+try{
+
+state.history=
+JSON.parse(
+localStorage.getItem(
+HISTORY_KEY
+)||'[]'
+);
+
+if(
+!Array.isArray(
+state.history
+)
+){
+state.history=[];
 }
+
+}catch(_){
+
+state.history=[];
+
+}
+
+renderHistory();
+
+}
+
 function addHistory(text){
- state.history.unshift({time:new Date().toLocaleString('ja-JP'),text});
- state.history=state.history.slice(0,50);localStorage.setItem(HISTORY_KEY,JSON.stringify(state.history));renderHistory();
+
+state.history.unshift({
+
+time:
+new Date()
+.toLocaleString(
+'ja-JP'
+),
+
+text
+
+});
+
+state.history=
+state.history.slice(0,50);
+
+localStorage.setItem(
+
+HISTORY_KEY,
+
+JSON.stringify(
+state.history
+)
+);
+
+renderHistory();
+
 }
 
-e.driver.onchange=()=>{let d=findDriver(e.driver.value);if(d)selectDriver(d,true)};
-e.in.onclick=()=>{if(!state.driver&&!syncDriver())return alert('先に人物を選択してください。');setMode('in')};
-e.out.onclick=()=>{if(!state.driver&&!syncDriver())return alert('先に人物を選択してください。');setMode('out')};
-e.inTime.oninput=()=>{state.start=e.inTime.value;refresh()};
-e.editIn.oninput=()=>{state.start=e.editIn.value;refresh()};
-e.outTime.oninput=e.nextTime.oninput=refresh;
-e.nextDate.onchange=refresh;
+e.driver.onchange=()=>{
 
-e.send.onclick=async()=>{
- if(!state.driver)return alert('先に人物を選択してください。');
- let message;
- if(state.mode==='in'){
-  if(!e.inTime.value)return alert('出勤時間を入力してください。');
-  state.start=e.inTime.value;saveWork();message=inMessage();
- }else{
-  if(!e.editIn.value||!e.outTime.value)return alert('出勤時間・退勤時間を確認してください。');
-  state.start=e.editIn.value;saveWork();message=outMessage();
- }
- try{
-  e.send.disabled=true;
-  let r=await callServer('sendAttendance',{message,selectedDriverKey:state.driver.driverKey});
-  if(!r?.ok)throw new Error(r?.error||'送信に失敗しました');
-  addHistory((state.mode==='in'?'出勤':'退勤')+'を送信しました');
-  saveRecent(state.driver);e.panel.classList.remove('show');state.mode=null;
- }catch(err){alert(err.message||'送信に失敗しました')}
- finally{e.send.disabled=false}
+let d=
+findDriver(
+e.driver.value
+);
+
+if(d){
+selectDriver(
+d,
+true
+);
+}
+
+};
+
+e.in.onclick=()=>{
+
+if(
+!state.driver&&
+!syncDriver()
+){
+return alert(
+'先に人物を選択してください。'
+);
+}
+
+setMode('in');
+
+};
+
+e.out.onclick=()=>{
+
+if(
+!state.driver&&
+!syncDriver()
+){
+return alert(
+'先に人物を選択してください。'
+);
+}
+
+setMode('out');
+
+};
+
+e.inTime.oninput=()=>{
+
+state.start=
+e.inTime.value;
+
+refresh();
+
+};
+
+e.editIn.oninput=()=>{
+
+state.start=
+e.editIn.value;
+
+refresh();
+
+};
+
+e.outTime.oninput=
+refresh;
+
+e.nextTime.oninput=
+refresh;
+
+e.nextDate.onchange=
+refresh;
+
+e.send.onclick=
+async()=>{
+
+if(!state.driver){
+
+return alert(
+'先に人物を選択してください。'
+);
+
+}
+
+let message;
+
+if(state.mode==='in'){
+
+if(!e.inTime.value){
+
+return alert(
+'出勤時間を入力してください。'
+);
+
+}
+
+state.start=
+e.inTime.value;
+
+saveWork();
+
+message=
+inMessage();
+
+}else{
+
+if(
+!e.editIn.value||
+!e.outTime.value
+){
+
+return alert(
+'出勤時間・退勤時間を確認してください。'
+);
+
+}
+
+state.start=
+e.editIn.value;
+
+saveWork();
+
+message=
+outMessage();
+
+}
+
+try{
+
+e.send.disabled=
+true;
+
+let r=
+await callServer(
+'sendAttendance',
+{
+message,
+selectedDriverKey:
+state.driver.driverKey
+}
+);
+
+if(!r?.ok){
+
+throw new Error(
+r?.error||
+'送信に失敗しました'
+);
+
+}
+
+addHistory(
+(state.mode==='in'
+?'出勤'
+:'退勤')+
+'を送信しました'
+);
+
+saveRecent(
+state.driver
+);
+
+e.panel.classList.remove(
+'show'
+);
+
+state.mode=
+null;
+
+}catch(err){
+
+alert(
+err.message||
+'送信に失敗しました'
+);
+
+}finally{
+
+e.send.disabled=
+false;
+
+}
+
 };
 
 async function autoDetect(){
- setStatus('detecting');
- try{
-  await liff.init({liffId:LIFF_ID,withLoginOnExternalBrowser:true});
-  if(!liff.isLoggedIn())return setStatus('waiting');
-  state.idToken=liff.getIDToken()||'';
-  if(!state.idToken)return setStatus('waiting');
-  let info=await callServer('getDriverInfo');
-  if(state.manual&&state.driver)return;
-  if(info?.found){
-   let d=findDriver(info.driverKey);
-   if(d)return selectDriver(d,false);
-  }
-  setStatus('waiting');
- }catch(err){console.error(err);setStatus('waiting')}
+
+setStatus(
+'detecting'
+);
+
+try{
+
+await liff.init({
+
+liffId:
+LIFF_ID,
+
+withLoginOnExternalBrowser:
+true
+
+});
+
+if(
+!liff.isLoggedIn()
+){
+
+return setStatus(
+'waiting'
+);
+
 }
 
-window.addEventListener('load',()=>{
- loadHistory();loadWork();renderDrivers();loadDrivers();
- setTimeout(autoDetect,100);
-});
-</script></body></html>
+state.idToken=
+liff.getIDToken()||'';
+
+if(!state.idToken){
+
+return setStatus(
+'waiting'
+);
+
+}
+
+let info=
+await callServer(
+'getDriverInfo'
+);
+
+if(
+state.manual&&
+state.driver
+){
+return;
+}
+
+if(
+info?.found
+){
+
+let d=
+findDriver(
+info.driverKey
+);
+
+if(d){
+
+selectDriver(
+d,
+false
+);
+
+return;
+
+}
+
+}
+
+setStatus(
+'waiting'
+);
+
+}catch(err){
+
+console.error(
+err
+);
+
+setStatus(
+'waiting'
+);
+
+}
+
+}
+
+window.addEventListener(
+'load',
+()=>{
+
+loadHistory();
+
+loadWork();
+
+renderDrivers();
+
+loadDrivers();
+
+setTimeout(
+autoDetect,
+100
+);
+
+}
+);
+
+</script>
+</body>
+</html>
