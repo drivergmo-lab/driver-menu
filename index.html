@@ -22,36 +22,75 @@
   --soft:#f6fbfe;
   --shadow:0 12px 34px rgba(40,92,128,.10);
 }
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
+
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
+  margin:0;
+  padding:0;
+}
+
 body{
   min-height:100vh;
-  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Hiragino Sans",
+    "Yu Gothic",
+    Meiryo,
+    sans-serif;
   color:var(--text);
-  background:linear-gradient(var(--bg),var(--bg2));
+  background:
+    linear-gradient(
+      var(--bg),
+      var(--bg2)
+    );
 }
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
 .page{
   width:min(760px,100%);
   margin:0 auto;
   padding:12px 10px 24px;
 }
+
 .hero{
   position:relative;
   overflow:hidden;
   padding:18px 14px 20px;
   border-radius:26px;
   text-align:center;
-  background:linear-gradient(180deg,#bfeaff 0%,#e9f9ff 70%,#98dc83 70%,#7ccf71 100%);
+  background:
+    linear-gradient(
+      180deg,
+      #bfeaff 0%,
+      #e9f9ff 70%,
+      #98dc83 70%,
+      #7ccf71 100%
+    );
   box-shadow:var(--shadow);
 }
+
 .hero-car{
   position:relative;
   z-index:1;
   font-size:48px;
   line-height:1;
 }
+
 .hero h1{
   position:relative;
   z-index:1;
@@ -62,6 +101,7 @@ button{cursor:pointer}
   font-weight:900;
   white-space:nowrap;
 }
+
 .card{
   margin-top:12px;
   padding:13px;
@@ -69,12 +109,14 @@ button{cursor:pointer}
   background:rgba(255,255,255,.97);
   box-shadow:var(--shadow);
 }
+
 .top-row{
   display:grid;
   grid-template-columns:158px minmax(0,1fr);
   gap:8px;
   align-items:stretch;
 }
+
 .status{
   min-height:78px;
   display:flex;
@@ -90,26 +132,34 @@ button{cursor:pointer}
   font-weight:900;
   text-align:center;
 }
+
 .status.done{
   background:#eefbf3;
   border-color:#ccefd8;
   color:var(--green);
 }
-.status-icon{line-height:1}
+
+.status-icon{
+  line-height:1;
+}
+
 .select-box{
   padding:9px 11px;
   border:1px solid var(--line);
   border-radius:18px;
   background:#f9fdff;
 }
+
 .select-box label,
-.field-title{
+.field-title,
+.memo-title{
   display:block;
   margin-bottom:5px;
   color:#637c90;
   font-size:13px;
   font-weight:900;
 }
+
 select,
 input[type="date"],
 input[type="time"],
@@ -121,6 +171,7 @@ textarea{
   color:var(--text);
   outline:none;
 }
+
 select,
 input[type="date"],
 input[type="time"]{
@@ -129,12 +180,16 @@ input[type="time"]{
   font-size:16px;
   font-weight:800;
 }
+
 select:focus,
 input:focus,
 textarea:focus{
   border-color:#63b4ea;
-  box-shadow:0 0 0 3px rgba(99,180,234,.12);
+  box-shadow:
+    0 0 0 3px
+    rgba(99,180,234,.12);
 }
+
 .assignment{
   display:flex;
   align-items:center;
@@ -150,16 +205,19 @@ textarea:focus{
   font-weight:900;
   text-align:center;
 }
+
 .assignment.ready{
   color:var(--blue);
   background:#eef9ff;
 }
+
 .mode-box{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:8px;
   margin-top:10px;
 }
+
 .mode-btn{
   min-height:90px;
   border:0;
@@ -168,19 +226,34 @@ textarea:focus{
   font-weight:900;
   transition:.12s;
 }
-.mode-btn:active{transform:scale(.99)}
+
+.mode-btn:active{
+  transform:scale(.99);
+}
+
 .mode-btn.in{
-  background:linear-gradient(#73cdf8,#7dd77a);
+  background:
+    linear-gradient(
+      #73cdf8,
+      #7dd77a
+    );
   color:#084e78;
 }
+
 .mode-btn.out{
-  background:linear-gradient(#1b357c,#0e1e4d);
+  background:
+    linear-gradient(
+      #1b357c,
+      #0e1e4d
+    );
   color:#fff;
 }
+
 .mode-btn.off{
   opacity:.38;
   filter:grayscale(.18);
 }
+
 .guide{
   margin:9px 4px;
   color:var(--blue);
@@ -188,6 +261,7 @@ textarea:focus{
   font-weight:900;
   text-align:center;
 }
+
 .upload-btn{
   width:100%;
   min-height:54px;
@@ -198,10 +272,12 @@ textarea:focus{
   font-size:17px;
   font-weight:900;
 }
+
 .upload-btn:disabled{
   opacity:.45;
   cursor:not-allowed;
 }
+
 .notice{
   display:none;
   margin-top:9px;
@@ -213,18 +289,27 @@ textarea:focus{
   line-height:1.45;
   text-align:center;
 }
-.notice.show{display:block}
+
+.notice.show{
+  display:block;
+}
+
 .preview{
   display:none;
   margin-top:11px;
 }
-.preview.show{display:block}
+
+.preview.show{
+  display:block;
+}
+
 .preview-box{
   padding:12px;
   border:1px solid var(--line);
   border-radius:18px;
   background:#fff;
 }
+
 .photo-preview{
   display:block;
   width:100%;
@@ -233,12 +318,14 @@ textarea:focus{
   border-radius:14px;
   background:#eef4f8;
 }
+
 .ocr-title{
   margin:11px 0 5px;
   color:var(--blue);
   font-size:16px;
   font-weight:900;
 }
+
 .ocr-text{
   max-height:120px;
   overflow:auto;
@@ -250,12 +337,14 @@ textarea:focus{
   font-size:11px;
   white-space:pre-wrap;
 }
+
 .fields{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:7px;
   margin-top:9px;
 }
+
 .field{
   min-width:0;
   padding:9px;
@@ -263,9 +352,20 @@ textarea:focus{
   border-radius:14px;
   background:var(--soft);
 }
-.field.full{grid-column:1/-1}
-.field-title{margin-bottom:4px}
-#nextDate{font-size:15px;letter-spacing:-.4px}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.field-title{
+  margin-bottom:4px;
+}
+
+#nextDate{
+  font-size:15px;
+  letter-spacing:-.4px;
+}
+
 .summary{
   grid-column:1/-1;
   padding:9px 10px;
@@ -277,7 +377,11 @@ textarea:focus{
   font-size:13px;
   font-weight:800;
 }
-.summary strong{color:var(--blue)}
+
+.summary strong{
+  color:var(--blue);
+}
+
 .message-box{
   margin-top:9px;
   padding:11px;
@@ -285,6 +389,7 @@ textarea:focus{
   border-radius:16px;
   background:#f7fcff;
 }
+
 .message-preview{
   white-space:pre-line;
   font-size:14px;
@@ -292,12 +397,11 @@ textarea:focus{
   color:#15446e;
   font-weight:700;
 }
+
 .memo-title{
   margin-top:10px;
-  color:#637c90;
-  font-size:13px;
-  font-weight:900;
 }
+
 #memo{
   min-height:90px;
   margin-top:5px;
@@ -305,26 +409,34 @@ textarea:focus{
   resize:vertical;
   font-size:14px;
 }
+
 .send-btn{
   width:100%;
   min-height:54px;
   margin-top:9px;
   border:0;
   border-radius:17px;
-  background:linear-gradient(#56baf0,#2d88d8);
+  background:
+    linear-gradient(
+      #56baf0,
+      #2d88d8
+    );
   color:#fff;
   font-size:18px;
   font-weight:900;
 }
+
 .send-btn:disabled{
   opacity:.45;
   cursor:not-allowed;
 }
+
 .history{
   margin-top:16px;
   padding-top:13px;
   border-top:1px solid #e2eef6;
 }
+
 .history-title{
   margin:0 0 8px;
   color:var(--blue);
@@ -332,14 +444,20 @@ textarea:focus{
   font-weight:900;
   text-align:center;
 }
+
 .history-list{
   list-style:none;
   padding:0;
   margin:0;
 }
+
 .history-list li{
   display:grid;
-  grid-template-columns:84px 42px minmax(78px,1fr) 26px;
+  grid-template-columns:
+    84px
+    42px
+    minmax(78px,1fr)
+    26px;
   gap:4px;
   align-items:center;
   padding:9px 1px;
@@ -348,46 +466,91 @@ textarea:focus{
   font-size:12px;
   white-space:nowrap;
 }
-.history-date{font-weight:800}
+
+.history-date{
+  font-weight:800;
+}
+
 .history-type{
   color:var(--blue);
   font-weight:900;
 }
+
 .history-time{
   color:var(--text);
   font-weight:900;
   overflow:hidden;
   text-overflow:ellipsis;
 }
+
 .history-ok{
   color:var(--green);
   font-size:16px;
   font-weight:900;
   text-align:right;
 }
+
 .empty{
   display:block !important;
   text-align:center;
   color:#7a90a3;
 }
+
 .footer{
   padding:14px 10px 4px;
   color:#8aa0b2;
   font-size:13px;
   text-align:center;
 }
-.hidden{display:none!important}
+
+.hidden{
+  display:none !important;
+}
+
 @media(max-width:480px){
-  .page{padding:10px 9px 20px}
-  .hero{padding:20px 10px 18px}
-  .hero h1{font-size:30px}
-  .hero-car{font-size:44px}
-  .card{padding:11px}
-  .top-row{grid-template-columns:145px minmax(0,1fr)}
-  .status{min-height:76px;font-size:17px}
-  .mode-btn{min-height:82px;font-size:25px}
+
+  .page{
+    padding:10px 9px 20px;
+  }
+
+  .hero{
+    padding:20px 10px 18px;
+  }
+
+  .hero h1{
+    font-size:30px;
+  }
+
+  .hero-car{
+    font-size:44px;
+  }
+
+  .card{
+    padding:11px;
+  }
+
+  .top-row{
+    grid-template-columns:
+      145px
+      minmax(0,1fr);
+  }
+
+  .status{
+    min-height:76px;
+    font-size:17px;
+  }
+
+  .mode-btn{
+    min-height:82px;
+    font-size:25px;
+  }
+
   .history-list li{
-    grid-template-columns:auto auto minmax(70px,1fr) 24px;
+    grid-template-columns:
+      auto
+      auto
+      minmax(70px,1fr)
+      24px;
   }
 }
 </style>
@@ -408,19 +571,29 @@ textarea:focus{
 
     <div id="status" class="status">
       <span id="statusIcon">⏳</span>
-      <span id="statusText">自動判別中...</span>
+      <span id="statusText">
+        自動判別中...
+      </span>
     </div>
 
     <div class="select-box">
-      <label for="driverSelect">人物選択</label>
+      <label for="driverSelect">
+        人物選択
+      </label>
+
       <select id="driverSelect">
-        <option value="">人物を選択してください</option>
+        <option value="">
+          人物を選択してください
+        </option>
       </select>
     </div>
 
   </div>
 
-  <div id="assignment" class="assignment">
+  <div
+    id="assignment"
+    class="assignment"
+  >
     👔 今月の担当：確認中...
   </div>
 
@@ -467,9 +640,15 @@ textarea:focus{
     📷 写真を撮影・選択して読み取る
   </button>
 
-  <div id="notice" class="notice"></div>
+  <div
+    id="notice"
+    class="notice"
+  ></div>
 
-  <section id="preview" class="preview">
+  <section
+    id="preview"
+    class="preview"
+  >
 
     <div class="preview-box">
 
@@ -497,6 +676,7 @@ textarea:focus{
           >
             日付
           </label>
+
           <input
             id="reportDate"
             type="date"
@@ -510,6 +690,7 @@ textarea:focus{
           >
             時間
           </label>
+
           <input
             id="reportTime"
             type="time"
@@ -526,6 +707,7 @@ textarea:focus{
           >
             出勤時間
           </label>
+
           <input
             id="startTime"
             type="time"
@@ -542,6 +724,7 @@ textarea:focus{
           >
             退勤時間
           </label>
+
           <input
             id="endTime"
             type="time"
@@ -558,6 +741,7 @@ textarea:focus{
           >
             次回出勤日
           </label>
+
           <input
             id="nextDate"
             type="date"
@@ -574,6 +758,7 @@ textarea:focus{
           >
             次回出勤時間
           </label>
+
           <input
             id="nextTime"
             type="time"
@@ -585,9 +770,11 @@ textarea:focus{
           id="summary"
           class="summary"
         >
-          前回残業 <strong>0:00</strong>
-         　
-          月間合計 <strong>0:00</strong>
+          前回残業
+          <strong>0:00</strong>
+          　
+          月間合計
+          <strong>0:00</strong>
         </div>
 
       </div>
@@ -653,24 +840,30 @@ textarea:focus{
 </div>
 
 <script>
+
 /* ============================================================
-   設定
+   現在のWebアプリURL
    ============================================================ */
 
 const API_URL =
-  'https://script.google.com/macros/s/AKfycbxh00lpilu_kVj-GYhippy6yYHRBd-Bl4B1W2mBfhKpewXgTc45vN7f1noLMt8kaprsw/exec';
+  'https://script.google.com/macros/s/AKfycbxEeRLOPbBBAplh7T1YxMLd-ZZtGHimK7-Ppc4vL-MwyvvU3S8O4ngWwj4VFRayw2cypQ/exec';
 
 const LIFF_ID =
   '2011011273-HIdBF1sM';
 
+
+/* ============================================================
+   ローカル保存
+   ============================================================ */
+
 const STORAGE_RECENT =
-  'driver_menu_recent_v3';
+  'driver_menu_recent_v4';
 
 const STORAGE_HISTORY =
-  'driver_menu_history_v3';
+  'driver_menu_history_v4';
 
 const STORAGE_WORK =
-  'driver_menu_work_v3';
+  'driver_menu_work_v4';
 
 
 /* ============================================================
@@ -678,89 +871,147 @@ const STORAGE_WORK =
    ============================================================ */
 
 const el = {
+
   status:
-    document.getElementById('status'),
+    document.getElementById(
+      'status'
+    ),
 
   statusIcon:
-    document.getElementById('statusIcon'),
+    document.getElementById(
+      'statusIcon'
+    ),
 
   statusText:
-    document.getElementById('statusText'),
+    document.getElementById(
+      'statusText'
+    ),
 
   driverSelect:
-    document.getElementById('driverSelect'),
+    document.getElementById(
+      'driverSelect'
+    ),
 
   assignment:
-    document.getElementById('assignment'),
+    document.getElementById(
+      'assignment'
+    ),
 
   inMode:
-    document.getElementById('inMode'),
+    document.getElementById(
+      'inMode'
+    ),
 
   outMode:
-    document.getElementById('outMode'),
+    document.getElementById(
+      'outMode'
+    ),
 
   uploadBtn:
-    document.getElementById('uploadBtn'),
+    document.getElementById(
+      'uploadBtn'
+    ),
 
   photoInput:
-    document.getElementById('photoInput'),
+    document.getElementById(
+      'photoInput'
+    ),
 
   notice:
-    document.getElementById('notice'),
+    document.getElementById(
+      'notice'
+    ),
 
   preview:
-    document.getElementById('preview'),
+    document.getElementById(
+      'preview'
+    ),
 
   photoPreview:
-    document.getElementById('photoPreview'),
+    document.getElementById(
+      'photoPreview'
+    ),
 
   ocrText:
-    document.getElementById('ocrText'),
+    document.getElementById(
+      'ocrText'
+    ),
 
   reportDate:
-    document.getElementById('reportDate'),
+    document.getElementById(
+      'reportDate'
+    ),
 
   reportTime:
-    document.getElementById('reportTime'),
+    document.getElementById(
+      'reportTime'
+    ),
 
   startField:
-    document.getElementById('startField'),
+    document.getElementById(
+      'startField'
+    ),
 
   endField:
-    document.getElementById('endField'),
+    document.getElementById(
+      'endField'
+    ),
 
   startTime:
-    document.getElementById('startTime'),
+    document.getElementById(
+      'startTime'
+    ),
 
   endTime:
-    document.getElementById('endTime'),
+    document.getElementById(
+      'endTime'
+    ),
 
   nextDateField:
-    document.getElementById('nextDateField'),
+    document.getElementById(
+      'nextDateField'
+    ),
 
   nextTimeField:
-    document.getElementById('nextTimeField'),
+    document.getElementById(
+      'nextTimeField'
+    ),
 
   nextDate:
-    document.getElementById('nextDate'),
+    document.getElementById(
+      'nextDate'
+    ),
 
   nextTime:
-    document.getElementById('nextTime'),
+    document.getElementById(
+      'nextTime'
+    ),
 
   summary:
-    document.getElementById('summary'),
+    document.getElementById(
+      'summary'
+    ),
 
   messagePreview:
-    document.getElementById('messagePreview'),
+    document.getElementById(
+      'messagePreview'
+    ),
 
   memo:
-    document.getElementById('memo'),
+    document.getElementById(
+      'memo'
+    ),
 
   sendBtn:
-    document.getElementById('sendBtn'),
+    document.getElementById(
+      'sendBtn'
+    ),
 
   historyList:
-    document.getElementById('historyList')
+    document.getElementById(
+      'historyList'
+    )
+
 };
 
 
@@ -769,27 +1020,35 @@ const el = {
    ============================================================ */
 
 const state = {
-  idToken: '',
 
-  drivers: [],
+  idToken:
+    '',
 
-  driver: null,
+  drivers:
+    [],
 
-  mode: 'in',
+  driver:
+    null,
 
-  draft: null,
+  mode:
+    'in',
 
-  workState: {
-    hasWork: false,
-    startTime: ''
+  draft:
+    null,
+
+  workState:{
+    hasWork:false,
+    startTime:''
   },
 
-  summary: {
-    previousOvertime: '0:00',
-    monthlyOvertime: '0:00'
+  summary:{
+    previousOvertime:'0:00',
+    monthlyOvertime:'0:00'
   },
 
-  history: []
+  history:
+    []
+
 };
 
 
@@ -797,69 +1056,94 @@ const state = {
    共通
    ============================================================ */
 
-function pad2(value) {
-  return String(value).padStart(2, '0');
-}
-
-
-function today() {
-  const d = new Date();
-
-  return (
-    d.getFullYear() +
-    '-' +
-    pad2(d.getMonth() + 1) +
-    '-' +
-    pad2(d.getDate())
+function pad2(value){
+  return String(
+    value
+  ).padStart(
+    2,
+    '0'
   );
 }
 
+function today(){
 
-function nowTime() {
-  const d = new Date();
+  const d =
+    new Date();
 
-  return (
-    pad2(d.getHours()) +
-    ':' +
-    pad2(d.getMinutes())
+  return(
+    d.getFullYear()+
+    '-' +
+    pad2(
+      d.getMonth()+1
+    )+
+    '-' +
+    pad2(
+      d.getDate()
+    )
   );
+
 }
 
+function nowTime(){
 
-function tomorrow() {
-  const d = new Date();
+  const d =
+    new Date();
+
+  return(
+    pad2(
+      d.getHours()
+    )+
+    ':'+
+    pad2(
+      d.getMinutes()
+    )
+  );
+
+}
+
+function tomorrow(){
+
+  const d =
+    new Date();
 
   d.setDate(
-    d.getDate() + 1
+    d.getDate()+1
   );
 
-  return (
-    d.getFullYear() +
+  return(
+    d.getFullYear()+
     '-' +
-    pad2(d.getMonth() + 1) +
+    pad2(
+      d.getMonth()+1
+    )+
     '-' +
-    pad2(d.getDate())
+    pad2(
+      d.getDate()
+    )
   );
+
 }
 
+function dateText(value){
 
-function dateText(value) {
-  if (!value) return '';
+  if(!value){
+    return '';
+  }
 
   const d =
     new Date(
-      value + 'T00:00:00'
+      value+'T00:00:00'
     );
 
-  if (
+  if(
     Number.isNaN(
       d.getTime()
     )
-  ) {
+  ){
     return value;
   }
 
-  const week = [
+  const week=[
     '日',
     '月',
     '火',
@@ -869,36 +1153,39 @@ function dateText(value) {
     '土'
   ];
 
-  return (
-    d.getFullYear() +
+  return(
+    d.getFullYear()+
     '/' +
-    (d.getMonth() + 1) +
+    (d.getMonth()+1)+
     '/' +
-    d.getDate() +
-    '(' +
-    week[d.getDay()] +
+    d.getDate()+
+    '('+
+    week[d.getDay()]+
     ')'
   );
+
 }
 
+function shortDate(value){
 
-function shortDate(value) {
-  if (!value) return '';
+  if(!value){
+    return '';
+  }
 
   const d =
     new Date(
-      value + 'T00:00:00'
+      value+'T00:00:00'
     );
 
-  if (
+  if(
     Number.isNaN(
       d.getTime()
     )
-  ) {
+  ){
     return value;
   }
 
-  const week = [
+  const week=[
     '日',
     '月',
     '火',
@@ -908,145 +1195,149 @@ function shortDate(value) {
     '土'
   ];
 
-  return (
-    (d.getMonth() + 1) +
+  return(
+    (d.getMonth()+1)+
     '/' +
-    d.getDate() +
-    '(' +
-    week[d.getDay()] +
+    d.getDate()+
+    '('+
+    week[d.getDay()]+
     ')'
   );
-}
 
+}
 
 function nextAttendanceLabel(
   value
-) {
-  if (!value) return '次回';
+){
 
-  const a =
+  if(!value){
+    return '次回';
+  }
+
+  const a=
     new Date(
-      today() + 'T00:00:00'
+      today()+'T00:00:00'
     );
 
-  const b =
+  const b=
     new Date(
-      value + 'T00:00:00'
+      value+'T00:00:00'
     );
 
-  const diff =
+  const diff=
     Math.round(
       (
-        b.getTime() -
+        b.getTime()-
         a.getTime()
-      ) / 86400000
+      )/
+      86400000
     );
 
-  if (diff === 1) {
+  if(diff===1){
     return '明日';
   }
 
-  if (diff === 2) {
+  if(diff===2){
     return '明後日';
   }
 
-  const aw =
-    a.getDay() || 7;
+  const aw=
+    a.getDay()||7;
 
-  const bw =
-    b.getDay() || 7;
+  const bw=
+    b.getDay()||7;
 
-  const aMonday =
+  const aMonday=
     new Date(a);
 
   aMonday.setDate(
-    a.getDate() -
-    aw +
+    a.getDate()-
+    aw+
     1
   );
 
-  const nextMonday =
+  const nextMonday=
     new Date(
       aMonday
     );
 
   nextMonday.setDate(
-    aMonday.getDate() +
-    7
+    aMonday.getDate()+7
   );
 
-  const bMonday =
+  const bMonday=
     new Date(b);
 
   bMonday.setDate(
-    b.getDate() -
-    bw +
+    b.getDate()-
+    bw+
     1
   );
 
-  if (
-    nextMonday.getTime() ===
+  if(
+    nextMonday.getTime()===
     bMonday.getTime()
-  ) {
+  ){
     return '来週';
   }
 
-  const nextMonth =
+  const nextMonth=
     new Date(
       a.getFullYear(),
-      a.getMonth() + 1,
+      a.getMonth()+1,
       1
     );
 
-  const bMonth =
+  const bMonth=
     new Date(
       b.getFullYear(),
       b.getMonth(),
       1
     );
 
-  if (
-    nextMonth.getTime() ===
+  if(
+    nextMonth.getTime()===
     bMonth.getTime()
-  ) {
+  ){
     return '来月';
   }
 
   return '次回';
 }
 
+function escapeHtml(value){
 
-function escapeHtml(value) {
   return String(
-    value ?? ''
+    value??''
   )
-    .replace(
-      /&/g,
-      '&amp;'
-    )
-    .replace(
-      /</g,
-      '&lt;'
-    )
-    .replace(
-      />/g,
-      '&gt;'
-    )
-    .replace(
-      /"/g,
-      '&quot;'
-    )
-    .replace(
-      /'/g,
-      '&#39;'
-    );
-}
+  .replace(
+    /&/g,
+    '&amp;'
+  )
+  .replace(
+    /</g,
+    '&lt;'
+  )
+  .replace(
+    />/g,
+    '&gt;'
+  )
+  .replace(
+    /"/g,
+    '&quot;'
+  )
+  .replace(
+    /'/g,
+    '&#39;'
+  );
 
+}
 
 function setStatus(
   text,
   done
-) {
+){
+
   el.statusText.textContent =
     text;
 
@@ -1059,19 +1350,21 @@ function setStatus(
     'done',
     !!done
   );
-}
 
+}
 
 function showNotice(
   text
-) {
+){
+
   el.notice.textContent =
-    text || '';
+    text||'';
 
   el.notice.classList.toggle(
     'show',
     !!text
   );
+
 }
 
 
@@ -1081,24 +1374,24 @@ function showNotice(
 
 async function callServer(
   operation,
-  data = {}
-) {
+  data={}
+){
+
   return new Promise(
     (
       resolve,
       reject
-    ) => {
+    )=>{
 
-      const requestId =
-        'req_' +
-        Date.now() +
-        '_' +
+      const requestId=
+        'req_'+
+        Date.now()+
+        '_'+
         Math.random()
           .toString(36)
           .slice(2);
 
-
-      const params =
+      const params=
         new URLSearchParams();
 
       params.append(
@@ -1118,30 +1411,27 @@ async function callServer(
 
       params.append(
         'idToken',
-        state.idToken || ''
+        state.idToken||''
       );
 
-
-      Object.keys(data)
-        .forEach(
-          key => {
-
-            params.append(
-              key,
-              data[key] ??
-              ''
-            );
-
-          }
-        );
-
+      Object.keys(
+        data
+      ).forEach(
+        key=>{
+          params.append(
+            key,
+            data[key]??''
+          );
+        }
+      );
 
       fetch(
         API_URL,
         {
-          method: 'POST',
+          method:
+            'POST',
 
-          headers: {
+          headers:{
             'Content-Type':
               'application/x-www-form-urlencoded;charset=UTF-8'
           },
@@ -1154,14 +1444,13 @@ async function callServer(
         }
       )
       .catch(
-        error => {
+        error=>{
           console.warn(
             'API POST失敗',
             error
           );
         }
       );
-
 
       pollApi(
         requestId,
@@ -1172,18 +1461,20 @@ async function callServer(
 
     }
   );
-}
 
+}
 
 function pollApi(
   requestId,
   resolve,
   reject,
   attempt
-) {
-  if (
-    attempt >= 45
-  ) {
+){
+
+  if(
+    attempt>=45
+  ){
+
     reject(
       new Error(
         'サーバー応答がタイムアウトしました'
@@ -1193,81 +1484,82 @@ function pollApi(
     return;
   }
 
-
-  const callback =
-    'gasCallback_' +
-    Date.now() +
-    '_' +
+  const callback=
+    'gasCallback_'+
+    Date.now()+
+    '_'+
     attempt;
 
-
-  const script =
+  const script=
     document.createElement(
       'script'
     );
 
-
-  let finished =
+  let finished=
     false;
 
+  function cleanup(){
 
-  function cleanup() {
-
-    if (
+    if(
       script.parentNode
-    ) {
+    ){
+
       script.parentNode.removeChild(
         script
       );
+
     }
 
-    try {
-      delete window[callback];
-    } catch (_) {
-      window[callback] =
-        undefined;
+    try{
+
+      delete window[
+        callback
+      ];
+
+    }catch(_){
+
+      window[
+        callback
+      ]=undefined;
+
     }
 
   }
 
+  window[
+    callback
+  ]=
+    function(
+      response
+    ){
 
-  window[callback] =
-    function(response) {
-
-      if (
+      if(
         finished
-      ) {
+      ){
         return;
       }
 
-
-      finished =
-        true;
-
+      finished=true;
       cleanup();
 
-
-      if (
-        response &&
+      if(
+        response&&
         (
-          response.status ===
-            'pending' ||
-
-          response.status ===
+          response.status===
+            'pending'||
+          response.status===
             'processing'
         )
-      ) {
+      ){
 
         setTimeout(
-          () => {
-
+          ()=>{
             pollApi(
               requestId,
               resolve,
               reject,
-              attempt + 1
+              attempt+1
             );
-
           },
           450
         );
@@ -1275,15 +1567,14 @@ function pollApi(
         return;
       }
 
-
-      if (
-        !response ||
-        response.ok !== true
-      ) {
+      if(
+        !response||
+        response.ok!==true
+      ){
 
         reject(
           new Error(
-            response &&
+            response&&
             response.error
               ? response.error
               : 'Apps Script APIエラー'
@@ -1293,65 +1584,56 @@ function pollApi(
         return;
       }
 
-
       resolve(
         response.data
       );
 
     };
 
+  script.onerror=
+    function(){
 
-  script.onerror =
-    function() {
-
-      if (
+      if(
         finished
-      ) {
+      ){
         return;
       }
 
-
-      finished =
-        true;
-
+      finished=true;
       cleanup();
 
-
       setTimeout(
-        () => {
-
+        ()=>{
           pollApi(
             requestId,
             resolve,
             reject,
-            attempt + 1
+            attempt+1
           );
-
         },
         450
       );
 
     };
 
-
-  script.src =
-    API_URL +
-    '?action=pollApi' +
-    '&requestId=' +
+  script.src=
+    API_URL+
+    '?action=pollApi'+
+    '&requestId='+
     encodeURIComponent(
       requestId
-    ) +
-    '&callback=' +
+    )+
+    '&callback='+
     encodeURIComponent(
       callback
-    ) +
-    '&_=' +
+    )+
+    '&_='+
     Date.now();
-
 
   document.body.appendChild(
     script
   );
+
 }
 
 
@@ -1361,58 +1643,58 @@ function pollApi(
 
 function findDriver(
   key
-) {
-  return (
+){
+
+  return(
     state.drivers.find(
-      d =>
-        d.driverKey ===
+      driver=>
+        driver.driverKey===
         key
-    ) ||
+    )||
     null
   );
+
 }
 
+function saveRecentDriver(){
 
-function saveRecentDriver() {
-
-  if (
-    !state.driver ||
+  if(
+    !state.driver||
     !state.driver.driverKey
-  ) {
+  ){
     return;
   }
 
+  let list=[];
 
-  let list = [];
+  try{
 
-  try {
-
-    list =
+    list=
       JSON.parse(
         localStorage.getItem(
           STORAGE_RECENT
-        ) ||
+        )||
         '[]'
       );
 
-    if (
+    if(
       !Array.isArray(list)
-    ) {
-      list = [];
+    ){
+      list=[];
     }
 
-  } catch (_) {
-    list = [];
+  }catch(_){
+
+    list=[];
+
   }
 
-
-  list =
+  list=
     list.filter(
-      item =>
-        item.driverKey !==
+      item=>
+        item.driverKey!==
         state.driver.driverKey
     );
-
 
   list.unshift({
     driverKey:
@@ -1421,7 +1703,6 @@ function saveRecentDriver() {
     displayName:
       state.driver.displayName
   });
-
 
   localStorage.setItem(
     STORAGE_RECENT,
@@ -1432,26 +1713,28 @@ function saveRecentDriver() {
       )
     )
   );
+
 }
 
+function getRecentDrivers(){
 
-function getRecentDrivers() {
+  try{
 
-  try {
-
-    const list =
+    const list=
       JSON.parse(
         localStorage.getItem(
           STORAGE_RECENT
-        ) ||
+        )||
         '[]'
       );
 
-    return Array.isArray(list)
+    return Array.isArray(
+      list
+    )
       ? list
       : [];
 
-  } catch (_) {
+  }catch(_){
 
     return [];
 
@@ -1459,75 +1742,67 @@ function getRecentDrivers() {
 
 }
 
+function renderDrivers(){
 
-function renderDrivers() {
-
-  const current =
+  const current=
     state.driver
       ? state.driver.driverKey
       : '';
 
-
-  el.driverSelect.innerHTML =
+  el.driverSelect.innerHTML=
     '<option value="">人物を選択してください</option>';
 
-
-  const recent =
+  const recent=
     getRecentDrivers();
 
-
-  const recentKeys =
+  const recentKeys=
     new Set(
       recent.map(
-        item =>
+        item=>
           item.driverKey
       )
     );
 
-
-  const recentDrivers =
+  const recentDrivers=
     state.drivers.filter(
-      driver =>
+      driver=>
         recentKeys.has(
           driver.driverKey
         )
     );
 
-
-  const otherDrivers =
+  const otherDrivers=
     state.drivers.filter(
-      driver =>
+      driver=>
         !recentKeys.has(
           driver.driverKey
         )
     );
 
-
-  if (
+  if(
     recentDrivers.length
-  ) {
+  ){
 
-    const group =
+    const group=
       document.createElement(
         'optgroup'
       );
 
-    group.label =
+    group.label=
       '最近使った人物';
 
-
     recentDrivers.forEach(
-      driver => {
+      driver=>{
 
-        const option =
+        const option=
           document.createElement(
             'option'
           );
 
-        option.value =
+        option.value=
           driver.driverKey;
 
-        option.textContent =
+        option.textContent=
           driver.displayName;
 
         group.appendChild(
@@ -1537,39 +1812,36 @@ function renderDrivers() {
       }
     );
 
-
     el.driverSelect.appendChild(
       group
     );
 
   }
 
-
-  if (
+  if(
     otherDrivers.length
-  ) {
+  ){
 
-    const group =
+    const group=
       document.createElement(
         'optgroup'
       );
 
-    group.label =
+    group.label=
       'その他の人物';
 
-
     otherDrivers.forEach(
-      driver => {
+      driver=>{
 
-        const option =
+        const option=
           document.createElement(
             'option'
           );
 
-        option.value =
+        option.value=
           driver.driverKey;
 
-        option.textContent =
+        option.textContent=
           driver.displayName;
 
         group.appendChild(
@@ -1579,42 +1851,38 @@ function renderDrivers() {
       }
     );
 
-
     el.driverSelect.appendChild(
       group
     );
 
   }
 
-
-  if (current) {
-    el.driverSelect.value =
+  if(current){
+    el.driverSelect.value=
       current;
   }
 
 }
 
+async function loadDrivers(){
 
-async function loadDrivers() {
+  try{
 
-  try {
-
-    const list =
+    const list=
       await callServer(
         'getDriverList'
       );
 
-
-    state.drivers =
-      Array.isArray(list)
+    state.drivers=
+      Array.isArray(
+        list
+      )
         ? list
         : [];
 
-
     renderDrivers();
 
-
-  } catch (error) {
+  }catch(error){
 
     console.warn(
       '人物一覧取得失敗',
@@ -1627,29 +1895,28 @@ async function loadDrivers() {
 
 }
 
-
 async function selectDriver(
   driver
-) {
+){
 
-  if (!driver) {
+  if(!driver){
 
-    state.driver =
+    state.driver=
       null;
 
-    el.inMode.disabled =
+    el.inMode.disabled=
       true;
 
-    el.outMode.disabled =
+    el.outMode.disabled=
       true;
 
-    el.uploadBtn.disabled =
+    el.uploadBtn.disabled=
       true;
 
-    el.assignment.textContent =
+    el.assignment.textContent=
       '👔 今月の担当：未選択';
 
-    el.historyList.innerHTML =
+    el.historyList.innerHTML=
       '<li class="empty">人物を選択すると履歴を表示します</li>';
 
     setStatus(
@@ -1661,33 +1928,27 @@ async function selectDriver(
 
   }
 
-
-  state.driver =
+  state.driver=
     driver;
 
-
-  el.driverSelect.value =
+  el.driverSelect.value=
     driver.driverKey;
 
-
-  el.inMode.disabled =
+  el.inMode.disabled=
     false;
 
-  el.outMode.disabled =
+  el.outMode.disabled=
     false;
 
-  el.uploadBtn.disabled =
+  el.uploadBtn.disabled=
     false;
-
 
   setStatus(
     '完了',
     true
   );
 
-
   saveRecentDriver();
-
 
   await Promise.allSettled([
     loadCurrentAssignment(),
@@ -1701,27 +1962,23 @@ async function selectDriver(
    今月の担当
    ============================================================ */
 
-async function loadCurrentAssignment() {
+async function loadCurrentAssignment(){
 
-  if (
-    !state.driver
-  ) {
+  if(!state.driver){
 
-    el.assignment.textContent =
+    el.assignment.textContent=
       '👔 今月の担当：未選択';
 
     return;
 
   }
 
-
-  el.assignment.textContent =
+  el.assignment.textContent=
     '👔 今月の担当：確認中...';
 
+  try{
 
-  try {
-
-    const result =
+    const result=
       await callServer(
         'getCurrentAssignment',
         {
@@ -1730,15 +1987,14 @@ async function loadCurrentAssignment() {
         }
       );
 
-
-    if (
-      result &&
-      result.found &&
+    if(
+      result&&
+      result.found&&
       result.officerName
-    ) {
+    ){
 
-      el.assignment.textContent =
-        '👔 今月の担当：' +
+      el.assignment.textContent=
+        '👔 今月の担当：'+
         result.officerName;
 
       el.assignment.classList.add(
@@ -1749,22 +2005,21 @@ async function loadCurrentAssignment() {
 
     }
 
-
-    el.assignment.textContent =
+    el.assignment.textContent=
       '👔 今月の担当：未設定';
 
     el.assignment.classList.remove(
       'ready'
     );
 
-  } catch (error) {
+  }catch(error){
 
     console.warn(
       '担当取得失敗',
       error
     );
 
-    el.assignment.textContent =
+    el.assignment.textContent=
       '👔 今月の担当：取得できません';
 
   }
@@ -1778,55 +2033,49 @@ async function loadCurrentAssignment() {
 
 function setMode(
   mode
-) {
+){
 
-  state.mode =
+  state.mode=
     mode;
 
-  state.draft =
+  state.draft=
     null;
 
-
   el.inMode.classList.toggle(
     'active',
-    mode === 'in'
+    mode==='in'
   );
 
   el.outMode.classList.toggle(
     'active',
-    mode === 'out'
+    mode==='out'
   );
-
 
   el.inMode.classList.toggle(
     'off',
-    mode !== 'in'
+    mode!=='in'
   );
 
   el.outMode.classList.toggle(
     'off',
-    mode !== 'out'
+    mode!=='out'
   );
-
 
   el.preview.classList.remove(
     'show'
   );
 
-  el.sendBtn.disabled =
+  el.sendBtn.disabled=
     true;
 
-
-  el.photoInput.value =
+  el.photoInput.value=
     '';
-
 
   showNotice('');
 
-
-  if (
-    mode === 'in'
-  ) {
+  if(
+    mode==='in'
+  ){
 
     el.startField.classList.add(
       'hidden'
@@ -1844,7 +2093,7 @@ function setMode(
       'hidden'
     );
 
-  } else {
+  }else{
 
     el.startField.classList.remove(
       'hidden'
@@ -1862,18 +2111,17 @@ function setMode(
       'hidden'
     );
 
-
-    el.nextDate.value =
+    el.nextDate.value=
       tomorrow();
 
-    el.nextTime.value =
+    el.nextTime.value=
       '08:00';
 
-    el.startTime.value =
-      state.workState.startTime ||
+    el.startTime.value=
+      state.workState.startTime||
       '';
 
-    el.endTime.value =
+    el.endTime.value=
       nowTime();
 
   }
@@ -1885,22 +2133,21 @@ function setMode(
    サーバー状態
    ============================================================ */
 
-async function loadServerState() {
+async function loadServerState(){
 
-  if (
+  if(
     !state.driver
-  ) {
+  ){
     return;
   }
 
-
-  try {
+  try{
 
     const [
       work,
       summary,
       history
-    ] =
+    ]=
       await Promise.all([
 
         callServer(
@@ -1929,38 +2176,30 @@ async function loadServerState() {
 
       ]);
 
-
-    state.workState =
-      work || {
-        hasWork:
-          false,
-
-        startTime:
-          ''
+    state.workState=
+      work||{
+        hasWork:false,
+        startTime:''
       };
 
-
-    state.summary =
-      summary || {
-        previousOvertime:
-          '0:00',
-
-        monthlyOvertime:
-          '0:00'
+    state.summary=
+      summary||{
+        previousOvertime:'0:00',
+        monthlyOvertime:'0:00'
       };
 
-
-    state.history =
-      Array.isArray(history)
+    state.history=
+      Array.isArray(
+        history
+      )
         ? history
         : [];
 
-
     renderSummary();
+
     renderHistory(
       state.history
     );
-
 
     localStorage.setItem(
       STORAGE_HISTORY,
@@ -1969,23 +2208,19 @@ async function loadServerState() {
       )
     );
 
-
     localStorage.setItem(
       STORAGE_WORK,
       JSON.stringify({
-        date:
-          today(),
-
+        date:today(),
         driverKey:
           state.driver.driverKey,
-
         startTime:
-          state.workState.startTime ||
+          state.workState.startTime||
           ''
       })
     );
 
-  } catch (error) {
+  }catch(error){
 
     console.warn(
       'サーバー状態取得失敗',
@@ -1996,20 +2231,22 @@ async function loadServerState() {
 
 }
 
+function renderSummary(){
 
-function renderSummary() {
-
-  el.summary.innerHTML =
-    '前回残業 <strong>' +
+  el.summary.innerHTML=
+    '前回残業 '+
+    '<strong>'+
     escapeHtml(
-      state.summary.previousOvertime ||
+      state.summary.previousOvertime||
       '0:00'
-    ) +
-    '</strong>　月間合計 <strong>' +
+    )+
+    '</strong>'+
+    '　月間合計 '+
+    '<strong>'+
     escapeHtml(
-      state.summary.monthlyOvertime ||
+      state.summary.monthlyOvertime||
       '0:00'
-    ) +
+    )+
     '</strong>';
 
 }
@@ -2021,94 +2258,86 @@ function renderSummary() {
 
 function renderHistory(
   list
-) {
+){
 
-  if (
-    !Array.isArray(list) ||
+  if(
+    !Array.isArray(list)||
     !list.length
-  ) {
+  ){
 
-    el.historyList.innerHTML =
+    el.historyList.innerHTML=
       '<li class="empty">まだ履歴はありません</li>';
 
     return;
 
   }
 
-
-  const sorted =
+  const sorted=
     [...list].sort(
       (
         a,
         b
-      ) =>
+      )=>
         Number(
-          b.savedAt ||
-          0
-        ) -
+          b.savedAt||0
+        )-
         Number(
-          a.savedAt ||
-          0
+          a.savedAt||0
         )
     );
 
-
-  el.historyList.innerHTML =
+  el.historyList.innerHTML=
     sorted
       .map(
-        item => {
+        item=>{
 
-          let time =
-            '';
+          let time='';
 
-
-          if (
-            item.type ===
+          if(
+            item.type===
             '退勤'
-          ) {
+          ){
 
-            time =
-              (item.startTime ||
-                '0:00') +
-              '→' +
-              (item.endTime ||
-                '0:00');
+            time=
+              (
+                item.startTime||
+                '0:00'
+              )+
+              '→'+
+              (
+                item.endTime||
+                '0:00'
+              );
 
-          } else {
+          }else{
 
-            time =
-              item.reportTime ||
-              item.startTime ||
+            time=
+              item.reportTime||
+              item.startTime||
               '';
 
           }
 
-
-          return (
-            '<li>' +
-
-              '<span class="history-date">' +
+          return(
+            '<li>'+
+              '<span class="history-date">'+
                 escapeHtml(
-                  item.date ||
+                  item.date||
                   ''
-                ) +
-              '</span>' +
-
-              '<span class="history-type">' +
+                )+
+              '</span>'+
+              '<span class="history-type">'+
                 escapeHtml(
-                  item.type ||
+                  item.type||
                   ''
-                ) +
-              '</span>' +
-
-              '<span class="history-time">' +
+                )+
+              '</span>'+
+              '<span class="history-time">'+
                 escapeHtml(
                   time
-                ) +
-              '</span>' +
-
-              '<span class="history-ok">✅</span>' +
-
+                )+
+              '</span>'+
+              '<span class="history-ok">✅</span>'+
             '</li>'
           );
 
@@ -2123,72 +2352,948 @@ function renderHistory(
    メッセージ
    ============================================================ */
 
-function buildInMessage() {
+function buildInMessage(){
 
-  const d =
-    el.reportDate.value ||
+  const d=
+    el.reportDate.value||
     today();
 
-  const time =
-    el.reportTime.value ||
+  const time=
+    el.reportTime.value||
     nowTime();
 
-
-  return (
-    'お疲れ様でございます。\n' +
-    dateText(d) +
-    ' ' +
-    time +
-    '出勤いたしました。\n' +
-    '本日もよろしくお願いいたします。\n' +
-    '\n' +
-    '残業)' +
+  return(
+    'お疲れ様でございます。\n'+
+    dateText(d)+
+    ' '+
+    time+
+    '出勤いたしました。\n'+
+    '本日もよろしくお願いいたします。\n'+
+    '\n'+
+    '残業)'+
     (
-      state.summary.previousOvertime ||
+      state.summary.previousOvertime||
       '0:00'
-    ) +
-    '\n' +
-    '合計)' +
+    )+
+    '\n'+
+    '合計)'+
     (
-      state.summary.monthlyOvertime ||
+      state.summary.monthlyOvertime||
       '0:00'
-    ) +
-    '\n' +
+    )+
+    '\n'+
     '【MEMO】'
   );
 
 }
 
+function buildOutMessage(){
 
-function buildOutMessage() {
-
-  const reportDate =
-    el.reportDate.value ||
+  const reportDate=
+    el.reportDate.value||
     today();
 
-  const start =
-    el.startTime.value ||
-    state.workState.startTime ||
+  const start=
+    el.startTime.value||
+    state.workState.startTime||
     '00:00';
 
-  const end =
-    el.endTime.value ||
+  const end=
+    el.endTime.value||
     nowTime();
 
-  const next =
-    el.nextDate.value ||
+  const next=
+    el.nextDate.value||
     tomorrow();
 
-  const nextTime =
-    el.nextTime.value ||
+  const nextTime=
+    el.nextTime.value||
     '08:00';
 
-  const nextLabel =
+  const nextLabel=
     nextAttendanceLabel(
       next
     );
 
+  return(
+    'お疲れ様でございます。\n'+
+    '業務完了いたしました。\n'+
+    dateText(reportDate)+
+    '\n'+
+    '稼働)'+
+    start+
+    '-'+
+    end+
+    '\n'+
+    '本日は失礼させていただきます。\n'+
+    '出勤) '+
+    nextLabel+
+    ' '+
+    shortDate(next)+
+    ' '+
+    nextTime+
+    '\n'+
+    '明日もよろしくお願いいたします。\n'+
+    '\n'+
+    '【MEMO】'
+  );
 
-  return (
-    'お疲れ様でございます。\n' +
-    '業務完了いたしました。\n
+}
+
+function addMemo(
+  message
+){
+
+  const memo=
+    String(
+      el.memo.value||
+      ''
+    ).trim();
+
+  if(!memo){
+    return message;
+  }
+
+  return(
+    message+
+    '\n'+
+    memo
+  );
+
+}
+
+function refreshMessage(){
+
+  let message=
+    state.mode==='in'
+      ? buildInMessage()
+      : buildOutMessage();
+
+  message=
+    addMemo(
+      message
+    );
+
+  el.messagePreview.textContent=
+    message;
+
+  return message;
+}
+
+
+/* ============================================================
+   写真
+   ============================================================ */
+
+function imageToDataUrl(
+  file
+){
+
+  return new Promise(
+    (
+      resolve,
+      reject
+    )=>{
+
+      const reader=
+        new FileReader();
+
+      reader.onload=
+        function(){
+
+          const image=
+            new Image();
+
+          image.onload=
+            function(){
+
+              const max=
+                1800;
+
+              const scale=
+                Math.min(
+                  1,
+                  max/
+                    Math.max(
+                      image.width,
+                      image.height
+                    )
+                );
+
+              const canvas=
+                document.createElement(
+                  'canvas'
+                );
+
+              canvas.width=
+                Math.round(
+                  image.width*
+                  scale
+                );
+
+              canvas.height=
+                Math.round(
+                  image.height*
+                  scale
+                );
+
+              const context=
+                canvas.getContext(
+                  '2d',
+                  {
+                    alpha:false
+                  }
+                );
+
+              context.drawImage(
+                image,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+              );
+
+              resolve(
+                canvas.toDataURL(
+                  'image/jpeg',
+                  .86
+                )
+              );
+
+            };
+
+          image.onerror=
+            reject;
+
+          image.src=
+            reader.result;
+
+        };
+
+      reader.onerror=
+        reject;
+
+      reader.readAsDataURL(
+        file
+      );
+
+    }
+  );
+
+}
+
+async function runBrowserOcr(
+  dataUrl
+){
+
+  if(
+    !window.Tesseract
+  ){
+
+    throw new Error(
+      'OCRライブラリの読み込みに失敗しました'
+    );
+
+  }
+
+  const result=
+    await Tesseract.recognize(
+      dataUrl,
+      'eng',
+      {
+        logger:
+          message=>{
+
+            if(
+              !message
+            ){
+              return;
+            }
+
+            if(
+              message.status===
+                'recognizing text'&&
+              message.progress
+            ){
+
+              showNotice(
+                '写真を読み取り中... '+
+                Math.round(
+                  message.progress*100
+                )+
+                '%'
+              );
+
+            }
+
+          },
+
+        tessedit_pageseg_mode:
+          6
+      }
+    );
+
+  return(
+    result&&
+    result.data
+      ? String(
+          result.data.text||
+          ''
+        )
+      : ''
+  );
+
+}
+
+async function uploadPhoto(
+  file
+){
+
+  if(
+    !state.driver
+  ){
+
+    alert(
+      '先に人物を選択してください'
+    );
+
+    return;
+
+  }
+
+  showNotice(
+    '写真を準備しています...'
+  );
+
+  el.sendBtn.disabled=
+    true;
+
+  try{
+
+    const dataUrl=
+      await imageToDataUrl(
+        file
+      );
+
+    el.photoPreview.src=
+      dataUrl;
+
+    const ocrText=
+      await runBrowserOcr(
+        dataUrl
+      );
+
+    showNotice(
+      '読み取り結果を確認しています...'
+    );
+
+    const result=
+      await callServer(
+        'ocrPhoto',
+        {
+          selectedDriverKey:
+            state.driver.driverKey,
+
+          mode:
+            state.mode,
+
+          imageBase64:
+            dataUrl,
+
+          fileName:
+            file.name,
+
+          ocrText:
+            ocrText
+        }
+      );
+
+    state.draft=
+      result;
+
+    el.preview.classList.add(
+      'show'
+    );
+
+    el.ocrText.textContent=
+      result.ocrText||
+      '文字を読み取れませんでした。時間を手入力してください。';
+
+    el.reportDate.value=
+      result.reportDate||
+      today();
+
+    if(
+      state.mode===
+      'in'
+    ){
+
+      el.reportTime.value=
+        result.ocrTime||
+        nowTime();
+
+    }else{
+
+      el.startTime.value=
+        result.startTime||
+        state.workState.startTime||
+        '';
+
+      el.endTime.value=
+        result.endTime||
+        result.ocrTime||
+        nowTime();
+
+    }
+
+    refreshMessage();
+
+    el.sendBtn.disabled=
+      false;
+
+    showNotice(
+      '読み取り完了。時間を確認・修正して送信してください。'
+    );
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+    showNotice(
+      error.message||
+      'OCRに失敗しました。'
+    );
+
+  }
+
+}
+
+
+/* ============================================================
+   送信
+   ============================================================ */
+
+async function sendDraft(){
+
+  if(
+    !state.draft||
+    !state.driver
+  ){
+    return;
+  }
+
+  el.sendBtn.disabled=
+    true;
+
+  showNotice(
+    '写真＋報告文章を送信中です...'
+  );
+
+  try{
+
+    refreshMessage();
+
+    const result=
+      await callServer(
+        'sendAttendanceDraft',
+        {
+          draftId:
+            state.draft.draftId,
+
+          mode:
+            state.mode,
+
+          reportDate:
+            el.reportDate.value,
+
+          reportTime:
+            state.mode==='in'
+              ? el.reportTime.value
+              : el.endTime.value,
+
+          startTime:
+            state.mode==='out'
+              ? el.startTime.value
+              : el.reportTime.value,
+
+          endTime:
+            state.mode==='out'
+              ? el.endTime.value
+              : '',
+
+          nextDate:
+            state.mode==='out'
+              ? el.nextDate.value
+              : '',
+
+          nextTime:
+            state.mode==='out'
+              ? el.nextTime.value
+              : '',
+
+          message:
+            el.messagePreview.textContent
+        }
+      );
+
+    if(
+      !result||
+      result.ok!==true
+    ){
+
+      throw new Error(
+        '送信に失敗しました'
+      );
+
+    }
+
+    showNotice(
+      '送信完了しました。'
+    );
+
+    saveRecentDriver();
+
+    if(
+      state.mode===
+      'in'
+    ){
+
+      state.workState={
+        hasWork:true,
+        startTime:
+          el.reportTime.value
+      };
+
+      localStorage.setItem(
+        STORAGE_WORK,
+        JSON.stringify({
+          date:
+            today(),
+
+          driverKey:
+            state.driver.driverKey,
+
+          startTime:
+            el.reportTime.value
+        })
+      );
+
+    }
+
+    state.draft=
+      null;
+
+    el.preview.classList.remove(
+      'show'
+    );
+
+    el.photoInput.value=
+      '';
+
+    await loadServerState();
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+    showNotice(
+      error.message||
+      '送信に失敗しました'
+    );
+
+  }finally{
+
+    el.sendBtn.disabled=
+      !state.draft;
+
+  }
+
+}
+
+
+/* ============================================================
+   イベント
+   ============================================================ */
+
+el.driverSelect.addEventListener(
+  'change',
+  async function(){
+
+    const driver=
+      findDriver(
+        el.driverSelect.value
+      );
+
+    await selectDriver(
+      driver
+    );
+
+  }
+);
+
+el.inMode.addEventListener(
+  'click',
+  function(){
+
+    if(
+      !state.driver
+    ){
+
+      alert(
+        '先に人物を選択してください'
+      );
+
+      return;
+
+    }
+
+    setMode(
+      'in'
+    );
+
+  }
+);
+
+el.outMode.addEventListener(
+  'click',
+  function(){
+
+    if(
+      !state.driver
+    ){
+
+      alert(
+        '先に人物を選択してください'
+      );
+
+      return;
+
+    }
+
+    setMode(
+      'out'
+    );
+
+  }
+);
+
+el.uploadBtn.addEventListener(
+  'click',
+  function(){
+
+    if(
+      !state.driver
+    ){
+
+      alert(
+        '先に人物を選択してください'
+      );
+
+      return;
+
+    }
+
+    if(
+      !state.mode
+    ){
+
+      alert(
+        '出勤または退勤を選択してください'
+      );
+
+      return;
+
+    }
+
+    el.photoInput.click();
+
+  }
+);
+
+el.photoInput.addEventListener(
+  'change',
+  function(){
+
+    const file=
+      el.photoInput.files&&
+      el.photoInput.files[0];
+
+    if(file){
+      uploadPhoto(
+        file
+      );
+    }
+
+  }
+);
+
+[
+  el.reportDate,
+  el.reportTime,
+  el.startTime,
+  el.endTime,
+  el.nextDate,
+  el.nextTime,
+  el.memo
+].forEach(
+  input=>{
+
+    input.addEventListener(
+      'input',
+      refreshMessage
+    );
+
+    input.addEventListener(
+      'change',
+      refreshMessage
+    );
+
+  }
+);
+
+el.sendBtn.addEventListener(
+  'click',
+  sendDraft
+);
+
+
+/* ============================================================
+   自動判別
+   ============================================================ */
+
+async function autoDetect(){
+
+  try{
+
+    await liff.init({
+      liffId:
+        LIFF_ID,
+
+      withLoginOnExternalBrowser:
+        true
+    });
+
+    if(
+      !liff.isLoggedIn()
+    ){
+
+      setStatus(
+        '人物選択待ち',
+        false
+      );
+
+      return;
+
+    }
+
+    state.idToken=
+      liff.getIDToken()||
+      '';
+
+    const info=
+      await callServer(
+        'getDriverInfo'
+      );
+
+    if(
+      info&&
+      info.found&&
+      info.driverKey
+    ){
+
+      const driver=
+        findDriver(
+          info.driverKey
+        );
+
+      if(driver){
+
+        await selectDriver(
+          driver
+        );
+
+        setStatus(
+          '完了',
+          true
+        );
+
+        return;
+
+      }
+
+    }
+
+    setStatus(
+      '人物選択待ち',
+      false
+    );
+
+  }catch(error){
+
+    console.warn(
+      '自動判別失敗',
+      error
+    );
+
+    setStatus(
+      '人物選択待ち',
+      false
+    );
+
+  }
+
+}
+
+
+/* ============================================================
+   起動
+   ============================================================ */
+
+window.addEventListener(
+  'load',
+  async function(){
+
+    setMode(
+      'in'
+    );
+
+    setStatus(
+      '自動判別中...',
+      false
+    );
+
+    try{
+
+      const rawHistory=
+        localStorage.getItem(
+          STORAGE_HISTORY
+        );
+
+      if(rawHistory){
+
+        const parsed=
+          JSON.parse(
+            rawHistory
+          );
+
+        if(
+          Array.isArray(
+            parsed
+          )
+        ){
+
+          const month=
+            today().slice(
+              0,
+              7
+            );
+
+          state.history=
+            parsed.filter(
+              item=>{
+
+                const raw=
+                  String(
+                    item&&
+                    item.date||
+                    ''
+                  )
+                  .replace(
+                    /\//g,
+                    '-'
+                  );
+
+                return(
+                  raw.slice(
+                    0,
+                    7
+                  )===
+                  month
+                );
+
+              }
+            );
+
+          renderHistory(
+            state.history
+          );
+
+        }
+
+      }
+
+    }catch(error){
+
+      console.warn(
+        'ローカル履歴読み込み失敗',
+        error
+      );
+
+    }
+
+    await loadDrivers();
+
+    await autoDetect();
+
+  }
+);
+
+
+/* ============================================================
+   LINE / iPhone 復帰
+   ============================================================ */
+
+window.addEventListener(
+  'pageshow',
+  function(){
+
+    setTimeout(
+      function(){
+
+        if(
+          state.driver
+        ){
+
+          loadCurrentAssignment();
+          loadServerState();
+
+        }
+
+      },
+      100
+    );
+
+  }
+);
+
+window.addEventListener(
+  'focus',
+  function(){
+
+    setTimeout(
+      function(){
+
+        if(
+          state.driver
+        ){
+
+          loadCurrentAssignment();
+          loadServerState();
+
+        }
+
+      },
+      100
+    );
+
+  }
+);
+
+</script>
+
+</body>
+</html>
