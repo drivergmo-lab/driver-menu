@@ -44,8 +44,9 @@ body{
   padding:18px 14px 28px;
 }
 
-
-/* タイトル */
+/* ==============================
+   タイトル
+   ============================== */
 
 .hero{
   position:relative;
@@ -93,8 +94,9 @@ body{
   font-weight:700;
 }
 
-
-/* メイン */
+/* ==============================
+   メイン
+   ============================== */
 
 .main-card{
   margin-top:14px;
@@ -104,8 +106,9 @@ body{
   box-shadow:var(--shadow);
 }
 
-
-/* 人物状態 */
+/* ==============================
+   人物状態
+   ============================== */
 
 .driver-pill{
   display:flex;
@@ -135,8 +138,9 @@ body{
   font-size:18px;
 }
 
-
-/* 人物選択 */
+/* ==============================
+   人物選択
+   ============================== */
 
 .manual-select-area{
   margin-bottom:12px;
@@ -166,8 +170,9 @@ body{
   font-weight:800;
 }
 
-
-/* 出勤・退勤 */
+/* ==============================
+   出勤・退勤
+   ============================== */
 
 .attendance-buttons{
   display:grid;
@@ -188,7 +193,22 @@ body{
   align-items:center;
   justify-content:center;
   box-shadow:0 8px 18px rgba(39,96,139,.10);
-  transition:transform .12s ease,opacity .12s ease;
+
+  opacity:.45;
+
+  transition:
+    transform .12s ease,
+    opacity .15s ease,
+    filter .15s ease;
+}
+
+.attendance-btn.active{
+  opacity:1;
+  filter:none;
+}
+
+.attendance-btn:not(.active){
+  filter:saturate(.75);
 }
 
 .attendance-btn:active{
@@ -196,7 +216,6 @@ body{
 }
 
 .attendance-btn:disabled{
-  opacity:.45;
   cursor:not-allowed;
 }
 
@@ -211,28 +230,31 @@ body{
 
 .btn-in{
   color:#0a4c7d;
-  background:linear-gradient(
-    180deg,
-    #77d2ff,
-    #c8efff 58%,
-    #8ed777
-  );
+  background:
+    linear-gradient(
+      180deg,
+      #77d2ff,
+      #c8efff 58%,
+      #8ed777
+    );
   border:1px solid #a8ddf7;
 }
 
 .btn-out{
   color:#fff;
-  background:linear-gradient(
-    180deg,
-    #142c78,
-    #10215c 60%,
-    #07163f
-  );
+  background:
+    linear-gradient(
+      180deg,
+      #142c78,
+      #10215c 60%,
+      #07163f
+    );
   border:1px solid #6077c5;
 }
 
-
-/* 案内 */
+/* ==============================
+   案内
+   ============================== */
 
 .guide{
   margin:10px 4px 8px;
@@ -242,8 +264,9 @@ body{
   text-align:center;
 }
 
-
-/* 修正エリア */
+/* ==============================
+   修正エリア
+   ============================== */
 
 .edit-panel{
   display:none;
@@ -299,8 +322,9 @@ body{
   font-size:15px;
 }
 
-
-/* 送信文章 */
+/* ==============================
+   送信文章
+   ============================== */
 
 .preview{
   display:none;
@@ -320,8 +344,9 @@ body{
   display:block;
 }
 
-
-/* 送信ボタン */
+/* ==============================
+   送信
+   ============================== */
 
 .send-btn{
   width:100%;
@@ -329,11 +354,12 @@ body{
   padding:14px 12px;
   border:0;
   border-radius:18px;
-  background:linear-gradient(
-    180deg,
-    #56baf0,
-    #2d88d8
-  );
+  background:
+    linear-gradient(
+      180deg,
+      #56baf0,
+      #2d88d8
+    );
   color:#fff;
   font-size:20px;
   font-weight:900;
@@ -344,8 +370,9 @@ body{
   cursor:not-allowed;
 }
 
-
-/* 履歴 */
+/* ==============================
+   履歴
+   ============================== */
 
 .history{
   margin-top:18px;
@@ -394,8 +421,9 @@ body{
   display:none!important;
 }
 
-
-/* スマホ */
+/* ==============================
+   スマホ
+   ============================== */
 
 @media(max-width:480px){
 
@@ -529,6 +557,7 @@ body{
     </span>
   </button>
 
+
   <button
     id="btnOut"
     class="attendance-btn btn-out"
@@ -552,9 +581,6 @@ body{
   id="editPanel"
   class="edit-panel"
 >
-
-  <!-- 「内容修正」の見出しは削除済み -->
-
 
   <div id="inFields">
 
@@ -594,6 +620,7 @@ body{
 
       </div>
 
+
       <div class="field">
 
         <label for="clockOutTime">
@@ -624,6 +651,7 @@ body{
         >
 
       </div>
+
 
       <div class="field">
 
@@ -663,7 +691,9 @@ body{
 
 <section class="history">
 
-  <h3>今日の履歴</h3>
+  <h3>
+    今日の履歴
+  </h3>
 
   <ul
     id="historyList"
@@ -1655,7 +1685,9 @@ function nextLabel(
     diff ===
     1
   ){
+
     return '明日';
+
   }
 
 
@@ -1663,7 +1695,9 @@ function nextLabel(
     diff ===
     2
   ){
+
     return '明後日';
+
   }
 
 
@@ -1672,7 +1706,9 @@ function nextLabel(
 }
 
 
-/* 出勤文章：空行なし */
+/* ==============================
+   出勤文章
+   ============================== */
 
 function inMessage(){
 
@@ -1689,6 +1725,10 @@ function inMessage(){
 
 }
 
+
+/* ==============================
+   退勤文章
+   ============================== */
 
 function outMessage(){
 
@@ -1742,6 +1782,10 @@ function outMessage(){
 }
 
 
+/* ==============================
+   プレビュー
+   ============================== */
+
 function refresh(){
 
   const message =
@@ -1767,12 +1811,48 @@ function refresh(){
 }
 
 
+/* ==============================
+   出勤・退勤選択
+   ============================== */
+
 function setMode(
   mode
 ){
 
   state.mode =
     mode;
+
+
+  /*
+   * ★ 選択中だけ完全表示
+   * ★ 選択していない方は半透明
+   */
+
+  e.in.classList.remove(
+    'active'
+  );
+
+  e.out.classList.remove(
+    'active'
+  );
+
+
+  if(
+    mode ===
+    'in'
+  ){
+
+    e.in.classList.add(
+      'active'
+    );
+
+  }else{
+
+    e.out.classList.add(
+      'active'
+    );
+
+  }
 
 
   e.panel
@@ -1891,6 +1971,10 @@ function setMode(
 }
 
 
+/* ==============================
+   履歴
+   ============================== */
+
 function renderHistory(){
 
   if(
@@ -2003,6 +2087,10 @@ function addHistory(
 }
 
 
+/* ==============================
+   イベント
+   ============================== */
+
 e.driver.onchange =
   () => {
 
@@ -2105,6 +2193,10 @@ e.nextTime.oninput =
 e.nextDate.onchange =
   refresh;
 
+
+/* ==============================
+   送信
+   ============================== */
 
 e.send.onclick =
   async () => {
@@ -2241,6 +2333,19 @@ e.send.onclick =
         );
 
 
+      /*
+       * 送信後は選択状態を解除
+       */
+
+      e.in.classList.remove(
+        'active'
+      );
+
+      e.out.classList.remove(
+        'active'
+      );
+
+
       state.mode =
         null;
 
@@ -2261,6 +2366,10 @@ e.send.onclick =
 
   };
 
+
+/* ==============================
+   LIFF自動判別
+   ============================== */
 
 async function autoDetect(){
 
@@ -2374,6 +2483,10 @@ async function autoDetect(){
 
 }
 
+
+/* ==============================
+   起動
+   ============================== */
 
 window.addEventListener(
   'load',
