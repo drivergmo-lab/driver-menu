@@ -446,11 +446,11 @@ textarea:focus{
     必要な場合は修正お願いします。
   </div>
 
+  <!-- ★ captureを削除して写真ライブラリも選択可能 -->
   <input
     id="photoInput"
     type="file"
     accept="image/*"
-    capture="environment"
     class="hidden"
   >
 
@@ -476,7 +476,7 @@ textarea:focus{
       >
 
       <div class="ocr-title">
-        📷 読み取り済み
+        📷 写真の読み取り結果
       </div>
 
       <div
@@ -493,6 +493,7 @@ textarea:focus{
           >
             日付
           </label>
+
           <input
             id="reportDate"
             type="date"
@@ -506,6 +507,7 @@ textarea:focus{
           >
             時間
           </label>
+
           <input
             id="reportTime"
             type="time"
@@ -522,6 +524,7 @@ textarea:focus{
           >
             出勤時間
           </label>
+
           <input
             id="startTime"
             type="time"
@@ -538,6 +541,7 @@ textarea:focus{
           >
             退勤時間
           </label>
+
           <input
             id="endTime"
             type="time"
@@ -554,6 +558,7 @@ textarea:focus{
           >
             次回出勤日
           </label>
+
           <input
             id="nextDate"
             type="date"
@@ -570,6 +575,7 @@ textarea:focus{
           >
             次回出勤時間
           </label>
+
           <input
             id="nextTime"
             type="time"
@@ -582,7 +588,7 @@ textarea:focus{
           class="summary"
         >
           前回残業 <strong>0:00</strong>
-         　
+          　
           月間合計 <strong>0:00</strong>
         </div>
 
@@ -650,31 +656,15 @@ textarea:focus{
 
 <script>
 
-/* ============================================================
-   現在のWebアプリURL
-   ============================================================ */
-
 const API_URL =
   'https://script.google.com/macros/s/AKfycbySmhEE3JyfWGxEylyWscOtqL3FTIH9Ww6nybcAGb0f_kw2QXVP-LaoVtT1eFRtv-4Lyw/exec';
 
 const LIFF_ID =
   '2011011273-HIdBF1sM';
 
-const STORAGE_RECENT =
-  'driver_menu_recent_v5';
-
-const STORAGE_HISTORY =
-  'driver_menu_history_v5';
-
-const STORAGE_WORK =
-  'driver_menu_work_v5';
-
-
-/* ============================================================
-   DOM
-   ============================================================ */
 
 const el = {
+
   status:
     document.getElementById('status'),
 
@@ -758,12 +748,9 @@ const el = {
 
   historyList:
     document.getElementById('historyList')
+
 };
 
-
-/* ============================================================
-   STATE
-   ============================================================ */
 
 const state = {
 
@@ -798,12 +785,15 @@ const state = {
 };
 
 
-/* ============================================================
-   共通
-   ============================================================ */
-
 function pad2(value){
-  return String(value).padStart(2,'0');
+
+  return String(
+    value
+  ).padStart(
+    2,
+    '0'
+  );
+
 }
 
 
@@ -811,11 +801,11 @@ function today(){
 
   const d=new Date();
 
-  return (
+  return(
     d.getFullYear()+
-    '-'+
+    '-' +
     pad2(d.getMonth()+1)+
-    '-'+
+    '-' +
     pad2(d.getDate())
   );
 
@@ -826,7 +816,7 @@ function nowTime(){
 
   const d=new Date();
 
-  return (
+  return(
     pad2(d.getHours())+
     ':'+
     pad2(d.getMinutes())
@@ -843,11 +833,11 @@ function tomorrow(){
     d.getDate()+1
   );
 
-  return (
+  return(
     d.getFullYear()+
-    '-'+
+    '-' +
     pad2(d.getMonth()+1)+
-    '-'+
+    '-' +
     pad2(d.getDate())
   );
 
@@ -863,13 +853,21 @@ function dateText(value){
   );
 
   if(
-    Number.isNaN(d.getTime())
+    Number.isNaN(
+      d.getTime()
+    )
   ){
     return value;
   }
 
   const week=[
-    '日','月','火','水','木','金','土'
+    '日',
+    '月',
+    '火',
+    '水',
+    '木',
+    '金',
+    '土'
   ];
 
   return(
@@ -895,13 +893,21 @@ function shortDate(value){
   );
 
   if(
-    Number.isNaN(d.getTime())
+    Number.isNaN(
+      d.getTime()
+    )
   ){
     return value;
   }
 
   const week=[
-    '日','月','火','水','木','金','土'
+    '日',
+    '月',
+    '火',
+    '水',
+    '木',
+    '金',
+    '土'
   ];
 
   return(
@@ -920,56 +926,61 @@ function nextAttendanceLabel(value){
 
   if(!value)return '次回';
 
-  const todayDate=new Date(
-    today()+'T00:00:00'
-  );
+  const base=
+    new Date(
+      today()+'T00:00:00'
+    );
 
-  const target=new Date(
-    value+'T00:00:00'
-  );
+  const target=
+    new Date(
+      value+'T00:00:00'
+    );
 
-  const diff=Math.round(
-    (
-      target.getTime()-
-      todayDate.getTime()
-    )/86400000
-  );
+  const diff=
+    Math.round(
+      (
+        target.getTime()-
+        base.getTime()
+      )/
+      86400000
+    );
 
-  if(diff===1)return '明日';
+  if(diff===1){
+    return '明日';
+  }
 
-  if(diff===2)return '明後日';
+  if(diff===2){
+    return '明後日';
+  }
 
-  const currentWeekDay=
-    todayDate.getDay()||7;
+  const baseDay=
+    base.getDay()||7;
 
-  const targetWeekDay=
+  const targetDay=
     target.getDay()||7;
 
-  const monday=new Date(
-    todayDate
-  );
+  const monday=
+    new Date(base);
 
   monday.setDate(
-    todayDate.getDate()-
-    currentWeekDay+
+    base.getDate()-
+    baseDay+
     1
   );
 
-  const nextMonday=new Date(
-    monday
-  );
+  const nextMonday=
+    new Date(monday);
 
   nextMonday.setDate(
     monday.getDate()+7
   );
 
-  const targetMonday=new Date(
-    target
-  );
+  const targetMonday=
+    new Date(target);
 
   targetMonday.setDate(
     target.getDate()-
-    targetWeekDay+
+    targetDay+
     1
   );
 
@@ -989,11 +1000,26 @@ function escapeHtml(value){
   return String(
     value??''
   )
-  .replace(/&/g,'&amp;')
-  .replace(/</g,'&lt;')
-  .replace(/>/g,'&gt;')
-  .replace(/"/g,'&quot;')
-  .replace(/'/g,'&#39;');
+  .replace(
+    /&/g,
+    '&amp;'
+  )
+  .replace(
+    /</g,
+    '&lt;'
+  )
+  .replace(
+    />/g,
+    '&gt;'
+  )
+  .replace(
+    /"/g,
+    '&quot;'
+  )
+  .replace(
+    /'/g,
+    '&#39;'
+  );
 
 }
 
@@ -1007,7 +1033,9 @@ function setStatus(
     text;
 
   el.statusIcon.textContent=
-    done?'✓':'⏳';
+    done
+      ? '✓'
+      : '⏳';
 
   el.status.classList.toggle(
     'done',
@@ -1089,15 +1117,12 @@ async function callServer(
         API_URL,
         {
           method:'POST',
-
           headers:{
             'Content-Type':
               'application/x-www-form-urlencoded;charset=UTF-8'
           },
-
           body:
             params.toString(),
-
           mode:'no-cors'
         }
       )
@@ -1158,7 +1183,9 @@ function pollApi(
 
   function cleanup(){
 
-    if(script.parentNode){
+    if(
+      script.parentNode
+    ){
       script.parentNode.removeChild(
         script
       );
@@ -1175,7 +1202,9 @@ function pollApi(
   window[callback]=
     function(response){
 
-      if(finished)return;
+      if(finished){
+        return;
+      }
 
       finished=true;
       cleanup();
@@ -1210,7 +1239,8 @@ function pollApi(
 
         reject(
           new Error(
-            response&&response.error
+            response&&
+            response.error
               ? response.error
               : 'Apps Script APIエラー'
           )
@@ -1228,7 +1258,9 @@ function pollApi(
   script.onerror=
     function(){
 
-      if(finished)return;
+      if(finished){
+        return;
+      }
 
       finished=true;
       cleanup();
@@ -1279,7 +1311,8 @@ function findDriver(key){
       driver=>
         driver.driverKey===
         key
-    )||null
+    )||
+    null
   );
 
 }
@@ -1370,7 +1403,7 @@ async function selectDriver(driver){
       '<li class="empty">人物を選択すると履歴を表示します</li>';
 
     setStatus(
-      '人物選択待ち',
+      '人物を選択してください',
       false
     );
 
@@ -1434,7 +1467,8 @@ async function autoDetect(){
     }
 
     state.idToken=
-      liff.getIDToken()||'';
+      liff.getIDToken()||
+      '';
 
     if(
       !state.idToken
@@ -1448,8 +1482,7 @@ async function autoDetect(){
 
     const info=
       await callServer(
-        'getDriverInfo',
-        {}
+        'getDriverInfo'
       );
 
     console.log(
@@ -1672,7 +1705,9 @@ function setMode(mode){
 
 async function loadServerState(){
 
-  if(!state.driver)return;
+  if(!state.driver){
+    return;
+  }
 
   try{
 
@@ -1683,914 +1718,4 @@ async function loadServerState(){
     ]=
       await Promise.all([
 
-        callServer(
-          'getWorkState',
-          {
-            selectedDriverKey:
-              state.driver.driverKey
-          }
-        ),
-
-        callServer(
-          'getAttendanceSummary',
-          {
-            selectedDriverKey:
-              state.driver.driverKey
-          }
-        ),
-
-        callServer(
-          'getTodayHistory',
-          {
-            selectedDriverKey:
-              state.driver.driverKey
-          }
-        )
-
-      ]);
-
-    state.workState=
-      work||{
-        hasWork:false,
-        startTime:''
-      };
-
-    state.summary=
-      summary||{
-        previousOvertime:'0:00',
-        monthlyOvertime:'0:00'
-      };
-
-    state.history=
-      Array.isArray(history)
-        ? history
-        : [];
-
-    renderSummary();
-    renderHistory(
-      state.history
-    );
-
-  }catch(error){
-
-    console.error(
-      'サーバー状態取得失敗',
-      error
-    );
-
-  }
-
-}
-
-
-function renderSummary(){
-
-  el.summary.innerHTML=
-    '前回残業 <strong>'+
-    escapeHtml(
-      state.summary.previousOvertime||
-      '0:00'
-    )+
-    '</strong>　月間合計 <strong>'+
-    escapeHtml(
-      state.summary.monthlyOvertime||
-      '0:00'
-    )+
-    '</strong>';
-
-}
-
-
-/* ============================================================
-   履歴
-   ============================================================ */
-
-function renderHistory(list){
-
-  if(
-    !Array.isArray(list)||
-    !list.length
-  ){
-
-    el.historyList.innerHTML=
-      '<li class="empty">まだ履歴はありません</li>';
-
-    return;
-  }
-
-  const sorted=
-    [...list].sort(
-      (a,b)=>
-        Number(
-          b.savedAt||0
-        )-
-        Number(
-          a.savedAt||0
-        )
-    );
-
-  el.historyList.innerHTML=
-    sorted.map(
-      item=>{
-
-        let time='';
-
-        if(
-          item.type==='退勤'
-        ){
-
-          time=
-            (item.startTime||'0:00')+
-            '→'+
-            (item.endTime||'0:00');
-
-        }else{
-
-          time=
-            item.reportTime||
-            item.startTime||
-            '';
-
-        }
-
-        return(
-          '<li>'+
-            '<span class="history-date">'+
-              escapeHtml(
-                item.date||''
-              )+
-            '</span>'+
-            '<span class="history-type">'+
-              escapeHtml(
-                item.type||''
-              )+
-            '</span>'+
-            '<span class="history-time">'+
-              escapeHtml(
-                time
-              )+
-            '</span>'+
-            '<span class="history-ok">✅</span>'+
-          '</li>'
-        );
-
-      }
-    ).join('');
-
-}
-
-
-/* ============================================================
-   メッセージ
-   ============================================================ */
-
-function buildInMessage(){
-
-  const d=
-    el.reportDate.value||
-    today();
-
-  const time=
-    el.reportTime.value||
-    nowTime();
-
-  return(
-    'お疲れ様でございます。\n'+
-    dateText(d)+
-    ' '+
-    time+
-    '出勤いたしました。\n'+
-    '本日もよろしくお願いいたします。\n'+
-    '\n'+
-    '残業)'+
-    (
-      state.summary.previousOvertime||
-      '0:00'
-    )+
-    '\n'+
-    '合計)'+
-    (
-      state.summary.monthlyOvertime||
-      '0:00'
-    )+
-    '\n'+
-    '【MEMO】'
-  );
-
-}
-
-
-function buildOutMessage(){
-
-  const reportDate=
-    el.reportDate.value||
-    today();
-
-  const start=
-    el.startTime.value||
-    state.workState.startTime||
-    '00:00';
-
-  const end=
-    el.endTime.value||
-    nowTime();
-
-  const next=
-    el.nextDate.value||
-    tomorrow();
-
-  const nextTime=
-    el.nextTime.value||
-    '08:00';
-
-  const nextLabel=
-    nextAttendanceLabel(
-      next
-    );
-
-  return(
-    'お疲れ様でございます。\n'+
-    '業務完了いたしました。\n'+
-    dateText(reportDate)+
-    '\n'+
-    '稼働)'+
-    start+
-    '→'+
-    end+
-    '\n'+
-    '本日は失礼させていただきます。\n'+
-    '出勤) '+
-    nextLabel+
-    ' '+
-    shortDate(next)+
-    ' '+
-    nextTime+
-    '\n'+
-    '明日もよろしくお願いいたします。\n'+
-    '\n'+
-    '【MEMO】'
-  );
-
-}
-
-
-function addMemo(message){
-
-  const memo=
-    String(
-      el.memo.value||
-      ''
-    ).trim();
-
-  if(!memo){
-    return message;
-  }
-
-  return(
-    message+
-    '\n'+
-    memo
-  );
-
-}
-
-
-function refreshMessage(){
-
-  const message=
-    addMemo(
-      state.mode==='in'
-        ? buildInMessage()
-        : buildOutMessage()
-    );
-
-  el.messagePreview.textContent=
-    message;
-
-  return message;
-
-}
-
-
-/* ============================================================
-   写真
-   ============================================================ */
-
-function imageToDataUrl(file){
-
-  return new Promise(
-    (resolve,reject)=>{
-
-      const reader=
-        new FileReader();
-
-      reader.onload=
-        function(){
-
-          const image=
-            new Image();
-
-          image.onload=
-            function(){
-
-              const max=1800;
-
-              const scale=
-                Math.min(
-                  1,
-                  max/
-                  Math.max(
-                    image.width,
-                    image.height
-                  )
-                );
-
-              const canvas=
-                document.createElement(
-                  'canvas'
-                );
-
-              canvas.width=
-                Math.round(
-                  image.width*scale
-                );
-
-              canvas.height=
-                Math.round(
-                  image.height*scale
-                );
-
-              const context=
-                canvas.getContext(
-                  '2d',
-                  {
-                    alpha:false
-                  }
-                );
-
-              context.drawImage(
-                image,
-                0,
-                0,
-                canvas.width,
-                canvas.height
-              );
-
-              resolve(
-                canvas.toDataURL(
-                  'image/jpeg',
-                  .86
-                )
-              );
-
-            };
-
-          image.onerror=
-            reject;
-
-          image.src=
-            reader.result;
-
-        };
-
-      reader.onerror=
-        reject;
-
-      reader.readAsDataURL(
-        file
-      );
-
-    }
-  );
-
-}
-
-
-async function runBrowserOcr(dataUrl){
-
-  if(
-    !window.Tesseract
-  ){
-
-    throw new Error(
-      'OCRライブラリの読み込みに失敗しました'
-    );
-
-  }
-
-  const result=
-    await Tesseract.recognize(
-      dataUrl,
-      'eng',
-      {
-        logger:
-          message=>{
-
-            if(
-              message&&
-              message.status===
-              'recognizing text'&&
-              message.progress
-            ){
-
-              showNotice(
-                '写真を読み取り中... '+
-                Math.round(
-                  message.progress*100
-                )+
-                '%'
-              );
-
-            }
-
-          },
-
-        tessedit_pageseg_mode:6
-      }
-    );
-
-  return(
-    result&&
-    result.data
-      ? String(
-          result.data.text||''
-        )
-      : ''
-  );
-
-}
-
-
-async function uploadPhoto(file){
-
-  if(!state.driver){
-
-    alert(
-      '先に人物を選択してください'
-    );
-
-    return;
-  }
-
-  showNotice(
-    '写真を準備しています...'
-  );
-
-  el.sendBtn.disabled=
-    true;
-
-  try{
-
-    const dataUrl=
-      await imageToDataUrl(
-        file
-      );
-
-    el.photoPreview.src=
-      dataUrl;
-
-    const ocrText=
-      await runBrowserOcr(
-        dataUrl
-      );
-
-    showNotice(
-      '読み取り結果を確認しています...'
-    );
-
-    const result=
-      await callServer(
-        'ocrPhoto',
-        {
-          selectedDriverKey:
-            state.driver.driverKey,
-
-          mode:
-            state.mode,
-
-          imageBase64:
-            dataUrl,
-
-          fileName:
-            file.name,
-
-          ocrText:
-            ocrText
-        }
-      );
-
-    state.draft=
-      result;
-
-    el.preview.classList.add(
-      'show'
-    );
-
-    el.ocrText.textContent=
-      result.ocrText||
-      '文字を読み取れませんでした。時間を手入力してください。';
-
-    el.reportDate.value=
-      result.reportDate||
-      today();
-
-    if(
-      state.mode==='in'
-    ){
-
-      el.reportTime.value=
-        result.ocrTime||
-        nowTime();
-
-    }else{
-
-      el.startTime.value=
-        result.startTime||
-        state.workState.startTime||
-        '';
-
-      el.endTime.value=
-        result.endTime||
-        result.ocrTime||
-        nowTime();
-
-    }
-
-    refreshMessage();
-
-    el.sendBtn.disabled=
-      false;
-
-    showNotice(
-      '読み取り完了。時間を確認・修正して送信してください。'
-    );
-
-  }catch(error){
-
-    console.error(
-      error
-    );
-
-    showNotice(
-      error.message||
-      'OCRに失敗しました。'
-    );
-
-  }
-
-}
-
-
-/* ============================================================
-   送信
-   ============================================================ */
-
-async function sendDraft(){
-
-  if(
-    !state.draft||
-    !state.driver
-  ){
-    return;
-  }
-
-  el.sendBtn.disabled=
-    true;
-
-  showNotice(
-    '写真＋報告文章を送信中です...'
-  );
-
-  try{
-
-    const message=
-      refreshMessage();
-
-    const result=
-      await callServer(
-        'sendAttendanceDraft',
-        {
-          draftId:
-            state.draft.draftId,
-
-          mode:
-            state.mode,
-
-          reportDate:
-            el.reportDate.value,
-
-          reportTime:
-            state.mode==='in'
-              ? el.reportTime.value
-              : el.endTime.value,
-
-          startTime:
-            state.mode==='out'
-              ? el.startTime.value
-              : el.reportTime.value,
-
-          endTime:
-            state.mode==='out'
-              ? el.endTime.value
-              : '',
-
-          nextDate:
-            state.mode==='out'
-              ? el.nextDate.value
-              : '',
-
-          nextTime:
-            state.mode==='out'
-              ? el.nextTime.value
-              : '',
-
-          message:
-            message
-        }
-      );
-
-    if(
-      !result||
-      result.ok!==true
-    ){
-
-      throw new Error(
-        '送信に失敗しました'
-      );
-
-    }
-
-    showNotice(
-      '送信完了しました。'
-    );
-
-    if(
-      state.mode==='in'
-    ){
-
-      state.workState={
-        hasWork:true,
-        startTime:
-          el.reportTime.value
-      };
-
-    }
-
-    state.draft=
-      null;
-
-    el.preview.classList.remove(
-      'show'
-    );
-
-    el.photoInput.value=
-      '';
-
-    await loadServerState();
-
-  }catch(error){
-
-    console.error(
-      error
-    );
-
-    showNotice(
-      error.message||
-      '送信に失敗しました'
-    );
-
-  }finally{
-
-    el.sendBtn.disabled=
-      !state.draft;
-
-  }
-
-}
-
-
-/* ============================================================
-   イベント
-   ============================================================ */
-
-el.driverSelect.addEventListener(
-  'change',
-  async function(){
-
-    const driver=
-      findDriver(
-        el.driverSelect.value
-      );
-
-    await selectDriver(
-      driver
-    );
-
-  }
-);
-
-
-el.inMode.addEventListener(
-  'click',
-  function(){
-
-    if(!state.driver){
-
-      alert(
-        '先に人物を選択してください'
-      );
-
-      return;
-    }
-
-    setMode('in');
-
-  }
-);
-
-
-el.outMode.addEventListener(
-  'click',
-  function(){
-
-    if(!state.driver){
-
-      alert(
-        '先に人物を選択してください'
-      );
-
-      return;
-    }
-
-    setMode('out');
-
-  }
-);
-
-
-el.uploadBtn.addEventListener(
-  'click',
-  function(){
-
-    if(!state.driver){
-
-      alert(
-        '先に人物を選択してください'
-      );
-
-      return;
-    }
-
-    if(!state.mode){
-
-      alert(
-        '出勤または退勤を選択してください'
-      );
-
-      return;
-    }
-
-    el.photoInput.click();
-
-  }
-);
-
-
-el.photoInput.addEventListener(
-  'change',
-  function(){
-
-    const file=
-      el.photoInput.files&&
-      el.photoInput.files[0];
-
-    if(file){
-      uploadPhoto(
-        file
-      );
-    }
-
-  }
-);
-
-
-[
-  el.reportDate,
-  el.reportTime,
-  el.startTime,
-  el.endTime,
-  el.nextDate,
-  el.nextTime,
-  el.memo
-].forEach(
-  input=>{
-
-    input.addEventListener(
-      'input',
-      refreshMessage
-    );
-
-    input.addEventListener(
-      'change',
-      refreshMessage
-    );
-
-  }
-);
-
-
-el.sendBtn.addEventListener(
-  'click',
-  sendDraft
-);
-
-
-/* ============================================================
-   初期化
-   ============================================================ */
-
-window.addEventListener(
-  'load',
-  async function(){
-
-    el.reportDate.value=
-      today();
-
-    setMode('in');
-
-    setStatus(
-      '自動判別中...',
-      false
-    );
-
-    try{
-
-      await loadDrivers();
-
-      await autoDetect();
-
-    }catch(error){
-
-      console.error(
-        '初期化失敗',
-        error
-      );
-
-      setStatus(
-        '人物選択待ち',
-        false
-      );
-
-    }
-
-  }
-);
-
-
-window.addEventListener(
-  'pageshow',
-  function(){
-
-    setTimeout(
-      function(){
-
-        if(state.driver){
-
-          loadCurrentAssignment();
-          loadServerState();
-
-        }
-
-      },
-      200
-    );
-
-  }
-);
-
-
-window.addEventListener(
-  'focus',
-  function(){
-
-    setTimeout(
-      function(){
-
-        if(state.driver){
-
-          loadCurrentAssignment();
-          loadServerState();
-
-        }
-
-      },
-      200
-    );
-
-  }
-);
-
-</script>
-
-</body>
-</html>
+       
