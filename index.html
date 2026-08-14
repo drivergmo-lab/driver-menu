@@ -2,17 +2,13 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1.0,viewport-fit=cover"
->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>運転手MENU</title>
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 
 <style>
-
 :root{
   --bg1:#e8f7ff;
   --bg2:#f7fcff;
@@ -35,11 +31,7 @@ body{
   padding:0;
   width:100%;
   min-height:100%;
-  font-family:
-    "Hiragino Sans",
-    "Yu Gothic",
-    "Meiryo",
-    sans-serif;
+  font-family:"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
   color:var(--text);
   background:linear-gradient(180deg,var(--bg1),var(--bg2));
 }
@@ -121,7 +113,7 @@ body{
 
 
 /* =========================================================
-   自動判別 ＋ 人物選択 横並び
+   自動判別＋人物選択
    ========================================================= */
 
 .driver-top-row{
@@ -132,32 +124,22 @@ body{
   margin-bottom:10px;
 }
 
-
-/* 左側 */
-
 .driver-pill{
   display:flex;
   align-items:center;
   justify-content:center;
   gap:6px;
-
   width:100%;
   min-width:0;
   min-height:72px;
-
   margin:0;
   padding:8px;
-
   border-radius:16px;
-
   background:#f3fbff;
   border:1px solid #dceff9;
-
   color:#1676c7;
-
   font-size:14px;
   font-weight:900;
-
   white-space:nowrap;
 }
 
@@ -178,23 +160,16 @@ body{
   text-overflow:ellipsis;
 }
 
-
-/* 右側 */
-
 .manual-select-area{
   display:flex;
   flex-direction:column;
   justify-content:center;
-
   min-width:0;
   min-height:72px;
-
   margin:0;
   padding:7px 9px;
-
   border:1px solid #dceff9;
   border-radius:16px;
-
   background:#f9fdff;
 }
 
@@ -212,13 +187,10 @@ body{
   min-width:0;
   height:39px;
   padding:0 7px;
-
   border:1px solid #cfe5f5;
   border-radius:11px;
-
   background:#fff;
   color:#17324d;
-
   font-size:13px;
   font-weight:800;
 }
@@ -239,21 +211,15 @@ body{
   width:100%;
   height:72px;
   min-height:72px;
-
   border:0;
   border-radius:16px;
-
   overflow:hidden;
   cursor:pointer;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   box-shadow:0 8px 18px rgba(39,96,139,.10);
-
   opacity:.45;
-
   transition:
     opacity .15s ease,
     filter .15s ease,
@@ -326,21 +292,15 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-
   width:100%;
   min-height:52px;
-
   padding:10px 12px;
-
   border:1px solid #cfe8f7;
   border-radius:16px;
-
   background:#eaf7ff;
   color:#1676c7;
-
   font-size:17px;
   font-weight:900;
-
   cursor:pointer;
 }
 
@@ -364,16 +324,12 @@ body{
   display:none;
   margin-top:8px;
   padding:8px 10px;
-
   border:1px solid #dceff9;
   border-radius:12px;
-
   background:#f7fcff;
   color:#61798e;
-
   font-size:12px;
   line-height:1.45;
-
   text-align:center;
 }
 
@@ -390,12 +346,9 @@ body{
   display:none;
   margin-top:8px;
   padding:12px;
-
   background:#fff;
-
   border-radius:20px;
   border:1px solid rgba(216,235,247,.9);
-
   box-shadow:var(--shadow-soft);
 }
 
@@ -412,10 +365,8 @@ body{
   display:none;
   margin-bottom:10px;
   padding:8px;
-
   border:1px solid var(--line);
   border-radius:16px;
-
   background:#f8fcff;
 }
 
@@ -427,9 +378,7 @@ body{
   display:block;
   width:100%;
   max-height:260px;
-
   object-fit:contain;
-
   border-radius:12px;
   background:#edf4f8;
 }
@@ -441,19 +390,14 @@ body{
 
 .ocr-result-note{
   display:none;
-
   margin:8px 0;
   padding:8px 10px;
-
   border:1px solid #d9edf9;
   border-radius:12px;
-
   background:#f4fbff;
   color:#557389;
-
   font-size:11px;
   line-height:1.45;
-
   text-align:center;
 }
 
@@ -473,31 +417,23 @@ body{
 .field label{
   display:block;
   margin:0 0 3px;
-
   color:#61798e;
-
   font-size:12px;
   font-weight:800;
 }
 
 .field input{
   display:block;
-
   width:100%;
   min-width:0;
   height:40px;
-
   padding:0 6px;
-
   border:1px solid #cfe5f5;
   border-radius:13px;
-
   background:#fff;
   color:#0d2340;
-
   font-size:20px;
   font-weight:900;
-
   text-align:center;
   outline:none;
 }
@@ -531,22 +467,16 @@ body{
 
 .preview{
   display:none;
-
   margin-top:9px;
   padding:13px 15px;
-
   border:1px solid var(--line);
   border-radius:18px;
-
   background:#f4faff;
   color:#14446e;
-
   font-size:14px;
   line-height:1.4;
   font-weight:600;
-
   white-space:pre-line;
-
   word-break:break-word;
   overflow-wrap:anywhere;
 }
@@ -563,9 +493,7 @@ body{
 .extra-label{
   display:block;
   margin:10px 0 5px;
-
   color:#61798e;
-
   font-size:12px;
   font-weight:800;
 }
@@ -573,21 +501,15 @@ body{
 .extra-message{
   width:100%;
   min-height:78px;
-
   padding:9px 10px;
-
   resize:vertical;
-
   border:1px solid #cfe5f5;
   border-radius:13px;
-
   background:#fff;
   color:#17324d;
-
   font-family:inherit;
   font-size:13px;
   line-height:1.5;
-
   outline:none;
 }
 
@@ -603,25 +525,19 @@ body{
 
 .send-btn{
   width:100%;
-
   margin-top:7px;
   padding:14px 12px;
-
   border:0;
   border-radius:18px;
-
   background:
     linear-gradient(
       180deg,
       #56baf0,
       #2d88d8
     );
-
   color:#fff;
-
   font-size:20px;
   font-weight:900;
-
   cursor:pointer;
 }
 
@@ -632,7 +548,7 @@ body{
 
 
 /* =========================================================
-   履歴
+   今日の履歴
    ========================================================= */
 
 .history{
@@ -643,12 +559,9 @@ body{
 
 .history h3{
   margin:0 0 10px;
-
   color:#1676c7;
-
   font-size:20px;
   font-weight:900;
-
   text-align:center;
 }
 
@@ -660,23 +573,85 @@ body{
   list-style:none;
   margin:0;
   padding:0;
+  width:100%;
 }
 
+
+/*
+  4列を固定
+
+  日付
+  出勤/退勤
+  時間
+  ✅
+
+  これで✅の位置が全部揃う
+*/
+
 .history-list li{
+  display:grid;
+  grid-template-columns:
+    100px
+    48px
+    minmax(75px,1fr)
+    32px;
+
+  align-items:center;
+  gap:5px;
+
+  width:100%;
+
   padding:9px 0;
 
   border-bottom:1px solid #edf4fa;
 
   color:#496173;
 
-  font-size:13px;
-  line-height:1.4;
+  font-size:12px;
+  line-height:1.35;
+
+  white-space:nowrap;
+}
+
+.history-date{
+  text-align:left;
+}
+
+.history-type{
+  text-align:left;
+  font-weight:700;
+}
+
+.history-time{
+  min-width:0;
+  text-align:left;
+  font-weight:700;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.history-status{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:32px;
+  min-width:32px;
+
+  font-size:16px;
+  line-height:1;
 }
 
 .history-list .empty{
+  display:block;
   color:#7a90a3;
   text-align:center;
 }
+
+
+/* =========================================================
+   footer
+   ========================================================= */
 
 .footer{
   padding:14px 10px 4px;
@@ -722,11 +697,31 @@ body{
     font-size:22px;
   }
 
+
+  /* 履歴も4列固定 */
+
+  .history-list li{
+    grid-template-columns:
+      82px
+      42px
+      minmax(68px,1fr)
+      30px;
+
+    gap:3px;
+
+    font-size:11px;
+  }
+
+  .history-status{
+    width:30px;
+    min-width:30px;
+    font-size:15px;
+  }
+
 }
 
 </style>
 </head>
-
 
 <body>
 
@@ -747,9 +742,6 @@ body{
 
 <div class="driver-top-row">
 
-
-  <!-- 左 -->
-
   <div
     id="statusPill"
     class="driver-pill"
@@ -768,8 +760,6 @@ body{
 
   </div>
 
-
-  <!-- 右 -->
 
   <div class="manual-select-area">
 
@@ -792,7 +782,6 @@ body{
     </select>
 
   </div>
-
 
 </div>
 
@@ -947,7 +936,7 @@ body{
   >
 
 
-    <!-- 1 出勤日 -->
+    <!-- 出勤日 -->
 
     <div class="field single-field">
 
@@ -963,7 +952,7 @@ body{
     </div>
 
 
-    <!-- 2 出勤時間 / 3 退勤時間 -->
+    <!-- 出勤時間 / 退勤時間 -->
 
     <div class="two-column">
 
@@ -997,44 +986,44 @@ body{
     </div>
 
 
-    <!-- 4 次回出勤日 -->
+    <!-- 次回出勤日 / 次回出勤時間 -->
 
-    <div class="field single-field">
+    <div class="two-column">
 
-      <label for="nextDate">
-        次回出勤日
-      </label>
+      <div class="field">
 
-      <input
-        id="nextDate"
-        type="date"
-      >
+        <label for="nextDate">
+          次回出勤日
+        </label>
 
-    </div>
+        <input
+          id="nextDate"
+          type="date"
+        >
+
+      </div>
 
 
-    <!-- 5 次回出勤時間 -->
+      <div class="field">
 
-    <div class="field single-field">
+        <label for="nextTime">
+          次回出勤時間
+        </label>
 
-      <label for="nextTime">
-        次回出勤時間
-      </label>
+        <input
+          id="nextTime"
+          type="time"
+          value="08:00"
+        >
 
-      <input
-        id="nextTime"
-        type="time"
-        value="08:00"
-      >
+      </div>
 
     </div>
 
   </div>
 
 
-  <!-- =====================================================
-       送信文章
-       ===================================================== -->
+  <!-- 送信文章 -->
 
   <div
     id="preview"
@@ -1042,9 +1031,7 @@ body{
   ></div>
 
 
-  <!-- =====================================================
-       追加文章
-       ===================================================== -->
+  <!-- 追加文章 -->
 
   <label
     class="extra-label"
@@ -1061,9 +1048,7 @@ body{
   ></textarea>
 
 
-  <!-- =====================================================
-       送信
-       ===================================================== -->
+  <!-- 送信 -->
 
   <button
     id="sendBtn"
@@ -1079,7 +1064,7 @@ body{
 
 
 <!-- =======================================================
-     履歴
+     今日の履歴
      ======================================================= -->
 
 <section class="history">
@@ -1126,13 +1111,13 @@ const LIFF_ID =
   '2011011273-HIdBF1sM';
 
 const RECENT_KEY =
-  'driver_menu_recent_drivers_v6';
+  'driver_menu_recent_drivers_v9';
 
 const HISTORY_KEY =
-  'driver_menu_attendance_history_v6';
+  'driver_menu_attendance_history_v9';
 
 const WORK_KEY =
-  'driver_menu_work_state_v6';
+  'driver_menu_work_state_v9';
 
 
 /* ============================================================
@@ -1360,11 +1345,17 @@ function todayDate(){
     '-' +
     String(
       d.getMonth()+1
-    ).padStart(2,'0') +
+    ).padStart(
+      2,
+      '0'
+    ) +
     '-' +
     String(
       d.getDate()
-    ).padStart(2,'0')
+    ).padStart(
+      2,
+      '0'
+    )
   );
 
 }
@@ -1384,11 +1375,17 @@ function tomorrowDate(){
     '-' +
     String(
       d.getMonth()+1
-    ).padStart(2,'0') +
+    ).padStart(
+      2,
+      '0'
+    ) +
     '-' +
     String(
       d.getDate()
-    ).padStart(2,'0')
+    ).padStart(
+      2,
+      '0'
+    )
   );
 
 }
@@ -1402,15 +1399,23 @@ function currentTime(){
   return (
     String(
       d.getHours()
-    ).padStart(2,'0') +
+    ).padStart(
+      2,
+      '0'
+    ) +
     ':' +
     String(
       d.getMinutes()
-    ).padStart(2,'0')
+    ).padStart(
+      2,
+      '0'
+    )
   );
 
 }
 
+
+/* 8/14(金) */
 
 function jpDate(
   value
@@ -1438,7 +1443,7 @@ function jpDate(
   }
 
 
-  const d =
+  const date =
     new Date(
       Number(m[1]),
       Number(m[2])-1,
@@ -1463,13 +1468,78 @@ function jpDate(
     Number(m[3]) +
     '(' +
     week[
-      d.getDay()
+      date.getDay()
     ] +
     ')'
   );
 
 }
 
+
+/* 2026/8/14(金) */
+
+function jpFullDate(
+  value
+){
+
+  const m =
+    String(
+      value || ''
+    ).match(
+      /^(\d{4})-(\d{2})-(\d{2})$/
+    );
+
+
+  if(
+    !m
+  ){
+
+    return String(
+      value || ''
+    ).replace(
+      /-/g,
+      '/'
+    );
+
+  }
+
+
+  const date =
+    new Date(
+      Number(m[1]),
+      Number(m[2])-1,
+      Number(m[3])
+    );
+
+
+  const week = [
+    '日',
+    '月',
+    '火',
+    '水',
+    '木',
+    '金',
+    '土'
+  ];
+
+
+  return (
+    Number(m[1]) +
+    '/' +
+    Number(m[2]) +
+    '/' +
+    Number(m[3]) +
+    '(' +
+    week[
+      date.getDay()
+    ] +
+    ')'
+  );
+
+}
+
+
+/* 2026/8/14 */
 
 function slashDate(
   value
@@ -1505,11 +1575,6 @@ function slashDate(
 
 /* ============================================================
    次回の文言
-
-   明日
-   明後日
-   来週
-   次回
    ============================================================ */
 
 function nextLabel(
@@ -1554,8 +1619,6 @@ function nextLabel(
     );
 
 
-  /* 明日 */
-
   if(
     diff === 1
   ){
@@ -1564,8 +1627,6 @@ function nextLabel(
 
   }
 
-
-  /* 明後日 */
 
   if(
     diff === 2
@@ -1576,13 +1637,7 @@ function nextLabel(
   }
 
 
-  /*
-   * 今週の月曜日を取得
-   * JavaScriptでは日曜=0なので
-   * 日曜だけ7として扱う
-   */
-
-  const day =
+  const currentDay =
     today.getDay() === 0
       ? 7
       : today.getDay();
@@ -1596,14 +1651,10 @@ function nextLabel(
 
   thisMonday.setDate(
     today.getDate() -
-    day +
+    currentDay +
     1
   );
 
-
-  /*
-   * 来週月曜日
-   */
 
   const nextMonday =
     new Date(
@@ -1617,10 +1668,6 @@ function nextLabel(
   );
 
 
-  /*
-   * 来週日曜日
-   */
-
   const nextSunday =
     new Date(
       nextMonday
@@ -1632,11 +1679,6 @@ function nextLabel(
     6
   );
 
-
-  /*
-   * 来週の月曜日〜日曜日なら
-   * 「来週」
-   */
 
   if(
     target >= nextMonday &&
@@ -1654,7 +1696,7 @@ function nextLabel(
 
 
 /* ============================================================
-   RECENT
+   RECENT DRIVER
    ============================================================ */
 
 function getRecentDrivers(){
@@ -1766,6 +1808,22 @@ function loadHistory(){
   }
 
 
+  /*
+   * 現在の形式だけ表示
+   */
+
+  state.history =
+    state.history.filter(
+      item =>
+        item &&
+        item.date &&
+        item.type &&
+        item.time
+    );
+
+
+  saveHistory();
+
   renderHistory();
 
 }
@@ -1786,20 +1844,83 @@ function saveHistory(){
 }
 
 
-function addHistory(
-  text
-){
+/*
+ * 最新を必ず先頭へ追加
+ */
+
+function addAttendanceHistory(){
+
+  let date;
+  let type;
+  let timeValue;
+
+
+  if(
+    state.mode === 'in'
+  ){
+
+    date =
+      e.reportDate.value ||
+      todayDate();
+
+
+    type =
+      '出勤';
+
+
+    timeValue =
+      e.clockInTime.value ||
+      currentTime();
+
+  }else{
+
+    date =
+      e.outReportDate.value ||
+      todayDate();
+
+
+    type =
+      '退勤';
+
+
+    const start =
+      e.editClockInTime.value ||
+      state.startTime ||
+      '0:00';
+
+
+    const end =
+      e.clockOutTime.value ||
+      '0:00';
+
+
+    timeValue =
+      start +
+      '→' +
+      end;
+
+  }
+
+
+  /*
+   * unshift = 最新を一番上
+   */
 
   state.history.unshift({
 
-    time:
-      new Date()
-        .toLocaleString(
-          'ja-JP'
-        ),
+    date:
+      slashDate(
+        date
+      ),
 
-    text:
-      text
+    type:
+      type,
+
+    time:
+      timeValue,
+
+    savedAt:
+      Date.now()
 
   });
 
@@ -1818,6 +1939,13 @@ function addHistory(
 }
 
 
+/*
+ * 履歴表示
+ *
+ * 2026/8/14　退勤　9:30→18:30　✅
+ * 2026/8/14　出勤　9:30　　　　✅
+ */
+
 function renderHistory(){
 
   if(
@@ -1832,19 +1960,56 @@ function renderHistory(){
   }
 
 
-  e.historyList.innerHTML =
+  /*
+   * savedAtがある場合は
+   * 念のため新しい順に並べる
+   */
+
+  const list =
     state.history
+      .slice()
+      .sort(
+        (a,b) =>
+          Number(
+            b.savedAt || 0
+          ) -
+          Number(
+            a.savedAt || 0
+          )
+      );
+
+
+  e.historyList.innerHTML =
+    list
       .map(
         item =>
+
           '<li>' +
-          escapeHtml(
-            item.time
-          ) +
-          '　' +
-          escapeHtml(
-            item.text
-          ) +
+
+            '<span class="history-date">' +
+              escapeHtml(
+                item.date
+              ) +
+            '</span>' +
+
+            '<span class="history-type">' +
+              escapeHtml(
+                item.type
+              ) +
+            '</span>' +
+
+            '<span class="history-time">' +
+              escapeHtml(
+                item.time
+              ) +
+            '</span>' +
+
+            '<span class="history-status">' +
+              '✅' +
+            '</span>' +
+
           '</li>'
+
       )
       .join('');
 
@@ -2103,6 +2268,7 @@ function selectDriver(
   state.driver =
     driver;
 
+
   state.manual =
     manual === true;
 
@@ -2113,6 +2279,7 @@ function selectDriver(
 
   e.btnIn.disabled =
     false;
+
 
   e.btnOut.disabled =
     false;
@@ -2139,7 +2306,7 @@ function selectDriver(
 
 function callServer(
   operation,
-  data = {}
+  data={}
 ){
 
   return new Promise(
@@ -2210,10 +2377,8 @@ function callServer(
             'no-cors',
 
           headers:{
-
             'Content-Type':
               'application/x-www-form-urlencoded;charset=UTF-8'
-
           },
 
           body:
@@ -2250,8 +2415,7 @@ function pollApi(
 ){
 
   if(
-    attempt >=
-    45
+    attempt >= 45
   ){
 
     reject(
@@ -2320,7 +2484,7 @@ function pollApi(
               requestId,
               resolve,
               reject,
-              attempt + 1
+              attempt+1
             );
 
           },
@@ -2372,7 +2536,7 @@ function pollApi(
             requestId,
             resolve,
             reject,
-            attempt + 1
+            attempt+1
           );
 
         },
@@ -2499,6 +2663,7 @@ function setMode(
       'hidden'
     );
 
+
     e.outFields.classList.add(
       'hidden'
     );
@@ -2516,6 +2681,7 @@ function setMode(
     e.inFields.classList.add(
       'hidden'
     );
+
 
     e.outFields.classList.remove(
       'hidden'
@@ -2660,6 +2826,7 @@ function prepareImage(
 
               canvas.width =
                 width;
+
 
               canvas.height =
                 height;
@@ -3025,7 +3192,8 @@ function applyDraftToFields(){
 
 
   if(
-    state.mode === 'in'
+    state.mode ===
+    'in'
   ){
 
     e.reportDate.value =
@@ -3052,24 +3220,14 @@ function applyDraftToFields(){
       '';
 
 
-    if(
-      !e.nextDate.value
-    ){
-
-      e.nextDate.value =
-        tomorrowDate();
-
-    }
+    e.nextDate.value =
+      e.nextDate.value ||
+      tomorrowDate();
 
 
-    if(
-      !e.nextTime.value
-    ){
-
-      e.nextTime.value =
-        '08:00';
-
-    }
+    e.nextTime.value =
+      e.nextTime.value ||
+      '08:00';
 
   }
 
@@ -3161,7 +3319,7 @@ function buildOutMessage(){
   const start =
     e.editClockInTime.value ||
     state.startTime ||
-    '00:00';
+    '0:00';
 
 
   const end =
@@ -3182,7 +3340,7 @@ function buildOutMessage(){
   let message =
     'お疲れ様でございます。\n' +
     '業務完了いたしました。\n' +
-    slashDate(date) +
+    jpFullDate(date) +
     '\n' +
     '稼働)' +
     start +
@@ -3234,7 +3392,8 @@ function refreshMessage(){
 
 
   const message =
-    state.mode === 'in'
+    state.mode ===
+      'in'
       ? buildInMessage()
       : buildOutMessage();
 
@@ -3325,32 +3484,38 @@ async function sendAttendance(){
             state.mode,
 
           reportDate:
-            state.mode === 'in'
+            state.mode ===
+              'in'
               ? e.reportDate.value
               : e.outReportDate.value,
 
           reportTime:
-            state.mode === 'in'
+            state.mode ===
+              'in'
               ? e.clockInTime.value
               : e.clockOutTime.value,
 
           startTime:
-            state.mode === 'out'
+            state.mode ===
+              'out'
               ? e.editClockInTime.value
               : e.clockInTime.value,
 
           endTime:
-            state.mode === 'out'
+            state.mode ===
+              'out'
               ? e.clockOutTime.value
               : '',
 
           nextDate:
-            state.mode === 'out'
+            state.mode ===
+              'out'
               ? e.nextDate.value
               : '',
 
           nextTime:
-            state.mode === 'out'
+            state.mode ===
+              'out'
               ? e.nextTime.value
               : '',
 
@@ -3377,18 +3542,21 @@ async function sendAttendance(){
     }
 
 
-    addHistory(
-      (
-        state.mode === 'in'
-          ? '出勤'
-          : '退勤'
-      ) +
-      'を送信しました'
-    );
+    /*
+     * ★ 履歴追加
+     * 最新が上
+     */
 
+    addAttendanceHistory();
+
+
+    /*
+     * 出勤状態保存
+     */
 
     if(
-      state.mode === 'in'
+      state.mode ===
+      'in'
     ){
 
       state.startTime =
@@ -3400,8 +3568,13 @@ async function sendAttendance(){
     }
 
 
+    /*
+     * 退勤後は出勤状態を解除
+     */
+
     if(
-      state.mode === 'out'
+      state.mode ===
+      'out'
     ){
 
       state.startTime =
@@ -3418,6 +3591,10 @@ async function sendAttendance(){
     );
 
 
+    /*
+     * 選択状態解除
+     */
+
     e.btnIn.classList.remove(
       'active'
     );
@@ -3427,6 +3604,10 @@ async function sendAttendance(){
       'active'
     );
 
+
+    /*
+     * 編集欄を閉じる
+     */
 
     e.editPanel.classList.remove(
       'show'
