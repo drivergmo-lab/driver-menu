@@ -802,14 +802,14 @@ textarea:focus{
     <div class="select-box">
 
       <label for="driverSelect">
-        人物選択
+        選択
       </label>
 
 
       <select id="driverSelect">
 
         <option value="">
-          人物を選択してください
+          選択可
         </option>
 
       </select>
@@ -843,7 +843,7 @@ textarea:focus{
       type="button"
       disabled
     >
-      ☀️ 出勤
+      ☀️出勤☀️
     </button>
 
 
@@ -853,7 +853,7 @@ textarea:focus{
       type="button"
       disabled
     >
-      🌙 退勤
+      🌙退勤🌙
     </button>
 
   </div>
@@ -1121,7 +1121,7 @@ textarea:focus{
 
 
     <h2 class="history-title">
-      履歴
+      ＜履歴＞
     </h2>
 
 
@@ -1131,7 +1131,7 @@ textarea:focus{
     >
 
       <li class="empty">
-        人物を選択すると履歴を表示します
+        人物が選択されると履歴を表示
       </li>
 
     </ul>
@@ -2071,7 +2071,7 @@ function renderDrivers(){
 
 
   el.driverSelect.innerHTML =
-    '<option value="">人物を選択してください</option>';
+    '<option value="">選択して！</option>';
 
 
   state.drivers.forEach(
@@ -2169,7 +2169,7 @@ async function selectDriver(
       '👔 今月の担当：未選択';
 
     el.historyList.innerHTML =
-      '<li class="empty">人物を選択すると履歴を表示します</li>';
+      '<li class="empty">人物が選択されると履歴を表示</li>';
 
     setStatus(
       '人物選択待ち',
