@@ -793,7 +793,7 @@ textarea:focus{
       </span>
 
       <span id="statusText">
-        判別中
+        判別中⏳
       </span>
 
     </div>
@@ -809,7 +809,7 @@ textarea:focus{
       <select id="driverSelect">
 
         <option value="">
-          選択可
+          ⏳判別中⏳
         </option>
 
       </select>
@@ -2071,7 +2071,7 @@ function renderDrivers(){
 
 
   el.driverSelect.innerHTML =
-    '<option value="">選択中！</option>';
+    '<option value="">選択して下さい</option>';
 
 
   state.drivers.forEach(
@@ -3633,7 +3633,7 @@ async function autoDetect(){
     ){
 
       setStatus(
-        '人物を選択可',
+        '右から選択',
         false
       );
 
@@ -3652,7 +3652,7 @@ async function autoDetect(){
     ){
 
       setStatus(
-        '人物を選択可',
+        '右から選択',
         false
       );
 
@@ -3720,7 +3720,7 @@ async function autoDetect(){
 
 
     setStatus(
-      '人物を選択可',
+      '右から選択',
       false
     );
 
@@ -3746,7 +3746,7 @@ async function autoDetect(){
     }else{
 
       setStatus(
-        '人物を選択可',
+        '右から選択',
         false
       );
 
