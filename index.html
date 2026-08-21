@@ -270,6 +270,7 @@ font-size:18px;
 font-weight:900;
 }
 .send-btn:disabled{opacity:.45;cursor:not-allowed}
+
 .management-menu{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -289,11 +290,12 @@ color:var(--blue);
 .management-btn:active{transform:scale(.99)}
 .assignment-btn{background:#eef8ff}
 .comp-btn{background:#f4fbf5;color:#18824e}
+
 .management-panel{
-margin-top:10px;
-padding:11px;
+margin-top:8px;
+padding:6px;
 border:1px solid var(--line);
-border-radius:18px;
+border-radius:16px;
 background:#fff;
 }
 .management-header{
@@ -301,9 +303,13 @@ display:flex;
 align-items:center;
 justify-content:space-between;
 gap:8px;
-margin-bottom:9px;
+margin-bottom:7px;
 }
-.management-title{color:var(--blue);font-size:18px;font-weight:900}
+.management-title{
+color:var(--blue);
+font-size:18px;
+font-weight:900;
+}
 .management-close{
 border:0;
 border-radius:10px;
@@ -314,61 +320,92 @@ font-size:12px;
 font-weight:900;
 }
 .management-loading{
-padding:18px;
+padding:10px;
 color:#688094;
 text-align:center;
 font-size:13px;
 font-weight:800;
 }
-.management-table-wrap{overflow:auto;max-width:100%}
+.management-table-wrap{
+overflow-x:hidden;
+max-width:100%;
+}
 .management-table{
 width:100%;
-min-width:560px;
+min-width:0;
+table-layout:fixed;
 border-collapse:collapse;
-font-size:13px;
+font-size:11px;
 }
-.management-table th,.management-table td{
-padding:7px;
+.management-table th,
+.management-table td{
+padding:1px 2px;
 border:1px solid #dbeaf3;
 vertical-align:middle;
+overflow:hidden;
 }
 .management-table th{
 background:#eef8ff;
 color:#42647b;
 font-weight:900;
-white-space:nowrap;
+white-space:normal;
+word-break:break-all;
+line-height:1.15;
 }
 .management-table td{background:#fff}
 .management-table input{
 width:100%;
-min-width:84px;
-padding:7px;
+min-width:0;
+height:31px;
+padding:3px 4px;
 border:1px solid #d4e5ef;
-border-radius:8px;
+border-radius:7px;
 background:#fff;
 color:var(--text);
-font-size:13px;
+font-size:11px;
 }
+.assignment-panel .management-table th,
+.assignment-panel .management-table td{
+width:20%;
+}
+.comp-panel .management-table th:nth-child(1),
+.comp-panel .management-table td:nth-child(1){width:20%}
+.comp-panel .management-table th:nth-child(2),
+.comp-panel .management-table td:nth-child(2){width:20%}
+.comp-panel .management-table th:nth-child(3),
+.comp-panel .management-table td:nth-child(3){width:22%}
+.comp-panel .management-table th:nth-child(4),
+.comp-panel .management-table td:nth-child(4){width:38%}
+
 .management-section-title{
-margin:8px 0 6px;
+margin:7px 0 5px;
 color:var(--blue);
 font-size:15px;
 font-weight:900;
 }
-.comp-panel{display:grid;gap:12px}
+.comp-panel{
+display:grid;
+gap:8px;
+}
 .management-save{
 width:100%;
-min-height:48px;
-margin-top:10px;
+min-height:46px;
+margin-top:8px;
 border:0;
-border-radius:15px;
+border-radius:14px;
 background:linear-gradient(#56baf0,#2d88d8);
 color:#fff;
 font-size:16px;
 font-weight:900;
 }
 .management-save:disabled{opacity:.45;cursor:not-allowed}
-.management-panel.hidden,.comp-panel.hidden,.management-table-wrap.hidden,.management-save.hidden{display:none!important}
+.management-panel.hidden,
+.comp-panel.hidden,
+.management-table-wrap.hidden,
+.management-save.hidden{
+display:none!important;
+}
+
 .history{
 margin-top:16px;
 padding-top:13px;
@@ -381,7 +418,11 @@ font-size:20px;
 font-weight:900;
 text-align:center;
 }
-.history-list{list-style:none;padding:0;margin:0}
+.history-list{
+list-style:none;
+padding:0;
+margin:0;
+}
 .history-list li{
 display:grid;
 grid-template-columns:84px 42px minmax(78px,1fr) 26px;
@@ -395,10 +436,29 @@ white-space:nowrap;
 }
 .history-date{font-weight:800}
 .history-type{color:var(--blue);font-weight:900}
-.history-time{color:var(--text);font-weight:900;overflow:hidden;text-overflow:ellipsis}
-.history-ok{color:var(--green);font-size:16px;font-weight:900;text-align:right}
-.empty{display:block!important;text-align:center;color:#7a90a3}
-.footer{padding:14px 10px 4px;color:#8aa0b2;font-size:13px;text-align:center}
+.history-time{
+color:var(--text);
+font-weight:900;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+.history-ok{
+color:var(--green);
+font-size:16px;
+font-weight:900;
+text-align:right;
+}
+.empty{
+display:block!important;
+text-align:center;
+color:#7a90a3;
+}
+.footer{
+padding:14px 10px 4px;
+color:#8aa0b2;
+font-size:13px;
+text-align:center;
+}
 
 @media(max-width:480px){
 .page{padding:10px 9px 20px}
@@ -408,8 +468,18 @@ white-space:nowrap;
 .top-row{grid-template-columns:145px minmax(0,1fr)}
 .status{min-height:76px;font-size:17px}
 .mode-btn{min-height:82px;font-size:25px}
-.history-list li{grid-template-columns:auto auto minmax(70px,1fr) 24px}
-.management-table{min-width:560px}
+.history-list li{
+grid-template-columns:auto auto minmax(70px,1fr) 24px;
+}
+.management-table{
+min-width:0;
+font-size:11px;
+}
+.management-table input{
+font-size:11px;
+height:30px;
+padding:3px;
+}
 }
 </style>
 </head>
@@ -425,8 +495,12 @@ white-space:nowrap;
 <main class="card">
 
 <div class="management-menu">
-<button id="assignmentBtn" class="management-btn assignment-btn" type="button">📋 担当表</button>
-<button id="compBtn" class="management-btn comp-btn" type="button">🗓️ 代休取得</button>
+<button id="assignmentBtn" class="management-btn assignment-btn" type="button">
+📋 担当表
+</button>
+<button id="compBtn" class="management-btn comp-btn" type="button">
+🗓️ 代休取得
+</button>
 </div>
 
 <div class="top-row">
@@ -446,8 +520,12 @@ white-space:nowrap;
 </div>
 
 <div class="mode-box">
-<button id="inMode" class="mode-btn in" type="button" disabled>☀️出勤☀️</button>
-<button id="outMode" class="mode-btn out off" type="button" disabled>🌙退勤🌙</button>
+<button id="inMode" class="mode-btn in" type="button" disabled>
+☀️出勤☀️
+</button>
+<button id="outMode" class="mode-btn out off" type="button" disabled>
+🌙退勤🌙
+</button>
 </div>
 
 <div class="guide">
@@ -541,8 +619,6 @@ placeholder="文章を入力できます"
 
 </section>
 
-
-<!-- ★ 担当表・代休取得の表示場所を履歴の下へ移動 -->
 <section id="managementPanel" class="management-panel hidden">
 
 <div class="management-header">
@@ -600,745 +676,227 @@ const LIFF_ID=
 const AUTO_DETECT_TIMEOUT=
 5000;
 
-
 const el={
-
-status:
-document.getElementById('status'),
-
-statusIcon:
-document.getElementById('statusIcon'),
-
-statusText:
-document.getElementById('statusText'),
-
-driverSelect:
-document.getElementById('driverSelect'),
-
-assignmentBtn:
-document.getElementById('assignmentBtn'),
-
-compBtn:
-document.getElementById('compBtn'),
-
-managementPanel:
-document.getElementById('managementPanel'),
-
-managementTitle:
-document.getElementById('managementTitle'),
-
-managementLoading:
-document.getElementById('managementLoading'),
-
-assignmentPanel:
-document.getElementById('assignmentPanel'),
-
-compPanel:
-document.getElementById('compPanel'),
-
-managementSave:
-document.getElementById('managementSave'),
-
-managementClose:
-document.getElementById('managementClose'),
-
-inMode:
-document.getElementById('inMode'),
-
-outMode:
-document.getElementById('outMode'),
-
-uploadBtn:
-document.getElementById('uploadBtn'),
-
-photoInput:
-document.getElementById('photoInput'),
-
-notice:
-document.getElementById('notice'),
-
-preview:
-document.getElementById('preview'),
-
-photoPreview:
-document.getElementById('photoPreview'),
-
-reportDate:
-document.getElementById('reportDate'),
-
-startTime:
-document.getElementById('startTime'),
-
-endField:
-document.getElementById('endField'),
-
-endTime:
-document.getElementById('endTime'),
-
-nextDateField:
-document.getElementById('nextDateField'),
-
-nextDate:
-document.getElementById('nextDate'),
-
-nextTimeField:
-document.getElementById('nextTimeField'),
-
-nextTime:
-document.getElementById('nextTime'),
-
-summary:
-document.getElementById('summary'),
-
-messagePreview:
-document.getElementById('messagePreview'),
-
-memo:
-document.getElementById('memo'),
-
-sendBtn:
-document.getElementById('sendBtn'),
-
-historyList:
-document.getElementById('historyList')
-
+status:document.getElementById('status'),
+statusIcon:document.getElementById('statusIcon'),
+statusText:document.getElementById('statusText'),
+driverSelect:document.getElementById('driverSelect'),
+assignmentBtn:document.getElementById('assignmentBtn'),
+compBtn:document.getElementById('compBtn'),
+managementPanel:document.getElementById('managementPanel'),
+managementTitle:document.getElementById('managementTitle'),
+managementLoading:document.getElementById('managementLoading'),
+assignmentPanel:document.getElementById('assignmentPanel'),
+compPanel:document.getElementById('compPanel'),
+managementSave:document.getElementById('managementSave'),
+managementClose:document.getElementById('managementClose'),
+inMode:document.getElementById('inMode'),
+outMode:document.getElementById('outMode'),
+uploadBtn:document.getElementById('uploadBtn'),
+photoInput:document.getElementById('photoInput'),
+notice:document.getElementById('notice'),
+preview:document.getElementById('preview'),
+photoPreview:document.getElementById('photoPreview'),
+reportDate:document.getElementById('reportDate'),
+startTime:document.getElementById('startTime'),
+endField:document.getElementById('endField'),
+endTime:document.getElementById('endTime'),
+nextDateField:document.getElementById('nextDateField'),
+nextDate:document.getElementById('nextDate'),
+nextTimeField:document.getElementById('nextTimeField'),
+nextTime:document.getElementById('nextTime'),
+summary:document.getElementById('summary'),
+messagePreview:document.getElementById('messagePreview'),
+memo:document.getElementById('memo'),
+sendBtn:document.getElementById('sendBtn'),
+historyList:document.getElementById('historyList')
 };
-
 
 const state={
-
 idToken:'',
-
 drivers:[],
-
 driver:null,
-
 mode:'in',
-
 draft:null,
-
 userSelectedManually:false,
-
-workState:{
-hasWork:false,
-startTime:''
-},
-
-summary:{
-previousOvertime:'0:00',
-monthlyOvertime:'0:00'
-},
-
+workState:{hasWork:false,startTime:''},
+summary:{previousOvertime:'0:00',monthlyOvertime:'0:00'},
 history:[]
-
 };
 
-
 function buildNextTimeOptions(){
-
 el.nextTime.innerHTML='';
-
-for(
-let hour=0;
-hour<24;
-hour++
-){
-
-for(
-let minute=0;
-minute<60;
-minute++
-){
-
+for(let hour=0;hour<24;hour++){
+for(let minute=0;minute<60;minute++){
 const value=
 String(hour).padStart(2,'0')+
 ':'+
 String(minute).padStart(2,'0');
-
-const option=
-document.createElement(
-'option'
-);
-
-option.value=
-value;
-
-option.textContent=
-value;
-
-el.nextTime.appendChild(
-option
-);
-
+const option=document.createElement('option');
+option.value=value;
+option.textContent=value;
+el.nextTime.appendChild(option);
+}}
+const unknown=document.createElement('option');
+unknown.value='??:??';
+unknown.textContent='??:??';
+el.nextTime.appendChild(unknown);
+el.nextTime.value='08:00';
 }
 
+function pad2(value){
+return String(value).padStart(2,'0');
 }
-
-const unknown=
-document.createElement(
-'option'
-);
-
-unknown.value=
-'??:??';
-
-unknown.textContent=
-'??:??';
-
-el.nextTime.appendChild(
-unknown
-);
-
-el.nextTime.value=
-'08:00';
-
-}
-
-
-function pad2(
-value
-){
-
-return String(
-value
-).padStart(
-2,
-'0'
-);
-
-}
-
 
 function today(){
-
-const d=
-new Date();
-
-return (
-d.getFullYear()+
-'-'+
-pad2(
-d.getMonth()+1
-)+
-'-'+
-pad2(
-d.getDate()
-)
-);
-
+const d=new Date();
+return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate());
 }
-
 
 function nowTime(){
-
-const d=
-new Date();
-
-return (
-pad2(
-d.getHours()
-)+
-':'+
-pad2(
-d.getMinutes()
-)
-);
-
+const d=new Date();
+return pad2(d.getHours())+':'+pad2(d.getMinutes());
 }
-
 
 function tomorrow(){
-
-const d=
-new Date();
-
-d.setDate(
-d.getDate()+1
-);
-
-return (
-d.getFullYear()+
-'-'+
-pad2(
-d.getMonth()+1
-)+
-'-'+
-pad2(
-d.getDate()
-)
-);
-
+const d=new Date();
+d.setDate(d.getDate()+1);
+return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate());
 }
 
-
-function dateText(
-value
-){
-
-if(
-!value
-){
-return '';
+function dateText(value){
+if(!value)return '';
+const d=new Date(value+'T00:00:00');
+if(Number.isNaN(d.getTime()))return value;
+const week=['日','月','火','水','木','金','土'];
+return d.getFullYear()+'/'+(d.getMonth()+1)+'/'+d.getDate()+'('+week[d.getDay()]+')';
 }
 
-const d=
-new Date(
-value+
-'T00:00:00'
-);
-
-if(
-Number.isNaN(
-d.getTime()
-)
-){
-return value;
+function shortDate(value){
+if(!value)return '';
+const d=new Date(value+'T00:00:00');
+if(Number.isNaN(d.getTime()))return value;
+const week=['日','月','火','水','木','金','土'];
+return (d.getMonth()+1)+'/'+d.getDate()+'('+week[d.getDay()]+')';
 }
 
-const week=[
-'日',
-'月',
-'火',
-'水',
-'木',
-'金',
-'土'
-];
-
-return (
-d.getFullYear()+
-'/'+
-(d.getMonth()+1)+
-'/'+
-d.getDate()+
-'('+
-week[d.getDay()]+
-')'
-);
-
+function nextAttendancePrefix(value){
+if(!value)return '';
+const base=new Date(today()+'T00:00:00');
+const target=new Date(value+'T00:00:00');
+const baseDay=base.getDay()||7;
+const targetDay=target.getDay()||7;
+const monday=new Date(base);
+monday.setDate(base.getDate()-baseDay+1);
+const nextMonday=new Date(monday);
+nextMonday.setDate(monday.getDate()+7);
+const targetMonday=new Date(target);
+targetMonday.setDate(target.getDate()-targetDay+1);
+return nextMonday.getTime()===targetMonday.getTime()?'来週':'';
 }
 
-
-function shortDate(
-value
-){
-
-if(
-!value
-){
-return '';
+function escapeHtml(value){
+return String(value??'')
+.replace(/&/g,'&amp;')
+.replace(/</g,'&lt;')
+.replace(/>/g,'&gt;')
+.replace(/"/g,'&quot;')
+.replace(/'/g,'&#39;');
 }
 
-const d=
-new Date(
-value+
-'T00:00:00'
-);
-
-if(
-Number.isNaN(
-d.getTime()
-)
-){
-return value;
+function setStatus(text,done){
+el.statusText.textContent=text;
+el.statusIcon.textContent=done?'✓':'⏰';
+el.status.classList.toggle('done',!!done);
 }
 
-const week=[
-'日',
-'月',
-'火',
-'水',
-'木',
-'金',
-'土'
-];
-
-return (
-(d.getMonth()+1)+
-'/'+
-d.getDate()+
-'('+
-week[d.getDay()]+
-')'
-);
-
+function showNotice(text){
+el.notice.textContent=text||'';
+el.notice.classList.toggle('show',!!text);
 }
 
-
-function nextAttendancePrefix(
-value
-){
-
-if(
-!value
-){
-return '';
-}
-
-const base=
-new Date(
-today()+
-'T00:00:00'
-);
-
-const target=
-new Date(
-value+
-'T00:00:00'
-);
-
-const baseDay=
-base.getDay()||
-7;
-
-const targetDay=
-target.getDay()||
-7;
-
-const monday=
-new Date(
-base
-);
-
-monday.setDate(
-base.getDate()-
-baseDay+
-1
-);
-
-const nextMonday=
-new Date(
-monday
-);
-
-nextMonday.setDate(
-monday.getDate()+
-7
-);
-
-const targetMonday=
-new Date(
-target
-);
-
-targetMonday.setDate(
-target.getDate()-
-targetDay+
-1
-);
-
-return (
-nextMonday.getTime()===
-targetMonday.getTime()
-)
-?'来週'
-:'';
-
-}
-
-
-function escapeHtml(
-value
-){
-
-return String(
-value??
-''
-)
-
-.replace(
-/&/g,
-'&amp;'
-)
-
-.replace(
-/</g,
-'&lt;'
-)
-
-.replace(
-/>/g,
-'&gt;'
-)
-
-.replace(
-/"/g,
-'&quot;'
-)
-
-.replace(
-/'/g,
-'&#39;'
-);
-
-}
-
-
-function setStatus(
-text,
-done
-){
-
-el.statusText.textContent=
-text;
-
-el.statusIcon.textContent=
-done
-?'✓'
-:'⏰';
-
-el.status.classList.toggle(
-'done',
-!!done
-);
-
-}
-
-
-function showNotice(
-text
-){
-
-el.notice.textContent=
-text||
-'';
-
-el.notice.classList.toggle(
-'show',
-!!text
-);
-
-}
-
-
-function withTimeout(
-promise,
-milliseconds
-){
-
+function withTimeout(promise,milliseconds){
 return Promise.race([
-
 promise,
-
-new Promise(
-(
-resolve,
-reject
-)=>{
-
-setTimeout(
-()=>{
-reject(
-new Error(
-'timeout'
-)
-);
-},
-milliseconds
-);
-
-}
-)
-
+new Promise((resolve,reject)=>{
+setTimeout(()=>reject(new Error('timeout')),milliseconds);
+})
 ]);
-
 }
 
-
-async function callServer(
-operation,
-data={}
-){
-
-return new Promise(
-(
-resolve,
-reject
-)=>{
-
-const requestId=
-'req_'+
-Date.now()+
-'_'+
-Math.random()
-.toString(36)
-.slice(2);
-
-const params=
-new URLSearchParams();
-
-params.append(
-'action',
-'api'
+async function callServer(operation,data={}){
+return new Promise((resolve,reject)=>{
+const requestId='req_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+const params=new URLSearchParams();
+params.append('action','api');
+params.append('operation',operation);
+params.append('requestId',requestId);
+params.append('idToken',state.idToken||'');
+Object.keys(data).forEach(
+key=>params.append(key,data[key]??'')
 );
 
-params.append(
-'operation',
-operation
-);
-
-params.append(
-'requestId',
-requestId
-);
-
-params.append(
-'idToken',
-state.idToken||
-''
-);
-
-Object.keys(
-data
-).forEach(
-key=>
-params.append(
-key,
-data[key]??
-''
-)
-);
-
-
-fetch(
-API_URL,
-{
-
+fetch(API_URL,{
 method:'POST',
-
 headers:{
 'Content-Type':
 'application/x-www-form-urlencoded;charset=UTF-8'
 },
-
-body:
-params.toString(),
-
-mode:
-'no-cors'
-
-}
-).catch(
-error=>
-console.warn(
-'API POST失敗',
-error
-)
+body:params.toString(),
+mode:'no-cors'
+}).catch(
+error=>console.warn('API POST失敗',error)
 );
 
-
-pollApi(
-requestId,
-resolve,
-reject,
-0
-);
-
-}
-);
-
+pollApi(requestId,resolve,reject,0);
+});
 }
 
-
-function pollApi(
-requestId,
-resolve,
-reject,
-attempt
-){
-
-if(
-attempt>=50
-){
-
+function pollApi(requestId,resolve,reject,attempt){
+if(attempt>=50){
 reject(
 new Error(
 'サーバー応答がタイムアウトしました'
 )
 );
-
 return;
-
 }
-
 
 const callback=
-'gasCallback_'+
-Date.now()+
-'_'+
-attempt;
+'gasCallback_'+Date.now()+'_'+attempt;
 
 const script=
-document.createElement(
-'script'
-);
+document.createElement('script');
 
-let finished=
-false;
-
+let finished=false;
 
 function cleanup(){
-
-if(
-script.parentNode
-){
-
-script.parentNode.removeChild(
-script
-);
-
+if(script.parentNode){
+script.parentNode.removeChild(script);
 }
-
 try{
-
-delete window[
-callback
-];
-
+delete window[callback];
 }catch(_){
-
-window[
-callback
-]=
-undefined;
-
+window[callback]=undefined;
+}
 }
 
-}
+window[callback]=function(response){
 
+if(finished)return;
 
-window[
-callback
-]=
-function(
-response
-){
-
-if(
-finished
-){
-return;
-}
-
-finished=
-true;
-
+finished=true;
 cleanup();
-
 
 if(
 response&&
 (
-response.status===
-'pending'||
-response.status===
-'processing'
+response.status==='pending'||
+response.status==='processing'
 )
 ){
-
 setTimeout(
-()=>
-pollApi(
+()=>pollApi(
 requestId,
 resolve,
 reject,
@@ -1346,58 +904,34 @@ attempt+1
 ),
 500
 );
-
 return;
-
 }
 
-
-if(
-!response||
-response.ok!==
-true
-){
-
+if(!response||response.ok!==true){
 reject(
 new Error(
-response&&
-response.error
+response&&response.error
 ?
 response.error
 :
 'Apps Script APIエラー'
 )
 );
-
 return;
-
 }
 
-
-resolve(
-response.data
-);
-
+resolve(response.data);
 };
 
+script.onerror=function(){
 
-script.onerror=
-function(){
+if(finished)return;
 
-if(
-finished
-){
-return;
-}
-
-finished=
-true;
-
+finished=true;
 cleanup();
 
 setTimeout(
-()=>
-pollApi(
+()=>pollApi(
 requestId,
 resolve,
 reject,
@@ -1405,52 +939,26 @@ attempt+1
 ),
 500
 );
-
 };
 
-
 script.src=
-
 API_URL+
-
 '?action=pollApi'+
+'&requestId='+encodeURIComponent(requestId)+
+'&callback='+encodeURIComponent(callback)+
+'&_='+Date.now();
 
-'&requestId='+
-encodeURIComponent(
-requestId
-)+
-
-'&callback='+
-encodeURIComponent(
-callback
-)+
-
-'&_='+
-Date.now();
-
-
-document.body.appendChild(
-script
-);
-
+document.body.appendChild(script);
 }
 
-
-function findDriver(
-key
-){
-
+function findDriver(key){
 return (
 state.drivers.find(
-driver=>
-driver.driverKey===
-key
+driver=>driver.driverKey===key
 )||
 null
 );
-
 }
-
 
 function renderDrivers(){
 
@@ -1464,54 +972,33 @@ state.driver.driverKey
 el.driverSelect.innerHTML=
 '<option value="">選択して下さい</option>';
 
-
 state.drivers.forEach(
 driver=>{
-
 const option=
-document.createElement(
-'option'
-);
-
+document.createElement('option');
 option.value=
 driver.driverKey;
-
 option.textContent=
 driver.displayName;
-
-el.driverSelect.appendChild(
-option
-);
-
+el.driverSelect.appendChild(option);
 }
 );
 
-
-if(
-current
-){
-
+if(current){
 el.driverSelect.value=
 current;
-
 }
-
 }
-
 
 async function loadDrivers(){
 
 try{
 
 const list=
-await callServer(
-'getDriverList'
-);
+await callServer('getDriverList');
 
 state.drivers=
-Array.isArray(
-list
-)
+Array.isArray(list)
 ?
 list
 :
@@ -1519,9 +1006,7 @@ list
 
 renderDrivers();
 
-}catch(
-error
-){
+}catch(error){
 
 console.error(
 '人物一覧取得失敗',
@@ -1529,31 +1014,16 @@ error
 );
 
 }
-
 }
 
+async function selectDriver(driver,manual=false){
 
-async function selectDriver(
-driver,
-manual=false
-){
+if(!driver){
 
-if(
-!driver
-){
-
-state.driver=
-null;
-
-el.inMode.disabled=
-true;
-
-el.outMode.disabled=
-true;
-
-el.uploadBtn.disabled=
-true;
-
+state.driver=null;
+el.inMode.disabled=true;
+el.outMode.disabled=true;
+el.uploadBtn.disabled=true;
 el.historyList.innerHTML=
 '<li class="empty"></li>';
 
@@ -1563,19 +1033,11 @@ false
 );
 
 return;
-
 }
 
-
-if(
-manual
-){
-
-state.userSelectedManually=
-true;
-
+if(manual){
+state.userSelectedManually=true;
 }
-
 
 state.driver=
 driver;
@@ -1598,63 +1060,38 @@ true
 );
 
 await refreshSelectedDriverData();
-
 }
-
 
 async function refreshSelectedDriverData(){
 
 if(
 !state.driver||
 !state.driver.driverKey
-){
-return;
-}
-
+)return;
 
 const driverKey=
 state.driver.driverKey;
 
-
 const results=
 await Promise.allSettled([
-
 callServer(
 'getTodayHistory',
-{
-selectedDriverKey:
-driverKey
-}
+{selectedDriverKey:driverKey}
 ),
-
 callServer(
 'getWorkState',
-{
-selectedDriverKey:
-driverKey
-}
+{selectedDriverKey:driverKey}
 ),
-
 callServer(
 'getAttendanceSummary',
-{
-selectedDriverKey:
-driverKey
-}
+{selectedDriverKey:driverKey}
 )
-
 ]);
 
-
-if(
-results[0].status===
-'fulfilled'
-){
+if(results[0].status==='fulfilled'){
 
 state.history=
-Array.isArray(
-results[0].value
-)
+Array.isArray(results[0].value)
 ?
 results[0].value
 :
@@ -1671,26 +1108,13 @@ el.historyList.innerHTML=
 
 }
 
-
-if(
-results[1].status===
-'fulfilled'
-){
-
+if(results[1].status==='fulfilled'){
 state.workState=
 results[1].value||
-{
-hasWork:false,
-startTime:''
-};
-
+{hasWork:false,startTime:''};
 }
 
-
-if(
-results[2].status===
-'fulfilled'
-){
+if(results[2].status==='fulfilled'){
 
 state.summary=
 results[2].value||
@@ -1700,22 +1124,14 @@ monthlyOvertime:'0:00'
 };
 
 renderSummary();
-
 }
 
 }
 
+let managementMode='';
+let managementState=null;
 
-let managementMode=
-'';
-
-let managementState=
-null;
-
-
-function setManagementLoading(
-text
-){
+function setManagementLoading(text){
 
 el.managementLoading.textContent=
 text||
@@ -1724,17 +1140,12 @@ text||
 el.managementLoading.classList.remove(
 'hidden'
 );
-
 }
-
 
 function clearManagementPanels(){
 
-el.assignmentPanel.innerHTML=
-'';
-
-el.compPanel.innerHTML=
-'';
+el.assignmentPanel.innerHTML='';
+el.compPanel.innerHTML='';
 
 el.assignmentPanel.classList.add(
 'hidden'
@@ -1747,13 +1158,9 @@ el.compPanel.classList.add(
 el.managementSave.classList.add(
 'hidden'
 );
-
 }
 
-
-async function openManagement(
-mode
-){
+async function openManagement(mode){
 
 managementMode=
 mode;
@@ -1768,8 +1175,7 @@ el.managementPanel.classList.remove(
 );
 
 el.managementTitle.textContent=
-mode===
-'assignment'
+mode==='assignment'
 ?
 '📋 担当表'
 :
@@ -1779,45 +1185,32 @@ setManagementLoading(
 '読み込み中...'
 );
 
-
 try{
 
 const result=
 await callServer(
 'getManagementData',
 {
-
-sheetType:
-mode,
-
+sheetType:mode,
 selectedDriverKey:
 state.driver
 ?
 state.driver.driverKey
 :
 ''
-
 }
 );
 
-
-if(
-!result||
-result.ok!==
-true
-){
+if(!result||result.ok!==true){
 
 throw new Error(
-result&&
-result.error
+result&&result.error
 ?
 result.error
 :
 'データを取得できませんでした'
 );
-
 }
-
 
 managementState=
 result;
@@ -1826,48 +1219,31 @@ el.managementLoading.classList.add(
 'hidden'
 );
 
-
-if(
-mode===
-'assignment'
-){
-
+if(mode==='assignment'){
 renderAssignmentTable(
 result
 );
-
 }else{
-
 renderCompTable(
 result
 );
-
 }
-
 
 el.managementSave.classList.remove(
 'hidden'
 );
 
-
-/* 履歴の下まで自動スクロール */
-
 setTimeout(
 ()=>{
-
 el.managementPanel.scrollIntoView({
 behavior:'smooth',
 block:'start'
 });
-
 },
 50
 );
 
-
-}catch(
-error
-){
+}catch(error){
 
 console.error(
 '管理画面取得失敗',
@@ -1880,103 +1256,87 @@ error.message||
 );
 
 }
-
 }
 
-
-function renderAssignmentTable(
-data
-){
+function renderAssignmentTable(data){
 
 const wrap=
 el.assignmentPanel;
 
-wrap.innerHTML=
-'';
+wrap.innerHTML='';
 
 wrap.classList.remove(
 'hidden'
 );
 
-
 const table=
-document.createElement(
-'table'
-);
+document.createElement('table');
 
 table.className=
 'management-table';
 
-
-const header=[
-'月',
+const rawOfficers=
+Array.isArray(data.officers)&&data.officers.length
+?
+data.officers
+:
+[
 '安田副社長',
-'伊藤副社長',
+'伊藤社長',
 '山下副社長',
 '西山副社長'
 ];
 
+const officerColumns=
+rawOfficers.map(
+name=>({
+key:name,
+label:
+name==='伊藤副社長'
+?
+'伊藤社長'
+:
+name
+})
+);
+
+const header=[
+'月',
+...officerColumns.map(
+item=>item.label
+)
+];
 
 const thead=
-document.createElement(
-'thead'
-);
+document.createElement('thead');
 
 const hrow=
-document.createElement(
-'tr'
-);
-
+document.createElement('tr');
 
 header.forEach(
 text=>{
-
 const th=
-document.createElement(
-'th'
-);
-
+document.createElement('th');
 th.textContent=
 text;
-
-hrow.appendChild(
-th
-);
-
+hrow.appendChild(th);
 }
 );
 
-
-thead.appendChild(
-hrow
-);
-
-table.appendChild(
-thead
-);
-
+thead.appendChild(hrow);
+table.appendChild(thead);
 
 const tbody=
-document.createElement(
-'tbody'
-);
-
+document.createElement('tbody');
 
 data.rows.forEach(
-(
-row,
-i
-)=>{
+(row,i)=>{
 
 const tr=
-document.createElement(
-'tr'
-);
+document.createElement('tr');
 
 const month=
-document.createElement(
-'th'
-);
+document.createElement('th');
 
 month.textContent=
 row.month;
@@ -1985,109 +1345,68 @@ tr.appendChild(
 month
 );
 
-
-header.slice(
-1
-).forEach(
+officerColumns.forEach(
 officer=>{
 
 const td=
-document.createElement(
-'td'
-);
+document.createElement('td');
 
 const input=
-document.createElement(
-'input'
-);
+document.createElement('input');
 
-input.type=
-'text';
+input.type='text';
 
 input.value=
 row.assignments[
-officer
+officer.key
 ]||
 '';
-
 
 input.addEventListener(
 'input',
 ()=>{
-
-data.rows[
-i
-].assignments[
-officer
+data.rows[i].assignments[
+officer.key
 ]=
 input.value;
-
 }
 );
-
 
 td.appendChild(
 input
 );
 
-tr.appendChild(
-td
-);
-
+tr.appendChild(td);
 }
 );
 
-
-tbody.appendChild(
-tr
-);
-
+tbody.appendChild(tr);
 }
 );
 
-
-table.appendChild(
-tbody
-);
-
-wrap.appendChild(
-table
-);
-
+table.appendChild(tbody);
+wrap.appendChild(table);
 }
 
-
-function renderCompTable(
-data
-){
+function renderCompTable(data){
 
 const wrap=
 el.compPanel;
 
-wrap.innerHTML=
-'';
+wrap.innerHTML='';
 
 wrap.classList.remove(
 'hidden'
 );
 
-
 const makeSection=
-(
-title,
-rows,
-key
-)=>{
+(title,rows,key)=>{
 
 const section=
-document.createElement(
-'div'
-);
+document.createElement('div');
 
 const titleEl=
-document.createElement(
-'div'
-);
+document.createElement('div');
 
 titleEl.className=
 'management-section-title';
@@ -2099,7 +1418,6 @@ section.appendChild(
 titleEl
 );
 
-
 const table=
 document.createElement(
 'table'
@@ -2107,7 +1425,6 @@ document.createElement(
 
 table.className=
 'management-table';
-
 
 const thead=
 document.createElement(
@@ -2118,7 +1435,6 @@ const hrow=
 document.createElement(
 'tr'
 );
-
 
 [
 '出勤日',
@@ -2143,33 +1459,21 @@ th
 }
 );
 
-
-thead.appendChild(
-hrow
-);
-
-table.appendChild(
-thead
-);
-
+thead.appendChild(hrow);
+table.appendChild(thead);
 
 const tbody=
 document.createElement(
 'tbody'
 );
 
-
 rows.forEach(
-(
-row,
-i
-)=>{
+(row,i)=>{
 
 const tr=
 document.createElement(
 'tr'
 );
-
 
 [
 'startDate',
@@ -2189,32 +1493,23 @@ document.createElement(
 'input'
 );
 
-input.type=
-'text';
+input.type='text';
 
 input.value=
-row[
-field
-]||
+row[field]||
 '';
-
 
 input.addEventListener(
 'input',
 ()=>{
-
 managementState[
 key
-][
-i
-][
+][i][
 field
 ]=
 input.value;
-
 }
 );
-
 
 td.appendChild(
 input
@@ -2227,7 +1522,6 @@ td
 }
 );
 
-
 tbody.appendChild(
 tr
 );
@@ -2235,19 +1529,11 @@ tr
 }
 );
 
-
-table.appendChild(
-tbody
-);
-
-section.appendChild(
-table
-);
+table.appendChild(tbody);
+section.appendChild(table);
 
 return section;
-
 };
-
 
 wrap.appendChild(
 makeSection(
@@ -2257,7 +1543,6 @@ data.planned,
 )
 );
 
-
 wrap.appendChild(
 makeSection(
 '取得済み',
@@ -2265,50 +1550,40 @@ data.completed,
 'completed'
 )
 );
-
 }
-
 
 el.assignmentBtn.addEventListener(
 'click',
-()=>
+()=>{
 openManagement(
 'assignment'
 )
+}
 );
-
 
 el.compBtn.addEventListener(
 'click',
-()=>
+()=>{
 openManagement(
 'comp'
 )
+}
 );
-
 
 el.managementClose.addEventListener(
 'click',
 ()=>{
-
 el.managementPanel.classList.add(
 'hidden'
 );
-
 }
 );
 
-
 el.managementSave.addEventListener(
 'click',
-async ()=>{
+async()=>{
 
-if(
-!managementState
-){
-return;
-}
-
+if(!managementState)return;
 
 el.managementSave.disabled=
 true;
@@ -2316,50 +1591,40 @@ true;
 el.managementSave.textContent=
 '保存中...';
 
-
 try{
 
 const result=
 await callServer(
 'saveManagementData',
 {
-
 sheetType:
 managementMode,
-
 selectedDriverKey:
 state.driver
 ?
 state.driver.driverKey
 :
 '',
-
 payload:
 JSON.stringify(
 managementState
 )
-
 }
 );
 
-
 if(
 !result||
-result.ok!==
-true
+result.ok!==true
 ){
 
 throw new Error(
-result&&
-result.error
+result&&result.error
 ?
 result.error
 :
 '保存に失敗しました'
 );
-
 }
-
 
 alert(
 'スプレッドシートへ保存しました。'
@@ -2369,10 +1634,7 @@ await openManagement(
 managementMode
 );
 
-
-}catch(
-error
-){
+}catch(error){
 
 console.error(
 '管理画面保存失敗',
@@ -2384,7 +1646,6 @@ error.message||
 '保存に失敗しました。'
 );
 
-
 }finally{
 
 el.managementSave.disabled=
@@ -2394,37 +1655,26 @@ el.managementSave.textContent=
 '保存する';
 
 }
-
 }
 );
-
 
 function renderSummary(){
 
 el.summary.innerHTML=
-
 '前回残業 <strong>'+
-
 escapeHtml(
 state.summary.previousOvertime||
 '0:00'
 )+
-
 '</strong>　月間合計 <strong>'+
-
 escapeHtml(
 state.summary.monthlyOvertime||
 '0:00'
 )+
-
 '</strong>';
-
 }
 
-
-function normalizeHistoryType(
-item
-){
+function normalizeHistoryType(item){
 
 const raw=
 String(
@@ -2435,125 +1685,73 @@ item.mode||
 .trim()
 .toLowerCase();
 
+if(
+raw==='in'||
+raw==='出勤'||
+raw==='出勤時'
+)return '出勤';
 
 if(
-raw===
-'in'||
-raw===
-'出勤'||
-raw===
-'出勤時'
-){
-return '出勤';
-}
-
-
-if(
-raw===
-'out'||
-raw===
-'退勤'||
-raw===
-'退勤時'
-){
-return '退勤';
-}
-
+raw==='out'||
+raw==='退勤'||
+raw==='退勤時'
+)return '退勤';
 
 return '';
-
 }
 
-
-function normalizeHistoryDate(
-item
-){
+function normalizeHistoryDate(item){
 
 const value=
 item.date||
 item.reportDate||
 '';
 
-
-if(
-!value
-){
-return '';
-}
-
+if(!value)return '';
 
 const text=
-String(
-value
-);
-
+String(value);
 
 let match=
 text.match(
 /^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})/
 );
 
-
-if(
-match
-){
+if(match){
 
 return (
-match[1]+
-'/'+
-Number(
-match[2]
-)+
-'/'+
-Number(
-match[3]
-)
+match[1]+'/'+
+Number(match[2])+'/'+
+Number(match[3])
 );
 
 }
-
 
 match=
 text.match(
 /^(\d{1,2})[\/-](\d{1,2})/
 );
 
-
-if(
-match
-){
+if(match){
 
 const now=
 new Date();
 
 return (
-now.getFullYear()+
-'/'+
-Number(
-match[1]
-)+
-'/'+
-Number(
-match[2]
-)
+now.getFullYear()+'/'+
+Number(match[1])+'/'+
+Number(match[2])
 );
 
 }
 
-
 return text;
-
 }
 
-
-function renderHistory(
-list
-){
+function renderHistory(list){
 
 if(
-!Array.isArray(
-list
-)||
+!Array.isArray(list)||
 !list.length
 ){
 
@@ -2561,67 +1759,35 @@ el.historyList.innerHTML=
 '<li class="empty">まだ履歴はありません</li>';
 
 return;
-
 }
 
-
 const sorted=
-[
-...list
-].sort(
-(
-a,
-b
-)=>
-Number(
-b.savedAt||
-0
-)-
-Number(
-a.savedAt||
-0
-)
+[...list].sort(
+(a,b)=>
+Number(b.savedAt||0)-
+Number(a.savedAt||0)
 );
-
 
 el.historyList.innerHTML=
 sorted.map(
 item=>{
 
 const type=
-normalizeHistoryType(
-item
-);
+normalizeHistoryType(item);
 
 const date=
-normalizeHistoryDate(
-item
-);
+normalizeHistoryDate(item);
 
-let time=
-'';
+let time='';
 
-
-if(
-type===
-'退勤'
-){
+if(type==='退勤'){
 
 time=
-(
-item.startTime||
-'0:00'
-)+
+(item.startTime||'0:00')+
 '→'+
-(
-item.endTime||
-'0:00'
-);
+(item.endTime||'0:00');
 
-}else if(
-type===
-'出勤'
-){
+}else if(type==='出勤'){
 
 time=
 item.reportTime||
@@ -2630,46 +1796,26 @@ item.startTime||
 
 }
 
-
-return (
-
+return(
 '<li>'+
-
 '<span class="history-date">'+
-escapeHtml(
-date
-)+
+escapeHtml(date)+
 '</span>'+
-
 '<span class="history-type">'+
-escapeHtml(
-type
-)+
+escapeHtml(type)+
 '</span>'+
-
 '<span class="history-time">'+
-escapeHtml(
-time
-)+
+escapeHtml(time)+
 '</span>'+
-
 '<span class="history-ok">✅</span>'+
-
 '</li>'
-
 );
 
 }
-).join(
-''
-);
-
+).join('');
 }
 
-
-function setMode(
-mode
-){
+function setMode(mode){
 
 state.mode=
 mode;
@@ -2677,19 +1823,15 @@ mode;
 state.draft=
 null;
 
-
 el.inMode.classList.toggle(
 'off',
-mode!==
-'in'
+mode!=='in'
 );
 
 el.outMode.classList.toggle(
 'off',
-mode!==
-'out'
+mode!=='out'
 );
-
 
 el.preview.classList.remove(
 'show'
@@ -2698,18 +1840,11 @@ el.preview.classList.remove(
 el.sendBtn.disabled=
 true;
 
-el.photoInput.value=
-'';
+el.photoInput.value='';
 
-showNotice(
-''
-);
+showNotice('');
 
-
-if(
-mode===
-'in'
-){
+if(mode==='in'){
 
 el.endField.classList.add(
 'hidden'
@@ -2729,9 +1864,7 @@ today();
 el.startTime.value=
 nowTime();
 
-
 }else{
-
 
 el.endField.classList.remove(
 'hidden'
@@ -2760,21 +1893,14 @@ tomorrow();
 
 el.nextTime.value=
 '08:00';
-
 }
-
 
 refreshMessage();
-
 }
-
 
 function buildReportBaseMessage(){
 
-if(
-state.mode===
-'in'
-){
+if(state.mode==='in'){
 
 const date=
 el.reportDate.value||
@@ -2784,40 +1910,22 @@ const time=
 el.startTime.value||
 nowTime();
 
-
-return (
-
+return(
 'お疲れ様でございます。\n'+
-
-dateText(
-date
-)+
+dateText(date)+
 ' '+
 time+
 '出勤いたしました。\n'+
-
 '本日もよろしくお願いいたします。\n'+
-
 '残業)'+
-(
-state.summary.previousOvertime||
-'0:00'
-)+
+(state.summary.previousOvertime||'0:00')+
 '\n'+
-
 '合計)'+
-(
-state.summary.monthlyOvertime||
-'0:00'
-)+
+(state.summary.monthlyOvertime||'0:00')+
 '\n'+
-
 '【MEMO】'
-
 );
-
 }
-
 
 const reportDate=
 el.reportDate.value||
@@ -2850,53 +1958,34 @@ shortDate(
 nextDate
 );
 
-
 let nextAttendance=
 prefix
 ?
-prefix+
-' '+
-datePart
+prefix+' '+datePart
 :
 datePart;
 
-
 nextAttendance+=
-' '+
-nextTime;
+' '+nextTime;
 
-
-return (
-
+return(
 'お疲れ様でございます。\n'+
-
 '業務完了いたしました。\n'+
-
-dateText(
-reportDate
-)+
+dateText(reportDate)+
 '\n'+
-
 '稼働)'+
 start+
 '→'+
 end+
 '\n'+
-
 '本日は失礼させていただきます。\n'+
-
 '出勤) '+
 nextAttendance+
 '\n'+
-
 '明日もよろしくお願いいたします。\n'+
-
 '【MEMO】'
-
 );
-
 }
-
 
 function refreshMessage(){
 
@@ -2904,7 +1993,6 @@ el.messagePreview.textContent=
 buildReportBaseMessage();
 
 }
-
 
 function buildCompleteMessage(){
 
@@ -2917,42 +2005,27 @@ el.memo.value||
 ''
 ).trim();
 
-return (
-memo
+return memo
 ?
-base+
-'\n'+
-memo
+base+'\n'+memo
 :
-base
-);
-
+base;
 }
 
-
-function imageToDataUrl(
-file
-){
+function imageToDataUrl(file){
 
 return new Promise(
-(
-resolve,
-reject
-)=>{
+(resolve,reject)=>{
 
 const reader=
 new FileReader();
 
-
-reader.onload=
-function(){
+reader.onload=function(){
 
 const image=
 new Image();
 
-
-image.onload=
-function(){
+image.onload=function(){
 
 const max=
 1800;
@@ -2987,9 +2060,7 @@ scale
 const context=
 canvas.getContext(
 '2d',
-{
-alpha:false
-}
+{alpha:false}
 );
 
 context.drawImage(
@@ -3006,18 +2077,14 @@ canvas.toDataURL(
 .86
 )
 );
-
 };
-
 
 image.onerror=
 reject;
 
 image.src=
 reader.result;
-
 };
-
 
 reader.onerror=
 reject;
@@ -3028,17 +2095,11 @@ file
 
 }
 );
-
 }
 
+async function runBrowserOcr(dataUrl){
 
-async function runBrowserOcr(
-dataUrl
-){
-
-if(
-!window.Tesseract
-){
+if(!window.Tesseract){
 
 throw new Error(
 'OCRライブラリの読み込みに失敗しました'
@@ -3046,82 +2107,52 @@ throw new Error(
 
 }
 
-
 const result=
 await Tesseract.recognize(
-
 dataUrl,
-
 'eng',
-
 {
-
-logger:
-message=>{
+logger:message=>{
 
 if(
 message&&
-message.status===
-'recognizing text'&&
+message.status==='recognizing text'&&
 message.progress
 ){
 
 showNotice(
-
 '写真を読み取り中... '+
-
 Math.round(
-message.progress*
-100
+message.progress*100
 )+
-
 '%'
-
 );
 
 }
-
 },
-
-tessedit_pageseg_mode:
-6
-
+tessedit_pageseg_mode:6
 }
-
 );
 
-
-return (
-result&&
-result.data
-)
+return result&&result.data
 ?
 String(
-result.data.text||
-''
+result.data.text||''
 )
 :
 '';
-
 }
 
+async function uploadPhoto(file){
 
-async function uploadPhoto(
-file
-){
-
-if(
-!state.driver
-){
+if(!state.driver){
 
 alert(
 '先に人物を選択してください'
 );
 
 return;
-
 }
-
 
 showNotice(
 '写真を読み込んでいます...'
@@ -3130,9 +2161,7 @@ showNotice(
 el.sendBtn.disabled=
 true;
 
-
 try{
-
 
 const dataUrl=
 await imageToDataUrl(
@@ -3142,44 +2171,31 @@ file
 el.photoPreview.src=
 dataUrl;
 
-
 const ocrText=
 await runBrowserOcr(
 dataUrl
 );
 
-
 showNotice(
 '読み取り結果を確認しています...'
 );
 
-
 const result=
 await callServer(
-
 'ocrPhoto',
-
 {
-
 selectedDriverKey:
 state.driver.driverKey,
-
 mode:
 state.mode,
-
 imageBase64:
 dataUrl,
-
 fileName:
 file.name,
-
 ocrText:
 ocrText
-
 }
-
 );
-
 
 state.draft=
 result;
@@ -3188,85 +2204,51 @@ el.preview.classList.add(
 'show'
 );
 
-
 el.reportDate.value=
-
 result.reportDate||
-
 today();
 
-
 el.startTime.value=
-
 result.startTime||
-
 result.ocrTime||
-
 state.workState.startTime||
-
 nowTime();
 
-
-if(
-state.mode===
-'out'
-){
+if(state.mode==='out'){
 
 el.endTime.value=
-
 result.endTime||
-
 result.ocrTime||
-
 nowTime();
 
 }
 
-
-el.memo.value=
-'';
+el.memo.value='';
 
 refreshMessage();
 
 el.sendBtn.disabled=
 false;
 
-
 showNotice(
 '読み取り完了。時間を確認・修正して送信してください。'
 );
 
+}catch(error){
 
-}catch(
-error
-){
-
-console.error(
-error
-);
+console.error(error);
 
 showNotice(
-
 error.message||
-
 '写真の読み取りに失敗しました。'
-
 );
-
 }
-
 }
-
 
 async function sendDraft(){
 
-if(
-!state.draft||
-!state.driver
-){
+if(!state.draft||!state.driver)
 return;
-}
-
 
 el.sendBtn.disabled=
 true;
@@ -3275,102 +2257,62 @@ showNotice(
 '写真＋報告文章を送信中です...'
 );
 
-
 try{
-
 
 const message=
 buildCompleteMessage();
 
-
 const result=
 await callServer(
-
 'sendAttendanceDraft',
-
 {
-
 draftId:
 state.draft.draftId,
-
 mode:
 state.mode,
-
 reportDate:
 el.reportDate.value,
-
 reportTime:
-
-state.mode===
-'in'
-
+state.mode==='in'
 ?
 el.startTime.value
-
 :
 el.endTime.value,
-
 startTime:
 el.startTime.value,
-
 endTime:
-
-state.mode===
-'out'
-
+state.mode==='out'
 ?
 el.endTime.value
-
 :
 '',
-
 nextDate:
-
-state.mode===
-'out'
-
+state.mode==='out'
 ?
 el.nextDate.value
-
 :
 '',
-
 nextTime:
-
-state.mode===
-'out'
-
+state.mode==='out'
 ?
 el.nextTime.value
-
 :
 '',
-
 message:
 message
-
 }
-
 );
 
-
-if(
-!result||
-result.ok!==
-true
-){
+if(!result||result.ok!==true){
 
 throw new Error(
 '送信に失敗しました'
 );
-
 }
-
 
 showNotice(
 '送信完了しました。'
 );
-
 
 state.draft=
 null;
@@ -3385,43 +2327,27 @@ el.photoInput.value=
 el.memo.value=
 '';
 
-
 await refreshSelectedDriverData();
 
+}catch(error){
 
-}catch(
-error
-){
-
-console.error(
-error
-);
+console.error(error);
 
 showNotice(
-
 error.message||
-
 '送信に失敗しました'
-
 );
 
-
 }finally{
-
 
 el.sendBtn.disabled=
 !state.draft;
 
-
 }
-
 }
-
 
 el.driverSelect.addEventListener(
-
 'change',
-
 async function(){
 
 const driver=
@@ -3435,110 +2361,75 @@ true
 );
 
 }
-
 );
 
-
 el.inMode.addEventListener(
-
 'click',
-
 function(){
 
-if(
-!state.driver
-){
+if(!state.driver){
 
 alert(
 '先に人物を選択してください'
 );
 
 return;
-
 }
-
 
 setMode(
 'in'
 );
 
 }
-
 );
 
-
 el.outMode.addEventListener(
-
 'click',
-
 function(){
 
-if(
-!state.driver
-){
+if(!state.driver){
 
 alert(
 '先に人物を選択してください'
 );
 
 return;
-
 }
-
 
 setMode(
 'out'
 );
 
 }
-
 );
 
-
 el.uploadBtn.addEventListener(
-
 'click',
-
 function(){
 
-if(
-!state.driver
-){
+if(!state.driver){
 
 alert(
 '先に人物を選択してください'
 );
 
 return;
-
 }
-
 
 el.photoInput.click();
 
 }
-
 );
 
-
 el.photoInput.addEventListener(
-
 'change',
-
 function(){
 
 const file=
-
 el.photoInput.files&&
+el.photoInput.files[0];
 
-el.photoInput.files[
-0
-];
-
-
-if(
-file
-){
+if(file){
 
 uploadPhoto(
 file
@@ -3547,9 +2438,7 @@ file
 }
 
 }
-
 );
-
 
 [
 el.reportDate,
@@ -3574,12 +2463,10 @@ refreshMessage
 }
 );
 
-
 el.sendBtn.addEventListener(
 'click',
 sendDraft
 );
-
 
 async function autoDetect(){
 
@@ -3588,14 +2475,9 @@ setStatus(
 false
 );
 
-
 try{
 
-
-if(
-typeof liff===
-'undefined'
-){
+if(typeof liff==='undefined'){
 
 throw new Error(
 'LIFF SDKが読み込まれていません'
@@ -3603,18 +2485,13 @@ throw new Error(
 
 }
 
-
 await withTimeout(
-
 liff.init({
 liffId:
 LIFF_ID
 }),
-
 AUTO_DETECT_TIMEOUT
-
 );
-
 
 if(
 state.userSelectedManually&&
@@ -3627,13 +2504,9 @@ true
 );
 
 return;
-
 }
 
-
-if(
-!liff.isLoggedIn()
-){
+if(!liff.isLoggedIn()){
 
 setStatus(
 '右から選択',
@@ -3641,20 +2514,13 @@ false
 );
 
 return;
-
 }
-
 
 state.idToken=
-
 liff.getIDToken()||
-
 '';
 
-
-if(
-!state.idToken
-){
+if(!state.idToken){
 
 setStatus(
 '右から選択',
@@ -3662,22 +2528,15 @@ false
 );
 
 return;
-
 }
 
-
 const info=
-
 await withTimeout(
-
 callServer(
 'getDriverInfo'
 ),
-
 AUTO_DETECT_TIMEOUT
-
 );
-
 
 if(
 state.userSelectedManually&&
@@ -3690,9 +2549,7 @@ true
 );
 
 return;
-
 }
-
 
 if(
 info&&
@@ -3701,50 +2558,38 @@ info.driverKey
 ){
 
 const driver=
-
 findDriver(
 info.driverKey
 );
 
-
-if(
-driver
-){
+if(driver){
 
 await selectDriver(
 driver,
 false
 );
 
-
 setStatus(
 '完了',
 true
 );
 
-
 return;
-
 }
 
 }
-
 
 setStatus(
 '右から選択',
 false
 );
 
-
-}catch(
-error
-){
+}catch(error){
 
 console.warn(
 '自動判別終了',
 error
 );
-
 
 if(
 state.userSelectedManually&&
@@ -3766,38 +2611,28 @@ false
 }
 
 }
-
 }
 
-
 window.addEventListener(
-
 'load',
-
 function(){
 
 buildNextTimeOptions();
 
-
 el.reportDate.value=
 today();
-
 
 el.startTime.value=
 nowTime();
 
-
 el.nextDate.value=
 tomorrow();
-
 
 el.nextTime.value=
 '08:00';
 
-
 el.memo.value=
 '';
-
 
 setMode(
 'in'
@@ -3807,7 +2642,6 @@ setStatus(
 '判別中',
 false
 );
-
 
 loadDrivers()
 .catch(
@@ -3821,79 +2655,56 @@ error
 }
 );
 
-
 setTimeout(
 ()=>{
-
 autoDetect();
-
 },
 150
 );
 
 }
-
 );
 
-
 window.addEventListener(
-
 'pageshow',
-
 function(){
 
 setTimeout(
-
 function(){
 
-if(
-state.driver
-){
+if(state.driver){
 
 refreshSelectedDriverData();
 
 }
 
 },
-
 200
-
 );
 
 }
-
 );
-
 
 window.addEventListener(
-
 'focus',
-
 function(){
 
 setTimeout(
-
 function(){
 
-if(
-state.driver
-){
+if(state.driver){
 
 refreshSelectedDriverData();
 
 }
 
 },
-
 200
-
 );
 
 }
-
 );
 
 </script>
-
 </body>
 </html>
