@@ -12,7 +12,7 @@
 :root{
   --bg:#eef9ff;
   --bg2:#f8fcff;
-  --card:#ffffff;
+  --card:#fff;
   --line:#d5eaf7;
   --text:#17324d;
   --blue:#1676c7;
@@ -33,7 +33,6 @@ body{
 
 body{
   min-height:100vh;
-
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -41,9 +40,7 @@ body{
     "Yu Gothic",
     Meiryo,
     sans-serif;
-
   color:var(--text);
-
   background:
     linear-gradient(
       var(--bg),
@@ -76,14 +73,8 @@ button{
 .hero{
   position:relative;
   overflow:hidden;
-
-  padding:
-    21px
-    10px
-    23px;
-
+  padding:21px 10px 23px;
   border-radius:26px;
-
   text-align:center;
 
   background:
@@ -100,107 +91,111 @@ button{
 
 .hero h1{
   margin:0;
-
   color:var(--blue);
-
   font-size:30px;
   line-height:1.15;
-
   font-weight:900;
-
   white-space:nowrap;
 }
 
 
 /* ============================================================
-   メインカード
+   メイン
    ============================================================ */
 
 .card{
   margin-top:12px;
-
   padding:13px;
-
   border-radius:24px;
-
-  background:rgba(
-    255,
-    255,
-    255,
-    .97
-  );
-
+  background:rgba(255,255,255,.97);
   box-shadow:var(--shadow);
 }
 
 
 /* ============================================================
-   人物選択
-   左側の判別枠は削除。
-   ここ1枠に「判別中 / 選択可 / 人物名」を統合。
+   判別＋人物
    ============================================================ */
 
 .top-row{
-  display:block;
+  display:grid;
+  grid-template-columns:158px minmax(0,1fr);
+  gap:8px;
+  align-items:stretch;
+}
+
+.status{
+  min-height:78px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+
+  padding:8px;
+
+  border-radius:20px;
+  background:#f3fbff;
+  border:1px solid var(--line);
+
+  color:var(--blue);
+  font-size:18px;
+  font-weight:900;
+  text-align:center;
+}
+
+.status.done{
+  background:#eefbf3;
+  border-color:#ccefd8;
+  color:var(--green);
 }
 
 .select-box{
-  width:100%;
-
-  padding:
-    10px
-    11px;
-
-  border:
-    1px
-    solid
-    var(--line);
-
+  padding:9px 11px;
+  border:1px solid var(--line);
   border-radius:18px;
-
   background:#f9fdff;
 }
 
-.select-box label{
+.select-box label,
+.field-title{
   display:block;
-
   margin-bottom:5px;
-
   color:#637c90;
-
   font-size:13px;
-
   font-weight:900;
 }
 
-select{
+select,
+input[type="date"],
+input[type="time"],
+textarea{
   width:100%;
-
-  height:44px;
-
-  padding:
-    0
-    10px;
-
-  border:
-    1px
-    solid
-    #cfe4f3;
-
+  border:1px solid #cfe4f3;
   border-radius:12px;
-
   background:#fff;
-
   color:var(--text);
-
-  font-size:16px;
-
-  font-weight:800;
-
   outline:none;
 }
 
-select:focus{
+select,
+input[type="date"],
+input[type="time"]{
+  height:44px;
+  padding:0 10px;
+  font-size:16px;
+  font-weight:800;
+}
+
+textarea{
+  padding:10px 11px;
+  font-size:14px;
+  line-height:1.5;
+  resize:vertical;
+}
+
+select:focus,
+input:focus,
+textarea:focus{
   border-color:#63b4ea;
 
   box-shadow:
@@ -208,12 +203,7 @@ select:focus{
     0
     0
     3px
-    rgba(
-      99,
-      180,
-      234,
-      .12
-    );
+    rgba(99,180,234,.12);
 }
 
 
@@ -223,23 +213,15 @@ select:focus{
 
 .assignment{
   display:flex;
-
   align-items:center;
   justify-content:center;
 
   min-height:38px;
 
   margin-top:8px;
+  padding:7px 10px;
 
-  padding:
-    7px
-    10px;
-
-  border:
-    1px
-    solid
-    var(--line);
-
+  border:1px solid var(--line);
   border-radius:12px;
 
   background:#f6fcff;
@@ -247,7 +229,6 @@ select:focus{
   color:#496a82;
 
   font-size:14px;
-
   font-weight:900;
 
   text-align:center;
@@ -255,7 +236,6 @@ select:focus{
 
 .assignment.ready{
   color:var(--blue);
-
   background:#eef9ff;
 }
 
@@ -266,10 +246,7 @@ select:focus{
 
 .mode-box{
   display:grid;
-
-  grid-template-columns:
-    1fr
-    1fr;
+  grid-template-columns:1fr 1fr;
 
   gap:8px;
 
@@ -280,11 +257,9 @@ select:focus{
   min-height:90px;
 
   border:0;
-
   border-radius:20px;
 
   font-size:28px;
-
   font-weight:900;
 
   transition:.12s;
@@ -316,19 +291,15 @@ select:focus{
 
 .mode-btn.off{
   opacity:.38;
-
   filter:grayscale(.18);
 }
 
 .guide{
-  margin:
-    9px
-    4px;
+  margin:9px 4px;
 
   color:var(--blue);
 
   font-size:13px;
-
   font-weight:900;
 
   text-align:center;
@@ -341,14 +312,9 @@ select:focus{
 
 .upload-btn{
   width:100%;
-
   min-height:54px;
 
-  border:
-    1px
-    solid
-    #cfe8f7;
-
+  border:1px solid #cfe8f7;
   border-radius:17px;
 
   background:#eaf7ff;
@@ -356,13 +322,11 @@ select:focus{
   color:var(--blue);
 
   font-size:17px;
-
   font-weight:900;
 }
 
 .upload-btn:disabled{
   opacity:.45;
-
   cursor:not-allowed;
 }
 
@@ -370,10 +334,7 @@ select:focus{
   display:none;
 
   margin-top:9px;
-
-  padding:
-    9px
-    11px;
+  padding:9px 11px;
 
   border-radius:12px;
 
@@ -382,7 +343,6 @@ select:focus{
   color:#5c7588;
 
   font-size:12px;
-
   line-height:1.45;
 
   text-align:center;
@@ -403,7 +363,6 @@ select:focus{
 
 .preview{
   display:none;
-
   margin-top:11px;
 }
 
@@ -414,11 +373,7 @@ select:focus{
 .preview-box{
   padding:12px;
 
-  border:
-    1px
-    solid
-    var(--line);
-
+  border:1px solid var(--line);
   border-radius:18px;
 
   background:#fff;
@@ -428,7 +383,6 @@ select:focus{
   display:block;
 
   width:100%;
-
   max-height:360px;
 
   object-fit:contain;
@@ -440,8 +394,8 @@ select:focus{
 
 
 /* ============================================================
-   勤怠項目
-   順番：
+   修正項目
+   配置
    日付
    出勤時間
    退勤時間
@@ -466,76 +420,18 @@ select:focus{
 
   padding:9px;
 
-  border:
-    1px
-    solid
-    var(--line);
-
+  border:1px solid var(--line);
   border-radius:14px;
 
   background:var(--soft);
 }
 
 .field-title{
-  display:block;
-
   margin-bottom:4px;
-
-  color:#637c90;
-
-  font-size:13px;
-
-  font-weight:900;
-}
-
-input[type="date"],
-input[type="time"]{
-  width:100%;
-
-  height:44px;
-
-  padding:
-    0
-    10px;
-
-  border:
-    1px
-    solid
-    #cfe4f3;
-
-  border-radius:12px;
-
-  background:#fff;
-
-  color:var(--text);
-
-  font-size:16px;
-
-  font-weight:800;
-
-  outline:none;
-}
-
-input[type="date"]:focus,
-input[type="time"]:focus{
-  border-color:#63b4ea;
-
-  box-shadow:
-    0
-    0
-    0
-    3px
-    rgba(
-      99,
-      180,
-      234,
-      .12
-    );
 }
 
 #nextDate{
   font-size:15px;
-
   letter-spacing:-.4px;
 }
 
@@ -547,15 +443,9 @@ input[type="time"]:focus{
 .summary{
   grid-column:1/-1;
 
-  padding:
-    9px
-    10px;
+  padding:9px 10px;
 
-  border:
-    1px
-    solid
-    var(--line);
-
+  border:1px solid var(--line);
   border-radius:12px;
 
   background:#fff;
@@ -565,7 +455,6 @@ input[type="time"]:focus{
   text-align:center;
 
   font-size:13px;
-
   font-weight:800;
 }
 
@@ -583,15 +472,11 @@ input[type="time"]:focus{
 }
 
 .message-title{
-  margin:
-    0
-    0
-    7px;
+  margin:0 0 7px;
 
   color:var(--blue);
 
   font-size:20px;
-
   font-weight:900;
 
   text-align:left;
@@ -600,21 +485,20 @@ input[type="time"]:focus{
 .message-box{
   padding:11px;
 
-  border:
-    1px
-    solid
-    var(--line);
-
+  border:1px solid var(--line);
   border-radius:16px;
 
   background:#f7fcff;
 }
 
+
+/*
+ * 報告文章の本文
+ */
 .message-preview{
   white-space:pre-line;
 
   font-size:14px;
-
   line-height:1.55;
 
   color:#15446e;
@@ -622,6 +506,12 @@ input[type="time"]:focus{
   font-weight:700;
 }
 
+
+/*
+ * 【MEMO】の下の文章入力欄
+ *
+ * 「追加文章（任意）」の見出しは表示しない。
+ */
 .memo-input{
   display:block;
 
@@ -631,9 +521,7 @@ input[type="time"]:focus{
 
   margin-top:10px;
 
-  padding:
-    10px
-    11px;
+  padding:10px 11px;
 
   border:
     1px
@@ -667,12 +555,7 @@ input[type="time"]:focus{
     0
     0
     3px
-    rgba(
-      99,
-      180,
-      234,
-      .12
-    );
+    rgba(99,180,234,.12);
 }
 
 
@@ -688,7 +571,6 @@ input[type="time"]:focus{
   margin-top:9px;
 
   border:0;
-
   border-radius:17px;
 
   background:
@@ -700,13 +582,11 @@ input[type="time"]:focus{
   color:#fff;
 
   font-size:18px;
-
   font-weight:900;
 }
 
 .send-btn:disabled{
   opacity:.45;
-
   cursor:not-allowed;
 }
 
@@ -717,7 +597,6 @@ input[type="time"]:focus{
 
 .history{
   margin-top:16px;
-
   padding-top:13px;
 
   border-top:
@@ -727,15 +606,11 @@ input[type="time"]:focus{
 }
 
 .history-title{
-  margin:
-    0
-    0
-    8px;
+  margin:0 0 8px;
 
   color:var(--blue);
 
   font-size:20px;
-
   font-weight:900;
 
   text-align:center;
@@ -745,7 +620,6 @@ input[type="time"]:focus{
   list-style:none;
 
   padding:0;
-
   margin:0;
 }
 
@@ -762,9 +636,7 @@ input[type="time"]:focus{
 
   align-items:center;
 
-  padding:
-    9px
-    1px;
+  padding:9px 1px;
 
   border-bottom:
     1px
@@ -784,7 +656,6 @@ input[type="time"]:focus{
 
 .history-type{
   color:var(--blue);
-
   font-weight:900;
 }
 
@@ -822,10 +693,7 @@ input[type="time"]:focus{
    ============================================================ */
 
 .footer{
-  padding:
-    14px
-    10px
-    4px;
+  padding:14px 10px 4px;
 
   color:#8aa0b2;
 
@@ -863,9 +731,19 @@ input[type="time"]:focus{
     padding:11px;
   }
 
+  .top-row{
+    grid-template-columns:
+      145px
+      minmax(0,1fr);
+  }
+
+  .status{
+    min-height:76px;
+    font-size:17px;
+  }
+
   .mode-btn{
     min-height:82px;
-
     font-size:25px;
   }
 
@@ -880,7 +758,6 @@ input[type="time"]:focus{
 }
 </style>
 </head>
-
 
 <body>
 
@@ -900,10 +777,27 @@ input[type="time"]:focus{
 
 
   <!-- ========================================================
-       人物選択
+       判別＋人物
        ======================================================== -->
 
   <div class="top-row">
+
+
+    <div
+      id="status"
+      class="status"
+    >
+
+      <span id="statusIcon">
+        ⏰
+      </span>
+
+      <span id="statusText">
+        ⏳判別中⏳
+      </span>
+
+    </div>
+
 
     <div class="select-box">
 
@@ -911,12 +805,11 @@ input[type="time"]:focus{
         選択
       </label>
 
-      <select
-        id="driverSelect"
-      >
+
+      <select id="driverSelect">
 
         <option value="">
-          ⏳ 判別中
+          ⏳判別中⏳
         </option>
 
       </select>
@@ -950,7 +843,7 @@ input[type="time"]:focus{
       type="button"
       disabled
     >
-      ☀️ 出勤
+      ☀️出勤☀️
     </button>
 
 
@@ -960,7 +853,7 @@ input[type="time"]:focus{
       type="button"
       disabled
     >
-      🌙 退勤
+      🌙退勤🌙
     </button>
 
   </div>
@@ -972,7 +865,7 @@ input[type="time"]:focus{
 
 
   <!-- ========================================================
-       写真選択
+       写真
        ======================================================== -->
 
   <input
@@ -1011,9 +904,7 @@ input[type="time"]:focus{
     <div class="preview-box">
 
 
-      <!-- ====================================================
-           写真
-           ==================================================== -->
+      <!-- 写真 -->
 
       <img
         id="photoPreview"
@@ -1023,7 +914,12 @@ input[type="time"]:focus{
 
 
       <!-- ====================================================
-           勤怠項目
+           修正項目
+           日付
+           出勤時間
+           退勤時間
+           次回出勤日
+           次回出勤時間
            ==================================================== -->
 
       <div class="fields">
@@ -1157,20 +1053,21 @@ input[type="time"]:focus{
            報告文章
            ==================================================== -->
 
-      <div
-        class="message-section"
-      >
+      <div class="message-section">
 
-        <div
-          class="message-title"
-        >
+
+        <div class="message-title">
           報告文章
         </div>
 
 
-        <div
-          class="message-box"
-        >
+        <div class="message-box">
+
+
+          <!--
+            ここには【MEMO】までを表示。
+            入力した文章はその直下の入力欄へ。
+          -->
 
           <div
             id="messagePreview"
@@ -1178,11 +1075,19 @@ input[type="time"]:focus{
           ></div>
 
 
+          <!--
+            【MEMO】の下の文章入力欄
+
+            「追加文章（任意）」という文字は
+            表示しない。
+          -->
+
           <textarea
             id="memo"
             class="memo-input"
             placeholder="文章を入力できます"
           ></textarea>
+
 
         </div>
 
@@ -1212,14 +1117,11 @@ input[type="time"]:focus{
        履歴
        ======================================================== -->
 
-  <section
-    class="history"
-  >
+  <section class="history">
 
-    <h2
-      class="history-title"
-    >
-      履歴
+
+    <h2 class="history-title">
+      ＜履歴＞
     </h2>
 
 
@@ -1228,13 +1130,12 @@ input[type="time"]:focus{
       class="history-list"
     >
 
-      <li
-        class="empty"
-      >
-        人物を選択すると履歴を表示します
+      <li class="empty">
+        
       </li>
 
     </ul>
+
 
   </section>
 
@@ -1271,6 +1172,21 @@ const AUTO_DETECT_TIMEOUT =
    ============================================================ */
 
 const el = {
+
+  status:
+    document.getElementById(
+      'status'
+    ),
+
+  statusIcon:
+    document.getElementById(
+      'statusIcon'
+    ),
+
+  statusText:
+    document.getElementById(
+      'statusText'
+    ),
 
   driverSelect:
     document.getElementById(
@@ -1420,7 +1336,7 @@ const state = {
 
 /* ============================================================
    次回出勤時間
-   00:00～23:59 + ??:??
+   00:00 ～ 23:59 ＋ ??:??
    ============================================================ */
 
 function buildNextTimeOptions(){
@@ -1482,77 +1398,6 @@ function buildNextTimeOptions(){
 
   el.nextTime.value =
     '08:00';
-
-}
-
-
-/* ============================================================
-   選択状態表示
-   ============================================================ */
-
-function setSelectStatus(
-  text
-){
-
-  /*
-   * 自動判別中・選択可などを
-   * 人物選択欄1つだけで表示。
-   */
-
-  el.driverSelect.innerHTML =
-    '';
-
-  const option =
-    document.createElement(
-      'option'
-    );
-
-  option.value =
-    '';
-
-  option.textContent =
-    text;
-
-  option.selected =
-    true;
-
-  el.driverSelect.appendChild(
-    option;
-
-  );
-
-}
-
-
-function setDetecting(){
-
-  setSelectStatus(
-    '⏳ 判別中'
-  );
-
-}
-
-
-function setSelectable(){
-
-  /*
-   * 人物一覧が既に存在する場合は
-   * 一覧を描画し直す。
-   */
-
-  if(
-    state.drivers.length
-  ){
-
-    renderDrivers();
-
-    return;
-
-  }
-
-  setSelectStatus(
-    '選択可'
-  );
 
 }
 
@@ -1644,9 +1489,7 @@ function dateText(
   if(
     !value
   ){
-
     return '';
-
   }
 
   const d =
@@ -1660,9 +1503,7 @@ function dateText(
       d.getTime()
     )
   ){
-
     return value;
-
   }
 
   const week=[
@@ -1696,9 +1537,7 @@ function shortDate(
   if(
     !value
   ){
-
     return '';
-
   }
 
   const d =
@@ -1712,9 +1551,7 @@ function shortDate(
       d.getTime()
     )
   ){
-
     return value;
-
   }
 
   const week=[
@@ -1739,10 +1576,6 @@ function shortDate(
 }
 
 
-/*
- * 「来週」だけを付ける。
- * 「明日」は使用しない。
- */
 function nextAttendancePrefix(
   value
 ){
@@ -1750,9 +1583,7 @@ function nextAttendancePrefix(
   if(
     !value
   ){
-
     return '';
-
   }
 
   const base =
@@ -1849,6 +1680,27 @@ function escapeHtml(
 }
 
 
+function setStatus(
+  text,
+  done
+){
+
+  el.statusText.textContent =
+    text;
+
+  el.statusIcon.textContent =
+    done
+      ? '✓'
+      : '⏳';
+
+  el.status.classList.toggle(
+    'done',
+    !!done
+  );
+
+}
+
+
 function showNotice(
   text
 ){
@@ -1914,9 +1766,9 @@ async function callServer(
     )=>{
 
       const requestId =
-        'req_' +
-        Date.now() +
-        '_' +
+        'req_'+
+        Date.now()+
+        '_'+
         Math.random()
           .toString(36)
           .slice(2);
@@ -2021,9 +1873,9 @@ function pollApi(
 
 
   const callback =
-    'gasCallback_' +
-    Date.now() +
-    '_' +
+    'gasCallback_'+
+    Date.now()+
+    '_'+
     attempt;
 
 
@@ -2075,15 +1927,11 @@ function pollApi(
       if(
         finished
       ){
-
         return;
-
       }
-
 
       finished =
         true;
-
 
       cleanup();
 
@@ -2113,7 +1961,6 @@ function pollApi(
         );
 
         return;
-
       }
 
 
@@ -2132,7 +1979,6 @@ function pollApi(
         );
 
         return;
-
       }
 
 
@@ -2149,15 +1995,11 @@ function pollApi(
       if(
         finished
       ){
-
         return;
-
       }
-
 
       finished =
         true;
-
 
       cleanup();
 
@@ -2222,29 +2064,14 @@ function findDriver(
 
 function renderDrivers(){
 
-  el.driverSelect.innerHTML =
-    '';
-
-
-  const first =
-    document.createElement(
-      'option'
-    );
-
-
-  first.value =
-    '';
-
-
-  first.textContent =
+  const current =
     state.driver
-      ? '選択'
-      : '選択可';
+      ? state.driver.driverKey
+      : '';
 
 
-  el.driverSelect.appendChild(
-    first
-  );
+  el.driverSelect.innerHTML =
+    '<option value="">選択して下さい</option>';
 
 
   state.drivers.forEach(
@@ -2270,11 +2097,11 @@ function renderDrivers(){
 
 
   if(
-    state.driver
+    current
   ){
 
     el.driverSelect.value =
-      state.driver.driverKey;
+      current;
 
   }
 
@@ -2299,17 +2126,7 @@ async function loadDrivers(){
         : [];
 
 
-    if(
-      state.drivers.length
-    ){
-
-      renderDrivers();
-
-    }else{
-
-      setSelectable();
-
-    }
+    renderDrivers();
 
   }catch(error){
 
@@ -2317,9 +2134,6 @@ async function loadDrivers(){
       '人物一覧取得失敗',
       error
     );
-
-
-    setSelectable();
 
   }
 
@@ -2342,7 +2156,6 @@ async function selectDriver(
     state.driver =
       null;
 
-
     el.inMode.disabled =
       true;
 
@@ -2352,20 +2165,18 @@ async function selectDriver(
     el.uploadBtn.disabled =
       true;
 
-
     el.assignment.textContent =
-      '👔 今月の担当：未設定';
-
-
-    renderDrivers();
-
+      '👔 今月の担当：未選択';
 
     el.historyList.innerHTML =
-      '<li class="empty">人物を選択すると履歴を表示します</li>';
+      '<li class="empty"></li>';
 
+    setStatus(
+      '人物選択待ち',
+      false
+    );
 
     return;
-
   }
 
 
@@ -2383,6 +2194,10 @@ async function selectDriver(
     driver;
 
 
+  el.driverSelect.value =
+    driver.driverKey;
+
+
   el.inMode.disabled =
     false;
 
@@ -2393,7 +2208,10 @@ async function selectDriver(
     false;
 
 
-  renderDrivers();
+  setStatus(
+    '完了',
+    true
+  );
 
 
   await refreshSelectedDriverData();
@@ -2530,7 +2348,6 @@ async function refreshSelectedDriverData(){
       error
     );
 
-
     el.assignment.textContent =
       '👔 今月の担当：取得できません';
 
@@ -2557,20 +2374,16 @@ function renderAssignment(
       '👔 今月の担当：'+
       result.officerName;
 
-
     el.assignment.classList.add(
       'ready'
     );
 
-
     return;
-
   }
 
 
   el.assignment.textContent =
     '👔 今月の担当：未設定';
-
 
   el.assignment.classList.remove(
     'ready'
@@ -2705,7 +2518,6 @@ function normalizeHistoryDate(
     const now =
       new Date();
 
-
     return (
       now.getFullYear()+
       '/' +
@@ -2733,7 +2545,6 @@ function renderHistory(
 
     el.historyList.innerHTML =
       '<li class="empty">まだ履歴はありません</li>';
-
 
     return;
 
@@ -2839,7 +2650,6 @@ function setMode(
   state.mode =
     mode;
 
-
   state.draft =
     null;
 
@@ -2886,20 +2696,16 @@ function setMode(
       'hidden'
     );
 
-
     el.nextDateField.classList.add(
       'hidden'
     );
-
 
     el.nextTimeField.classList.add(
       'hidden'
     );
 
-
     el.reportDate.value =
       today();
-
 
     el.startTime.value =
       nowTime();
@@ -2919,11 +2725,9 @@ function setMode(
       'hidden'
     );
 
-
     el.nextDateField.classList.remove(
       'hidden'
     );
-
 
     el.nextTimeField.classList.remove(
       'hidden'
@@ -2933,19 +2737,15 @@ function setMode(
     el.reportDate.value =
       today();
 
-
     el.startTime.value =
       state.workState.startTime ||
       '';
 
-
     el.endTime.value =
       nowTime();
 
-
     el.nextDate.value =
       tomorrow();
-
 
     el.nextTime.value =
       '08:00';
@@ -2962,6 +2762,13 @@ function setMode(
    報告文章
    ============================================================ */
 
+
+/*
+ * 【MEMO】までを生成。
+ *
+ * 入力欄の内容はここには直接入れず、
+ * textareaに入力する。
+ */
 function buildReportBaseMessage(){
 
   if(
@@ -2972,17 +2779,13 @@ function buildReportBaseMessage(){
       el.reportDate.value ||
       today();
 
-
     const time =
       el.startTime.value ||
       nowTime();
 
-
     return (
       'お疲れ様でございます。\n'+
-      dateText(
-        date
-      )+
+      dateText(date)+
       ' '+
       time+
       '出勤いたしました。\n'+
@@ -3009,33 +2812,27 @@ function buildReportBaseMessage(){
     el.reportDate.value ||
     today();
 
-
   const start =
     el.startTime.value ||
     state.workState.startTime ||
     '00:00';
 
-
   const end =
     el.endTime.value ||
     nowTime();
-
 
   const nextDate =
     el.nextDate.value ||
     tomorrow();
 
-
   const nextTime =
     el.nextTime.value ||
     '??:??';
-
 
   const prefix =
     nextAttendancePrefix(
       nextDate
     );
-
 
   const datePart =
     shortDate(
@@ -3072,9 +2869,7 @@ function buildReportBaseMessage(){
   return (
     'お疲れ様でございます。\n'+
     '業務完了いたしました。\n'+
-    dateText(
-      reportDate
-    )+
+    dateText(reportDate)+
     '\n'+
     '稼働)'+
     start+
@@ -3092,6 +2887,12 @@ function buildReportBaseMessage(){
 }
 
 
+/*
+ * 画面表示用。
+ *
+ * 【MEMO】の下に入力欄があるため、
+ * textareaの文字をここには表示しない。
+ */
 function refreshMessage(){
 
   el.messagePreview.textContent =
@@ -3100,11 +2901,15 @@ function refreshMessage(){
 }
 
 
+/*
+ * 実際にLINEへ送る完全な文章。
+ *
+ * 【MEMO】の下にtextareaの内容を追加。
+ */
 function buildCompleteMessage(){
 
   const base =
     buildReportBaseMessage();
-
 
   const memo =
     String(
@@ -3132,7 +2937,7 @@ function buildCompleteMessage(){
 
 
 /* ============================================================
-   写真
+   写真変換
    ============================================================ */
 
 function imageToDataUrl(
@@ -3284,8 +3089,7 @@ async function runBrowserOcr(
               showNotice(
                 '写真を読み取り中... '+
                 Math.round(
-                  message.progress*
-                  100
+                  message.progress*100
                 )+
                 '%'
               );
@@ -3294,8 +3098,7 @@ async function runBrowserOcr(
 
           },
 
-        tessedit_pageseg_mode:
-          6
+        tessedit_pageseg_mode:6
 
       }
     );
@@ -3330,7 +3133,6 @@ async function uploadPhoto(
     );
 
     return;
-
   }
 
 
@@ -3356,7 +3158,8 @@ async function uploadPhoto(
 
 
     /*
-     * OCR本文は画面に表示しない。
+     * OCR結果は内部だけ。
+     * 画面には表示しない。
      */
 
     const ocrText =
@@ -3427,6 +3230,11 @@ async function uploadPhoto(
     }
 
 
+    /*
+     * 写真を新しく読み込んだら
+     * メモ欄は空欄にする。
+     */
+
     el.memo.value =
       '';
 
@@ -3487,6 +3295,9 @@ async function sendDraft(){
 
   try{
 
+    /*
+     * textareaを含む完全な文章
+     */
     const message =
       buildCompleteMessage();
 
@@ -3603,30 +3414,9 @@ el.driverSelect.addEventListener(
   'change',
   async function(){
 
-    const key =
-      el.driverSelect.value;
-
-
-    if(
-      !key
-    ){
-
-      state.userSelectedManually =
-        true;
-
-      await selectDriver(
-        null,
-        true
-      );
-
-      return;
-
-    }
-
-
     const driver =
       findDriver(
-        key
+        el.driverSelect.value
       );
 
 
@@ -3656,7 +3446,6 @@ el.inMode.addEventListener(
       );
 
       return;
-
     }
 
 
@@ -3685,7 +3474,6 @@ el.outMode.addEventListener(
       );
 
       return;
-
     }
 
 
@@ -3714,7 +3502,6 @@ el.uploadBtn.addEventListener(
       );
 
       return;
-
     }
 
 
@@ -3797,10 +3584,10 @@ el.sendBtn.addEventListener(
 
 async function autoDetect(){
 
-  /*
-   * 判別中を人物選択欄だけに表示。
-   */
-  setDetecting();
+  setStatus(
+    '判別中',
+    false
+  );
 
 
   try{
@@ -3831,6 +3618,11 @@ async function autoDetect(){
       state.driver
     ){
 
+      setStatus(
+        '完了',
+        true
+      );
+
       return;
 
     }
@@ -3840,7 +3632,10 @@ async function autoDetect(){
       !liff.isLoggedIn()
     ){
 
-      await loadDrivers();
+      setStatus(
+        '右から選択',
+        false
+      );
 
       return;
 
@@ -3856,7 +3651,10 @@ async function autoDetect(){
       !state.idToken
     ){
 
-      await loadDrivers();
+      setStatus(
+        '右から選択',
+        false
+      );
 
       return;
 
@@ -3876,6 +3674,11 @@ async function autoDetect(){
       state.userSelectedManually &&
       state.driver
     ){
+
+      setStatus(
+        '完了',
+        true
+      );
 
       return;
 
@@ -3904,6 +3707,11 @@ async function autoDetect(){
         );
 
 
+        setStatus(
+          '完了',
+          true
+        );
+
         return;
 
       }
@@ -3911,19 +3719,38 @@ async function autoDetect(){
     }
 
 
-    await loadDrivers();
+    setStatus(
+      '右から選択',
+      false
+    );
 
 
   }catch(error){
 
     console.warn(
-      '自動判別失敗',
+      '自動判別終了',
       error
     );
 
 
-    await loadDrivers();
+    if(
+      state.userSelectedManually &&
+      state.driver
+    ){
 
+      setStatus(
+        '完了',
+        true
+      );
+
+    }else{
+
+      setStatus(
+        '右から選択',
+        false
+      );
+
+    }
 
   }
 
@@ -3938,6 +3765,10 @@ window.addEventListener(
   'load',
   function(){
 
+    /*
+     * 次回出勤時間
+     * 00:00～23:59 + ??:??
+     */
     buildNextTimeOptions();
 
 
@@ -3961,36 +3792,15 @@ window.addEventListener(
       '';
 
 
-    el.inMode.classList.remove(
-      'off'
+    setMode(
+      'in'
     );
 
 
-    el.outMode.classList.add(
-      'off'
+    setStatus(
+      '判別中',
+      false
     );
-
-
-    el.inMode.disabled =
-      true;
-
-
-    el.outMode.disabled =
-      true;
-
-
-    el.uploadBtn.disabled =
-      true;
-
-
-    el.assignment.textContent =
-      '👔 今月の担当：確認中...';
-
-
-    setDetecting();
-
-
-    refreshMessage();
 
 
     loadDrivers()
@@ -3998,10 +3808,9 @@ window.addEventListener(
         error=>{
 
           console.error(
+            '人物一覧取得失敗',
             error
           );
-
-          setSelectable();
 
         }
       );
