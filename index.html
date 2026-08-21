@@ -1,4608 +1,6355 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
+
 <title>運転手MENU</title>
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 
+
 <style>
+
 :root{
+
   --bg:#eef9ff;
   --bg2:#f8fcff;
-  --card:#fff;
+  --card:#ffffff;
   --line:#d5eaf7;
   --text:#17324d;
   --blue:#1676c7;
   --green:#18824e;
   --soft:#f6fbfe;
   --shadow:0 12px 34px rgba(40,92,128,.10);
+
 }
 
-*{box-sizing:border-box}
 
-html,body{
+*{
+
+  box-sizing:border-box;
+
+}
+
+
+html,
+body{
+
   margin:0;
   padding:0;
+
 }
+
 
 body{
+
   min-height:100vh;
-  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Hiragino Sans",
+    "Yu Gothic",
+    Meiryo,
+    sans-serif;
+
   color:var(--text);
-  background:linear-gradient(var(--bg),var(--bg2));
+
+  background:
+    linear-gradient(
+      var(--bg),
+      var(--bg2)
+    );
+
 }
 
-button,input,select,textarea{
+
+button,
+input,
+select,
+textarea{
+
   font:inherit;
+
 }
+
 
 button{
+
   cursor:pointer;
+
 }
+
 
 .page{
+
   width:min(760px,100%);
+
   margin:0 auto;
-  padding:12px 10px 24px;
+
+  padding:
+    12px
+    10px
+    24px;
+
 }
 
-/* =========================
+
+/* ============================================================
    ヘッダー
-========================= */
+============================================================ */
 
 .hero{
+
   position:relative;
+
   overflow:hidden;
-  padding:21px 10px 23px;
+
+  padding:
+    21px
+    10px
+    23px;
+
   border-radius:26px;
+
   text-align:center;
-  background:linear-gradient(
-    180deg,
-    #bfeaff 0%,
-    #e9f9ff 70%,
-    #98dc83 70%,
-    #7ccf71 100%
-  );
-  box-shadow:var(--shadow);
+
+  background:
+    linear-gradient(
+      180deg,
+      #bfeaff 0%,
+      #e9f9ff 70%,
+      #98dc83 70%,
+      #7ccf71 100%
+    );
+
+  box-shadow:
+    var(--shadow);
+
 }
+
 
 .hero h1{
+
   margin:0;
-  color:var(--blue);
-  font-size:30px;
-  line-height:1.15;
-  font-weight:900;
-  white-space:nowrap;
+
+  color:
+    var(--blue);
+
+  font-size:
+    30px;
+
+  line-height:
+    1.15;
+
+  font-weight:
+    900;
+
+  white-space:
+    nowrap;
+
 }
+
+
+/* ============================================================
+   メインカード
+============================================================ */
 
 .card{
-  margin-top:12px;
-  padding:13px;
-  border-radius:24px;
-  background:rgba(255,255,255,.97);
-  box-shadow:var(--shadow);
+
+  margin-top:
+    12px;
+
+  padding:
+    13px;
+
+  border-radius:
+    24px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .97
+    );
+
+  box-shadow:
+    var(--shadow);
+
 }
 
-/* =========================
+
+/* ============================================================
    担当表・代休取得ボタン
-========================= */
+============================================================ */
 
 .management-menu{
+
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:8px;
-  margin-bottom:12px;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:
+    8px;
+
+  margin-top:
+    8px;
+
+  margin-bottom:
+    12px;
+
 }
+
 
 .management-btn{
-  min-height:54px;
-  border:1px solid var(--line);
-  border-radius:16px;
-  font-size:16px;
-  font-weight:900;
-  background:#f7fcff;
-  color:var(--blue);
+
+  min-height:
+    54px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    16px;
+
+  font-size:
+    16px;
+
+  font-weight:
+    900;
+
+  background:
+    #f7fcff;
+
+  color:
+    var(--blue);
+
 }
+
 
 .management-btn:active{
-  transform:scale(.99);
+
+  transform:
+    scale(.99);
+
 }
+
 
 .assignment-btn{
-  background:#eef8ff;
+
+  background:
+    #eef8ff;
+
 }
+
 
 .comp-btn{
-  background:#f4fbf5;
-  color:#18824e;
+
+  background:
+    #f4fbf5;
+
+  color:
+    #18824e;
+
 }
 
-/* =========================
-   人物選択
-========================= */
+
+/* ============================================================
+   人物判別
+============================================================ */
 
 .top-row{
+
   display:grid;
-  grid-template-columns:158px minmax(0,1fr);
-  gap:8px;
-  align-items:stretch;
+
+  grid-template-columns:
+    158px
+    minmax(0,1fr);
+
+  gap:
+    8px;
+
+  align-items:
+    stretch;
+
 }
+
 
 .status{
-  min-height:78px;
+
+  min-height:
+    78px;
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
-  gap:7px;
-  padding:8px;
-  border-radius:20px;
-  background:#f3fbff;
-  border:1px solid var(--line);
-  color:var(--blue);
-  font-size:18px;
-  font-weight:900;
-  text-align:center;
+
+  gap:
+    7px;
+
+  padding:
+    8px;
+
+  border-radius:
+    20px;
+
+  background:
+    #f3fbff;
+
+  border:
+    1px solid
+    var(--line);
+
+  color:
+    var(--blue);
+
+  font-size:
+    18px;
+
+  font-weight:
+    900;
+
+  text-align:
+    center;
+
 }
+
 
 .status.done{
-  background:#eefbf3;
-  border-color:#ccefd8;
-  color:var(--green);
+
+  background:
+    #eefbf3;
+
+  border-color:
+    #ccefd8;
+
+  color:
+    var(--green);
+
 }
 
+
 .select-box{
-  padding:9px 11px;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:#f9fdff;
+
+  padding:
+    9px 11px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    18px;
+
+  background:
+    #f9fdff;
+
 }
+
 
 .select-box label,
 .field-title{
+
   display:block;
-  margin-bottom:5px;
-  color:#637c90;
-  font-size:13px;
-  font-weight:900;
+
+  margin-bottom:
+    5px;
+
+  color:
+    #637c90;
+
+  font-size:
+    13px;
+
+  font-weight:
+    900;
+
 }
+
+
+/* ============================================================
+   入力
+============================================================ */
 
 select,
 input[type="date"],
 input[type="time"],
 textarea{
-  width:100%;
-  border:1px solid #cfe4f3;
-  border-radius:12px;
-  background:#fff;
-  color:var(--text);
-  outline:none;
+
+  width:
+    100%;
+
+  border:
+    1px solid
+    #cfe4f3;
+
+  border-radius:
+    12px;
+
+  background:
+    #ffffff;
+
+  color:
+    var(--text);
+
+  outline:
+    none;
+
 }
+
 
 select,
 input[type="date"],
 input[type="time"]{
-  height:44px;
-  padding:0 10px;
-  font-size:16px;
-  font-weight:800;
+
+  height:
+    44px;
+
+  padding:
+    0 10px;
+
+  font-size:
+    16px;
+
+  font-weight:
+    800;
+
 }
 
+
 textarea{
-  padding:10px 11px;
-  font-size:14px;
-  line-height:1.5;
-  resize:vertical;
+
+  padding:
+    10px 11px;
+
+  font-size:
+    14px;
+
+  line-height:
+    1.5;
+
+  resize:
+    vertical;
+
 }
+
 
 select:focus,
 input:focus,
 textarea:focus{
-  border-color:#63b4ea;
-  box-shadow:0 0 0 3px rgba(99,180,234,.12);
+
+  border-color:
+    #63b4ea;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(
+      99,
+      180,
+      234,
+      .12
+    );
+
 }
 
-/* =========================
+
+/* ============================================================
    出勤・退勤
-========================= */
+============================================================ */
 
 .mode-box{
+
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:10px;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:
+    8px;
+
+  margin-top:
+    10px;
+
 }
+
 
 .mode-btn{
-  min-height:90px;
-  border:0;
-  border-radius:20px;
-  font-size:28px;
-  font-weight:900;
-  transition:.12s;
+
+  min-height:
+    90px;
+
+  border:
+    0;
+
+  border-radius:
+    20px;
+
+  font-size:
+    28px;
+
+  font-weight:
+    900;
+
+  transition:
+    .12s;
+
 }
+
 
 .mode-btn:active{
-  transform:scale(.99);
+
+  transform:
+    scale(.99);
+
 }
+
 
 .mode-btn.in{
-  background:linear-gradient(#73cdf8,#7dd77a);
-  color:#084e78;
+
+  background:
+    linear-gradient(
+      #73cdf8,
+      #7dd77a
+    );
+
+  color:
+    #084e78;
+
 }
+
 
 .mode-btn.out{
-  background:linear-gradient(#1b357c,#0e1e4d);
-  color:#fff;
+
+  background:
+    linear-gradient(
+      #1b357c,
+      #0e1e4d
+    );
+
+  color:
+    #ffffff;
+
 }
+
 
 .mode-btn.off{
-  opacity:.38;
-  filter:grayscale(.18);
+
+  opacity:
+    .38;
+
+  filter:
+    grayscale(.18);
+
 }
+
 
 .guide{
-  margin:9px 4px;
-  color:var(--blue);
-  font-size:13px;
-  font-weight:900;
-  text-align:center;
+
+  margin:
+    9px 4px;
+
+  color:
+    var(--blue);
+
+  font-size:
+    13px;
+
+  font-weight:
+    900;
+
+  text-align:
+    center;
+
 }
 
-/* =========================
+
+/* ============================================================
    写真
-========================= */
+============================================================ */
 
 .upload-btn{
-  width:100%;
-  min-height:54px;
-  border:1px solid #cfe8f7;
-  border-radius:17px;
-  background:#eaf7ff;
-  color:var(--blue);
-  font-size:17px;
-  font-weight:900;
+
+  width:
+    100%;
+
+  min-height:
+    54px;
+
+  border:
+    1px solid
+    #cfe8f7;
+
+  border-radius:
+    17px;
+
+  background:
+    #eaf7ff;
+
+  color:
+    var(--blue);
+
+  font-size:
+    17px;
+
+  font-weight:
+    900;
+
 }
+
 
 .upload-btn:disabled{
-  opacity:.45;
-  cursor:not-allowed;
+
+  opacity:
+    .45;
+
+  cursor:
+    not-allowed;
+
 }
+
 
 .notice{
+
   display:none;
-  margin-top:9px;
-  padding:9px 11px;
-  border-radius:12px;
-  background:#f7fcff;
-  color:#5c7588;
-  font-size:12px;
-  line-height:1.45;
-  text-align:center;
+
+  margin-top:
+    9px;
+
+  padding:
+    9px 11px;
+
+  border-radius:
+    12px;
+
+  background:
+    #f7fcff;
+
+  color:
+    #5c7588;
+
+  font-size:
+    12px;
+
+  line-height:
+    1.45;
+
+  text-align:
+    center;
+
 }
+
 
 .notice.show{
+
   display:block;
+
 }
+
 
 .hidden{
-  display:none!important;
+
+  display:none !important;
+
 }
+
 
 .preview{
+
   display:none;
-  margin-top:11px;
+
+  margin-top:
+    11px;
+
 }
+
 
 .preview.show{
+
   display:block;
+
 }
+
 
 .preview-box{
-  padding:12px;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:#fff;
+
+  padding:
+    12px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    18px;
+
+  background:
+    #ffffff;
+
 }
+
 
 .photo-preview{
+
   display:block;
-  width:100%;
-  max-height:360px;
-  object-fit:contain;
-  border-radius:14px;
-  background:#eef4f8;
+
+  width:
+    100%;
+
+  max-height:
+    360px;
+
+  object-fit:
+    contain;
+
+  border-radius:
+    14px;
+
+  background:
+    #eef4f8;
+
 }
+
+
+/* ============================================================
+   時刻
+============================================================ */
 
 .fields{
+
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:7px;
-  margin-top:9px;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:
+    7px;
+
+  margin-top:
+    9px;
+
 }
+
 
 .field{
-  min-width:0;
-  padding:9px;
-  border:1px solid var(--line);
-  border-radius:14px;
-  background:var(--soft);
+
+  min-width:
+    0;
+
+  padding:
+    9px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    14px;
+
+  background:
+    var(--soft);
+
 }
+
 
 .field-title{
-  margin-bottom:4px;
+
+  margin-bottom:
+    4px;
+
 }
+
 
 #nextDate{
-  font-size:15px;
-  letter-spacing:-.4px;
+
+  font-size:
+    15px;
+
+  letter-spacing:
+    -.4px;
+
 }
+
 
 .summary{
-  grid-column:1/-1;
-  padding:9px 10px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:#fff;
-  color:#446276;
-  text-align:center;
-  font-size:13px;
-  font-weight:800;
+
+  grid-column:
+    1 / -1;
+
+  padding:
+    9px 10px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    12px;
+
+  background:
+    #ffffff;
+
+  color:
+    #446276;
+
+  text-align:
+    center;
+
+  font-size:
+    13px;
+
+  font-weight:
+    800;
+
 }
+
 
 .summary strong{
-  color:var(--blue);
+
+  color:
+    var(--blue);
+
 }
 
-/* =========================
+
+/* ============================================================
    報告文章
-========================= */
+============================================================ */
 
 .message-section{
-  margin-top:12px;
+
+  margin-top:
+    12px;
+
 }
+
 
 .message-title{
-  margin:0 0 7px;
-  color:var(--blue);
-  font-size:20px;
-  font-weight:900;
+
+  margin:
+    0 0 7px;
+
+  color:
+    var(--blue);
+
+  font-size:
+    20px;
+
+  font-weight:
+    900;
+
 }
+
 
 .message-box{
-  padding:11px;
-  border:1px solid var(--line);
-  border-radius:16px;
-  background:#f7fcff;
+
+  padding:
+    11px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    16px;
+
+  background:
+    #f7fcff;
+
 }
+
 
 .message-preview{
-  white-space:pre-line;
-  font-size:14px;
-  line-height:1.55;
-  color:#15446e;
-  font-weight:700;
+
+  white-space:
+    pre-line;
+
+  font-size:
+    14px;
+
+  line-height:
+    1.55;
+
+  color:
+    #15446e;
+
+  font-weight:
+    700;
+
 }
+
 
 .memo-input{
+
   display:block;
-  width:100%;
-  min-height:92px;
-  margin-top:10px;
-  padding:10px 11px;
-  border:1px solid #cfe4f3;
-  border-radius:12px;
-  background:#fff;
-  color:var(--text);
-  font-size:14px;
-  line-height:1.55;
-  resize:vertical;
-  outline:none;
+
+  width:
+    100%;
+
+  min-height:
+    92px;
+
+  margin-top:
+    10px;
+
+  padding:
+    10px 11px;
+
+  border:
+    1px solid
+    #cfe4f3;
+
+  border-radius:
+    12px;
+
+  background:
+    #ffffff;
+
+  color:
+    var(--text);
+
+  font-size:
+    14px;
+
+  line-height:
+    1.55;
+
+  resize:
+    vertical;
+
+  outline:
+    none;
+
 }
+
 
 .memo-input::placeholder{
-  color:#93a8b7;
+
+  color:
+    #93a8b7;
+
 }
+
 
 .send-btn{
-  width:100%;
-  min-height:54px;
-  margin-top:9px;
-  border:0;
-  border-radius:17px;
-  background:linear-gradient(#56baf0,#2d88d8);
-  color:#fff;
-  font-size:18px;
-  font-weight:900;
+
+  width:
+    100%;
+
+  min-height:
+    54px;
+
+  margin-top:
+    9px;
+
+  border:
+    0;
+
+  border-radius:
+    17px;
+
+  background:
+    linear-gradient(
+      #56baf0,
+      #2d88d8
+    );
+
+  color:
+    #ffffff;
+
+  font-size:
+    18px;
+
+  font-weight:
+    900;
+
 }
+
 
 .send-btn:disabled{
-  opacity:.45;
-  cursor:not-allowed;
+
+  opacity:
+    .45;
+
+  cursor:
+    not-allowed;
+
 }
 
-/* =========================
+
+/* ============================================================
    履歴
-========================= */
+============================================================ */
 
 .history{
-  margin-top:16px;
-  padding-top:13px;
-  border-top:1px solid #e2eef6;
+
+  margin-top:
+    16px;
+
+  padding-top:
+    13px;
+
+  border-top:
+    1px solid
+    #e2eef6;
+
 }
+
 
 .history-title{
-  margin:0 0 8px;
-  color:var(--blue);
-  font-size:20px;
-  font-weight:900;
-  text-align:center;
+
+  margin:
+    0 0 8px;
+
+  color:
+    var(--blue);
+
+  font-size:
+    20px;
+
+  font-weight:
+    900;
+
+  text-align:
+    center;
+
 }
+
 
 .history-list{
-  list-style:none;
-  padding:0;
-  margin:0;
+
+  list-style:
+    none;
+
+  padding:
+    0;
+
+  margin:
+    0;
+
 }
+
 
 .history-list li{
+
   display:grid;
-  grid-template-columns:84px 42px minmax(78px,1fr) 26px;
-  gap:4px;
-  align-items:center;
-  padding:9px 1px;
-  border-bottom:1px solid #edf4fa;
-  color:#496173;
-  font-size:12px;
-  white-space:nowrap;
+
+  grid-template-columns:
+    84px
+    42px
+    minmax(78px,1fr)
+    26px;
+
+  gap:
+    4px;
+
+  align-items:
+    center;
+
+  padding:
+    9px 1px;
+
+  border-bottom:
+    1px solid
+    #edf4fa;
+
+  color:
+    #496173;
+
+  font-size:
+    12px;
+
+  white-space:
+    nowrap;
+
 }
+
 
 .history-date{
-  font-weight:800;
+
+  font-weight:
+    800;
+
 }
+
 
 .history-type{
-  color:var(--blue);
-  font-weight:900;
+
+  color:
+    var(--blue);
+
+  font-weight:
+    900;
+
 }
+
 
 .history-time{
-  color:var(--text);
-  font-weight:900;
-  overflow:hidden;
-  text-overflow:ellipsis;
+
+  color:
+    var(--text);
+
+  font-weight:
+    900;
+
+  overflow:
+    hidden;
+
+  text-overflow:
+    ellipsis;
+
 }
+
 
 .history-ok{
-  color:var(--green);
-  font-size:16px;
-  font-weight:900;
-  text-align:right;
+
+  color:
+    var(--green);
+
+  font-size:
+    16px;
+
+  font-weight:
+    900;
+
+  text-align:
+    right;
+
 }
+
 
 .empty{
-  display:block!important;
-  text-align:center;
-  color:#7a90a3;
+
+  display:block !important;
+
+  text-align:
+    center;
+
+  color:
+    #7a90a3;
+
 }
 
-/* =========================
+
+/* ============================================================
    管理画面
-========================= */
+============================================================ */
 
 .management-panel{
-  margin-top:8px;
-  padding:6px;
-  border:1px solid var(--line);
-  border-radius:16px;
-  background:#fff;
+
+  margin-top:
+    8px;
+
+  padding:
+    6px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    16px;
+
+  background:
+    #ffffff;
+
 }
+
 
 .management-header{
+
   display:flex;
+
   align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  margin-bottom:7px;
+
+  justify-content:
+    space-between;
+
+  gap:
+    8px;
+
+  margin-bottom:
+    7px;
+
 }
+
 
 .management-title{
-  color:var(--blue);
-  font-size:18px;
-  font-weight:900;
+
+  color:
+    var(--blue);
+
+  font-size:
+    18px;
+
+  font-weight:
+    900;
+
 }
+
 
 .management-close{
-  border:0;
-  border-radius:10px;
-  padding:7px 11px;
-  background:#edf4f8;
-  color:#526a7d;
-  font-size:12px;
-  font-weight:900;
+
+  border:
+    0;
+
+  border-radius:
+    10px;
+
+  padding:
+    7px 11px;
+
+  background:
+    #edf4f8;
+
+  color:
+    #526a7d;
+
+  font-size:
+    12px;
+
+  font-weight:
+    900;
+
 }
+
 
 .management-loading{
-  padding:10px;
-  color:#688094;
-  text-align:center;
-  font-size:13px;
-  font-weight:800;
+
+  padding:
+    12px;
+
+  color:
+    #688094;
+
+  text-align:
+    center;
+
+  font-size:
+    13px;
+
+  font-weight:
+    800;
+
 }
+
 
 .management-table-wrap{
-  overflow-x:hidden;
-  max-width:100%;
+
+  overflow-x:
+    hidden;
+
+  max-width:
+    100%;
+
 }
 
+
 .management-table{
-  width:100%;
-  min-width:0;
-  table-layout:fixed;
-  border-collapse:collapse;
-  font-size:11px;
+
+  width:
+    100%;
+
+  min-width:
+    0;
+
+  table-layout:
+    fixed;
+
+  border-collapse:
+    collapse;
+
+  font-size:
+    11px;
+
 }
+
 
 .management-table th,
 .management-table td{
-  padding:1px 2px;
-  border:1px solid #dbeaf3;
-  vertical-align:middle;
-  overflow:hidden;
+
+  padding:
+    1px 2px;
+
+  border:
+    1px solid
+    #dbeaf3;
+
+  vertical-align:
+    middle;
+
+  overflow:
+    hidden;
+
 }
+
 
 .management-table th{
-  background:#eef8ff;
-  color:#42647b;
-  font-weight:900;
-  white-space:normal;
-  word-break:break-all;
-  line-height:1.15;
+
+  background:
+    #eef8ff;
+
+  color:
+    #42647b;
+
+  font-weight:
+    900;
+
+  white-space:
+    normal;
+
+  word-break:
+    break-all;
+
+  line-height:
+    1.15;
+
 }
 
+
 .management-table td{
-  background:#fff;
+
+  background:
+    #ffffff;
+
 }
+
 
 .management-table input,
 .management-table select{
-  width:100%;
-  min-width:0;
-  height:31px;
-  padding:2px 3px;
-  border:1px solid #d4e5ef;
-  border-radius:7px;
-  background:#fff;
-  color:var(--text);
-  font-size:11px;
-  font-weight:700;
+
+  width:
+    100%;
+
+  min-width:
+    0;
+
+  height:
+    31px;
+
+  padding:
+    2px 3px;
+
+  border:
+    1px solid
+    #d4e5ef;
+
+  border-radius:
+    7px;
+
+  background:
+    #ffffff;
+
+  color:
+    var(--text);
+
+  font-size:
+    11px;
+
+  font-weight:
+    700;
+
+  outline:
+    none;
+
 }
 
-.assignment-panel .management-table th,
-.assignment-panel .management-table td{
-  width:20%;
+
+.assignment-panel
+.management-table
+th,
+.assignment-panel
+.management-table
+td{
+
+  width:
+    20%;
+
 }
 
-.comp-panel .management-table th:nth-child(1),
-.comp-panel .management-table td:nth-child(1){
-  width:19%;
+
+.comp-panel
+.management-table
+th:nth-child(1),
+.comp-panel
+.management-table
+td:nth-child(1){
+
+  width:
+    19%;
+
 }
 
-.comp-panel .management-table th:nth-child(2),
-.comp-panel .management-table td:nth-child(2){
-  width:19%;
+
+.comp-panel
+.management-table
+th:nth-child(2),
+.comp-panel
+.management-table
+td:nth-child(2){
+
+  width:
+    19%;
+
 }
 
-.comp-panel .management-table th:nth-child(3),
-.comp-panel .management-table td:nth-child(3){
-  width:24%;
+
+.comp-panel
+.management-table
+th:nth-child(3),
+.comp-panel
+.management-table
+td:nth-child(3){
+
+  width:
+    24%;
+
 }
 
-.comp-panel .management-table th:nth-child(4),
-.comp-panel .management-table td:nth-child(4){
-  width:38%;
+
+.comp-panel
+.management-table
+th:nth-child(4),
+.comp-panel
+.management-table
+td:nth-child(4){
+
+  width:
+    38%;
+
 }
+
 
 .management-section-title{
-  margin:7px 0 5px;
-  color:var(--blue);
-  font-size:15px;
-  font-weight:900;
+
+  margin:
+    7px 0 5px;
+
+  color:
+    var(--blue);
+
+  font-size:
+    15px;
+
+  font-weight:
+    900;
+
 }
+
 
 .comp-panel{
+
   display:grid;
-  gap:8px;
+
+  gap:
+    7px;
+
 }
+
 
 .management-add{
-  width:100%;
-  min-height:42px;
-  margin:3px 0;
-  border:1px dashed #8fc9ea;
-  border-radius:12px;
-  background:#f7fcff;
-  color:var(--blue);
-  font-size:14px;
-  font-weight:900;
+
+  width:
+    100%;
+
+  min-height:
+    42px;
+
+  margin:
+    2px 0;
+
+  border:
+    1px dashed
+    #8fc9ea;
+
+  border-radius:
+    12px;
+
+  background:
+    #f7fcff;
+
+  color:
+    var(--blue);
+
+  font-size:
+    14px;
+
+  font-weight:
+    900;
+
 }
+
 
 .management-save{
-  width:100%;
-  min-height:46px;
-  margin-top:8px;
-  border:0;
-  border-radius:14px;
-  background:linear-gradient(#56baf0,#2d88d8);
-  color:#fff;
-  font-size:16px;
-  font-weight:900;
+
+  width:
+    100%;
+
+  min-height:
+    46px;
+
+  margin-top:
+    8px;
+
+  border:
+    0;
+
+  border-radius:
+    14px;
+
+  background:
+    linear-gradient(
+      #56baf0,
+      #2d88d8
+    );
+
+  color:
+    #ffffff;
+
+  font-size:
+    16px;
+
+  font-weight:
+    900;
+
 }
+
 
 .management-save:disabled{
-  opacity:.45;
-  cursor:not-allowed;
+
+  opacity:
+    .45;
+
 }
 
-.management-panel.hidden,
-.comp-panel.hidden,
-.management-table-wrap.hidden,
-.management-save.hidden{
-  display:none!important;
-}
 
 .footer{
-  padding:14px 10px 4px;
-  color:#8aa0b2;
-  font-size:13px;
-  text-align:center;
+
+  padding:
+    14px 10px 4px;
+
+  color:
+    #8aa0b2;
+
+  font-size:
+    13px;
+
+  text-align:
+    center;
+
 }
+
+
+/* ============================================================
+   スマホ
+============================================================ */
 
 @media(max-width:480px){
 
   .page{
-    padding:10px 9px 20px;
+
+    padding:
+      10px 9px 20px;
+
   }
+
 
   .hero{
-    padding:20px 10px 21px;
+
+    padding:
+      20px 10px 21px;
+
   }
+
 
   .hero h1{
-    font-size:30px;
+
+    font-size:
+      30px;
+
   }
+
 
   .card{
-    padding:11px;
+
+    padding:
+      11px;
+
   }
+
 
   .top-row{
-    grid-template-columns:145px minmax(0,1fr);
+
+    grid-template-columns:
+      145px
+      minmax(0,1fr);
+
   }
+
 
   .status{
-    min-height:76px;
-    font-size:17px;
+
+    min-height:
+      76px;
+
+    font-size:
+      17px;
+
   }
+
 
   .mode-btn{
-    min-height:82px;
-    font-size:25px;
+
+    min-height:
+      82px;
+
+    font-size:
+      25px;
+
   }
 
-  .history-list li{
-    grid-template-columns:auto auto minmax(70px,1fr) 24px;
-  }
 
   .management-table{
-    min-width:0;
-    font-size:10px;
+
+    font-size:
+      10px;
+
   }
+
+
+  .management-table th,
+  .management-table td{
+
+    padding:
+      1px;
+
+  }
+
 
   .management-table input,
   .management-table select{
-    font-size:10px;
-    height:30px;
-    padding:2px;
+
+    height:
+      30px;
+
+    padding:
+      1px 2px;
+
+    font-size:
+      10px;
+
   }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="page">
 
+
 <header class="hero">
-  <h1>🚙 運転手MENU</h1>
+
+<h1>
+🚙 運転手MENU
+</h1>
+
 </header>
+
 
 <main class="card">
 
+
+<!-- ============================================================
+     管理ボタン
+============================================================ -->
+
 <div class="management-menu">
 
-  <button
-    id="assignmentBtn"
-    class="management-btn assignment-btn"
-    type="button"
-  >
-    📋 担当表
-  </button>
+<button
+id="assignmentBtn"
+class="management-btn assignment-btn"
+type="button"
+>
+📋 担当表
+</button>
 
-  <button
-    id="compBtn"
-    class="management-btn comp-btn"
-    type="button"
-  >
-    🗓️ 代休取得
-  </button>
+
+<button
+id="compBtn"
+class="management-btn comp-btn"
+type="button"
+>
+🗓️ 代休取得
+</button>
 
 </div>
+
+
+<!-- ============================================================
+     人物選択
+============================================================ -->
 
 <div class="top-row">
 
-  <div
-    id="status"
-    class="status"
-  >
-    <span id="statusIcon">⏰</span>
-    <span id="statusText">⏳判別中⏳</span>
-  </div>
 
-  <div class="select-box">
+<div
+id="status"
+class="status"
+>
 
-    <label for="driverSelect">
-      選択
-    </label>
+<span id="statusIcon">
+⏰
+</span>
 
-    <select id="driverSelect">
-      <option value="">
-        選択して下さい
-      </option>
-    </select>
-
-  </div>
+<span id="statusText">
+⏳判別中⏳
+</span>
 
 </div>
+
+
+<div class="select-box">
+
+<label for="driverSelect">
+選択
+</label>
+
+<select id="driverSelect">
+
+<option value="">
+選択して下さい
+</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+
+<!-- ============================================================
+     出勤・退勤
+============================================================ -->
 
 <div class="mode-box">
 
-  <button
-    id="inMode"
-    class="mode-btn in"
-    type="button"
-    disabled
-  >
-    ☀️出勤☀️
-  </button>
-
-  <button
-    id="outMode"
-    class="mode-btn out off"
-    type="button"
-    disabled
-  >
-    🌙退勤🌙
-  </button>
-
-</div>
-
-<div class="guide">
-  必要な場合は修正お願いします。
-</div>
-
-<input
-  id="photoInput"
-  type="file"
-  accept="image/*"
-  class="hidden"
->
 
 <button
-  id="uploadBtn"
-  class="upload-btn"
-  type="button"
-  disabled
+id="inMode"
+class="mode-btn in"
+type="button"
+disabled
 >
-  📷 写真を撮影・選択して読み取る
+☀️出勤☀️
 </button>
 
+
+<button
+id="outMode"
+class="mode-btn out off"
+type="button"
+disabled
+>
+🌙退勤🌙
+</button>
+
+
+</div>
+
+
+<div class="guide">
+
+必要な場合は修正お願いします。
+
+</div>
+
+
+<input
+id="photoInput"
+type="file"
+accept="image/*"
+class="hidden"
+>
+
+
+<button
+id="uploadBtn"
+class="upload-btn"
+type="button"
+disabled
+>
+📷 写真を撮影・選択して読み取る
+</button>
+
+
 <div
-  id="notice"
-  class="notice"
+id="notice"
+class="notice"
 ></div>
 
+
+<!-- ============================================================
+     プレビュー
+============================================================ -->
+
 <section
-  id="preview"
-  class="preview"
+id="preview"
+class="preview"
 >
+
 
 <div class="preview-box">
 
+
 <img
-  id="photoPreview"
-  class="photo-preview"
-  alt="勤怠写真"
+id="photoPreview"
+class="photo-preview"
+alt="勤怠写真"
 >
+
 
 <div class="fields">
 
-<div class="field">
-
-  <label
-    class="field-title"
-    for="reportDate"
-  >
-    日付
-  </label>
-
-  <input
-    id="reportDate"
-    type="date"
-  >
-
-</div>
 
 <div class="field">
 
-  <label
-    class="field-title"
-    for="startTime"
-  >
-    出勤時間
-  </label>
+<label
+class="field-title"
+for="reportDate"
+>
+日付
+</label>
 
-  <input
-    id="startTime"
-    type="time"
-  >
-
-</div>
-
-<div
-  id="endField"
-  class="field hidden"
+<input
+id="reportDate"
+type="date"
 >
 
-  <label
-    class="field-title"
-    for="endTime"
-  >
-    退勤時間
-  </label>
-
-  <input
-    id="endTime"
-    type="time"
-  >
-
 </div>
 
-<div
-  id="nextDateField"
-  class="field hidden"
+
+<div class="field">
+
+<label
+class="field-title"
+for="startTime"
+>
+出勤時間
+</label>
+
+<input
+id="startTime"
+type="time"
 >
 
-  <label
-    class="field-title"
-    for="nextDate"
-  >
-    次回出勤日
-  </label>
-
-  <input
-    id="nextDate"
-    type="date"
-  >
-
 </div>
+
 
 <div
-  id="nextTimeField"
-  class="field hidden"
+id="endField"
+class="field hidden"
 >
 
-  <label
-    class="field-title"
-    for="nextTime"
-  >
-    次回出勤時間
-  </label>
+<label
+class="field-title"
+for="endTime"
+>
+退勤時間
+</label>
 
-  <select id="nextTime"></select>
+<input
+id="endTime"
+type="time"
+>
 
 </div>
+
 
 <div
-  id="summary"
-  class="summary"
+id="nextDateField"
+class="field hidden"
 >
-  前回残業
-  <strong>0:00</strong>
-  　
-  月間合計
-  <strong>0:00</strong>
-</div>
+
+<label
+class="field-title"
+for="nextDate"
+>
+次回出勤日
+</label>
+
+<input
+id="nextDate"
+type="date"
+>
 
 </div>
+
+
+<div
+id="nextTimeField"
+class="field hidden"
+>
+
+<label
+class="field-title"
+for="nextTime"
+>
+次回出勤時間
+</label>
+
+<select id="nextTime"></select>
+
+</div>
+
+
+<div
+id="summary"
+class="summary"
+>
+
+前回残業
+<strong>0:00</strong>
+
+　
+
+月間合計
+<strong>0:00</strong>
+
+</div>
+
+
+</div>
+
 
 <div class="message-section">
 
+
 <div class="message-title">
-  報告文章
+
+報告文章
+
 </div>
+
 
 <div class="message-box">
 
+
 <div
-  id="messagePreview"
-  class="message-preview"
+id="messagePreview"
+class="message-preview"
 ></div>
 
+
 <textarea
-  id="memo"
-  class="memo-input"
-  placeholder="文章を入力できます"
+id="memo"
+class="memo-input"
+placeholder="文章を入力できます"
 ></textarea>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 <button
-  id="sendBtn"
-  class="send-btn"
-  type="button"
-  disabled
+id="sendBtn"
+class="send-btn"
+type="button"
+disabled
 >
-  写真＋報告文章を送信
+
+写真＋報告文章を送信
+
 </button>
+
 
 </div>
 
+
 </section>
+
+
+<!-- ============================================================
+     履歴
+============================================================ -->
 
 <section class="history">
 
+
 <h2 class="history-title">
-  ＜履歴＞
+
+＜履歴＞
+
 </h2>
 
+
 <ul
-  id="historyList"
-  class="history-list"
+id="historyList"
+class="history-list"
 >
-  <li class="empty"></li>
+
+<li class="empty"></li>
+
 </ul>
+
 
 </section>
 
-<!--
-  担当表・代休取得は
-  ＜履歴＞の下に表示
--->
+
+<!-- ============================================================
+     管理画面
+============================================================ -->
 
 <section
-  id="managementPanel"
-  class="management-panel hidden"
+id="managementPanel"
+class="management-panel hidden"
 >
+
 
 <div class="management-header">
 
+
 <div
-  id="managementTitle"
-  class="management-title"
+id="managementTitle"
+class="management-title"
 >
-  📋 担当表
+
+📋 担当表
+
 </div>
+
 
 <button
-  id="managementClose"
-  class="management-close"
-  type="button"
+id="managementClose"
+class="management-close"
+type="button"
 >
-  閉じる
+
+閉じる
+
 </button>
 
+
 </div>
 
+
 <div
-  id="managementLoading"
-  class="management-loading"
+id="managementLoading"
+class="management-loading"
 >
-  読み込み中...
+
+読み込み中...
+
 </div>
 
-<div
-  id="assignmentPanel"
-  class="management-table-wrap assignment-panel hidden"
-></div>
 
 <div
-  id="compPanel"
-  class="comp-panel hidden"
+id="assignmentPanel"
+class="management-table-wrap assignment-panel hidden"
 ></div>
+
+
+<div
+id="compPanel"
+class="comp-panel hidden"
+></div>
+
 
 <button
-  id="managementSave"
-  class="management-save hidden"
-  type="button"
+id="managementSave"
+class="management-save hidden"
+type="button"
 >
-  保存する
+
+保存する
+
 </button>
+
 
 </section>
 
+
 </main>
 
+
 <footer class="footer">
-  勤怠管理Bot
+
+勤怠管理Bot
+
 </footer>
+
 
 </div>
 
+
 <script>
 
-/* =========================================================
+/* ============================================================
    設定
-========================================================= */
+============================================================ */
 
 const API_URL =
-  'https://script.google.com/macros/s/AKfycbySmhEE3JyfWGxEylyWscOtqL3FTIH9Ww6nybcAGb0f_kw2QXVP-LaoVtT1eFRtv-4Lyw/exec';
+'https://script.google.com/macros/s/AKfycbySmhEE3JyfWGxEylyWscOtqL3FTIH9Ww6nybcAGb0f_kw2QXVP-LaoVtT1eFRtv-4Lyw/exec';
+
 
 const LIFF_ID =
-  '2011011273-HIdBF1sM';
+'2011011273-HIdBF1sM';
+
+
+const API_TIMEOUT =
+15000;
+
 
 const AUTO_DETECT_TIMEOUT =
-  5000;
+10000;
 
 
-/* =========================================================
+/* ============================================================
    DOM
-========================================================= */
+============================================================ */
 
 const el = {
 
-  status:
-    document.getElementById('status'),
+status:
+document.getElementById(
+'status'
+),
 
-  statusIcon:
-    document.getElementById('statusIcon'),
+statusIcon:
+document.getElementById(
+'statusIcon'
+),
 
-  statusText:
-    document.getElementById('statusText'),
+statusText:
+document.getElementById(
+'statusText'
+),
 
-  driverSelect:
-    document.getElementById('driverSelect'),
+driverSelect:
+document.getElementById(
+'driverSelect'
+),
 
-  assignmentBtn:
-    document.getElementById('assignmentBtn'),
+assignmentBtn:
+document.getElementById(
+'assignmentBtn'
+),
 
-  compBtn:
-    document.getElementById('compBtn'),
+compBtn:
+document.getElementById(
+'compBtn'
+),
 
-  managementPanel:
-    document.getElementById('managementPanel'),
+managementPanel:
+document.getElementById(
+'managementPanel'
+),
 
-  managementTitle:
-    document.getElementById('managementTitle'),
+managementTitle:
+document.getElementById(
+'managementTitle'
+),
 
-  managementLoading:
-    document.getElementById('managementLoading'),
+managementLoading:
+document.getElementById(
+'managementLoading'
+),
 
-  assignmentPanel:
-    document.getElementById('assignmentPanel'),
+assignmentPanel:
+document.getElementById(
+'assignmentPanel'
+),
 
-  compPanel:
-    document.getElementById('compPanel'),
+compPanel:
+document.getElementById(
+'compPanel'
+),
 
-  managementSave:
-    document.getElementById('managementSave'),
+managementSave:
+document.getElementById(
+'managementSave'
+),
 
-  managementClose:
-    document.getElementById('managementClose'),
+managementClose:
+document.getElementById(
+'managementClose'
+),
 
-  inMode:
-    document.getElementById('inMode'),
+inMode:
+document.getElementById(
+'inMode'
+),
 
-  outMode:
-    document.getElementById('outMode'),
+outMode:
+document.getElementById(
+'outMode'
+),
 
-  uploadBtn:
-    document.getElementById('uploadBtn'),
+uploadBtn:
+document.getElementById(
+'uploadBtn'
+),
 
-  photoInput:
-    document.getElementById('photoInput'),
+photoInput:
+document.getElementById(
+'photoInput'
+),
 
-  notice:
-    document.getElementById('notice'),
+notice:
+document.getElementById(
+'notice'
+),
 
-  preview:
-    document.getElementById('preview'),
+preview:
+document.getElementById(
+'preview'
+),
 
-  photoPreview:
-    document.getElementById('photoPreview'),
+photoPreview:
+document.getElementById(
+'photoPreview'
+),
 
-  reportDate:
-    document.getElementById('reportDate'),
+reportDate:
+document.getElementById(
+'reportDate'
+),
 
-  startTime:
-    document.getElementById('startTime'),
+startTime:
+document.getElementById(
+'startTime'
+),
 
-  endField:
-    document.getElementById('endField'),
+endField:
+document.getElementById(
+'endField'
+),
 
-  endTime:
-    document.getElementById('endTime'),
+endTime:
+document.getElementById(
+'endTime'
+),
 
-  nextDateField:
-    document.getElementById('nextDateField'),
+nextDateField:
+document.getElementById(
+'nextDateField'
+),
 
-  nextDate:
-    document.getElementById('nextDate'),
+nextDate:
+document.getElementById(
+'nextDate'
+),
 
-  nextTimeField:
-    document.getElementById('nextTimeField'),
+nextTimeField:
+document.getElementById(
+'nextTimeField'
+),
 
-  nextTime:
-    document.getElementById('nextTime'),
+nextTime:
+document.getElementById(
+'nextTime'
+),
 
-  summary:
-    document.getElementById('summary'),
+summary:
+document.getElementById(
+'summary'
+),
 
-  messagePreview:
-    document.getElementById('messagePreview'),
+messagePreview:
+document.getElementById(
+'messagePreview'
+),
 
-  memo:
-    document.getElementById('memo'),
+memo:
+document.getElementById(
+'memo'
+),
 
-  sendBtn:
-    document.getElementById('sendBtn'),
+sendBtn:
+document.getElementById(
+'sendBtn'
+),
 
-  historyList:
-    document.getElementById('historyList')
+historyList:
+document.getElementById(
+'historyList'
+)
 
 };
 
 
-/* =========================================================
+/* ============================================================
    STATE
-========================================================= */
+============================================================ */
 
 const state = {
 
-  idToken:'',
+idToken:'',
 
-  drivers:[],
+drivers:[],
 
-  driver:null,
+driver:null,
 
-  mode:'in',
+mode:'in',
 
-  draft:null,
+draft:null,
 
-  userSelectedManually:false,
+userSelectedManually:false,
 
-  workState:{
-    hasWork:false,
-    startTime:''
-  },
+workState:{
 
-  summary:{
-    previousOvertime:'0:00',
-    monthlyOvertime:'0:00'
-  },
+hasWork:false,
 
-  history:[]
+startTime:''
+
+},
+
+summary:{
+
+previousOvertime:'0:00',
+
+monthlyOvertime:'0:00'
+
+},
+
+history:[]
 
 };
 
 
-/* =========================================================
+/* ============================================================
+   GET + JSONP API
+============================================================ */
+
+function callServer(
+operation,
+data={}
+){
+
+return new Promise(
+(
+resolve,
+reject
+)=>{
+
+
+const callback =
+
+'gasJsonp_' +
+
+Date.now() +
+
+'_' +
+
+Math.random()
+.toString(36)
+.slice(2);
+
+
+const script =
+
+document.createElement(
+'script'
+);
+
+
+let finished =
+false;
+
+
+const timer =
+
+setTimeout(
+()=>{
+
+if(finished){
+return;
+}
+
+finished=true;
+
+cleanup();
+
+reject(
+new Error(
+'サーバー応答がタイムアウトしました'
+)
+);
+
+},
+API_TIMEOUT
+);
+
+
+function cleanup(){
+
+clearTimeout(
+timer
+);
+
+if(
+script.parentNode
+){
+
+script.parentNode
+.removeChild(
+script
+);
+
+}
+
+try{
+
+delete window[
+callback
+];
+
+}catch(_){
+
+window[
+callback
+]=undefined;
+
+}
+
+}
+
+
+window[
+callback
+]=
+function(response){
+
+if(finished){
+return;
+}
+
+finished=true;
+
+cleanup();
+
+
+if(
+!response ||
+response.ok !== true
+){
+
+reject(
+new Error(
+
+response &&
+response.error
+
+? response.error
+
+: 'Apps Script APIエラー'
+
+)
+);
+
+return;
+
+}
+
+
+resolve(
+response.data
+);
+
+};
+
+
+script.onerror =
+function(){
+
+if(finished){
+return;
+}
+
+finished=true;
+
+cleanup();
+
+reject(
+new Error(
+'Apps Script APIに接続できませんでした'
+)
+);
+
+};
+
+
+const params =
+
+new URLSearchParams();
+
+
+params.set(
+'action',
+'api'
+);
+
+
+params.set(
+'operation',
+operation
+);
+
+
+params.set(
+'callback',
+callback
+);
+
+
+params.set(
+'_',
+String(
+Date.now()
+)
+);
+
+
+params.set(
+'idToken',
+state.idToken ||
+''
+);
+
+
+Object.keys(
+data
+)
+.forEach(
+key=>{
+
+let value =
+data[key];
+
+if(
+value === undefined ||
+value === null
+){
+
+value='';
+
+}
+
+params.set(
+key,
+String(value)
+);
+
+}
+);
+
+
+script.src =
+
+API_URL +
+
+'?' +
+
+params.toString();
+
+
+document.body.appendChild(
+script
+);
+
+
+}
+);
+
+}
+
+
+/* ============================================================
    時刻
-========================================================= */
+============================================================ */
 
 function buildNextTimeOptions(){
 
-  el.nextTime.innerHTML='';
+el.nextTime.innerHTML='';
 
-  for(
-    let hour=0;
-    hour<24;
-    hour++
-  ){
 
-    for(
-      let minute=0;
-      minute<60;
-      minute++
-    ){
+for(
+let hour=0;
+hour<24;
+hour++
+){
 
-      const value =
-        String(hour).padStart(2,'0') +
-        ':' +
-        String(minute).padStart(2,'0');
+for(
+let minute=0;
+minute<60;
+minute++
+){
 
-      const option =
-        document.createElement('option');
+const value =
 
-      option.value=value;
-      option.textContent=value;
+String(hour)
+.padStart(
+2,
+'0'
+)
 
-      el.nextTime.appendChild(option);
++
 
-    }
+':'
 
-  }
++
 
-  const unknown =
-    document.createElement('option');
+String(minute)
+.padStart(
+2,
+'0'
+);
 
-  unknown.value='??:??';
-  unknown.textContent='??:??';
 
-  el.nextTime.appendChild(unknown);
+const option =
 
-  el.nextTime.value='08:00';
+document.createElement(
+'option'
+);
+
+
+option.value =
+value;
+
+
+option.textContent =
+value;
+
+
+el.nextTime.appendChild(
+option
+);
+
+}
+
+}
+
+
+const unknown =
+
+document.createElement(
+'option'
+);
+
+
+unknown.value =
+'??:??';
+
+
+unknown.textContent =
+'??:??';
+
+
+el.nextTime.appendChild(
+unknown
+);
+
+
+el.nextTime.value =
+'08:00';
 
 }
 
 
 function pad2(value){
 
-  return String(value)
-    .padStart(2,'0');
+return String(
+value
+)
+.padStart(
+2,
+'0'
+);
 
 }
 
 
 function today(){
 
-  const d =
-    new Date();
+const d =
+new Date();
 
-  return (
-    d.getFullYear() +
-    '-' +
-    pad2(d.getMonth()+1) +
-    '-' +
-    pad2(d.getDate())
-  );
+
+return(
+
+d.getFullYear()
+
++
+
+'-'
+
++
+
+pad2(
+d.getMonth()+1
+)
+
++
+
+'-'
+
++
+
+pad2(
+d.getDate()
+)
+
+);
 
 }
 
 
 function nowTime(){
 
-  const d =
-    new Date();
+const d =
+new Date();
 
-  return (
-    pad2(d.getHours()) +
-    ':' +
-    pad2(d.getMinutes())
-  );
+
+return(
+
+pad2(
+d.getHours()
+)
+
++
+
+':'
+
++
+
+pad2(
+d.getMinutes()
+)
+
+);
 
 }
 
 
 function tomorrow(){
 
-  const d =
-    new Date();
+const d =
+new Date();
 
-  d.setDate(
-    d.getDate()+1
-  );
 
-  return (
-    d.getFullYear() +
-    '-' +
-    pad2(d.getMonth()+1) +
-    '-' +
-    pad2(d.getDate())
-  );
+d.setDate(
+d.getDate()+1
+);
+
+
+return(
+
+d.getFullYear()
+
++
+
+'-'
+
++
+
+pad2(
+d.getMonth()+1
+)
+
++
+
+'-'
+
++
+
+pad2(
+d.getDate()
+)
+
+);
 
 }
 
 
 function dateText(value){
 
-  if(!value){
-    return '';
-  }
+if(!value){
+return '';
+}
 
-  const d =
-    new Date(
-      value+'T00:00:00'
-    );
 
-  if(
-    Number.isNaN(
-      d.getTime()
-    )
-  ){
-    return value;
-  }
+const d =
 
-  const week=[
-    '日',
-    '月',
-    '火',
-    '水',
-    '木',
-    '金',
-    '土'
-  ];
+new Date(
+value+
+'T00:00:00'
+);
 
-  return (
-    d.getFullYear() +
-    '/' +
-    (d.getMonth()+1) +
-    '/' +
-    d.getDate() +
-    '(' +
-    week[d.getDay()] +
-    ')'
-  );
+
+if(
+Number.isNaN(
+d.getTime()
+)
+){
+
+return value;
+
+}
+
+
+const week=[
+
+'日',
+'月',
+'火',
+'水',
+'木',
+'金',
+'土'
+
+];
+
+
+return(
+
+d.getFullYear()
+
++
+
+'/'
+
++
+
+(d.getMonth()+1)
+
++
+
+'/'
+
++
+
+d.getDate()
+
++
+
+'('
+
++
+
+week[
+d.getDay()
+]
+
++
+
+')'
+
+);
 
 }
 
 
 function shortDate(value){
 
-  if(!value){
-    return '';
-  }
+if(!value){
+return '';
+}
 
-  const d =
-    new Date(
-      value+'T00:00:00'
-    );
 
-  if(
-    Number.isNaN(
-      d.getTime()
-    )
-  ){
-    return value;
-  }
+const d =
 
-  const week=[
-    '日',
-    '月',
-    '火',
-    '水',
-    '木',
-    '金',
-    '土'
-  ];
+new Date(
+value+
+'T00:00:00'
+);
 
-  return (
-    (d.getMonth()+1) +
-    '/' +
-    d.getDate() +
-    '(' +
-    week[d.getDay()] +
-    ')'
-  );
+
+if(
+Number.isNaN(
+d.getTime()
+)
+){
+
+return value;
+
+}
+
+
+const week=[
+
+'日',
+'月',
+'火',
+'水',
+'木',
+'金',
+'土'
+
+];
+
+
+return(
+
+(d.getMonth()+1)
+
++
+
+'/'
+
++
+
+d.getDate()
+
++
+
+'('
+
++
+
+week[
+d.getDay()
+]
+
++
+
+')'
+
+);
 
 }
 
 
 function nextAttendancePrefix(value){
 
-  if(!value){
-    return '';
-  }
+if(!value){
+return '';
+}
 
-  const base =
-    new Date(
-      today()+'T00:00:00'
-    );
 
-  const target =
-    new Date(
-      value+'T00:00:00'
-    );
+const base =
 
-  const baseDay =
-    base.getDay()||7;
+new Date(
+today()+
+'T00:00:00'
+);
 
-  const targetDay =
-    target.getDay()||7;
 
-  const monday =
-    new Date(base);
+const target =
 
-  monday.setDate(
-    base.getDate()-
-    baseDay+
-    1
-  );
+new Date(
+value+
+'T00:00:00'
+);
 
-  const nextMonday =
-    new Date(monday);
 
-  nextMonday.setDate(
-    monday.getDate()+7
-  );
+const baseDay =
 
-  const targetMonday =
-    new Date(target);
+base.getDay() ||
+7;
 
-  targetMonday.setDate(
-    target.getDate()-
-    targetDay+
-    1
-  );
 
-  return (
-    nextMonday.getTime() ===
-    targetMonday.getTime()
-  )
-    ? '来週'
-    : '';
+const targetDay =
+
+target.getDay() ||
+7;
+
+
+const monday =
+
+new Date(
+base
+);
+
+
+monday.setDate(
+
+base.getDate()
+
+-
+
+baseDay
+
++
+
+1
+
+);
+
+
+const nextMonday =
+
+new Date(
+monday
+);
+
+
+nextMonday.setDate(
+
+monday.getDate()
+
++
+
+7
+
+);
+
+
+const targetMonday =
+
+new Date(
+target
+);
+
+
+targetMonday.setDate(
+
+target.getDate()
+
+-
+
+targetDay
+
++
+
+1
+
+);
+
+
+return(
+
+nextMonday.getTime() ===
+targetMonday.getTime()
+
+)
+
+? '来週'
+
+: '';
 
 }
 
 
-/* =========================================================
-   HTML escape
-========================================================= */
+/* ============================================================
+   Escape
+============================================================ */
 
 function escapeHtml(value){
 
-  return String(
-    value ?? ''
-  )
+return String(
+value ?? ''
+)
 
-  .replace(
-    /&/g,
-    '&amp;'
-  )
+.replace(
+/&/g,
+'&amp;'
+)
 
-  .replace(
-    /</g,
-    '&lt;'
-  )
+.replace(
+/</g,
+'&lt;'
+)
 
-  .replace(
-    />/g,
-    '&gt;'
-  )
+.replace(
+/>/g,
+'&gt;'
+)
 
-  .replace(
-    /"/g,
-    '&quot;'
-  )
+.replace(
+/"/g,
+'&quot;'
+)
 
-  .replace(
-    /'/g,
-    '&#39;'
-  );
+.replace(
+/'/g,
+'&#39;'
+);
 
 }
 
 
-/* =========================================================
-   状態表示
-========================================================= */
+/* ============================================================
+   表示
+============================================================ */
 
 function setStatus(
-  text,
-  done
+text,
+done
 ){
 
-  el.statusText.textContent =
-    text;
+el.statusText.textContent =
+text;
 
-  el.statusIcon.textContent =
-    done
-      ? '✓'
-      : '⏰';
 
-  el.status.classList.toggle(
-    'done',
-    !!done
-  );
+el.statusIcon.textContent =
+
+done
+
+? '✓'
+
+: '⏰';
+
+
+el.status.classList.toggle(
+'done',
+!!done
+);
 
 }
 
 
 function showNotice(text){
 
-  el.notice.textContent =
-    text||'';
-
-  el.notice.classList.toggle(
-    'show',
-    !!text
-  );
-
-}
+el.notice.textContent =
+text ||
+'';
 
 
-/* =========================================================
-   Timeout
-========================================================= */
-
-function withTimeout(
-  promise,
-  milliseconds
-){
-
-  return Promise.race([
-
-    promise,
-
-    new Promise(
-      (
-        resolve,
-        reject
-      )=>{
-
-        setTimeout(
-          ()=>reject(
-            new Error('timeout')
-          ),
-          milliseconds
-        );
-
-      }
-    )
-
-  ]);
+el.notice.classList.toggle(
+'show',
+!!text
+);
 
 }
 
 
-/* =========================================================
-   Apps Script API
-========================================================= */
-
-async function callServer(
-  operation,
-  data={}
-){
-
-  return new Promise(
-    (
-      resolve,
-      reject
-    )=>{
-
-      const requestId =
-        'req_' +
-        Date.now() +
-        '_' +
-        Math.random()
-          .toString(36)
-          .slice(2);
-
-      const params =
-        new URLSearchParams();
-
-      params.append(
-        'action',
-        'api'
-      );
-
-      params.append(
-        'operation',
-        operation
-      );
-
-      params.append(
-        'requestId',
-        requestId
-      );
-
-      params.append(
-        'idToken',
-        state.idToken||''
-      );
-
-      Object.keys(data)
-        .forEach(
-          key=>{
-
-            params.append(
-              key,
-              data[key]??''
-            );
-
-          }
-        );
-
-      fetch(
-        API_URL,
-        {
-
-          method:'POST',
-
-          headers:{
-            'Content-Type':
-              'application/x-www-form-urlencoded;charset=UTF-8'
-          },
-
-          body:
-            params.toString(),
-
-          mode:'no-cors'
-
-        }
-      )
-      .catch(
-        error=>{
-
-          console.warn(
-            'API POST失敗',
-            error
-          );
-
-        }
-      );
-
-      pollApi(
-        requestId,
-        resolve,
-        reject,
-        0
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   API Poll
-========================================================= */
-
-function pollApi(
-  requestId,
-  resolve,
-  reject,
-  attempt
-){
-
-  if(
-    attempt>=50
-  ){
-
-    reject(
-      new Error(
-        'サーバー応答がタイムアウトしました'
-      )
-    );
-
-    return;
-
-  }
-
-  const callback =
-    'gasCallback_' +
-    Date.now() +
-    '_' +
-    attempt +
-    '_' +
-    Math.random()
-      .toString(36)
-      .slice(2);
-
-  const script =
-    document.createElement(
-      'script'
-    );
-
-  let finished=false;
-
-  function cleanup(){
-
-    if(
-      script.parentNode
-    ){
-
-      script.parentNode
-        .removeChild(
-          script
-        );
-
-    }
-
-    try{
-
-      delete window[
-        callback
-      ];
-
-    }catch(_){
-
-      window[
-        callback
-      ]=undefined;
-
-    }
-
-  }
-
-  window[
-    callback
-  ]=
-    function(response){
-
-      if(finished){
-        return;
-      }
-
-      finished=true;
-
-      cleanup();
-
-      if(
-        response &&
-        (
-          response.status==='pending' ||
-          response.status==='processing'
-        )
-      ){
-
-        setTimeout(
-          ()=>{
-
-            pollApi(
-              requestId,
-              resolve,
-              reject,
-              attempt+1
-            );
-
-          },
-          500
-        );
-
-        return;
-
-      }
-
-      if(
-        !response ||
-        response.ok!==true
-      ){
-
-        reject(
-          new Error(
-            response &&
-            response.error
-              ? response.error
-              : 'Apps Script APIエラー'
-          )
-        );
-
-        return;
-
-      }
-
-      resolve(
-        response.data
-      );
-
-    };
-
-  script.onerror =
-    function(){
-
-      if(finished){
-        return;
-      }
-
-      finished=true;
-
-      cleanup();
-
-      setTimeout(
-        ()=>{
-
-          pollApi(
-            requestId,
-            resolve,
-            reject,
-            attempt+1
-          );
-
-        },
-        500
-      );
-
-    };
-
-  script.src =
-    API_URL +
-    '?action=pollApi' +
-    '&requestId=' +
-    encodeURIComponent(requestId) +
-    '&callback=' +
-    encodeURIComponent(callback) +
-    '&_=' +
-    Date.now();
-
-  document.body.appendChild(
-    script
-  );
-
-}
-
-
-/* =========================================================
-   運転手一覧
-========================================================= */
+/* ============================================================
+   driver_master
+============================================================ */
 
 function findDriver(key){
 
-  return (
-    state.drivers.find(
-      driver=>
-        driver.driverKey===key
-    ) ||
-    null
-  );
+return(
+
+state.drivers.find(
+driver=>
+driver.driverKey ===
+key
+)
+
+||
+
+null
+
+);
 
 }
 
 
 function renderDrivers(){
 
-  /*
-   * ★重要
-   * 一覧を取得しても
-   * 最初の人物を勝手に選択しない。
-   */
+const current =
 
-  const current =
-    state.driver
-      ? state.driver.driverKey
-      : '';
+state.driver
 
-  el.driverSelect.innerHTML =
-    '<option value="">選択して下さい</option>';
+? state.driver.driverKey
 
-  state.drivers.forEach(
-    driver=>{
+: '';
 
-      const option =
-        document.createElement(
-          'option'
-        );
 
-      option.value =
-        driver.driverKey;
+el.driverSelect.innerHTML =
+'';
 
-      option.textContent =
-        driver.displayName;
 
-      el.driverSelect.appendChild(
-        option
-      );
+const first =
 
-    }
-  );
+document.createElement(
+'option'
+);
 
-  if(current){
 
-    el.driverSelect.value =
-      current;
+first.value =
+'';
 
-  }else{
 
-    el.driverSelect.value =
-      '';
+first.textContent =
+'選択して下さい';
 
-  }
+
+el.driverSelect.appendChild(
+first
+);
+
+
+state.drivers.forEach(
+driver=>{
+
+
+const option =
+
+document.createElement(
+'option'
+);
+
+
+option.value =
+driver.driverKey;
+
+
+option.textContent =
+driver.displayName;
+
+
+el.driverSelect.appendChild(
+option
+);
+
+
+}
+);
+
+
+if(current){
+
+el.driverSelect.value =
+current;
+
+}else{
+
+el.driverSelect.value =
+'';
 
 }
 
+}
+
+
+/* ============================================================
+   運転手一覧取得
+============================================================ */
 
 async function loadDrivers(){
 
-  try{
+try{
 
-    const list =
-      await callServer(
-        'getDriverList'
-      );
+const list =
 
-    /*
-     * ★フォールバック人物を作らない
-     * サーバーから来た一覧だけを使用
-     */
-
-    state.drivers =
-      Array.isArray(list)
-        ? list
-        : [];
-
-    renderDrivers();
-
-  }catch(error){
-
-    console.error(
-      '人物一覧取得失敗',
-      error
-    );
-
-    state.drivers=[];
-
-    renderDrivers();
-
-  }
-
-}
+await callServer(
+'getDriverList'
+);
 
 
-/* =========================================================
-   人物選択
-========================================================= */
+state.drivers =
 
-async function selectDriver(
-  driver,
-  manual=false
+Array.isArray(
+list
+)
+
+? list
+
+: [];
+
+
+renderDrivers();
+
+
+if(
+!state.drivers.length
 ){
 
-  if(!driver){
-
-    state.driver=null;
-
-    el.driverSelect.value='';
-
-    el.inMode.disabled=true;
-
-    el.outMode.disabled=true;
-
-    el.uploadBtn.disabled=true;
-
-    el.historyList.innerHTML =
-      '<li class="empty"></li>';
-
-    state.history=[];
-
-    state.workState={
-      hasWork:false,
-      startTime:''
-    };
-
-    state.summary={
-      previousOvertime:'0:00',
-      monthlyOvertime:'0:00'
-    };
-
-    renderSummary();
-
-    setStatus(
-      '右から選択',
-      false
-    );
-
-    return;
-
-  }
-
-  if(manual){
-
-    state.userSelectedManually=true;
-
-  }
-
-  state.driver=driver;
-
-  el.driverSelect.value =
-    driver.driverKey;
-
-  el.inMode.disabled=false;
-
-  el.outMode.disabled=false;
-
-  el.uploadBtn.disabled=false;
-
-  setStatus(
-    '完了',
-    true
-  );
+showNotice(
+'運転手一覧を取得できませんでした。driver_masterを確認してください。'
+);
 
 }
 
 
-/* =========================================================
+}catch(error){
+
+console.error(
+'人物一覧取得失敗',
+error
+);
+
+
+state.drivers=[];
+
+
+renderDrivers();
+
+
+showNotice(
+'人物一覧の取得に失敗しました。'
+);
+
+}
+
+}
+
+
+/* ============================================================
+   人物選択
+============================================================ */
+
+async function selectDriver(
+driver,
+manual=false
+){
+
+if(!driver){
+
+state.driver =
+null;
+
+
+el.driverSelect.value =
+'';
+
+
+el.inMode.disabled =
+true;
+
+
+el.outMode.disabled =
+true;
+
+
+el.uploadBtn.disabled =
+true;
+
+
+setStatus(
+'右から選択',
+false
+);
+
+
+return;
+
+}
+
+
+if(manual){
+
+state.userSelectedManually =
+true;
+
+}
+
+
+state.driver =
+driver;
+
+
+el.driverSelect.value =
+driver.driverKey;
+
+
+el.inMode.disabled =
+false;
+
+
+el.outMode.disabled =
+false;
+
+
+el.uploadBtn.disabled =
+false;
+
+
+setStatus(
+'完了',
+true
+);
+
+}
+
+
+/* ============================================================
    管理画面
-========================================================= */
+============================================================ */
 
-let managementMode='';
+let managementMode =
+'';
 
-let managementState=null;
+
+let managementState =
+null;
 
 
 function setManagementLoading(text){
 
-  el.managementLoading.textContent =
-    text ||
-    '読み込み中...';
+el.managementLoading.textContent =
 
-  el.managementLoading
-    .classList
-    .remove(
-      'hidden'
-    );
+text ||
+'読み込み中...';
+
+
+el.managementLoading.classList.remove(
+'hidden'
+);
 
 }
 
 
 function clearManagementPanels(){
 
-  el.assignmentPanel.innerHTML='';
+el.assignmentPanel.innerHTML =
+'';
 
-  el.compPanel.innerHTML='';
 
-  el.assignmentPanel
-    .classList
-    .add(
-      'hidden'
-    );
+el.compPanel.innerHTML =
+'';
 
-  el.compPanel
-    .classList
-    .add(
-      'hidden'
-    );
 
-  el.managementSave
-    .classList
-    .add(
-      'hidden'
-    );
+el.assignmentPanel.classList.add(
+'hidden'
+);
+
+
+el.compPanel.classList.add(
+'hidden'
+);
+
+
+el.managementSave.classList.add(
+'hidden'
+);
 
 }
 
 
-/* =========================================================
-   管理画面を開く
-========================================================= */
+/* ============================================================
+   管理画面OPEN
+============================================================ */
 
 async function openManagement(mode){
 
-  managementMode=mode;
+managementMode =
+mode;
 
-  managementState=null;
 
-  clearManagementPanels();
+managementState =
+null;
 
-  el.managementPanel
-    .classList
-    .remove(
-      'hidden'
-    );
 
-  el.managementTitle.textContent =
-    mode==='assignment'
-      ? '📋 担当表'
-      : '🗓️ 代休取得';
+clearManagementPanels();
 
-  setManagementLoading(
-    '読み込み中...'
-  );
 
-  setTimeout(
-    ()=>{
+el.managementPanel.classList.remove(
+'hidden'
+);
 
-      el.managementPanel
-        .scrollIntoView({
-          behavior:'smooth',
-          block:'start'
-        });
 
-    },
-    50
-  );
+el.managementTitle.textContent =
 
-  try{
+mode ===
+'assignment'
 
-    /*
-     * 担当表・代休取得は
-     * 本人選択とは無関係に閲覧できる。
-     */
+? '📋 担当表'
 
-    const result =
-      await callServer(
-        'getManagementData',
-        {
+: '🗓️ 代休取得';
 
-          sheetType:
-            mode,
 
-          selectedDriverKey:
-            state.driver
-              ? state.driver.driverKey
-              : ''
+setManagementLoading(
+'読み込み中...'
+);
 
-        }
-      );
 
-    if(
-      !result ||
-      result.ok!==true
-    ){
+setTimeout(
+()=>{
 
-      throw new Error(
-        result &&
-        result.error
-          ? result.error
-          : 'データを取得できませんでした'
-      );
+el.managementPanel.scrollIntoView({
 
-    }
+behavior:
+'smooth',
 
-    managementState=result;
+block:
+'start'
 
-    el.managementLoading
-      .classList
-      .add(
-        'hidden'
-      );
+});
 
-    if(
-      mode==='assignment'
-    ){
+},
+50
+);
 
-      renderAssignmentTable(
-        result
-      );
 
-    }else{
+try{
 
-      renderCompTable(
-        result
-      );
+const result =
 
-    }
+await callServer(
+'getManagementData',
+{
 
-    el.managementSave
-      .classList
-      .remove(
-        'hidden'
-      );
+sheetType:
+mode,
 
-  }catch(error){
+selectedDriverKey:
 
-    console.error(
-      '管理画面取得失敗',
-      error
-    );
+state.driver
 
-    setManagementLoading(
-      error.message ||
-      '読み込みに失敗しました'
-    );
+? state.driver.driverKey
 
-  }
+: ''
+
+}
+);
+
+
+if(
+!result ||
+result.ok !== true
+){
+
+throw new Error(
+'データを取得できませんでした'
+);
 
 }
 
 
-/* =========================================================
+managementState =
+result;
+
+
+el.managementLoading.classList.add(
+'hidden'
+);
+
+
+if(
+mode ===
+'assignment'
+){
+
+renderAssignmentTable(
+result
+);
+
+}else{
+
+renderCompTable(
+result
+);
+
+}
+
+
+el.managementSave.classList.remove(
+'hidden'
+);
+
+
+}catch(error){
+
+console.error(
+'管理画面取得失敗',
+error
+);
+
+
+setManagementLoading(
+
+error.message ||
+
+'読み込みに失敗しました'
+
+);
+
+}
+
+}
+
+
+/* ============================================================
    担当表
-========================================================= */
+============================================================ */
 
 function renderAssignmentTable(data){
 
-  const wrap =
-    el.assignmentPanel;
+const wrap =
+el.assignmentPanel;
 
-  wrap.innerHTML='';
 
-  wrap.classList.remove(
-    'hidden'
-  );
+wrap.innerHTML =
+'';
 
-  const table =
-    document.createElement(
-      'table'
-    );
 
-  table.className =
-    'management-table';
+wrap.classList.remove(
+'hidden'
+);
 
-  const rawOfficers =
-    Array.isArray(
-      data.officers
-    ) &&
-    data.officers.length
 
-      ? data.officers
+const table =
 
-      : [
-          '安田副社長',
-          '伊藤社長',
-          '山下副社長',
-          '西山副社長'
-        ];
+document.createElement(
+'table'
+);
 
-  const officerColumns =
-    rawOfficers.map(
-      name=>({
 
-        key:name,
+table.className =
+'management-table';
 
-        label:
-          name==='伊藤副社長'
-            ? '伊藤社長'
-            : name
 
-      })
-    );
+const rawOfficers =
 
-  const header=[
-    '月',
-    ...officerColumns.map(
-      item=>item.label
-    )
-  ];
+Array.isArray(
+data.officers
+)
 
-  const thead =
-    document.createElement(
-      'thead'
-    );
+&&
 
-  const hrow =
-    document.createElement(
-      'tr'
-    );
+data.officers.length
 
-  header.forEach(
-    text=>{
+? data.officers
 
-      const th =
-        document.createElement(
-          'th'
-        );
+: [
 
-      th.textContent=text;
+'安田副社長',
+'伊藤社長',
+'山下副社長',
+'西山副社長'
 
-      hrow.appendChild(
-        th
-      );
+];
 
-    }
-  );
 
-  thead.appendChild(
-    hrow
-  );
+const officerColumns =
 
-  table.appendChild(
-    thead
-  );
+rawOfficers.map(
+name=>({
 
-  const tbody =
-    document.createElement(
-      'tbody'
-    );
+key:
+name,
 
-  (
-    Array.isArray(data.rows)
-      ? data.rows
-      : []
-  )
-  .forEach(
-    (
-      row,
-      i
-    )=>{
+label:
 
-      const tr =
-        document.createElement(
-          'tr'
-        );
+name ===
+'伊藤副社長'
 
-      const month =
-        document.createElement(
-          'th'
-        );
+? '伊藤社長'
 
-      month.textContent =
-        row.month;
+: name
 
-      tr.appendChild(
-        month
-      );
+})
+);
 
-      officerColumns.forEach(
-        officer=>{
 
-          const td =
-            document.createElement(
-              'td'
-            );
+const header = [
 
-          const input =
-            document.createElement(
-              'input'
-            );
+'月',
 
-          input.type='text';
+...officerColumns.map(
+item=>
+item.label
+)
 
-          input.value =
-            row.assignments &&
-            row.assignments[
-              officer.key
-            ]
-              ? row.assignments[
-                  officer.key
-                ]
-              : '';
+];
 
-          input.addEventListener(
-            'input',
-            ()=>{
 
-              if(
-                !data.rows[i].assignments
-              ){
+const thead =
 
-                data.rows[i].assignments={};
+document.createElement(
+'thead'
+);
 
-              }
 
-              data.rows[i]
-                .assignments[
-                  officer.key
-                ] =
-                  input.value;
+const hrow =
 
-            }
-          );
+document.createElement(
+'tr'
+);
 
-          td.appendChild(
-            input
-          );
 
-          tr.appendChild(
-            td
-          );
+header.forEach(
+text=>{
 
-        }
-      );
 
-      tbody.appendChild(
-        tr
-      );
+const th =
 
-    }
-  );
+document.createElement(
+'th'
+);
 
-  table.appendChild(
-    tbody
-  );
 
-  wrap.appendChild(
-    table
-  );
+th.textContent =
+text;
+
+
+hrow.appendChild(
+th
+);
+
+
+}
+);
+
+
+thead.appendChild(
+hrow
+);
+
+
+table.appendChild(
+thead
+);
+
+
+const tbody =
+
+document.createElement(
+'tbody'
+);
+
+
+(
+Array.isArray(
+data.rows
+)
+
+? data.rows
+
+: []
+)
+
+.forEach(
+(
+row,
+i
+)=>{
+
+
+const tr =
+
+document.createElement(
+'tr'
+);
+
+
+const month =
+
+document.createElement(
+'th'
+);
+
+
+month.textContent =
+row.month;
+
+
+tr.appendChild(
+month
+);
+
+
+officerColumns.forEach(
+officer=>{
+
+
+const td =
+
+document.createElement(
+'td'
+);
+
+
+const input =
+
+document.createElement(
+'input'
+);
+
+
+input.type =
+'text';
+
+
+input.value =
+
+row.assignments &&
+row.assignments[
+officer.key
+]
+
+? row.assignments[
+officer.key
+]
+
+: '';
+
+
+input.addEventListener(
+'input',
+()=>{
+
+
+if(
+!data.rows[
+i
+].assignments
+){
+
+data.rows[
+i
+].assignments =
+{};
 
 }
 
 
-/* =========================================================
+data.rows[
+i
+].assignments[
+officer.key
+] =
+input.value;
+
+
+}
+);
+
+
+td.appendChild(
+input
+);
+
+
+tr.appendChild(
+td
+);
+
+
+}
+);
+
+
+tbody.appendChild(
+tr
+);
+
+
+}
+);
+
+
+table.appendChild(
+tbody
+);
+
+
+wrap.appendChild(
+table
+);
+
+}
+
+
+/* ============================================================
    名称マスター
-========================================================= */
+============================================================ */
 
 function getMasterDrivers(data){
 
-  if(
-    data &&
-    data.nameMaster &&
-    Array.isArray(
-      data.nameMaster.drivers
-    )
-  ){
+if(
+data &&
+data.nameMaster &&
+Array.isArray(
+data.nameMaster.drivers
+)
+){
 
-    return data.nameMaster.drivers;
+return data.nameMaster.drivers;
 
-  }
+}
 
-  return [];
+
+return [];
 
 }
 
 
 function getMasterOfficers(data){
 
-  if(
-    data &&
-    data.nameMaster &&
-    Array.isArray(
-      data.nameMaster.officers
-    )
-  ){
-
-    return data.nameMaster.officers;
-
-  }
-
-  return [];
-
-}
-
-
-/* =========================================================
-   既存の名字表記を名称マスターに合わせる
-========================================================= */
-
-function matchDriverMaster(
-  currentValue,
-  masterDrivers
+if(
+data &&
+data.nameMaster &&
+Array.isArray(
+data.nameMaster.officers
+)
 ){
 
-  const current =
-    String(
-      currentValue ||
-      ''
-    ).trim();
-
-  if(!current){
-    return '';
-  }
-
-  if(
-    masterDrivers.includes(
-      current
-    )
-  ){
-
-    return current;
-
-  }
-
-  const normalized =
-    current.replace(
-      /\s+/g,
-      ''
-    );
-
-  const found =
-    masterDrivers.find(
-      name=>{
-
-        const master =
-          String(
-            name ||
-            ''
-          ).trim();
-
-        const normalizedMaster =
-          master.replace(
-            /\s+/g,
-            ''
-          );
-
-        if(
-          normalizedMaster ===
-          normalized
-        ){
-
-          return true;
-
-        }
-
-        /*
-         * 市川 悟 → 市川
-         * 早谷 一慶 → 早谷
-         * 田中 大登 → 田中 / 田中（ひ）
-         * 新里 元輝 → 新里
-         */
-
-        const surname =
-          master.split(
-            /\s+/
-          )[0];
-
-        if(
-          current===surname
-        ){
-
-          return true;
-
-        }
-
-        if(
-          current.indexOf(
-            surname
-          )===0
-        ){
-
-          return true;
-
-        }
-
-        return false;
-
-      }
-    );
-
-  return found || current;
+return data.nameMaster.officers;
 
 }
 
 
-/* =========================================================
-   管理プルダウン作成
-========================================================= */
+return [];
+
+}
+
+
+/* ============================================================
+   運転手名マッチ
+============================================================ */
+
+function driverMasterMatch(
+currentValue,
+masterDrivers
+){
+
+const current =
+
+String(
+currentValue ||
+''
+)
+.trim();
+
+
+if(!current){
+
+return '';
+
+}
+
+
+if(
+masterDrivers.includes(
+current
+)
+){
+
+return current;
+
+}
+
+
+const normalizedCurrent =
+
+current.replace(
+/\s+/g,
+''
+);
+
+
+const found =
+
+masterDrivers.find(
+name=>{
+
+
+const normalizedName =
+
+String(
+name ||
+''
+)
+
+.replace(
+/\s+/g,
+''
+);
+
+
+if(
+normalizedName ===
+normalizedCurrent
+){
+
+return true;
+
+}
+
+
+const surname =
+
+String(
+name ||
+''
+)
+
+.trim()
+
+.split(
+/\s+/
+)[0];
+
+
+if(
+current ===
+surname
+){
+
+return true;
+
+}
+
+
+if(
+current.indexOf(
+surname
+) === 0
+){
+
+return true;
+
+}
+
+
+return false;
+
+
+}
+);
+
+
+return found ||
+current;
+
+}
+
+
+/* ============================================================
+   管理SELECT
+============================================================ */
 
 function createManagementSelect(
-  values,
-  currentValue,
-  onChange,
-  type
+values,
+currentValue,
+onChange,
+type
 ){
 
-  const select =
-    document.createElement(
-      'select'
-    );
+const select =
 
-  const list =
-    Array.isArray(values)
-      ? [...values]
-      : [];
+document.createElement(
+'select'
+);
 
-  let current =
-    String(
-      currentValue ||
-      ''
-    ).trim();
 
-  if(
-    type==='driver'
-  ){
+const list =
 
-    current =
-      matchDriverMaster(
-        current,
-        list
-      );
+Array.isArray(
+values
+)
 
-  }
+? [...values]
 
-  const blank =
-    document.createElement(
-      'option'
-    );
+: [];
 
-  blank.value='';
-  blank.textContent='';
 
-  select.appendChild(
-    blank
-  );
+let current =
 
-  /*
-   * 既存値が名称マスターにない場合も
-   * データを消さない。
-   */
+String(
+currentValue ||
+''
+)
+.trim();
 
-  if(
-    current &&
-    !list.includes(
-      current
-    )
-  ){
 
-    const existing =
-      document.createElement(
-        'option'
-      );
+if(
+type ===
+'driver'
+){
 
-    existing.value=current;
-    existing.textContent=current;
+current =
 
-    select.appendChild(
-      existing
-    );
-
-  }
-
-  list.forEach(
-    value=>{
-
-      const option =
-        document.createElement(
-          'option'
-        );
-
-      option.value=value;
-      option.textContent=value;
-
-      select.appendChild(
-        option
-      );
-
-    }
-  );
-
-  select.value=current;
-
-  select.addEventListener(
-    'change',
-    ()=>{
-
-      onChange(
-        select.value
-      );
-
-    }
-  );
-
-  return select;
+driverMasterMatch(
+current,
+list
+);
 
 }
 
 
-/* =========================================================
-   代休データ不要行
-========================================================= */
+const blank =
+
+document.createElement(
+'option'
+);
+
+
+blank.value =
+'';
+
+
+blank.textContent =
+'';
+
+
+select.appendChild(
+blank
+);
+
+
+if(
+current &&
+!list.includes(
+current
+)
+){
+
+const existing =
+
+document.createElement(
+'option'
+);
+
+
+existing.value =
+current;
+
+
+existing.textContent =
+current;
+
+
+select.appendChild(
+existing
+);
+
+}
+
+
+list.forEach(
+value=>{
+
+
+const option =
+
+document.createElement(
+'option'
+);
+
+
+option.value =
+value;
+
+
+option.textContent =
+value;
+
+
+select.appendChild(
+option
+);
+
+
+}
+);
+
+
+select.value =
+current;
+
+
+select.addEventListener(
+'change',
+()=>{
+
+onChange(
+select.value
+);
+
+}
+);
+
+
+return select;
+
+}
+
+
+/* ============================================================
+   不要行
+============================================================ */
 
 function isCompJunkRow(row){
 
-  if(!row){
-    return true;
-  }
+if(!row){
 
-  const startDate =
-    String(
-      row.startDate ||
-      ''
-    ).trim();
-
-  const compDate =
-    String(
-      row.compDate ||
-      ''
-    ).trim();
-
-  const driver =
-    String(
-      row.driver ||
-      ''
-    ).trim();
-
-  const officer =
-    String(
-      row.officer ||
-      ''
-    ).trim();
-
-  if(
-    !startDate &&
-    !compDate &&
-    !driver &&
-    !officer
-  ){
-
-    return true;
-
-  }
-
-  const values=[
-    startDate,
-    compDate,
-    driver,
-    officer
-  ];
-
-  if(
-    values.includes(
-      '取得済み'
-    )
-  ){
-
-    return true;
-
-  }
-
-  const headers=[
-    '出勤日',
-    '代休日',
-    '担当者',
-    '運転手',
-    '役員'
-  ];
-
-  if(
-    values.some(
-      value=>
-        headers.includes(
-          value
-        )
-    )
-  ){
-
-    return true;
-
-  }
-
-  return false;
+return true;
 
 }
 
 
-/* =========================================================
+const startDate =
+
+String(
+row.startDate ||
+''
+)
+.trim();
+
+
+const compDate =
+
+String(
+row.compDate ||
+''
+)
+.trim();
+
+
+const driver =
+
+String(
+row.driver ||
+''
+)
+.trim();
+
+
+const officer =
+
+String(
+row.officer ||
+''
+)
+.trim();
+
+
+if(
+!startDate &&
+!compDate &&
+!driver &&
+!officer
+){
+
+return true;
+
+}
+
+
+const values = [
+
+startDate,
+compDate,
+driver,
+officer
+
+];
+
+
+if(
+values.includes(
+'取得済み'
+)
+){
+
+return true;
+
+}
+
+
+const headers = [
+
+'出勤日',
+'代休日',
+'担当者',
+'運転手',
+'役員'
+
+];
+
+
+if(
+values.some(
+value=>
+headers.includes(
+value
+)
+)
+){
+
+return true;
+
+}
+
+
+return false;
+
+}
+
+
+/* ============================================================
    代休取得
-========================================================= */
+============================================================ */
 
 function renderCompTable(data){
 
-  const wrap =
-    el.compPanel;
-
-  wrap.innerHTML='';
-
-  wrap.classList.remove(
-    'hidden'
-  );
-
-  const masterDrivers =
-    getMasterDrivers(
-      data
-    );
-
-  const masterOfficers =
-    getMasterOfficers(
-      data
-    );
-
-  data.planned =
-    (
-      Array.isArray(
-        data.planned
-      )
-        ? data.planned
-        : []
-    )
-    .filter(
-      row=>
-        !isCompJunkRow(
-          row
-        )
-    );
-
-  data.completed =
-    (
-      Array.isArray(
-        data.completed
-      )
-        ? data.completed
-        : []
-    )
-    .filter(
-      row=>
-        !isCompJunkRow(
-          row
-        )
-    );
-
-  const makeSection =
-    (
-      title,
-      rows,
-      key
-    )=>{
-
-      const section =
-        document.createElement(
-          'div'
-        );
-
-      const titleEl =
-        document.createElement(
-          'div'
-        );
-
-      titleEl.className =
-        'management-section-title';
-
-      titleEl.textContent =
-        title;
-
-      section.appendChild(
-        titleEl
-      );
-
-      const table =
-        document.createElement(
-          'table'
-        );
-
-      table.className =
-        'management-table';
-
-      const thead =
-        document.createElement(
-          'thead'
-        );
-
-      const hrow =
-        document.createElement(
-          'tr'
-        );
-
-      [
-        '出勤日',
-        '代休日',
-        '担当者',
-        '役員'
-      ]
-      .forEach(
-        text=>{
-
-          const th =
-            document.createElement(
-              'th'
-            );
-
-          th.textContent=text;
-
-          hrow.appendChild(
-            th
-          );
-
-        }
-      );
-
-      thead.appendChild(
-        hrow
-      );
-
-      table.appendChild(
-        thead
-      );
-
-      const tbody =
-        document.createElement(
-          'tbody'
-        );
-
-      rows.forEach(
-        (
-          row,
-          i
-        )=>{
-
-          const tr =
-            document.createElement(
-              'tr'
-            );
+const wrap =
+el.compPanel;
 
-          /* 出勤日 */
 
-          {
-            const td =
-              document.createElement(
-                'td'
-              );
+wrap.innerHTML =
+'';
 
-            const input =
-              document.createElement(
-                'input'
-              );
 
-            input.type='text';
+wrap.classList.remove(
+'hidden'
+);
 
-            input.value =
-              row.startDate ||
-              '';
 
-            input.addEventListener(
-              'input',
-              ()=>{
+const masterDrivers =
 
-                managementState[
-                  key
-                ][i]
-                .startDate =
-                  input.value;
+getMasterDrivers(
+data
+);
 
-              }
-            );
 
-            td.appendChild(
-              input
-            );
+const masterOfficers =
 
-            tr.appendChild(
-              td
-            );
-          }
+getMasterOfficers(
+data
+);
 
-          /* 代休日 */
 
-          {
-            const td =
-              document.createElement(
-                'td'
-              );
+data.planned =
 
-            const input =
-              document.createElement(
-                'input'
-              );
+(
+Array.isArray(
+data.planned
+)
 
-            input.type='text';
+? data.planned
 
-            input.value =
-              row.compDate ||
-              '';
+: []
+)
 
-            input.addEventListener(
-              'input',
-              ()=>{
+.filter(
+row=>
+!isCompJunkRow(
+row
+)
+);
 
-                managementState[
-                  key
-                ][i]
-                .compDate =
-                  input.value;
 
-              }
-            );
+data.completed =
 
-            td.appendChild(
-              input
-            );
+(
+Array.isArray(
+data.completed
+)
 
-            tr.appendChild(
-              td
-            );
-          }
+? data.completed
 
-          /* 担当者 */
+: []
+)
 
-          {
-            const td =
-              document.createElement(
-                'td'
-              );
+.filter(
+row=>
+!isCompJunkRow(
+row
+)
+);
 
-            const select =
-              createManagementSelect(
 
-                masterDrivers,
+const makeSection =
+(
+title,
+rows,
+key
+)=>{
 
-                row.driver,
 
-                value=>{
+const section =
 
-                  managementState[
-                    key
-                  ][i]
-                  .driver =
-                    value;
+document.createElement(
+'div'
+);
 
-                },
 
-                'driver'
+const titleEl =
 
-              );
+document.createElement(
+'div'
+);
 
-            row.driver =
-              select.value;
 
-            td.appendChild(
-              select
-            );
+titleEl.className =
+'management-section-title';
 
-            tr.appendChild(
-              td
-            );
-          }
 
-          /* 役員 */
+titleEl.textContent =
+title;
 
-          {
-            const td =
-              document.createElement(
-                'td'
-              );
 
-            const select =
-              createManagementSelect(
+section.appendChild(
+titleEl
+);
 
-                masterOfficers,
 
-                row.officer,
+const table =
 
-                value=>{
+document.createElement(
+'table'
+);
 
-                  managementState[
-                    key
-                  ][i]
-                  .officer =
-                    value;
 
-                },
+table.className =
+'management-table';
 
-                'officer'
 
-              );
+const thead =
 
-            row.officer =
-              select.value;
+document.createElement(
+'thead'
+);
 
-            td.appendChild(
-              select
-            );
 
-            tr.appendChild(
-              td
-            );
-          }
+const hrow =
 
-          tbody.appendChild(
-            tr
-          );
+document.createElement(
+'tr'
+);
 
-        }
-      );
 
-      table.appendChild(
-        tbody
-      );
+[
+'出勤日',
+'代休日',
+'担当者',
+'役員'
+]
 
-      section.appendChild(
-        table
-      );
+.forEach(
+text=>{
 
-      return section;
 
-    };
+const th =
 
+document.createElement(
+'th'
+);
 
-  /* 取得予定 */
 
-  wrap.appendChild(
-    makeSection(
-      '取得予定、未取得',
-      data.planned,
-      'planned'
-    )
-  );
+th.textContent =
+text;
 
 
-  /* ＋予定を追加 */
+hrow.appendChild(
+th
+);
 
-  const addBtn =
-    document.createElement(
-      'button'
-    );
 
-  addBtn.type='button';
+}
+);
 
-  addBtn.className =
-    'management-add';
 
-  addBtn.textContent =
-    '＋ 予定を追加';
+thead.appendChild(
+hrow
+);
 
-  addBtn.addEventListener(
-    'click',
-    ()=>{
 
-      if(
-        !Array.isArray(
-          data.planned
-        )
-      ){
+table.appendChild(
+thead
+);
 
-        data.planned=[];
 
-      }
+const tbody =
 
-      data.planned.push({
+document.createElement(
+'tbody'
+);
 
-        sheetRow:null,
 
-        startDate:'',
+rows.forEach(
+(
+row,
+i
+)=>{
 
-        compDate:'',
 
-        driver:'',
+const tr =
 
-        officer:''
+document.createElement(
+'tr'
+);
 
-      });
 
-      managementState=data;
+/* 出勤日 */
 
-      renderCompTable(
-        data
-      );
+{
 
-    }
-  );
+const td =
 
-  wrap.appendChild(
-    addBtn
-  );
+document.createElement(
+'td'
+);
 
 
-  /* 取得済み */
+const input =
 
-  wrap.appendChild(
-    makeSection(
-      '取得済み',
-      data.completed,
-      'completed'
-    )
-  );
+document.createElement(
+'input'
+);
+
+
+input.type =
+'text';
+
+
+input.value =
+row.startDate ||
+'';
+
+
+input.addEventListener(
+'input',
+()=>{
+
+
+managementState[
+key
+][
+i
+].startDate =
+input.value;
+
+
+}
+);
+
+
+td.appendChild(
+input
+);
+
+
+tr.appendChild(
+td
+);
 
 }
 
 
-/* =========================================================
+/* 代休日 */
+
+{
+
+const td =
+
+document.createElement(
+'td'
+);
+
+
+const input =
+
+document.createElement(
+'input'
+);
+
+
+input.type =
+'text';
+
+
+input.value =
+row.compDate ||
+'';
+
+
+input.addEventListener(
+'input',
+()=>{
+
+
+managementState[
+key
+][
+i
+].compDate =
+input.value;
+
+
+}
+);
+
+
+td.appendChild(
+input
+);
+
+
+tr.appendChild(
+td
+);
+
+}
+
+
+/* 担当者 */
+
+{
+
+const td =
+
+document.createElement(
+'td'
+);
+
+
+const select =
+
+createManagementSelect(
+
+masterDrivers,
+
+row.driver,
+
+value=>{
+
+
+managementState[
+key
+][
+i
+].driver =
+value;
+
+
+},
+
+'driver'
+
+);
+
+
+row.driver =
+select.value;
+
+
+td.appendChild(
+select
+);
+
+
+tr.appendChild(
+td
+);
+
+}
+
+
+/* 役員 */
+
+{
+
+const td =
+
+document.createElement(
+'td'
+);
+
+
+const select =
+
+createManagementSelect(
+
+masterOfficers,
+
+row.officer,
+
+value=>{
+
+
+managementState[
+key
+][
+i
+].officer =
+value;
+
+
+},
+
+'officer'
+
+);
+
+
+row.officer =
+select.value;
+
+
+td.appendChild(
+select
+);
+
+
+tr.appendChild(
+td
+);
+
+}
+
+
+tbody.appendChild(
+tr
+);
+
+
+}
+);
+
+
+table.appendChild(
+tbody
+);
+
+
+section.appendChild(
+table
+);
+
+
+return section;
+
+};
+
+
+/* 取得予定 */
+
+wrap.appendChild(
+
+makeSection(
+
+'取得予定、未取得',
+
+data.planned,
+
+'planned'
+
+)
+
+);
+
+
+/* 追加 */
+
+const addBtn =
+
+document.createElement(
+'button'
+);
+
+
+addBtn.type =
+'button';
+
+
+addBtn.className =
+'management-add';
+
+
+addBtn.textContent =
+'＋ 予定を追加';
+
+
+addBtn.addEventListener(
+'click',
+()=>{
+
+
+if(
+!Array.isArray(
+data.planned
+)
+){
+
+data.planned=[];
+
+}
+
+
+data.planned.push({
+
+sheetRow:
+null,
+
+startDate:
+'',
+
+compDate:
+'',
+
+driver:
+'',
+
+officer:
+''
+
+});
+
+
+managementState =
+data;
+
+
+renderCompTable(
+data
+);
+
+
+}
+);
+
+
+wrap.appendChild(
+addBtn
+);
+
+
+/* 取得済み */
+
+wrap.appendChild(
+
+makeSection(
+
+'取得済み',
+
+data.completed,
+
+'completed'
+
+)
+
+);
+
+}
+
+
+/* ============================================================
    管理ボタン
-========================================================= */
+============================================================ */
 
-el.assignmentBtn
-  .addEventListener(
-    'click',
-    ()=>{
+el.assignmentBtn.addEventListener(
+'click',
+()=>{
 
-      openManagement(
-        'assignment'
-      );
+openManagement(
+'assignment'
+);
 
-    }
-  );
-
-
-el.compBtn
-  .addEventListener(
-    'click',
-    ()=>{
-
-      openManagement(
-        'comp'
-      );
-
-    }
-  );
+}
+);
 
 
-el.managementClose
-  .addEventListener(
-    'click',
-    ()=>{
+el.compBtn.addEventListener(
+'click',
+()=>{
 
-      el.managementPanel
-        .classList
-        .add(
-          'hidden'
-        );
+openManagement(
+'comp'
+);
 
-    }
-  );
+}
+);
 
 
-/* =========================================================
+el.managementClose.addEventListener(
+'click',
+()=>{
+
+el.managementPanel.classList.add(
+'hidden'
+);
+
+}
+);
+
+
+/* ============================================================
    保存
-========================================================= */
+============================================================ */
 
-el.managementSave
-  .addEventListener(
-    'click',
-    async()=>{
-
-      if(
-        !managementState
-      ){
-
-        return;
-
-      }
-
-      el.managementSave.disabled=true;
-
-      el.managementSave.textContent =
-        '保存中...';
-
-      try{
-
-        const result =
-          await callServer(
-            'saveManagementData',
-            {
-
-              sheetType:
-                managementMode,
-
-              selectedDriverKey:
-                state.driver
-                  ? state.driver.driverKey
-                  : '',
-
-              payload:
-                JSON.stringify(
-                  managementState
-                )
-
-            }
-          );
-
-        if(
-          !result ||
-          result.ok!==true
-        ){
-
-          throw new Error(
-            result &&
-            result.error
-              ? result.error
-              : '保存に失敗しました'
-          );
-
-        }
-
-        alert(
-          'スプレッドシートへ保存しました。'
-        );
-
-        await openManagement(
-          managementMode
-        );
-
-      }catch(error){
-
-        console.error(
-          '管理画面保存失敗',
-          error
-        );
-
-        alert(
-          error.message ||
-          '保存に失敗しました。'
-        );
-
-      }finally{
-
-        el.managementSave.disabled=false;
-
-        el.managementSave.textContent =
-          '保存する';
-
-      }
-
-    }
-  );
+el.managementSave.addEventListener(
+'click',
+async()=>{
 
 
-/* =========================================================
+if(
+!managementState
+){
+
+return;
+
+}
+
+
+el.managementSave.disabled =
+true;
+
+
+el.managementSave.textContent =
+'保存中...';
+
+
+try{
+
+
+const result =
+
+await callServer(
+'saveManagementData',
+{
+
+sheetType:
+managementMode,
+
+selectedDriverKey:
+
+state.driver
+
+? state.driver.driverKey
+
+: '',
+
+payload:
+
+JSON.stringify(
+managementState
+)
+
+}
+);
+
+
+if(
+!result ||
+result.ok !== true
+){
+
+throw new Error(
+'保存に失敗しました'
+);
+
+}
+
+
+alert(
+'スプレッドシートへ保存しました。'
+);
+
+
+await openManagement(
+managementMode
+);
+
+
+}catch(error){
+
+
+console.error(
+error
+);
+
+
+alert(
+
+error.message ||
+
+'保存に失敗しました。'
+
+);
+
+
+}finally{
+
+
+el.managementSave.disabled =
+false;
+
+
+el.managementSave.textContent =
+'保存する';
+
+
+}
+
+
+}
+);
+
+
+/* ============================================================
    集計
-========================================================= */
+============================================================ */
 
 function renderSummary(){
 
-  el.summary.innerHTML =
+el.summary.innerHTML =
 
-    '前回残業 <strong>' +
+'前回残業 <strong>' +
 
-    escapeHtml(
-      state.summary.previousOvertime ||
-      '0:00'
-    ) +
+escapeHtml(
+state.summary.previousOvertime ||
+'0:00'
+)
 
-    '</strong>　月間合計 <strong>' +
++
 
-    escapeHtml(
-      state.summary.monthlyOvertime ||
-      '0:00'
-    ) +
+'</strong>　月間合計 <strong>' +
 
-    '</strong>';
+escapeHtml(
+state.summary.monthlyOvertime ||
+'0:00'
+)
+
++
+
+'</strong>';
 
 }
 
 
-/* =========================================================
+/* ============================================================
    履歴
-========================================================= */
-
-function normalizeHistoryType(item){
-
-  const raw =
-    String(
-      item.type ||
-      item.mode ||
-      ''
-    )
-    .trim()
-    .toLowerCase();
-
-  if(
-    raw==='in' ||
-    raw==='出勤' ||
-    raw==='出勤時'
-  ){
-
-    return '出勤';
-
-  }
-
-  if(
-    raw==='out' ||
-    raw==='退勤' ||
-    raw==='退勤時'
-  ){
-
-    return '退勤';
-
-  }
-
-  return '';
-
-}
-
-
-function normalizeHistoryDate(item){
-
-  const value =
-    item.date ||
-    item.reportDate ||
-    '';
-
-  if(!value){
-    return '';
-  }
-
-  const text =
-    String(value);
-
-  let match =
-    text.match(
-      /^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})/
-    );
-
-  if(match){
-
-    return (
-      match[1] +
-      '/' +
-      Number(match[2]) +
-      '/' +
-      Number(match[3])
-    );
-
-  }
-
-  match =
-    text.match(
-      /^(\d{1,2})[\/-](\d{1,2})/
-    );
-
-  if(match){
-
-    const now =
-      new Date();
-
-    return (
-      now.getFullYear() +
-      '/' +
-      Number(match[1]) +
-      '/' +
-      Number(match[2])
-    );
-
-  }
-
-  return text;
-
-}
-
+============================================================ */
 
 function renderHistory(list){
 
-  if(
-    !Array.isArray(list) ||
-    !list.length
-  ){
+if(
+!Array.isArray(
+list
+)
 
-    el.historyList.innerHTML =
-      '<li class="empty">まだ履歴はありません</li>';
+||
 
-    return;
+!list.length
+){
 
-  }
+el.historyList.innerHTML =
 
-  const sorted =
-    [...list]
-    .sort(
-      (
-        a,
-        b
-      )=>
-        Number(
-          b.savedAt||0
-        ) -
-        Number(
-          a.savedAt||0
-        )
-    );
+'<li class="empty">まだ履歴はありません</li>';
 
-  el.historyList.innerHTML =
-    sorted.map(
-      item=>{
 
-        const type =
-          normalizeHistoryType(
-            item
-          );
-
-        const date =
-          normalizeHistoryDate(
-            item
-          );
-
-        let time='';
-
-        if(
-          type==='退勤'
-        ){
-
-          time =
-            (item.startTime||'0:00') +
-            '→' +
-            (item.endTime||'0:00');
-
-        }else if(
-          type==='出勤'
-        ){
-
-          time =
-            item.reportTime ||
-            item.startTime ||
-            '0:00';
-
-        }
-
-        return(
-          '<li>' +
-          '<span class="history-date">' +
-          escapeHtml(date) +
-          '</span>' +
-          '<span class="history-type">' +
-          escapeHtml(type) +
-          '</span>' +
-          '<span class="history-time">' +
-          escapeHtml(time) +
-          '</span>' +
-          '<span class="history-ok">✅</span>' +
-          '</li>'
-        );
-
-      }
-    )
-    .join('');
+return;
 
 }
 
 
-/* =========================================================
-   出勤・退勤
-========================================================= */
+el.historyList.innerHTML =
+
+list.map(
+item=>{
+
+
+const date =
+
+escapeHtml(
+item.date ||
+''
+);
+
+
+const type =
+
+escapeHtml(
+item.type ||
+''
+);
+
+
+let time =
+'';
+
+
+if(
+item.type ===
+'退勤'
+){
+
+time =
+
+(item.startTime || '')
+
++
+
+'→'
+
++
+
+(item.endTime || '');
+
+}else{
+
+time =
+
+item.reportTime ||
+
+item.startTime ||
+
+'';
+
+}
+
+
+return(
+
+'<li>' +
+
+'<span class="history-date">' +
+date +
+'</span>' +
+
+'<span class="history-type">' +
+type +
+'</span>' +
+
+'<span class="history-time">' +
+escapeHtml(time) +
+'</span>' +
+
+'<span class="history-ok">✅</span>' +
+
+'</li>'
+
+);
+
+
+}
+)
+
+.join('');
+
+}
+
+
+/* ============================================================
+   MODE
+============================================================ */
 
 function setMode(mode){
 
-  state.mode=mode;
+state.mode =
+mode;
 
-  state.draft=null;
 
-  el.inMode.classList.toggle(
-    'off',
-    mode!=='in'
-  );
+state.draft =
+null;
 
-  el.outMode.classList.toggle(
-    'off',
-    mode!=='out'
-  );
 
-  el.preview.classList.remove(
-    'show'
-  );
+el.inMode.classList.toggle(
+'off',
+mode !==
+'in'
+);
 
-  el.sendBtn.disabled=true;
 
-  el.photoInput.value='';
+el.outMode.classList.toggle(
+'off',
+mode !==
+'out'
+);
 
-  showNotice('');
 
-  if(
-    mode==='in'
-  ){
+el.preview.classList.remove(
+'show'
+);
 
-    el.endField.classList.add(
-      'hidden'
-    );
 
-    el.nextDateField.classList.add(
-      'hidden'
-    );
+el.sendBtn.disabled =
+true;
 
-    el.nextTimeField.classList.add(
-      'hidden'
-    );
 
-    el.reportDate.value=
-      today();
+el.photoInput.value =
+'';
 
-    el.startTime.value=
-      nowTime();
 
-  }else{
+showNotice(
+''
+);
 
-    el.endField.classList.remove(
-      'hidden'
-    );
 
-    el.nextDateField.classList.remove(
-      'hidden'
-    );
+if(
+mode ===
+'in'
+){
 
-    el.nextTimeField.classList.remove(
-      'hidden'
-    );
+el.endField.classList.add(
+'hidden'
+);
 
-    el.reportDate.value=
-      today();
 
-    el.startTime.value=
-      state.workState.startTime ||
-      '';
+el.nextDateField.classList.add(
+'hidden'
+);
 
-    el.endTime.value=
-      nowTime();
 
-    el.nextDate.value=
-      tomorrow();
+el.nextTimeField.classList.add(
+'hidden'
+);
 
-    el.nextTime.value=
-      '08:00';
 
-  }
+el.reportDate.value =
+today();
 
-  refreshMessage();
+
+el.startTime.value =
+nowTime();
+
+
+}else{
+
+
+el.endField.classList.remove(
+'hidden'
+);
+
+
+el.nextDateField.classList.remove(
+'hidden'
+);
+
+
+el.nextTimeField.classList.remove(
+'hidden'
+);
+
+
+el.reportDate.value =
+today();
+
+
+el.endTime.value =
+nowTime();
+
+
+el.nextDate.value =
+tomorrow();
+
+
+el.nextTime.value =
+'08:00';
+
 
 }
 
 
-/* =========================================================
+refreshMessage();
+
+}
+
+
+/* ============================================================
    報告文章
-========================================================= */
+============================================================ */
 
 function buildReportBaseMessage(){
 
-  if(
-    state.mode==='in'
-  ){
+if(
+state.mode ===
+'in'
+){
 
-    const date =
-      el.reportDate.value ||
-      today();
+return(
 
-    const time =
-      el.startTime.value ||
-      nowTime();
+'お疲れ様でございます。\n'
 
-    return(
-      'お疲れ様でございます。\n' +
-      dateText(date) +
-      ' ' +
-      time +
-      '出勤いたしました。\n' +
-      '本日もよろしくお願いいたします。\n' +
-      '残業)' +
-      (state.summary.previousOvertime||'0:00') +
-      '\n' +
-      '合計)' +
-      (state.summary.monthlyOvertime||'0:00') +
-      '\n' +
-      '【MEMO】'
-    );
++
 
-  }
+dateText(
+el.reportDate.value ||
+today()
+)
 
-  const reportDate =
-    el.reportDate.value ||
-    today();
++
 
-  const start =
-    el.startTime.value ||
-    state.workState.startTime ||
-    '00:00';
+' '
 
-  const end =
-    el.endTime.value ||
-    nowTime();
++
 
-  const nextDate =
-    el.nextDate.value ||
-    tomorrow();
+(
+el.startTime.value ||
+nowTime()
+)
 
-  const nextTime =
-    el.nextTime.value ||
-    '??:??';
++
 
-  const prefix =
-    nextAttendancePrefix(
-      nextDate
-    );
+'出勤いたしました。\n'
 
-  const datePart =
-    shortDate(
-      nextDate
-    );
++
 
-  let nextAttendance =
-    prefix
-      ? prefix+' '+datePart
-      : datePart;
+'本日もよろしくお願いいたします。\n'
 
-  nextAttendance +=
-    ' '+nextTime;
++
 
-  return(
-    'お疲れ様でございます。\n' +
-    '業務完了いたしました。\n' +
-    dateText(reportDate) +
-    '\n' +
-    '稼働)' +
-    start +
-    '→' +
-    end +
-    '\n' +
-    '本日は失礼させていただきます。\n' +
-    '出勤) ' +
-    nextAttendance +
-    '\n' +
-    '明日もよろしくお願いいたします。\n' +
-    '【MEMO】'
-  );
+'残業)'
+
++
+
+(
+state.summary.previousOvertime ||
+'0:00'
+)
+
++
+
+'\n'
+
++
+
+'合計)'
+
++
+
+(
+state.summary.monthlyOvertime ||
+'0:00'
+)
+
++
+
+'\n'
+
++
+
+'【MEMO】'
+
+);
+
+}
+
+
+const nextDate =
+
+el.nextDate.value ||
+tomorrow();
+
+
+const prefix =
+
+nextAttendancePrefix(
+nextDate
+);
+
+
+let nextAttendance =
+
+prefix
+
+? prefix +
+' ' +
+shortDate(
+nextDate
+)
+
+: shortDate(
+nextDate
+);
+
+
+nextAttendance +=
+
+' '
+
++
+
+(
+el.nextTime.value ||
+'??:??'
+);
+
+
+return(
+
+'お疲れ様でございます。\n'
+
++
+
+'業務完了いたしました。\n'
+
++
+
+dateText(
+el.reportDate.value ||
+today()
+)
+
++
+
+'\n'
+
++
+
+'稼働)'
+
++
+
+(
+el.startTime.value ||
+'00:00'
+)
+
++
+
+'→'
+
++
+
+(
+el.endTime.value ||
+nowTime()
+)
+
++
+
+'\n'
+
++
+
+'本日は失礼させていただきます。\n'
+
++
+
+'出勤) '
+
++
+
+nextAttendance
+
++
+
+'\n'
+
++
+
+'明日もよろしくお願いいたします。\n'
+
++
+
+'【MEMO】'
+
+);
 
 }
 
 
 function refreshMessage(){
 
-  el.messagePreview.textContent =
-    buildReportBaseMessage();
+el.messagePreview.textContent =
+
+buildReportBaseMessage();
 
 }
 
 
 function buildCompleteMessage(){
 
-  const base =
-    buildReportBaseMessage();
+const base =
 
-  const memo =
-    String(
-      el.memo.value ||
-      ''
-    ).trim();
+buildReportBaseMessage();
 
-  return memo
-    ? base+'\n'+memo
-    : base;
+
+const memo =
+
+String(
+el.memo.value ||
+''
+)
+.trim();
+
+
+return memo
+
+? base +
+'\n' +
+memo
+
+: base;
 
 }
 
 
-/* =========================================================
+/* ============================================================
    画像
-========================================================= */
+============================================================ */
 
 function imageToDataUrl(file){
 
-  return new Promise(
-    (
-      resolve,
-      reject
-    )=>{
+return new Promise(
+(
+resolve,
+reject
+)=>{
 
-      const reader =
-        new FileReader();
 
-      reader.onload =
-        function(){
+const reader =
 
-          const image =
-            new Image();
+new FileReader();
 
-          image.onload =
-            function(){
 
-              const max=1800;
+reader.onload =
+function(){
 
-              const scale =
-                Math.min(
-                  1,
-                  max /
-                  Math.max(
-                    image.width,
-                    image.height
-                  )
-                );
 
-              const canvas =
-                document.createElement(
-                  'canvas'
-                );
+const image =
 
-              canvas.width =
-                Math.round(
-                  image.width*scale
-                );
+new Image();
 
-              canvas.height =
-                Math.round(
-                  image.height*scale
-                );
 
-              const context =
-                canvas.getContext(
-                  '2d',
-                  {
-                    alpha:false
-                  }
-                );
+image.onload =
+function(){
 
-              context.drawImage(
-                image,
-                0,
-                0,
-                canvas.width,
-                canvas.height
-              );
 
-              resolve(
-                canvas.toDataURL(
-                  'image/jpeg',
-                  .86
-                )
-              );
+const max =
+1800;
 
-            };
 
-          image.onerror =
-            reject;
+const scale =
 
-          image.src =
-            reader.result;
+Math.min(
 
-        };
+1,
 
-      reader.onerror =
-        reject;
+max /
 
-      reader.readAsDataURL(
-        file
-      );
+Math.max(
+image.width,
+image.height
+)
 
-    }
-  );
+);
+
+
+const canvas =
+
+document.createElement(
+'canvas'
+);
+
+
+canvas.width =
+
+Math.round(
+image.width *
+scale
+);
+
+
+canvas.height =
+
+Math.round(
+image.height *
+scale
+);
+
+
+const context =
+
+canvas.getContext(
+'2d',
+{
+alpha:false
+}
+);
+
+
+context.drawImage(
+
+image,
+
+0,
+
+0,
+
+canvas.width,
+
+canvas.height
+
+);
+
+
+resolve(
+
+canvas.toDataURL(
+'image/jpeg',
+.86
+)
+
+);
+
+
+};
+
+
+image.onerror =
+reject;
+
+
+image.src =
+reader.result;
+
+
+};
+
+
+reader.onerror =
+reject;
+
+
+reader.readAsDataURL(
+file
+);
+
+
+}
+);
 
 }
 
 
-/* =========================================================
+/* ============================================================
    OCR
-========================================================= */
+============================================================ */
 
 async function runBrowserOcr(
-  dataUrl
+dataUrl
 ){
 
-  if(
-    !window.Tesseract
-  ){
+if(
+!window.Tesseract
+){
 
-    throw new Error(
-      'OCRライブラリの読み込みに失敗しました'
-    );
-
-  }
-
-  const result =
-    await Tesseract.recognize(
-      dataUrl,
-      'eng',
-      {
-
-        logger:
-          message=>{
-
-            if(
-              message &&
-              message.status==='recognizing text' &&
-              message.progress
-            ){
-
-              showNotice(
-                '写真を読み取り中... ' +
-                Math.round(
-                  message.progress*100
-                ) +
-                '%'
-              );
-
-            }
-
-          },
-
-        tessedit_pageseg_mode:6
-
-      }
-    );
-
-  return (
-    result &&
-    result.data
-  )
-    ? String(
-        result.data.text ||
-        ''
-      )
-    : '';
+return '';
 
 }
 
 
-/* =========================================================
-   写真読み込み
-========================================================= */
+const result =
+
+await Tesseract.recognize(
+dataUrl,
+'eng',
+{
+
+logger:
+message=>{
+
+
+if(
+message &&
+message.status ===
+'recognizing text' &&
+message.progress
+){
+
+showNotice(
+
+'写真を読み取り中... '
+
++
+
+Math.round(
+message.progress *
+100
+)
+
++
+
+'%'
+
+);
+
+}
+
+
+},
+
+tessedit_pageseg_mode:
+6
+
+}
+);
+
+
+return(
+
+result &&
+result.data
+
+? String(
+result.data.text ||
+''
+)
+
+: ''
+
+);
+
+}
+
+
+/* ============================================================
+   写真選択
+============================================================ */
 
 async function uploadPhoto(file){
 
-  if(
-    !state.driver
-  ){
+if(
+!state.driver
+){
 
-    alert(
-      '先に人物を選択してください'
-    );
+alert(
+'先に人物を選択してください'
+);
 
-    return;
-
-  }
-
-  showNotice(
-    '写真を読み込んでいます...'
-  );
-
-  el.sendBtn.disabled=true;
-
-  try{
-
-    const dataUrl =
-      await imageToDataUrl(
-        file
-      );
-
-    el.photoPreview.src =
-      dataUrl;
-
-    const ocrText =
-      await runBrowserOcr(
-        dataUrl
-      );
-
-    showNotice(
-      '読み取り結果を確認しています...'
-    );
-
-    /*
-     * Code.gs側にocrPhotoがある場合
-     */
-
-    const result =
-      await callServer(
-        'ocrPhoto',
-        {
-
-          selectedDriverKey:
-            state.driver.driverKey,
-
-          mode:
-            state.mode,
-
-          imageBase64:
-            dataUrl,
-
-          fileName:
-            file.name,
-
-          ocrText:
-            ocrText
-
-        }
-      );
-
-    state.draft=result;
-
-    el.preview.classList.add(
-      'show'
-    );
-
-    el.reportDate.value =
-      result.reportDate ||
-      today();
-
-    el.startTime.value =
-      result.startTime ||
-      result.ocrTime ||
-      state.workState.startTime ||
-      nowTime();
-
-    if(
-      state.mode==='out'
-    ){
-
-      el.endTime.value =
-        result.endTime ||
-        result.ocrTime ||
-        nowTime();
-
-    }
-
-    el.memo.value='';
-
-    refreshMessage();
-
-    el.sendBtn.disabled=false;
-
-    showNotice(
-      '読み取り完了。時間を確認・修正して送信してください。'
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    /*
-     * OCR APIがまだ無い場合でも
-     * 手動入力画面を表示する。
-     */
-
-    try{
-
-      const dataUrl =
-        await imageToDataUrl(
-          file
-        );
-
-      el.photoPreview.src =
-        dataUrl;
-
-      state.draft={
-
-        local:true,
-
-        imageBase64:dataUrl
-
-      };
-
-      el.preview.classList.add(
-        'show'
-      );
-
-      el.reportDate.value =
-        today();
-
-      if(
-        state.mode==='in'
-      ){
-
-        el.startTime.value =
-          nowTime();
-
-      }else{
-
-        el.startTime.value =
-          state.workState.startTime ||
-          '';
-
-        el.endTime.value =
-          nowTime();
-
-      }
-
-      refreshMessage();
-
-      el.sendBtn.disabled=false;
-
-      showNotice(
-        '自動読み取りに失敗したため、時間を手動で確認・修正してください。'
-      );
-
-    }catch(secondError){
-
-      console.error(
-        secondError
-      );
-
-      showNotice(
-        '写真の読み取りに失敗しました。'
-      );
-
-    }
-
-  }
+return;
 
 }
 
 
-/* =========================================================
+showNotice(
+'写真を読み込んでいます...'
+);
+
+
+try{
+
+
+const dataUrl =
+
+await imageToDataUrl(
+file
+);
+
+
+el.photoPreview.src =
+dataUrl;
+
+
+await runBrowserOcr(
+dataUrl
+);
+
+
+state.draft = {
+
+imageBase64:
+dataUrl
+
+};
+
+
+el.preview.classList.add(
+'show'
+);
+
+
+if(
+state.mode ===
+'in'
+){
+
+el.startTime.value =
+nowTime();
+
+}else{
+
+el.endTime.value =
+nowTime();
+
+}
+
+
+refreshMessage();
+
+
+el.sendBtn.disabled =
+false;
+
+
+showNotice(
+'時間を確認・修正して送信してください。'
+);
+
+
+}catch(error){
+
+
+console.error(
+error
+);
+
+
+showNotice(
+'写真の読み取りに失敗しました。'
+);
+
+
+}
+
+}
+
+
+/* ============================================================
    送信
-========================================================= */
+============================================================ */
 
 async function sendDraft(){
 
-  if(
-    !state.driver
-  ){
+if(
+!state.driver
+){
 
-    alert(
-      '人物を選択してください'
-    );
+alert(
+'人物を選択してください'
+);
 
-    return;
-
-  }
-
-  const message =
-    buildCompleteMessage();
-
-  el.sendBtn.disabled=true;
-
-  showNotice(
-    '報告文章を送信中です...'
-  );
-
-  try{
-
-    /*
-     * 今回のCode.gsは
-     * sendAttendance を持っているため
-     * こちらを使用。
-     */
-
-    const result =
-      await callServer(
-        'sendAttendance',
-        {
-
-          selectedDriverKey:
-            state.driver.driverKey,
-
-          message:
-            message
-
-        }
-      );
-
-    if(
-      !result ||
-      result.ok!==true
-    ){
-
-      throw new Error(
-        '送信に失敗しました'
-      );
-
-    }
-
-    showNotice(
-      '送信完了しました。'
-    );
-
-    state.draft=null;
-
-    el.preview.classList.remove(
-      'show'
-    );
-
-    el.photoInput.value='';
-
-    el.memo.value='';
-
-  }catch(error){
-
-    console.error(error);
-
-    showNotice(
-      error.message ||
-      '送信に失敗しました'
-    );
-
-  }finally{
-
-    el.sendBtn.disabled=false;
-
-  }
+return;
 
 }
 
 
-/* =========================================================
-   人物プルダウン変更
-========================================================= */
-
-el.driverSelect
-  .addEventListener(
-    'change',
-    async function(){
-
-      const driver =
-        findDriver(
-          el.driverSelect.value
-        );
-
-      await selectDriver(
-        driver,
-        true
-      );
-
-    }
-  );
+el.sendBtn.disabled =
+true;
 
 
-/* =========================================================
-   出勤
-========================================================= */
-
-el.inMode
-  .addEventListener(
-    'click',
-    function(){
-
-      if(
-        !state.driver
-      ){
-
-        alert(
-          '先に人物を選択してください'
-        );
-
-        return;
-
-      }
-
-      setMode(
-        'in'
-      );
-
-    }
-  );
-
-
-/* =========================================================
-   退勤
-========================================================= */
-
-el.outMode
-  .addEventListener(
-    'click',
-    function(){
-
-      if(
-        !state.driver
-      ){
-
-        alert(
-          '先に人物を選択してください'
-        );
-
-        return;
-
-      }
-
-      setMode(
-        'out'
-      );
-
-    }
-  );
-
-
-/* =========================================================
-   写真ボタン
-========================================================= */
-
-el.uploadBtn
-  .addEventListener(
-    'click',
-    function(){
-
-      if(
-        !state.driver
-      ){
-
-        alert(
-          '先に人物を選択してください'
-        );
-
-        return;
-
-      }
-
-      el.photoInput.click();
-
-    }
-  );
-
-
-el.photoInput
-  .addEventListener(
-    'change',
-    function(){
-
-      const file =
-        el.photoInput.files &&
-        el.photoInput.files[0];
-
-      if(file){
-
-        uploadPhoto(
-          file
-        );
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   入力変更
-========================================================= */
-
-[
-  el.reportDate,
-  el.startTime,
-  el.endTime,
-  el.nextDate,
-  el.nextTime,
-  el.memo
-]
-.forEach(
-  input=>{
-
-    input.addEventListener(
-      'input',
-      refreshMessage
-    );
-
-    input.addEventListener(
-      'change',
-      refreshMessage
-    );
-
-  }
+showNotice(
+'送信中です...'
 );
 
 
-el.sendBtn
-  .addEventListener(
-    'click',
-    sendDraft
-  );
+try{
 
 
-/* =========================================================
+const result =
+
+await callServer(
+'sendAttendance',
+{
+
+selectedDriverKey:
+state.driver.driverKey,
+
+message:
+buildCompleteMessage()
+
+}
+);
+
+
+if(
+!result ||
+result.ok !== true
+){
+
+throw new Error(
+'送信に失敗しました'
+);
+
+}
+
+
+showNotice(
+'送信完了しました。'
+);
+
+
+state.draft =
+null;
+
+
+el.preview.classList.remove(
+'show'
+);
+
+
+el.photoInput.value =
+'';
+
+
+el.memo.value =
+'';
+
+
+}catch(error){
+
+
+console.error(
+error
+);
+
+
+showNotice(
+
+error.message ||
+
+'送信に失敗しました'
+
+);
+
+
+}finally{
+
+
+el.sendBtn.disabled =
+false;
+
+
+}
+
+}
+
+
+/* ============================================================
+   イベント
+============================================================ */
+
+el.driverSelect.addEventListener(
+'change',
+async()=>{
+
+
+const driver =
+
+findDriver(
+el.driverSelect.value
+);
+
+
+await selectDriver(
+driver,
+true
+);
+
+
+}
+);
+
+
+el.inMode.addEventListener(
+'click',
+()=>{
+
+
+if(
+!state.driver
+){
+
+alert(
+'先に人物を選択してください'
+);
+
+return;
+
+}
+
+
+setMode(
+'in'
+);
+
+
+}
+);
+
+
+el.outMode.addEventListener(
+'click',
+()=>{
+
+
+if(
+!state.driver
+){
+
+alert(
+'先に人物を選択してください'
+);
+
+return;
+
+}
+
+
+setMode(
+'out'
+);
+
+
+}
+);
+
+
+el.uploadBtn.addEventListener(
+'click',
+()=>{
+
+
+if(
+!state.driver
+){
+
+alert(
+'先に人物を選択してください'
+);
+
+return;
+
+}
+
+
+el.photoInput.click();
+
+
+}
+);
+
+
+el.photoInput.addEventListener(
+'change',
+()=>{
+
+
+const file =
+
+el.photoInput.files &&
+el.photoInput.files[
+0
+];
+
+
+if(file){
+
+uploadPhoto(
+file
+);
+
+}
+
+
+}
+);
+
+
+[
+el.reportDate,
+el.startTime,
+el.endTime,
+el.nextDate,
+el.nextTime,
+el.memo
+]
+
+.forEach(
+input=>{
+
+
+input.addEventListener(
+'input',
+refreshMessage
+);
+
+
+input.addEventListener(
+'change',
+refreshMessage
+);
+
+
+}
+);
+
+
+el.sendBtn.addEventListener(
+'click',
+sendDraft
+);
+
+
+/* ============================================================
    自動本人判別
-========================================================= */
+============================================================ */
 
 async function autoDetect(){
 
-  /*
-   * ★最初は必ず未選択
-   */
+setStatus(
+'判別中',
+false
+);
 
-  state.driver=null;
 
-  el.driverSelect.value='';
+try{
 
-  setStatus(
-    '判別中',
-    false
-  );
 
-  try{
+if(
+typeof liff ===
+'undefined'
+){
 
-    if(
-      typeof liff==='undefined'
-    ){
-
-      throw new Error(
-        'LIFF SDKが読み込まれていません'
-      );
-
-    }
-
-    await withTimeout(
-      liff.init({
-        liffId:LIFF_ID
-      }),
-      AUTO_DETECT_TIMEOUT
-    );
-
-    /*
-     * 手動選択された後なら
-     * 自動判別で上書きしない。
-     */
-
-    if(
-      state.userSelectedManually &&
-      state.driver
-    ){
-
-      setStatus(
-        '完了',
-        true
-      );
-
-      return;
-
-    }
-
-    /*
-     * ★ログインしていない
-     * → 誰も選択しない
-     */
-
-    if(
-      !liff.isLoggedIn()
-    ){
-
-      state.idToken='';
-
-      state.driver=null;
-
-      el.driverSelect.value='';
-
-      setStatus(
-        '右から選択',
-        false
-      );
-
-      return;
-
-    }
-
-    state.idToken =
-      liff.getIDToken() ||
-      '';
-
-    /*
-     * トークン無し
-     * → 自動選択しない
-     */
-
-    if(
-      !state.idToken
-    ){
-
-      state.driver=null;
-
-      el.driverSelect.value='';
-
-      setStatus(
-        '右から選択',
-        false
-      );
-
-      return;
-
-    }
-
-    /*
-     * LINE userId
-     * ↓
-     * driver_master
-     * ↓
-     * 本人一致した場合だけ選択
-     */
-
-    const info =
-      await withTimeout(
-        callServer(
-          'getDriverInfo'
-        ),
-        AUTO_DETECT_TIMEOUT
-      );
-
-    if(
-      state.userSelectedManually &&
-      state.driver
-    ){
-
-      setStatus(
-        '完了',
-        true
-      );
-
-      return;
-
-    }
-
-    if(
-      info &&
-      info.found &&
-      info.driverKey
-    ){
-
-      const driver =
-        findDriver(
-          info.driverKey
-        );
-
-      if(driver){
-
-        await selectDriver(
-          driver,
-          false
-        );
-
-        setStatus(
-          '完了',
-          true
-        );
-
-        return;
-
-      }
-
-    }
-
-    /*
-     * 一致しなかった
-     */
-
-    state.driver=null;
-
-    el.driverSelect.value='';
-
-    setStatus(
-      '右から選択',
-      false
-    );
-
-  }catch(error){
-
-    console.warn(
-      '自動判別終了',
-      error
-    );
-
-    /*
-     * 手動選択済みなら維持。
-     */
-
-    if(
-      state.userSelectedManually &&
-      state.driver
-    ){
-
-      setStatus(
-        '完了',
-        true
-      );
-
-    }else{
-
-      state.driver=null;
-
-      el.driverSelect.value='';
-
-      setStatus(
-        '右から選択',
-        false
-      );
-
-    }
-
-  }
+throw new Error(
+'LIFF SDKなし'
+);
 
 }
 
 
-/* =========================================================
-   初期化
-========================================================= */
+await liff.init({
 
-window.addEventListener(
-  'load',
-  async function(){
+liffId:
+LIFF_ID
 
-    buildNextTimeOptions();
+});
 
-    el.reportDate.value =
-      today();
 
-    el.startTime.value =
-      nowTime();
+/*
+ * 手動選択済みなら
+ * 自動判別で上書きしない
+ */
 
-    el.nextDate.value =
-      tomorrow();
+if(
+state.userSelectedManually &&
+state.driver
+){
 
-    el.nextTime.value =
-      '08:00';
+setStatus(
+'完了',
+true
+);
 
-    el.memo.value='';
+return;
 
-    setMode(
-      'in'
-    );
+}
 
-    /*
-     * ★起動時に人物は必ずNULL
-     */
 
-    state.driver=null;
+/*
+ * LINEログインしていない
+ */
 
-    state.userSelectedManually=false;
+if(
+!liff.isLoggedIn()
+){
 
-    el.driverSelect.value='';
+state.idToken =
+'';
 
-    el.inMode.disabled=true;
 
-    el.outMode.disabled=true;
-
-    el.uploadBtn.disabled=true;
-
-    setStatus(
-      '判別中',
-      false
-    );
-
-    /*
-     * まずdriver_master一覧だけ取得
-     * 取得しても誰も選択しない。
-     */
-
-    await loadDrivers();
-
-    /*
-     * その後に本人判別
-     */
-
-    setTimeout(
-      ()=>{
-
-        autoDetect();
-
-      },
-      150
-    );
-
-  }
+setStatus(
+'右から選択',
+false
 );
 
 
-/* =========================================================
-   END
-========================================================= */
+return;
+
+}
+
+
+state.idToken =
+
+liff.getIDToken() ||
+'';
+
+
+if(
+!state.idToken
+){
+
+setStatus(
+'右から選択',
+false
+);
+
+return;
+
+}
+
+
+/*
+ * Apps Scriptで本人照合
+ */
+
+const info =
+
+await callServer(
+'getDriverInfo'
+);
+
+
+if(
+state.userSelectedManually &&
+state.driver
+){
+
+return;
+
+}
+
+
+if(
+info &&
+info.found &&
+info.driverKey
+){
+
+const driver =
+
+findDriver(
+info.driverKey
+);
+
+
+if(driver){
+
+await selectDriver(
+driver,
+false
+);
+
+
+setStatus(
+'完了',
+true
+);
+
+
+return;
+
+}
+
+}
+
+
+setStatus(
+'右から選択',
+false
+);
+
+
+}catch(error){
+
+
+console.warn(
+'自動判別失敗',
+error
+);
+
+
+if(
+state.userSelectedManually &&
+state.driver
+){
+
+setStatus(
+'完了',
+true
+);
+
+}else{
+
+setStatus(
+'右から選択',
+false
+);
+
+}
+
+
+}
+
+}
+
+
+/* ============================================================
+   初期化
+============================================================ */
+
+window.addEventListener(
+'load',
+async()=>{
+
+
+buildNextTimeOptions();
+
+
+el.reportDate.value =
+today();
+
+
+el.startTime.value =
+nowTime();
+
+
+el.nextDate.value =
+tomorrow();
+
+
+el.nextTime.value =
+'08:00';
+
+
+el.memo.value =
+'';
+
+
+setMode(
+'in'
+);
+
+
+/*
+ * 起動時は人物未選択
+ */
+
+state.driver =
+null;
+
+
+state.userSelectedManually =
+false;
+
+
+el.inMode.disabled =
+true;
+
+
+el.outMode.disabled =
+true;
+
+
+el.uploadBtn.disabled =
+true;
+
+
+/*
+ * まず手動選択用の一覧を取得
+ *
+ * ★これが終わった時点で
+ * 「選択してください」を押せば
+ * 4人が出る。
+ */
+
+await loadDrivers();
+
+
+/*
+ * その後にLINE本人判別
+ */
+
+autoDetect();
+
+
+}
+);
 
 </script>
 
+
 </body>
+
 </html>
