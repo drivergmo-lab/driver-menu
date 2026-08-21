@@ -1,3882 +1,2751 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>運転手MENU</title>
+// ============================================================
+// 運転手MENU / LINE勤怠管理
+// 外部LIFF + Apps Script API対応版
+// 自動本人判別 + 手動人物選択対応
+// ============================================================
 
-<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 
-<style>
-:root{
-  --bg:#eef9ff;
-  --bg2:#f8fcff;
-  --card:#fff;
-  --line:#d5eaf7;
-  --text:#17324d;
-  --blue:#1676c7;
-  --green:#18824e;
-  --soft:#f6fbfe;
-  --shadow:0 12px 34px rgba(40,92,128,.10);
-}
+// ============================================================
+// ★★★★★ 設定 ★★★★★
+// ============================================================
 
-*{
-  box-sizing:border-box;
-}
+const DRIVER_MASTER_SHEET_NAME = 'driver_master';
+const SEND_LOG_SHEET_NAME = '送信ログ';
 
-html,
-body{
-  margin:0;
-  padding:0;
-}
+const API_CACHE_SECONDS = 60;
 
-body{
-  min-height:100vh;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Hiragino Sans",
-    "Yu Gothic",
-    Meiryo,
-    sans-serif;
-  color:var(--text);
-  background:
-    linear-gradient(
-      var(--bg),
-      var(--bg2)
-    );
-}
 
-button,
-input,
-select,
-textarea{
-  font:inherit;
-}
+// ============================================================
+// 1. Webアプリ表示
+// ============================================================
 
-button{
-  cursor:pointer;
-}
+function doGet(e) {
 
-.page{
-  width:min(760px,100%);
-  margin:0 auto;
-  padding:12px 10px 24px;
-}
+  if (
+    e &&
+    e.parameter &&
+    e.parameter.action === 'pollApi'
+  ) {
 
-
-/* ============================================================
-   ヘッダー
-   ============================================================ */
-
-.hero{
-  position:relative;
-  overflow:hidden;
-  padding:21px 10px 23px;
-  border-radius:26px;
-  text-align:center;
-
-  background:
-    linear-gradient(
-      180deg,
-      #bfeaff 0%,
-      #e9f9ff 70%,
-      #98dc83 70%,
-      #7ccf71 100%
-    );
-
-  box-shadow:var(--shadow);
-}
-
-.hero h1{
-  margin:0;
-  color:var(--blue);
-  font-size:30px;
-  line-height:1.15;
-  font-weight:900;
-  white-space:nowrap;
-}
-
-
-/* ============================================================
-   メイン
-   ============================================================ */
-
-.card{
-  margin-top:12px;
-  padding:13px;
-  border-radius:24px;
-  background:rgba(255,255,255,.97);
-  box-shadow:var(--shadow);
-}
-
-
-/* ============================================================
-   判別＋人物
-   ============================================================ */
-
-.top-row{
-  display:grid;
-  grid-template-columns:158px minmax(0,1fr);
-  gap:8px;
-  align-items:stretch;
-}
-
-.status{
-  min-height:78px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:7px;
-
-  padding:8px;
-
-  border-radius:20px;
-  background:#f3fbff;
-  border:1px solid var(--line);
-
-  color:var(--blue);
-  font-size:18px;
-  font-weight:900;
-  text-align:center;
-}
-
-.status.done{
-  background:#eefbf3;
-  border-color:#ccefd8;
-  color:var(--green);
-}
-
-.select-box{
-  padding:9px 11px;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:#f9fdff;
-}
-
-.select-box label,
-.field-title{
-  display:block;
-  margin-bottom:5px;
-  color:#637c90;
-  font-size:13px;
-  font-weight:900;
-}
-
-select,
-input[type="date"],
-input[type="time"],
-textarea{
-  width:100%;
-  border:1px solid #cfe4f3;
-  border-radius:12px;
-  background:#fff;
-  color:var(--text);
-  outline:none;
-}
-
-select,
-input[type="date"],
-input[type="time"]{
-  height:44px;
-  padding:0 10px;
-  font-size:16px;
-  font-weight:800;
-}
-
-textarea{
-  padding:10px 11px;
-  font-size:14px;
-  line-height:1.5;
-  resize:vertical;
-}
-
-select:focus,
-input:focus,
-textarea:focus{
-  border-color:#63b4ea;
-
-  box-shadow:
-    0
-    0
-    0
-    3px
-    rgba(99,180,234,.12);
-}
-
-
-/* ============================================================
-   今月担当
-   ============================================================ */
-
-.assignment{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  min-height:38px;
-
-  margin-top:8px;
-  padding:7px 10px;
-
-  border:1px solid var(--line);
-  border-radius:12px;
-
-  background:#f6fcff;
-
-  color:#496a82;
-
-  font-size:14px;
-  font-weight:900;
-
-  text-align:center;
-}
-
-.assignment.ready{
-  color:var(--blue);
-  background:#eef9ff;
-}
-
-
-/* ============================================================
-   出勤・退勤
-   ============================================================ */
-
-.mode-box{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-
-  gap:8px;
-
-  margin-top:10px;
-}
-
-.mode-btn{
-  min-height:90px;
-
-  border:0;
-  border-radius:20px;
-
-  font-size:28px;
-  font-weight:900;
-
-  transition:.12s;
-}
-
-.mode-btn:active{
-  transform:scale(.99);
-}
-
-.mode-btn.in{
-  background:
-    linear-gradient(
-      #73cdf8,
-      #7dd77a
-    );
-
-  color:#084e78;
-}
-
-.mode-btn.out{
-  background:
-    linear-gradient(
-      #1b357c,
-      #0e1e4d
-    );
-
-  color:#fff;
-}
-
-.mode-btn.off{
-  opacity:.38;
-  filter:grayscale(.18);
-}
-
-.guide{
-  margin:9px 4px;
-
-  color:var(--blue);
-
-  font-size:13px;
-  font-weight:900;
-
-  text-align:center;
-}
-
-
-/* ============================================================
-   写真
-   ============================================================ */
-
-.upload-btn{
-  width:100%;
-  min-height:54px;
-
-  border:1px solid #cfe8f7;
-  border-radius:17px;
-
-  background:#eaf7ff;
-
-  color:var(--blue);
-
-  font-size:17px;
-  font-weight:900;
-}
-
-.upload-btn:disabled{
-  opacity:.45;
-  cursor:not-allowed;
-}
-
-.notice{
-  display:none;
-
-  margin-top:9px;
-  padding:9px 11px;
-
-  border-radius:12px;
-
-  background:#f7fcff;
-
-  color:#5c7588;
-
-  font-size:12px;
-  line-height:1.45;
-
-  text-align:center;
-}
-
-.notice.show{
-  display:block;
-}
-
-.hidden{
-  display:none !important;
-}
-
-
-/* ============================================================
-   写真＋修正
-   ============================================================ */
-
-.preview{
-  display:none;
-  margin-top:11px;
-}
-
-.preview.show{
-  display:block;
-}
-
-.preview-box{
-  padding:12px;
-
-  border:1px solid var(--line);
-  border-radius:18px;
-
-  background:#fff;
-}
-
-.photo-preview{
-  display:block;
-
-  width:100%;
-  max-height:360px;
-
-  object-fit:contain;
-
-  border-radius:14px;
-
-  background:#eef4f8;
-}
-
-
-/* ============================================================
-   修正項目
-   配置
-   日付
-   出勤時間
-   退勤時間
-   次回出勤日
-   次回出勤時間
-   ============================================================ */
-
-.fields{
-  display:grid;
-
-  grid-template-columns:
-    1fr
-    1fr;
-
-  gap:7px;
-
-  margin-top:9px;
-}
-
-.field{
-  min-width:0;
-
-  padding:9px;
-
-  border:1px solid var(--line);
-  border-radius:14px;
-
-  background:var(--soft);
-}
-
-.field-title{
-  margin-bottom:4px;
-}
-
-#nextDate{
-  font-size:15px;
-  letter-spacing:-.4px;
-}
-
-
-/* ============================================================
-   残業
-   ============================================================ */
-
-.summary{
-  grid-column:1/-1;
-
-  padding:9px 10px;
-
-  border:1px solid var(--line);
-  border-radius:12px;
-
-  background:#fff;
-
-  color:#446276;
-
-  text-align:center;
-
-  font-size:13px;
-  font-weight:800;
-}
-
-.summary strong{
-  color:var(--blue);
-}
-
-
-/* ============================================================
-   報告文章
-   ============================================================ */
-
-.message-section{
-  margin-top:12px;
-}
-
-.message-title{
-  margin:0 0 7px;
-
-  color:var(--blue);
-
-  font-size:20px;
-  font-weight:900;
-
-  text-align:left;
-}
-
-.message-box{
-  padding:11px;
-
-  border:1px solid var(--line);
-  border-radius:16px;
-
-  background:#f7fcff;
-}
-
-
-/*
- * 報告文章の本文
- */
-.message-preview{
-  white-space:pre-line;
-
-  font-size:14px;
-  line-height:1.55;
-
-  color:#15446e;
-
-  font-weight:700;
-}
-
-
-/*
- * 【MEMO】の下の文章入力欄
- *
- * 「追加文章（任意）」の見出しは表示しない。
- */
-.memo-input{
-  display:block;
-
-  width:100%;
-
-  min-height:92px;
-
-  margin-top:10px;
-
-  padding:10px 11px;
-
-  border:
-    1px
-    solid
-    #cfe4f3;
-
-  border-radius:12px;
-
-  background:#fff;
-
-  color:var(--text);
-
-  font-size:14px;
-
-  line-height:1.55;
-
-  resize:vertical;
-
-  outline:none;
-}
-
-.memo-input::placeholder{
-  color:#93a8b7;
-}
-
-.memo-input:focus{
-  border-color:#63b4ea;
-
-  box-shadow:
-    0
-    0
-    0
-    3px
-    rgba(99,180,234,.12);
-}
-
-
-/* ============================================================
-   送信
-   ============================================================ */
-
-.send-btn{
-  width:100%;
-
-  min-height:54px;
-
-  margin-top:9px;
-
-  border:0;
-  border-radius:17px;
-
-  background:
-    linear-gradient(
-      #56baf0,
-      #2d88d8
-    );
-
-  color:#fff;
-
-  font-size:18px;
-  font-weight:900;
-}
-
-.send-btn:disabled{
-  opacity:.45;
-  cursor:not-allowed;
-}
-
-
-/* ============================================================
-   履歴
-   ============================================================ */
-
-.history{
-  margin-top:16px;
-  padding-top:13px;
-
-  border-top:
-    1px
-    solid
-    #e2eef6;
-}
-
-.history-title{
-  margin:0 0 8px;
-
-  color:var(--blue);
-
-  font-size:20px;
-  font-weight:900;
-
-  text-align:center;
-}
-
-.history-list{
-  list-style:none;
-
-  padding:0;
-  margin:0;
-}
-
-.history-list li{
-  display:grid;
-
-  grid-template-columns:
-    84px
-    42px
-    minmax(78px,1fr)
-    26px;
-
-  gap:4px;
-
-  align-items:center;
-
-  padding:9px 1px;
-
-  border-bottom:
-    1px
-    solid
-    #edf4fa;
-
-  color:#496173;
-
-  font-size:12px;
-
-  white-space:nowrap;
-}
-
-.history-date{
-  font-weight:800;
-}
-
-.history-type{
-  color:var(--blue);
-  font-weight:900;
-}
-
-.history-time{
-  color:var(--text);
-
-  font-weight:900;
-
-  overflow:hidden;
-
-  text-overflow:ellipsis;
-}
-
-.history-ok{
-  color:var(--green);
-
-  font-size:16px;
-
-  font-weight:900;
-
-  text-align:right;
-}
-
-.empty{
-  display:block !important;
-
-  text-align:center;
-
-  color:#7a90a3;
-}
-
-
-/* ============================================================
-   フッター
-   ============================================================ */
-
-.footer{
-  padding:14px 10px 4px;
-
-  color:#8aa0b2;
-
-  font-size:13px;
-
-  text-align:center;
-}
-
-
-/* ============================================================
-   スマホ
-   ============================================================ */
-
-@media(max-width:480px){
-
-  .page{
-    padding:
-      10px
-      9px
-      20px;
+    return handleApiPoll_(e);
   }
 
-  .hero{
-    padding:
-      20px
-      10px
-      21px;
-  }
 
-  .hero h1{
-    font-size:30px;
-  }
+  return HtmlService
 
-  .card{
-    padding:11px;
-  }
+    .createHtmlOutputFromFile('index')
 
-  .top-row{
-    grid-template-columns:
-      145px
-      minmax(0,1fr);
-  }
-
-  .status{
-    min-height:76px;
-    font-size:17px;
-  }
-
-  .mode-btn{
-    min-height:82px;
-    font-size:25px;
-  }
-
-  .history-list li{
-    grid-template-columns:
-      auto
-      auto
-      minmax(70px,1fr)
-      24px;
-  }
-
-}
-</style>
-</head>
-
-<body>
-
-<div class="page">
-
-
-<header class="hero">
-
-  <h1>
-    🚙 運転手MENU
-  </h1>
-
-</header>
-
-
-<main class="card">
-
-
-  <!-- ========================================================
-       判別＋人物
-       ======================================================== -->
-
-  <div class="top-row">
-
-
-    <div
-      id="status"
-      class="status"
-    >
-
-      <span id="statusIcon">
-        ⏰
-      </span>
-
-      <span id="statusText">
-        ⏳判別中⏳
-      </span>
-
-    </div>
-
-
-    <div class="select-box">
-
-      <label for="driverSelect">
-        選択
-      </label>
-
-
-      <select id="driverSelect">
-
-        <option value="">
-          ⏳判別中⏳
-        </option>
-
-      </select>
-
-    </div>
-
-  </div>
-
-
-  <!-- ========================================================
-       今月担当
-       ======================================================== -->
-
-  <div
-    id="assignment"
-    class="assignment"
-  >
-    👔 今月の担当：確認中...
-  </div>
-
-
-  <!-- ========================================================
-       出勤・退勤
-       ======================================================== -->
-
-  <div class="mode-box">
-
-    <button
-      id="inMode"
-      class="mode-btn in"
-      type="button"
-      disabled
-    >
-      ☀️出勤☀️
-    </button>
-
-
-    <button
-      id="outMode"
-      class="mode-btn out off"
-      type="button"
-      disabled
-    >
-      🌙退勤🌙
-    </button>
-
-  </div>
-
-
-  <div class="guide">
-    必要な場合は修正お願いします。
-  </div>
-
-
-  <!-- ========================================================
-       写真
-       ======================================================== -->
-
-  <input
-    id="photoInput"
-    type="file"
-    accept="image/*"
-    class="hidden"
-  >
-
-
-  <button
-    id="uploadBtn"
-    class="upload-btn"
-    type="button"
-    disabled
-  >
-    📷 写真を撮影・選択して読み取る
-  </button>
-
-
-  <div
-    id="notice"
-    class="notice"
-  ></div>
-
-
-  <!-- ========================================================
-       写真＋修正
-       ======================================================== -->
-
-  <section
-    id="preview"
-    class="preview"
-  >
-
-    <div class="preview-box">
-
-
-      <!-- 写真 -->
-
-      <img
-        id="photoPreview"
-        class="photo-preview"
-        alt="勤怠写真"
-      >
-
-
-      <!-- ====================================================
-           修正項目
-           日付
-           出勤時間
-           退勤時間
-           次回出勤日
-           次回出勤時間
-           ==================================================== -->
-
-      <div class="fields">
-
-
-        <!-- 日付 -->
-
-        <div class="field">
-
-          <label
-            class="field-title"
-            for="reportDate"
-          >
-            日付
-          </label>
-
-          <input
-            id="reportDate"
-            type="date"
-          >
-
-        </div>
-
-
-        <!-- 出勤時間 -->
-
-        <div class="field">
-
-          <label
-            class="field-title"
-            for="startTime"
-          >
-            出勤時間
-          </label>
-
-          <input
-            id="startTime"
-            type="time"
-          >
-
-        </div>
-
-
-        <!-- 退勤時間 -->
-
-        <div
-          id="endField"
-          class="field hidden"
-        >
-
-          <label
-            class="field-title"
-            for="endTime"
-          >
-            退勤時間
-          </label>
-
-          <input
-            id="endTime"
-            type="time"
-          >
-
-        </div>
-
-
-        <!-- 次回出勤日 -->
-
-        <div
-          id="nextDateField"
-          class="field hidden"
-        >
-
-          <label
-            class="field-title"
-            for="nextDate"
-          >
-            次回出勤日
-          </label>
-
-          <input
-            id="nextDate"
-            type="date"
-          >
-
-        </div>
-
-
-        <!-- 次回出勤時間 -->
-
-        <div
-          id="nextTimeField"
-          class="field hidden"
-        >
-
-          <label
-            class="field-title"
-            for="nextTime"
-          >
-            次回出勤時間
-          </label>
-
-          <select
-            id="nextTime"
-          ></select>
-
-        </div>
-
-
-        <!-- 残業 -->
-
-        <div
-          id="summary"
-          class="summary"
-        >
-
-          前回残業
-          <strong>0:00</strong>
-
-          　
-
-          月間合計
-          <strong>0:00</strong>
-
-        </div>
-
-
-      </div>
-
-
-      <!-- ====================================================
-           報告文章
-           ==================================================== -->
-
-      <div class="message-section">
-
-
-        <div class="message-title">
-          報告文章
-        </div>
-
-
-        <div class="message-box">
-
-
-          <!--
-            ここには【MEMO】までを表示。
-            入力した文章はその直下の入力欄へ。
-          -->
-
-          <div
-            id="messagePreview"
-            class="message-preview"
-          ></div>
-
-
-          <!--
-            【MEMO】の下の文章入力欄
-
-            「追加文章（任意）」という文字は
-            表示しない。
-          -->
-
-          <textarea
-            id="memo"
-            class="memo-input"
-            placeholder="文章を入力できます"
-          ></textarea>
-
-
-        </div>
-
-      </div>
-
-
-      <!-- ====================================================
-           送信
-           ==================================================== -->
-
-      <button
-        id="sendBtn"
-        class="send-btn"
-        type="button"
-        disabled
-      >
-        写真＋報告文章を送信
-      </button>
-
-
-    </div>
-
-  </section>
-
-
-  <!-- ========================================================
-       履歴
-       ======================================================== -->
-
-  <section class="history">
-
-
-    <h2 class="history-title">
-      ＜履歴＞
-    </h2>
-
-
-    <ul
-      id="historyList"
-      class="history-list"
-    >
-
-      <li class="empty">
-        
-      </li>
-
-    </ul>
-
-
-  </section>
-
-
-</main>
-
-
-<footer class="footer">
-  勤怠管理Bot
-</footer>
-
-
-</div>
-
-
-<script>
-
-/* ============================================================
-   設定
-   ============================================================ */
-
-const API_URL =
-  'https://script.google.com/macros/s/AKfycbySmhEE3JyfWGxEylyWscOtqL3FTIH9Ww6nybcAGb0f_kw2QXVP-LaoVtT1eFRtv-4Lyw/exec';
-
-const LIFF_ID =
-  '2011011273-HIdBF1sM';
-
-const AUTO_DETECT_TIMEOUT =
-  5000;
-
-
-/* ============================================================
-   DOM
-   ============================================================ */
-
-const el = {
-
-  status:
-    document.getElementById(
-      'status'
-    ),
-
-  statusIcon:
-    document.getElementById(
-      'statusIcon'
-    ),
-
-  statusText:
-    document.getElementById(
-      'statusText'
-    ),
-
-  driverSelect:
-    document.getElementById(
-      'driverSelect'
-    ),
-
-  assignment:
-    document.getElementById(
-      'assignment'
-    ),
-
-  inMode:
-    document.getElementById(
-      'inMode'
-    ),
-
-  outMode:
-    document.getElementById(
-      'outMode'
-    ),
-
-  uploadBtn:
-    document.getElementById(
-      'uploadBtn'
-    ),
-
-  photoInput:
-    document.getElementById(
-      'photoInput'
-    ),
-
-  notice:
-    document.getElementById(
-      'notice'
-    ),
-
-  preview:
-    document.getElementById(
-      'preview'
-    ),
-
-  photoPreview:
-    document.getElementById(
-      'photoPreview'
-    ),
-
-  reportDate:
-    document.getElementById(
-      'reportDate'
-    ),
-
-  startTime:
-    document.getElementById(
-      'startTime'
-    ),
-
-  endField:
-    document.getElementById(
-      'endField'
-    ),
-
-  endTime:
-    document.getElementById(
-      'endTime'
-    ),
-
-  nextDateField:
-    document.getElementById(
-      'nextDateField'
-    ),
-
-  nextDate:
-    document.getElementById(
-      'nextDate'
-    ),
-
-  nextTimeField:
-    document.getElementById(
-      'nextTimeField'
-    ),
-
-  nextTime:
-    document.getElementById(
-      'nextTime'
-    ),
-
-  summary:
-    document.getElementById(
-      'summary'
-    ),
-
-  messagePreview:
-    document.getElementById(
-      'messagePreview'
-    ),
-
-  memo:
-    document.getElementById(
-      'memo'
-    ),
-
-  sendBtn:
-    document.getElementById(
-      'sendBtn'
-    ),
-
-  historyList:
-    document.getElementById(
-      'historyList'
+    .setTitle(
+      '運転手MENU'
     )
 
-};
+    .setXFrameOptionsMode(
+      HtmlService.XFrameOptionsMode.ALLOWALL
+    );
+}
 
 
-/* ============================================================
-   STATE
-   ============================================================ */
+// ============================================================
+// 2. POST入口
+// ============================================================
 
-const state = {
+function doPost(e) {
 
-  idToken:'',
+  try {
 
-  drivers:[],
+    // --------------------------------------------------------
+    // 外部LIFF API
+    // --------------------------------------------------------
 
-  driver:null,
+    if (
+      e &&
+      e.parameter &&
+      e.parameter.action === 'api'
+    ) {
 
-  mode:'in',
-
-  draft:null,
-
-  userSelectedManually:false,
-
-  workState:{
-    hasWork:false,
-    startTime:''
-  },
-
-  summary:{
-    previousOvertime:'0:00',
-    monthlyOvertime:'0:00'
-  },
-
-  history:[]
-
-};
-
-
-/* ============================================================
-   次回出勤時間
-   00:00 ～ 23:59 ＋ ??:??
-   ============================================================ */
-
-function buildNextTimeOptions(){
-
-  el.nextTime.innerHTML = '';
-
-  for(
-    let hour=0;
-    hour<24;
-    hour++
-  ){
-
-    for(
-      let minute=0;
-      minute<60;
-      minute++
-    ){
-
-      const value =
-        String(hour).padStart(2,'0')+
-        ':'+
-        String(minute).padStart(2,'0');
-
-      const option =
-        document.createElement(
-          'option'
-        );
-
-      option.value =
-        value;
-
-      option.textContent =
-        value;
-
-      el.nextTime.appendChild(
-        option
-      );
-
+      return handleApiPost_(e);
     }
 
-  }
 
+    // --------------------------------------------------------
+    // LINE Webhook
+    // --------------------------------------------------------
 
-  const unknown =
-    document.createElement(
-      'option'
-    );
+    return handleLineWebhook_(e);
 
-  unknown.value =
-    '??:??';
-
-  unknown.textContent =
-    '??:??';
-
-  el.nextTime.appendChild(
-    unknown
-  );
-
-
-  el.nextTime.value =
-    '08:00';
-
-}
-
-
-/* ============================================================
-   共通
-   ============================================================ */
-
-function pad2(
-  value
-){
-
-  return String(
-    value
-  ).padStart(
-    2,
-    '0'
-  );
-
-}
-
-
-function today(){
-
-  const d =
-    new Date();
-
-  return (
-    d.getFullYear()+
-    '-' +
-    pad2(
-      d.getMonth()+1
-    )+
-    '-' +
-    pad2(
-      d.getDate()
-    )
-  );
-
-}
-
-
-function nowTime(){
-
-  const d =
-    new Date();
-
-  return (
-    pad2(
-      d.getHours()
-    )+
-    ':'+
-    pad2(
-      d.getMinutes()
-    )
-  );
-
-}
-
-
-function tomorrow(){
-
-  const d =
-    new Date();
-
-  d.setDate(
-    d.getDate()+1
-  );
-
-  return (
-    d.getFullYear()+
-    '-' +
-    pad2(
-      d.getMonth()+1
-    )+
-    '-' +
-    pad2(
-      d.getDate()
-    )
-  );
-
-}
-
-
-function dateText(
-  value
-){
-
-  if(
-    !value
-  ){
-    return '';
-  }
-
-  const d =
-    new Date(
-      value+
-      'T00:00:00'
-    );
-
-  if(
-    Number.isNaN(
-      d.getTime()
-    )
-  ){
-    return value;
-  }
-
-  const week=[
-    '日',
-    '月',
-    '火',
-    '水',
-    '木',
-    '金',
-    '土'
-  ];
-
-  return (
-    d.getFullYear()+
-    '/' +
-    (d.getMonth()+1)+
-    '/' +
-    d.getDate()+
-    '('+
-    week[d.getDay()]+
-    ')'
-  );
-
-}
-
-
-function shortDate(
-  value
-){
-
-  if(
-    !value
-  ){
-    return '';
-  }
-
-  const d =
-    new Date(
-      value+
-      'T00:00:00'
-    );
-
-  if(
-    Number.isNaN(
-      d.getTime()
-    )
-  ){
-    return value;
-  }
-
-  const week=[
-    '日',
-    '月',
-    '火',
-    '水',
-    '木',
-    '金',
-    '土'
-  ];
-
-  return (
-    (d.getMonth()+1)+
-    '/' +
-    d.getDate()+
-    '('+
-    week[d.getDay()]+
-    ')'
-  );
-
-}
-
-
-function nextAttendancePrefix(
-  value
-){
-
-  if(
-    !value
-  ){
-    return '';
-  }
-
-  const base =
-    new Date(
-      today()+
-      'T00:00:00'
-    );
-
-  const target =
-    new Date(
-      value+
-      'T00:00:00'
-    );
-
-  const baseDay =
-    base.getDay() || 7;
-
-  const targetDay =
-    target.getDay() || 7;
-
-  const monday =
-    new Date(
-      base
-    );
-
-  monday.setDate(
-    base.getDate()-
-    baseDay+
-    1
-  );
-
-  const nextMonday =
-    new Date(
-      monday
-    );
-
-  nextMonday.setDate(
-    monday.getDate()+7
-  );
-
-  const targetMonday =
-    new Date(
-      target
-    );
-
-  targetMonday.setDate(
-    target.getDate()-
-    targetDay+
-    1
-  );
-
-  if(
-    nextMonday.getTime()===
-    targetMonday.getTime()
-  ){
-
-    return '来週';
-
-  }
-
-  return '';
-
-}
-
-
-function escapeHtml(
-  value
-){
-
-  return String(
-    value ?? ''
-  )
-  .replace(
-    /&/g,
-    '&amp;'
-  )
-  .replace(
-    /</g,
-    '&lt;'
-  )
-  .replace(
-    />/g,
-    '&gt;'
-  )
-  .replace(
-    /"/g,
-    '&quot;'
-  )
-  .replace(
-    /'/g,
-    '&#39;'
-  );
-
-}
-
-
-function setStatus(
-  text,
-  done
-){
-
-  el.statusText.textContent =
-    text;
-
-  el.statusIcon.textContent =
-    done
-      ? '✓'
-      : '⏰';
-
-  el.status.classList.toggle(
-    'done',
-    !!done
-  );
-
-}
-
-
-function showNotice(
-  text
-){
-
-  el.notice.textContent =
-    text || '';
-
-  el.notice.classList.toggle(
-    'show',
-    !!text
-  );
-
-}
-
-
-function withTimeout(
-  promise,
-  milliseconds
-){
-
-  return Promise.race([
-
-    promise,
-
-    new Promise(
-      (
-        resolve,
-        reject
-      )=>{
-
-        setTimeout(
-          ()=>{
-            reject(
-              new Error(
-                'timeout'
-              )
-            );
-          },
-          milliseconds
-        );
-
-      }
-    )
-
-  ]);
-
-}
-
-
-/* ============================================================
-   API
-   ============================================================ */
-
-async function callServer(
-  operation,
-  data={}
-){
-
-  return new Promise(
-    (
-      resolve,
-      reject
-    )=>{
-
-      const requestId =
-        'req_'+
-        Date.now()+
-        '_'+
-        Math.random()
-          .toString(36)
-          .slice(2);
-
-      const params =
-        new URLSearchParams();
-
-      params.append(
-        'action',
-        'api'
-      );
-
-      params.append(
-        'operation',
-        operation
-      );
-
-      params.append(
-        'requestId',
-        requestId
-      );
-
-      params.append(
-        'idToken',
-        state.idToken || ''
-      );
-
-      Object.keys(
-        data
-      ).forEach(
-        key=>{
-
-          params.append(
-            key,
-            data[key] ?? ''
-          );
-
-        }
-      );
-
-
-      fetch(
-        API_URL,
-        {
-          method:'POST',
-
-          headers:{
-            'Content-Type':
-              'application/x-www-form-urlencoded;charset=UTF-8'
-          },
-
-          body:
-            params.toString(),
-
-          mode:'no-cors'
-        }
-      )
-      .catch(
-        error=>{
-
-          console.warn(
-            'API POST失敗',
-            error
-          );
-
-        }
-      );
-
-
-      pollApi(
-        requestId,
-        resolve,
-        reject,
-        0
-      );
-
-    }
-  );
-
-}
-
-
-function pollApi(
-  requestId,
-  resolve,
-  reject,
-  attempt
-){
-
-  if(
-    attempt>=50
-  ){
-
-    reject(
-      new Error(
-        'サーバー応答がタイムアウトしました'
-      )
-    );
-
-    return;
-  }
-
-
-  const callback =
-    'gasCallback_'+
-    Date.now()+
-    '_'+
-    attempt;
-
-
-  const script =
-    document.createElement(
-      'script'
-    );
-
-
-  let finished =
-    false;
-
-
-  function cleanup(){
-
-    if(
-      script.parentNode
-    ){
-
-      script.parentNode.removeChild(
-        script
-      );
-
-    }
-
-    try{
-
-      delete window[
-        callback
-      ];
-
-    }catch(_){
-
-      window[
-        callback
-      ] =
-        undefined;
-
-    }
-
-  }
-
-
-  window[
-    callback
-  ] =
-    function(response){
-
-      if(
-        finished
-      ){
-        return;
-      }
-
-      finished =
-        true;
-
-      cleanup();
-
-
-      if(
-        response &&
-        (
-          response.status ===
-            'pending' ||
-          response.status ===
-            'processing'
-        )
-      ){
-
-        setTimeout(
-          ()=>{
-
-            pollApi(
-              requestId,
-              resolve,
-              reject,
-              attempt+1
-            );
-
-          },
-          500
-        );
-
-        return;
-      }
-
-
-      if(
-        !response ||
-        response.ok !== true
-      ){
-
-        reject(
-          new Error(
-            response &&
-            response.error
-              ? response.error
-              : 'Apps Script APIエラー'
-          )
-        );
-
-        return;
-      }
-
-
-      resolve(
-        response.data
-      );
-
-    };
-
-
-  script.onerror =
-    function(){
-
-      if(
-        finished
-      ){
-        return;
-      }
-
-      finished =
-        true;
-
-      cleanup();
-
-
-      setTimeout(
-        ()=>{
-
-          pollApi(
-            requestId,
-            resolve,
-            reject,
-            attempt+1
-          );
-
-        },
-        500
-      );
-
-    };
-
-
-  script.src =
-    API_URL+
-    '?action=pollApi'+
-    '&requestId='+
-    encodeURIComponent(
-      requestId
-    )+
-    '&callback='+
-    encodeURIComponent(
-      callback
-    )+
-    '&_='+
-    Date.now();
-
-
-  document.body.appendChild(
-    script
-  );
-
-}
-
-
-/* ============================================================
-   人物一覧
-   ============================================================ */
-
-function findDriver(
-  key
-){
-
-  return (
-    state.drivers.find(
-      driver =>
-        driver.driverKey ===
-        key
-    ) || null
-  );
-
-}
-
-
-function renderDrivers(){
-
-  const current =
-    state.driver
-      ? state.driver.driverKey
-      : '';
-
-
-  el.driverSelect.innerHTML =
-    '<option value="">選択して下さい</option>';
-
-
-  state.drivers.forEach(
-    driver=>{
-
-      const option =
-        document.createElement(
-          'option'
-        );
-
-      option.value =
-        driver.driverKey;
-
-      option.textContent =
-        driver.displayName;
-
-      el.driverSelect.appendChild(
-        option
-      );
-
-    }
-  );
-
-
-  if(
-    current
-  ){
-
-    el.driverSelect.value =
-      current;
-
-  }
-
-}
-
-
-async function loadDrivers(){
-
-  try{
-
-    const list =
-      await callServer(
-        'getDriverList'
-      );
-
-
-    state.drivers =
-      Array.isArray(
-        list
-      )
-        ? list
-        : [];
-
-
-    renderDrivers();
-
-  }catch(error){
+  } catch (
+    error
+  ) {
 
     console.error(
-      '人物一覧取得失敗',
       error
     );
 
-  }
 
+    return textOut_(
+      'error: ' +
+      (
+        error.message ||
+        String(error)
+      )
+    );
+  }
 }
 
 
-/* ============================================================
-   人物選択
-   ============================================================ */
+// ============================================================
+// 3. 外部LIFF API POST
+// ============================================================
 
-async function selectDriver(
-  driver,
-  manual=false
-){
+function handleApiPost_(e) {
 
-  if(
-    !driver
-  ){
+  const requestId =
+    String(
+      e.parameter.requestId ||
+      ''
+    ).trim();
 
-    state.driver =
-      null;
 
-    el.inMode.disabled =
-      true;
+  if (!requestId) {
 
-    el.outMode.disabled =
-      true;
-
-    el.uploadBtn.disabled =
-      true;
-
-    el.assignment.textContent =
-      '👔 今月の担当：未選択';
-
-    el.historyList.innerHTML =
-      '<li class="empty"></li>';
-
-    setStatus(
-      '人物選択待ち',
-      false
+    return textOut_(
+      'requestId missing'
     );
-
-    return;
   }
 
 
-  if(
-    manual
-  ){
-
-    state.userSelectedManually =
-      true;
-
-  }
+  const cache =
+    CacheService
+      .getScriptCache();
 
 
-  state.driver =
-    driver;
+  cache.put(
 
+    requestId,
 
-  el.driverSelect.value =
-    driver.driverKey;
+    JSON.stringify({
 
+      status:
+        'processing'
 
-  el.inMode.disabled =
-    false;
+    }),
 
-  el.outMode.disabled =
-    false;
+    API_CACHE_SECONDS
 
-  el.uploadBtn.disabled =
-    false;
-
-
-  setStatus(
-    '完了',
-    true
   );
 
 
-  await refreshSelectedDriverData();
+  try {
 
-}
+    const operation =
+      String(
+        e.parameter.operation ||
+        ''
+      ).trim();
 
 
-/* ============================================================
-   選択人物データ
-   ============================================================ */
+    let result;
 
-async function refreshSelectedDriverData(){
 
-  if(
-    !state.driver ||
-    !state.driver.driverKey
-  ){
+    // --------------------------------------------------------
+    // 本人情報取得
+    // --------------------------------------------------------
 
-    return;
+    if (
+      operation ===
+      'getDriverInfo'
+    ) {
 
+      const idToken =
+        String(
+          e.parameter.idToken ||
+          ''
+        ).trim();
+
+
+      result =
+        getMyDriverInfoByIdToken(
+          idToken
+        );
+
+
+    // --------------------------------------------------------
+    // driver_master一覧取得
+    // --------------------------------------------------------
+
+    } else if (
+      operation ===
+      'getDriverList'
+    ) {
+
+      result =
+        getDriverList_();
+
+
+    // --------------------------------------------------------
+    // 勤怠送信
+    // --------------------------------------------------------
+
+    } else if (
+      operation ===
+      'sendAttendance'
+    ) {
+
+      const idToken =
+        String(
+          e.parameter.idToken ||
+          ''
+        ).trim();
+
+
+      const message =
+        String(
+          e.parameter.message ||
+          ''
+        ).trim();
+
+
+      const selectedDriverKey =
+        String(
+          e.parameter.selectedDriverKey ||
+          ''
+        ).trim();
+
+
+      result =
+        sendAttendanceByIdToken_(
+          idToken,
+          message,
+          selectedDriverKey
+        );
+
+
+    } else if (
+      operation ===
+      'getManagementData'
+    ) {
+
+      const sheetType =
+        String(
+          e.parameter.sheetType ||
+          ''
+        ).trim();
+
+      const selectedDriverKey =
+        String(
+          e.parameter.selectedDriverKey ||
+          ''
+        ).trim();
+
+      result =
+        getManagementData_(
+          sheetType,
+          selectedDriverKey
+        );
+
+
+    } else if (
+      operation ===
+      'saveManagementData'
+    ) {
+
+      const sheetType =
+        String(
+          e.parameter.sheetType ||
+          ''
+        ).trim();
+
+      const selectedDriverKey =
+        String(
+          e.parameter.selectedDriverKey ||
+          ''
+        ).trim();
+
+      const payload =
+        String(
+          e.parameter.payload ||
+          ''
+        ).trim();
+
+      result =
+        saveManagementData_(
+          sheetType,
+          selectedDriverKey,
+          payload
+        );
+
+
+    } else {
+
+      throw new Error(
+        '不明なAPIです: ' +
+        operation
+      );
+    }
+
+
+    cache.put(
+
+      requestId,
+
+      JSON.stringify({
+
+        status:
+          'done',
+
+        ok:
+          true,
+
+        data:
+          result
+
+      }),
+
+      API_CACHE_SECONDS
+
+    );
+
+
+  } catch (
+    error
+  ) {
+
+    console.error(
+      error
+    );
+
+
+    cache.put(
+
+      requestId,
+
+      JSON.stringify({
+
+        status:
+          'done',
+
+        ok:
+          false,
+
+        error:
+          error &&
+          error.message
+            ? error.message
+            : String(error)
+
+      }),
+
+      API_CACHE_SECONDS
+
+    );
   }
 
 
-  const driverKey =
-    state.driver.driverKey;
+  return textOut_(
+    'OK'
+  );
+}
 
 
-  const results =
-    await Promise.allSettled([
+// ============================================================
+// 4. API結果取得
+// ============================================================
 
-      callServer(
-        'getTodayHistory',
-        {
-          selectedDriverKey:
-            driverKey
-        }
-      ),
+function handleApiPoll_(e) {
 
-      callServer(
-        'getWorkState',
-        {
-          selectedDriverKey:
-            driverKey
-        }
-      ),
+  const requestId =
+    String(
+      e.parameter.requestId ||
+      ''
+    ).trim();
 
-      callServer(
-        'getAttendanceSummary',
-        {
-          selectedDriverKey:
-            driverKey
-        }
-      )
+
+  const callback =
+    String(
+      e.parameter.callback ||
+      ''
+    ).trim();
+
+
+  if (
+    !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(
+      callback
+    )
+  ) {
+
+    return textOut_(
+      'invalid callback'
+    );
+  }
+
+
+  if (!requestId) {
+
+    return javascriptOut_(
+      callback,
+      {
+
+        status:
+          'error',
+
+        ok:
+          false,
+
+        error:
+          'requestIdがありません'
+
+      }
+    );
+  }
+
+
+  const raw =
+    CacheService
+
+      .getScriptCache()
+
+      .get(
+        requestId
+      );
+
+
+  if (!raw) {
+
+    return javascriptOut_(
+      callback,
+      {
+
+        status:
+          'pending'
+
+      }
+    );
+  }
+
+
+  try {
+
+    const data =
+      JSON.parse(
+        raw
+      );
+
+
+    return javascriptOut_(
+      callback,
+      data
+    );
+
+
+  } catch (
+    error
+  ) {
+
+    return javascriptOut_(
+      callback,
+      {
+
+        status:
+          'error',
+
+        ok:
+          false,
+
+        error:
+          'API結果の解析に失敗しました'
+
+      }
+    );
+  }
+}
+
+
+// ============================================================
+// 5. JSONP
+// ============================================================
+
+function javascriptOut_(
+  callback,
+  data
+) {
+
+  const json =
+    JSON.stringify(
+      data
+    )
+
+    .replace(
+      /</g,
+      '\\u003c'
+    )
+
+    .replace(
+      />/g,
+      '\\u003e'
+    )
+
+    .replace(
+      /&/g,
+      '\\u0026'
+    );
+
+
+  return ContentService
+
+    .createTextOutput(
+      callback +
+      '(' +
+      json +
+      ');'
+    )
+
+    .setMimeType(
+      ContentService.MimeType.JAVASCRIPT
+    );
+}
+
+
+// ============================================================
+// 6. LINE Webhook
+// ============================================================
+
+function handleLineWebhook_(e) {
+
+  if (
+    !e ||
+    !e.postData ||
+    !e.postData.contents
+  ) {
+
+    return textOut_(
+      'no postData'
+    );
+  }
+
+
+  const payload =
+    JSON.parse(
+      e.postData.contents
+    );
+
+
+  const events =
+    payload.events ||
+    [];
+
+
+  if (
+    !events.length
+  ) {
+
+    return textOut_(
+      'ok'
+    );
+  }
+
+
+  for (
+    const event of events
+  ) {
+
+    handleWebhookEvent_(
+      event
+    );
+  }
+
+
+  return textOut_(
+    'ok'
+  );
+}
+
+
+// ============================================================
+// 7. LINE Webhookイベント
+// ============================================================
+
+function handleWebhookEvent_(
+  event
+) {
+
+  if (!event) {
+    return;
+  }
+
+
+  const source =
+    event.source ||
+    {};
+
+
+  // ----------------------------------------------------------
+  // Botがグループに追加された
+  // ----------------------------------------------------------
+
+  if (
+    event.type ===
+    'join'
+  ) {
+
+    if (
+      source.groupId
+    ) {
+
+      console.log(
+        'Bot joined group: ' +
+        source.groupId
+      );
+
+
+      const groupName =
+        getGroupName_(
+          source.groupId
+        );
+
+
+      console.log(
+        'Group name: ' +
+        groupName
+      );
+    }
+
+
+    return;
+  }
+
+
+  // ----------------------------------------------------------
+  // テキスト以外
+  // ----------------------------------------------------------
+
+  if (
+    event.type !==
+      'message' ||
+
+    !event.message ||
+
+    event.message.type !==
+      'text'
+  ) {
+
+    return;
+  }
+
+
+  const message =
+    String(
+      event.message.text ||
+      ''
+    ).trim();
+
+
+  if (!message) {
+    return;
+  }
+
+
+  // ----------------------------------------------------------
+  // グループID確認
+  // ----------------------------------------------------------
+
+  if (
+    message ===
+    'グループID確認'
+  ) {
+
+    let replyMessage =
+      '';
+
+
+    if (
+      source.groupId
+    ) {
+
+      const groupName =
+        getGroupName_(
+          source.groupId
+        );
+
+
+      replyMessage =
+        'グループ名\n' +
+        groupName +
+        '\n\n' +
+        'グループID\n' +
+        source.groupId;
+
+
+    } else if (
+      source.roomId
+    ) {
+
+      replyMessage =
+        'このルームのIDです。\n' +
+        source.roomId;
+
+
+    } else if (
+      source.userId
+    ) {
+
+      replyMessage =
+        'このトークは個人トークです。\n' +
+        'userId:\n' +
+        source.userId;
+
+
+    } else {
+
+      replyMessage =
+        'IDを取得できませんでした。';
+    }
+
+
+    replyText_(
+      event.replyToken,
+      replyMessage
+    );
+
+
+    return;
+  }
+
+
+  // ----------------------------------------------------------
+  // 通常LINE勤怠報告
+  // ----------------------------------------------------------
+
+  saveAttendanceFromLineMessage_(
+    message,
+    source
+  );
+}
+
+
+// ============================================================
+// 8. LINE勤怠報告保存
+//
+// タブ名:
+//   LINEグループ名（2026年08月）
+//
+// B列:
+//   LINEグループ名
+// ============================================================
+
+function saveAttendanceFromLineMessage_(
+  message,
+  source
+) {
+
+  const workTimeMatch =
+    message.match(
+      /稼働[)）]\s*(\d{1,2}:\d{2})-(\d{1,2}:\d{2})/
+    );
+
+
+  if (!workTimeMatch) {
+    return;
+  }
+
+
+  const dateMatch =
+    message.match(
+      /(\d{4})\/(\d{1,2})\/(\d{1,2})/
+    );
+
+
+  if (!dateMatch) {
+    return;
+  }
+
+
+  const startTime =
+    workTimeMatch[1];
+
+
+  const endTime =
+    workTimeMatch[2];
+
+
+  const year =
+    dateMatch[1];
+
+
+  const month =
+    ('0' + dateMatch[2])
+      .slice(-2);
+
+
+  const workDate =
+    dateMatch[1] +
+    '/' +
+    dateMatch[2] +
+    '/' +
+    dateMatch[3];
+
+
+  // ----------------------------------------------------------
+  // driver_masterから本人特定
+  // ----------------------------------------------------------
+
+  let driver =
+    null;
+
+
+  if (
+    source &&
+    source.groupId
+  ) {
+
+    driver =
+      getDriverByGroupId_(
+        source.groupId
+      );
+  }
+
+
+  if (
+    !driver &&
+    source &&
+    source.userId
+  ) {
+
+    driver =
+      getDriverByLineUserId_(
+        source.userId
+      );
+  }
+
+
+  // ----------------------------------------------------------
+  // LINEグループ名
+  // ----------------------------------------------------------
+
+  let groupName =
+    '';
+
+
+  if (
+    source &&
+    source.groupId
+  ) {
+
+    groupName =
+      getGroupName_(
+        source.groupId
+      );
+  }
+
+
+  if (
+    !groupName &&
+    driver &&
+    driver.groupId
+  ) {
+
+    groupName =
+      getGroupName_(
+        driver.groupId
+      );
+  }
+
+
+  if (!groupName) {
+
+    groupName =
+      '不明なグループ';
+  }
+
+
+  // ----------------------------------------------------------
+  // 勤務時間計算
+  // ----------------------------------------------------------
+
+  const workDetails =
+    calculateWorkDetails_(
+      startTime,
+      endTime
+    );
+
+
+  // ----------------------------------------------------------
+  // 月別シート
+  // ----------------------------------------------------------
+
+  const ss =
+    getSpreadsheet_();
+
+
+  const sheetName =
+    sanitizeSheetName_(
+      groupName +
+      '（' +
+      year +
+      '年' +
+      month +
+      '月）'
+    );
+
+
+  let sheet =
+    ss.getSheetByName(
+      sheetName
+    );
+
+
+  // ----------------------------------------------------------
+  // 新規シート
+  // ----------------------------------------------------------
+
+  if (!sheet) {
+
+    sheet =
+      ss.insertSheet(
+        sheetName
+      );
+
+
+    sheet.appendRow([
+
+      '勤務日',
+      '名前',
+      '業務開始',
+      '業務終了',
+      '実働時間',
+      '残業時間',
+      '深夜時間',
+      '受信日時'
 
     ]);
 
 
-  if(
-    results[0].status ===
-    'fulfilled'
-  ){
+    setSheetColor_(
+      sheet,
+      driver
+        ? driver.displayName
+        : groupName
+    );
+  }
 
-    state.history =
-      Array.isArray(
-        results[0].value
+
+  setSheetColor_(
+    sheet,
+    driver
+      ? driver.displayName
+      : groupName
+  );
+
+
+  // ----------------------------------------------------------
+  // 合計行削除
+  // ----------------------------------------------------------
+
+  let lastRow =
+    sheet.getLastRow();
+
+
+  if (
+    lastRow > 1 &&
+    sheet
+      .getRange(
+        lastRow,
+        1
       )
-        ? results[0].value
-        : [];
+      .getValue() ===
+      '合計'
+  ) {
 
-
-    renderHistory(
-      state.history
+    sheet.deleteRow(
+      lastRow
     );
-
-  }else{
-
-    el.historyList.innerHTML =
-      '<li class="empty">履歴を取得できませんでした</li>';
-
   }
 
 
-  if(
-    results[1].status ===
-    'fulfilled'
-  ){
+  // ----------------------------------------------------------
+  // 勤怠行
+  // ----------------------------------------------------------
 
-    state.workState =
-      results[1].value || {
-        hasWork:false,
-        startTime:''
-      };
-
-  }
+  const now =
+    new Date();
 
 
-  if(
-    results[2].status ===
-    'fulfilled'
-  ){
+  sheet.appendRow([
 
-    state.summary =
-      results[2].value || {
-        previousOvertime:'0:00',
-        monthlyOvertime:'0:00'
-      };
+    workDate,
 
+    groupName,
 
-    renderSummary();
+    startTime,
 
-  }
+    endTime,
 
+    workDetails.total,
 
-  try{
+    workDetails.overtime,
 
-    const result =
-      await callServer(
-        'getCurrentAssignment',
-        {
-          selectedDriverKey:
-            driverKey
-        }
-      );
+    workDetails.midnight,
+
+    Utilities.formatDate(
+      now,
+      'Asia/Tokyo',
+      'yyyy/MM/dd HH:mm:ss'
+    )
+
+  ]);
 
 
-    renderAssignment(
-      result
+  // ----------------------------------------------------------
+  // 合計行
+  // ----------------------------------------------------------
+
+  lastRow =
+    sheet.getLastRow();
+
+
+  sheet.appendRow([
+
+    '合計',
+    '',
+    '',
+    '',
+
+    '=SUM(E2:E' +
+    lastRow +
+    ')',
+
+    '=SUM(F2:F' +
+    lastRow +
+    ')',
+
+    '=SUM(G2:G' +
+    lastRow +
+    ')',
+
+    ''
+
+  ]);
+
+
+  sheet
+    .getRange(
+      sheet.getLastRow(),
+      1,
+      1,
+      8
+    )
+    .setFontWeight(
+      'bold'
     );
-
-  }catch(error){
-
-    console.error(
-      '担当取得失敗',
-      error
-    );
-
-    el.assignment.textContent =
-      '👔 今月の担当：取得できません';
-
-  }
-
 }
 
 
-/* ============================================================
-   担当
-   ============================================================ */
+// ============================================================
+// 9. LIFF本人確認
+// ============================================================
 
-function renderAssignment(
-  result
-){
+function getMyDriverInfoByIdToken(
+  idToken
+) {
 
-  if(
-    result &&
-    result.found &&
-    result.officerName
-  ){
+  const token =
+    String(
+      idToken ||
+      ''
+    ).trim();
 
-    el.assignment.textContent =
-      '👔 今月の担当：'+
-      result.officerName;
 
-    el.assignment.classList.add(
-      'ready'
+  if (!token) {
+
+    return {
+
+      found:
+        false,
+
+      reason:
+        'IDトークンがありません'
+
+    };
+  }
+
+
+  const channelId =
+    getLineLoginChannelId_();
+
+
+  if (!channelId) {
+
+    throw new Error(
+      'LINE_LOGIN_CHANNEL_ID が設定されていません'
+    );
+  }
+
+
+  const response =
+    UrlFetchApp.fetch(
+
+      'https://api.line.me/oauth2/v2.1/verify',
+
+      {
+
+        method:
+          'post',
+
+        contentType:
+          'application/x-www-form-urlencoded',
+
+        payload: {
+
+          id_token:
+            token,
+
+          client_id:
+            channelId
+
+        },
+
+        muteHttpExceptions:
+          true
+
+      }
+
     );
 
+
+  const responseCode =
+    response.getResponseCode();
+
+
+  const responseText =
+    response.getContentText();
+
+
+  if (
+    responseCode !==
+    200
+  ) {
+
+    console.error(
+      responseText
+    );
+
+
+    throw new Error(
+      'LINEユーザー認証に失敗しました'
+    );
+  }
+
+
+  const claims =
+    JSON.parse(
+      responseText
+    );
+
+
+  const lineUserId =
+    String(
+      claims.sub ||
+      ''
+    ).trim();
+
+
+  if (!lineUserId) {
+
+    return {
+
+      found:
+        false,
+
+      reason:
+        'LINE userIdを取得できませんでした'
+
+    };
+  }
+
+
+  const driver =
+    getDriverByLineUserId_(
+      lineUserId
+    );
+
+
+  if (!driver) {
+
+    return {
+
+      found:
+        false,
+
+      reason:
+        '自動判別できませんでした'
+
+    };
+  }
+
+
+  return {
+
+    found:
+      true,
+
+    displayName:
+      driver.displayName,
+
+    driverKey:
+      driver.driverKey
+
+  };
+}
+
+
+// ============================================================
+// 10. driver_master一覧取得
+// ============================================================
+
+function getDriverList_() {
+
+  const drivers =
+    getDriverTable_();
+
+
+  return drivers
+
+    .filter(
+      function(driver) {
+
+        return driver.active;
+      }
+    )
+
+    .map(
+      function(driver) {
+
+        return {
+
+          displayName:
+            driver.displayName,
+
+          driverKey:
+            driver.driverKey
+
+        };
+      }
+    );
+}
+
+
+// ============================================================
+// 11. LIFFからの勤怠送信
+//
+// selectedDriverKey があれば手動選択を優先。
+// なければ自動判別された本人を使用。
+// ============================================================
+
+function sendAttendanceByIdToken_(
+  idToken,
+  message,
+  selectedDriverKey
+) {
+
+  const text =
+    String(
+      message ||
+      ''
+    ).trim();
+
+
+  if (!text) {
+
+    throw new Error(
+      '送信メッセージが空です'
+    );
+  }
+
+
+  // ----------------------------------------------------------
+  // LINEログイン状態確認
+  // ----------------------------------------------------------
+
+  const token =
+    String(
+      idToken ||
+      ''
+    ).trim();
+
+
+  if (!token) {
+
+    throw new Error(
+      'LINE認証情報が取得できていません'
+    );
+  }
+
+
+  // ----------------------------------------------------------
+  // 手動選択優先
+  // ----------------------------------------------------------
+
+  let driver =
+    null;
+
+
+  if (
+    selectedDriverKey
+  ) {
+
+    driver =
+      getDriverByDriverKey_(
+        selectedDriverKey
+      );
+  }
+
+
+  // ----------------------------------------------------------
+  // 手動選択が無ければ自動判別
+  // ----------------------------------------------------------
+
+  if (!driver) {
+
+    const info =
+      getMyDriverInfoByIdToken(
+        token
+      );
+
+
+    if (
+      !info ||
+      !info.found
+    ) {
+
+      throw new Error(
+        '人物を選択してください'
+      );
+    }
+
+
+    driver =
+      getDriverByDriverKey_(
+        info.driverKey
+      );
+  }
+
+
+  if (!driver) {
+
+    throw new Error(
+      '送信対象の人物が見つかりません'
+    );
+  }
+
+
+  if (!driver.active) {
+
+    throw new Error(
+      driver.displayName +
+      ' は現在無効になっています'
+    );
+  }
+
+
+  if (!driver.groupId) {
+
+    throw new Error(
+      driver.displayName +
+      ' のgroupIdが設定されていません'
+    );
+  }
+
+
+  // ----------------------------------------------------------
+  // ① LINEグループ送信
+  // ----------------------------------------------------------
+
+  pushTextMessage_(
+    driver.groupId,
+    text
+  );
+
+
+  // ----------------------------------------------------------
+  // ② スプレッドシート保存
+  // ----------------------------------------------------------
+
+  saveAttendanceFromLineMessage_(
+    text,
+    {
+
+      groupId:
+        driver.groupId,
+
+      userId:
+        driver.lineUserId
+
+    }
+  );
+
+
+  // ----------------------------------------------------------
+  // ③ 送信ログ
+  // ----------------------------------------------------------
+
+  appendSendLog_(
+    driver,
+    text
+  );
+
+
+  return {
+
+    ok:
+      true,
+
+    displayName:
+      driver.displayName
+
+  };
+}
+
+
+// ============================================================
+// 12. LINE Push
+// ============================================================
+
+function pushTextMessage_(
+  to,
+  message
+) {
+
+  const token =
+    getLineChannelAccessToken_();
+
+
+  if (!token) {
+
+    throw new Error(
+      'LINE_CHANNEL_ACCESS_TOKEN が設定されていません'
+    );
+  }
+
+
+  if (!to) {
+
+    throw new Error(
+      '送信先groupIdがありません'
+    );
+  }
+
+
+  const response =
+    UrlFetchApp.fetch(
+
+      'https://api.line.me/v2/bot/message/push',
+
+      {
+
+        method:
+          'post',
+
+        contentType:
+          'application/json',
+
+        headers: {
+
+          Authorization:
+            'Bearer ' +
+            token
+
+        },
+
+        payload:
+          JSON.stringify({
+
+            to:
+              to,
+
+            messages: [
+
+              {
+
+                type:
+                  'text',
+
+                text:
+                  message
+
+              }
+
+            ]
+
+          }),
+
+        muteHttpExceptions:
+          true
+
+      }
+
+    );
+
+
+  const responseCode =
+    response.getResponseCode();
+
+
+  const responseText =
+    response.getContentText();
+
+
+  console.log(
+    'LINE PUSH STATUS=' +
+    responseCode
+  );
+
+
+  console.log(
+    'LINE PUSH RESPONSE=' +
+    responseText
+  );
+
+
+  if (
+    responseCode < 200 ||
+    responseCode >= 300
+  ) {
+
+    throw new Error(
+
+      'LINE送信に失敗しました (' +
+      responseCode +
+      '): ' +
+      responseText
+
+    );
+  }
+}
+
+
+// ============================================================
+// 13. LINE Reply
+// ============================================================
+
+function replyText_(
+  replyToken,
+  message
+) {
+
+  if (!replyToken) {
     return;
   }
 
 
-  el.assignment.textContent =
-    '👔 今月の担当：未設定';
+  const token =
+    getLineChannelAccessToken_();
 
-  el.assignment.classList.remove(
-    'ready'
-  );
 
+  if (!token) {
+
+    throw new Error(
+      'LINE_CHANNEL_ACCESS_TOKEN が設定されていません'
+    );
+  }
+
+
+  const response =
+    UrlFetchApp.fetch(
+
+      'https://api.line.me/v2/bot/message/reply',
+
+      {
+
+        method:
+          'post',
+
+        contentType:
+          'application/json',
+
+        headers: {
+
+          Authorization:
+            'Bearer ' +
+            token
+
+        },
+
+        payload:
+          JSON.stringify({
+
+            replyToken:
+              replyToken,
+
+            messages: [
+
+              {
+
+                type:
+                  'text',
+
+                text:
+                  message
+
+              }
+
+            ]
+
+          }),
+
+        muteHttpExceptions:
+          true
+
+      }
+
+    );
+
+
+  const responseCode =
+    response.getResponseCode();
+
+
+  if (
+    responseCode < 200 ||
+    responseCode >= 300
+  ) {
+
+    throw new Error(
+
+      'LINE返信に失敗しました: ' +
+      response.getContentText()
+
+    );
+  }
 }
 
 
-/* ============================================================
-   残業
-   ============================================================ */
+// ============================================================
+// 14. driver_master読み込み
+//
+// A 表示名
+// B lineUserId
+// C driverKey
+// D groupId
+// E 有効
+// ============================================================
 
-function renderSummary(){
+function getDriverTable_() {
 
-  el.summary.innerHTML =
-    '前回残業 <strong>'+
-    escapeHtml(
-      state.summary.previousOvertime ||
-      '0:00'
-    )+
-    '</strong>　月間合計 <strong>'+
-    escapeHtml(
-      state.summary.monthlyOvertime ||
-      '0:00'
-    )+
-    '</strong>';
+  const ss =
+    getSpreadsheet_();
 
+
+  const sheet =
+    ss.getSheetByName(
+      DRIVER_MASTER_SHEET_NAME
+    );
+
+
+  if (!sheet) {
+
+    throw new Error(
+      'driver_master シートが見つかりません'
+    );
+  }
+
+
+  const lastRow =
+    sheet.getLastRow();
+
+
+  if (
+    lastRow < 2
+  ) {
+
+    return [];
+  }
+
+
+  const values =
+    sheet
+      .getRange(
+        2,
+        1,
+        lastRow - 1,
+        5
+      )
+      .getValues();
+
+
+  return values
+
+    .map(
+      function(
+        row,
+        index
+      ) {
+
+        return {
+
+          rowNumber:
+            index + 2,
+
+          displayName:
+            String(
+              row[0] ||
+              ''
+            ).trim(),
+
+          lineUserId:
+            String(
+              row[1] ||
+              ''
+            ).trim(),
+
+          driverKey:
+            String(
+              row[2] ||
+              ''
+            ).trim(),
+
+          groupId:
+            String(
+              row[3] ||
+              ''
+            ).trim(),
+
+          active:
+            toBoolean_(
+              row[4]
+            )
+
+        };
+      }
+    )
+
+    .filter(
+      function(driver) {
+
+        return (
+
+          driver.displayName ||
+          driver.lineUserId ||
+          driver.driverKey ||
+          driver.groupId
+
+        );
+      }
+    );
 }
 
 
-/* ============================================================
-   履歴
-   ============================================================ */
+// ============================================================
+// 15. lineUserId検索
+// ============================================================
 
-function normalizeHistoryType(
-  item
-){
+function getDriverByLineUserId_(
+  lineUserId
+) {
 
-  const raw =
+  const id =
     String(
-      item.type ||
-      item.mode ||
+      lineUserId ||
+      ''
+    ).trim();
+
+
+  if (!id) {
+    return null;
+  }
+
+
+  const drivers =
+    getDriverTable_();
+
+
+  return (
+
+    drivers.find(
+      function(driver) {
+
+        return (
+
+          driver.active &&
+          driver.lineUserId ===
+            id
+
+        );
+      }
+    ) ||
+
+    null
+
+  );
+}
+
+
+// ============================================================
+// 16. driverKey検索
+// ============================================================
+
+function getDriverByDriverKey_(
+  driverKey
+) {
+
+  const key =
+    String(
+      driverKey ||
+      ''
+    ).trim();
+
+
+  if (!key) {
+    return null;
+  }
+
+
+  const drivers =
+    getDriverTable_();
+
+
+  return (
+
+    drivers.find(
+      function(driver) {
+
+        return (
+
+          driver.active &&
+          driver.driverKey ===
+            key
+
+        );
+      }
+    ) ||
+
+    null
+
+  );
+}
+
+
+// ============================================================
+// 17. groupId検索
+// ============================================================
+
+function getDriverByGroupId_(
+  groupId
+) {
+
+  const id =
+    String(
+      groupId ||
+      ''
+    ).trim();
+
+
+  if (!id) {
+    return null;
+  }
+
+
+  const drivers =
+    getDriverTable_();
+
+
+  return (
+
+    drivers.find(
+      function(driver) {
+
+        return (
+
+          driver.active &&
+          driver.groupId ===
+            id
+
+        );
+      }
+    ) ||
+
+    null
+
+  );
+}
+
+
+// ============================================================
+// 18. 表示名検索
+// ============================================================
+
+function getDriverByDisplayName_(
+  displayName
+) {
+
+  const name =
+    String(
+      displayName ||
+      ''
+    ).trim();
+
+
+  if (!name) {
+    return null;
+  }
+
+
+  const drivers =
+    getDriverTable_();
+
+
+  return (
+
+    drivers.find(
+      function(driver) {
+
+        return (
+
+          driver.active &&
+          driver.displayName ===
+            name
+
+        );
+      }
+    ) ||
+
+    null
+
+  );
+}
+
+
+// ============================================================
+// 19. 有効判定
+// ============================================================
+
+function toBoolean_(
+  value
+) {
+
+  if (
+    value === true
+  ) {
+
+    return true;
+  }
+
+
+  const text =
+    String(
+      value ||
       ''
     )
     .trim()
     .toLowerCase();
 
 
-  if(
-    raw === 'in' ||
-    raw === '出勤' ||
-    raw === '出勤時'
-  ){
-
-    return '出勤';
-
-  }
-
-
-  if(
-    raw === 'out' ||
-    raw === '退勤' ||
-    raw === '退勤時'
-  ){
-
-    return '退勤';
-
-  }
-
-
-  return '';
-
-}
-
-
-function normalizeHistoryDate(
-  item
-){
-
-  const value =
-    item.date ||
-    item.reportDate ||
-    '';
-
-
-  if(
-    !value
-  ){
-
-    return '';
-
-  }
-
-
-  const text =
-    String(
-      value
-    );
-
-
-  let match =
-    text.match(
-      /^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})/
-    );
-
-
-  if(
-    match
-  ){
-
-    return (
-      match[1]+
-      '/' +
-      Number(match[2])+
-      '/' +
-      Number(match[3])
-    );
-
-  }
-
-
-  match =
-    text.match(
-      /^(\d{1,2})[\/-](\d{1,2})/
-    );
-
-
-  if(
-    match
-  ){
-
-    const now =
-      new Date();
-
-    return (
-      now.getFullYear()+
-      '/' +
-      Number(match[1])+
-      '/' +
-      Number(match[2])
-    );
-
-  }
-
-
-  return text;
-
-}
-
-
-function renderHistory(
-  list
-){
-
-  if(
-    !Array.isArray(list) ||
-    !list.length
-  ){
-
-    el.historyList.innerHTML =
-      '<li class="empty">まだ履歴はありません</li>';
-
-    return;
-
-  }
-
-
-  const sorted =
-    [...list].sort(
-      (a,b)=>
-        Number(
-          b.savedAt || 0
-        ) -
-        Number(
-          a.savedAt || 0
-        )
-    );
-
-
-  el.historyList.innerHTML =
-    sorted
-      .map(
-        item=>{
-
-          const type =
-            normalizeHistoryType(
-              item
-            );
-
-
-          const date =
-            normalizeHistoryDate(
-              item
-            );
-
-
-          let time =
-            '';
-
-
-          if(
-            type === '退勤'
-          ){
-
-            time =
-              (
-                item.startTime ||
-                '0:00'
-              )+
-              '→'+
-              (
-                item.endTime ||
-                '0:00'
-              );
-
-          }else if(
-            type === '出勤'
-          ){
-
-            time =
-              item.reportTime ||
-              item.startTime ||
-              '0:00';
-
-          }
-
-
-          return (
-            '<li>'+
-              '<span class="history-date">'+
-                escapeHtml(
-                  date
-                )+
-              '</span>'+
-              '<span class="history-type">'+
-                escapeHtml(
-                  type
-                )+
-              '</span>'+
-              '<span class="history-time">'+
-                escapeHtml(
-                  time
-                )+
-              '</span>'+
-              '<span class="history-ok">✅</span>'+
-            '</li>'
-          );
-
-        }
-      )
-      .join('');
-
-}
-
-
-/* ============================================================
-   モード
-   ============================================================ */
-
-function setMode(
-  mode
-){
-
-  state.mode =
-    mode;
-
-  state.draft =
-    null;
-
-
-  el.inMode.classList.toggle(
-    'off',
-    mode !== 'in'
+  return [
+
+    'true',
+    '1',
+    'yes',
+    'y',
+    'on',
+    '有効',
+    '○'
+
+  ].includes(
+    text
   );
-
-
-  el.outMode.classList.toggle(
-    'off',
-    mode !== 'out'
-  );
-
-
-  el.preview.classList.remove(
-    'show'
-  );
-
-
-  el.sendBtn.disabled =
-    true;
-
-
-  el.photoInput.value =
-    '';
-
-
-  showNotice('');
-
-
-  if(
-    mode === 'in'
-  ){
-
-    /*
-     * 出勤
-     * 日付
-     * 出勤時間
-     */
-
-    el.endField.classList.add(
-      'hidden'
-    );
-
-    el.nextDateField.classList.add(
-      'hidden'
-    );
-
-    el.nextTimeField.classList.add(
-      'hidden'
-    );
-
-    el.reportDate.value =
-      today();
-
-    el.startTime.value =
-      nowTime();
-
-  }else{
-
-    /*
-     * 退勤
-     * 日付
-     * 出勤時間
-     * 退勤時間
-     * 次回出勤日
-     * 次回出勤時間
-     */
-
-    el.endField.classList.remove(
-      'hidden'
-    );
-
-    el.nextDateField.classList.remove(
-      'hidden'
-    );
-
-    el.nextTimeField.classList.remove(
-      'hidden'
-    );
-
-
-    el.reportDate.value =
-      today();
-
-    el.startTime.value =
-      state.workState.startTime ||
-      '';
-
-    el.endTime.value =
-      nowTime();
-
-    el.nextDate.value =
-      tomorrow();
-
-    el.nextTime.value =
-      '08:00';
-
-  }
-
-
-  refreshMessage();
-
 }
 
 
-/* ============================================================
-   報告文章
-   ============================================================ */
+// ============================================================
+// 20. 送信ログ
+// ============================================================
+
+function appendSendLog_(
+  driver,
+  message
+) {
+
+  const ss =
+    getSpreadsheet_();
 
 
-/*
- * 【MEMO】までを生成。
- *
- * 入力欄の内容はここには直接入れず、
- * textareaに入力する。
- */
-function buildReportBaseMessage(){
-
-  if(
-    state.mode === 'in'
-  ){
-
-    const date =
-      el.reportDate.value ||
-      today();
-
-    const time =
-      el.startTime.value ||
-      nowTime();
-
-    return (
-      'お疲れ様でございます。\n'+
-      dateText(date)+
-      ' '+
-      time+
-      '出勤いたしました。\n'+
-      '本日もよろしくお願いいたします。\n'+
-      '残業)'+
-      (
-        state.summary.previousOvertime ||
-        '0:00'
-      )+
-      '\n'+
-      '合計)'+
-      (
-        state.summary.monthlyOvertime ||
-        '0:00'
-      )+
-      '\n'+
-      '【MEMO】'
-    );
-
-  }
-
-
-  const reportDate =
-    el.reportDate.value ||
-    today();
-
-  const start =
-    el.startTime.value ||
-    state.workState.startTime ||
-    '00:00';
-
-  const end =
-    el.endTime.value ||
-    nowTime();
-
-  const nextDate =
-    el.nextDate.value ||
-    tomorrow();
-
-  const nextTime =
-    el.nextTime.value ||
-    '??:??';
-
-  const prefix =
-    nextAttendancePrefix(
-      nextDate
-    );
-
-  const datePart =
-    shortDate(
-      nextDate
+  let sheet =
+    ss.getSheetByName(
+      SEND_LOG_SHEET_NAME
     );
 
 
-  let nextAttendance =
-    '';
+  if (!sheet) {
 
-
-  if(
-    prefix
-  ){
-
-    nextAttendance =
-      prefix+
-      ' '+
-      datePart;
-
-  }else{
-
-    nextAttendance =
-      datePart;
-
-  }
-
-
-  nextAttendance +=
-    ' '+
-    nextTime;
-
-
-  return (
-    'お疲れ様でございます。\n'+
-    '業務完了いたしました。\n'+
-    dateText(reportDate)+
-    '\n'+
-    '稼働)'+
-    start+
-    '→'+
-    end+
-    '\n'+
-    '本日は失礼させていただきます。\n'+
-    '出勤) '+
-    nextAttendance+
-    '\n'+
-    '明日もよろしくお願いいたします。\n'+
-    '【MEMO】'
-  );
-
-}
-
-
-/*
- * 画面表示用。
- *
- * 【MEMO】の下に入力欄があるため、
- * textareaの文字をここには表示しない。
- */
-function refreshMessage(){
-
-  el.messagePreview.textContent =
-    buildReportBaseMessage();
-
-}
-
-
-/*
- * 実際にLINEへ送る完全な文章。
- *
- * 【MEMO】の下にtextareaの内容を追加。
- */
-function buildCompleteMessage(){
-
-  const base =
-    buildReportBaseMessage();
-
-  const memo =
-    String(
-      el.memo.value ||
-      ''
-    ).trim();
-
-
-  if(
-    memo
-  ){
-
-    return (
-      base+
-      '\n'+
-      memo
-    );
-
-  }
-
-
-  return base;
-
-}
-
-
-/* ============================================================
-   写真変換
-   ============================================================ */
-
-function imageToDataUrl(
-  file
-){
-
-  return new Promise(
-    (
-      resolve,
-      reject
-    )=>{
-
-      const reader =
-        new FileReader();
-
-
-      reader.onload =
-        function(){
-
-          const image =
-            new Image();
-
-
-          image.onload =
-            function(){
-
-              const max =
-                1800;
-
-
-              const scale =
-                Math.min(
-                  1,
-                  max /
-                  Math.max(
-                    image.width,
-                    image.height
-                  )
-                );
-
-
-              const canvas =
-                document.createElement(
-                  'canvas'
-                );
-
-
-              canvas.width =
-                Math.round(
-                  image.width*
-                  scale
-                );
-
-
-              canvas.height =
-                Math.round(
-                  image.height*
-                  scale
-                );
-
-
-              const context =
-                canvas.getContext(
-                  '2d',
-                  {
-                    alpha:false
-                  }
-                );
-
-
-              context.drawImage(
-                image,
-                0,
-                0,
-                canvas.width,
-                canvas.height
-              );
-
-
-              resolve(
-                canvas.toDataURL(
-                  'image/jpeg',
-                  .86
-                )
-              );
-
-            };
-
-
-          image.onerror =
-            reject;
-
-
-          image.src =
-            reader.result;
-
-        };
-
-
-      reader.onerror =
-        reject;
-
-
-      reader.readAsDataURL(
-        file
+    sheet =
+      ss.insertSheet(
+        SEND_LOG_SHEET_NAME
       );
 
-    }
-  );
 
-}
+    sheet.appendRow([
 
+      '送信日時',
+      '表示名',
+      'driverKey',
+      'lineUserId',
+      'groupId',
+      'メッセージ'
 
-/* ============================================================
-   OCR
-   ============================================================ */
-
-async function runBrowserOcr(
-  dataUrl
-){
-
-  if(
-    !window.Tesseract
-  ){
-
-    throw new Error(
-      'OCRライブラリの読み込みに失敗しました'
-    );
-
+    ]);
   }
 
 
-  const result =
-    await Tesseract.recognize(
-      dataUrl,
-      'eng',
-      {
+  sheet.appendRow([
 
-        logger:
-          message=>{
+    Utilities.formatDate(
+      new Date(),
+      'Asia/Tokyo',
+      'yyyy/MM/dd HH:mm:ss'
+    ),
 
-            if(
-              message &&
-              message.status ===
-                'recognizing text' &&
-              message.progress
-            ){
+    driver.displayName,
 
-              showNotice(
-                '写真を読み取り中... '+
-                Math.round(
-                  message.progress*100
-                )+
-                '%'
-              );
+    driver.driverKey,
 
-            }
+    driver.lineUserId,
+
+    driver.groupId,
+
+    message
+
+  ]);
+}
+
+
+// ============================================================
+// 21. 勤務時間計算
+// ============================================================
+
+function calculateWorkDetails_(
+  start,
+  end
+) {
+
+  function parseTime_(
+    time
+  ) {
+
+    const parts =
+      time.split(':');
+
+
+    const hour =
+      Number(
+        parts[0]
+      );
+
+
+    const minute =
+      Number(
+        parts[1]
+      );
+
+
+    return (
+      hour +
+      minute / 60
+    );
+  }
+
+
+  let startHour =
+    parseTime_(
+      start
+    );
+
+
+  let endHour =
+    parseTime_(
+      end
+    );
+
+
+  if (
+    endHour <
+    startHour
+  ) {
+
+    endHour += 24;
+  }
+
+
+  const actualWork =
+    Math.max(
+      0,
+      (
+        endHour -
+        startHour
+      ) - 1
+    );
+
+
+  const overtime =
+    Math.max(
+      0,
+      actualWork - 8
+    );
+
+
+  const earlyMorning =
+    Math.max(
+      0,
+      Math.min(
+        endHour,
+        5
+      ) -
+      Math.max(
+        startHour,
+        0
+      )
+    );
+
+
+  const nightTime =
+    Math.max(
+      0,
+      Math.min(
+        endHour,
+        29
+      ) -
+      Math.max(
+        startHour,
+        22
+      )
+    );
+
+
+  const midnight =
+    earlyMorning +
+    nightTime;
+
+
+  return {
+
+    total:
+      actualWork.toFixed(2),
+
+    overtime:
+      overtime.toFixed(2),
+
+    midnight:
+      midnight.toFixed(2)
+
+  };
+}
+
+
+// ============================================================
+// 22. LINEグループ名取得
+// ============================================================
+
+function getGroupName_(
+  groupId
+) {
+
+  if (!groupId) {
+
+    return '不明';
+  }
+
+
+  try {
+
+    const token =
+      getLineChannelAccessToken_();
+
+
+    if (!token) {
+
+      return '不明なグループ';
+    }
+
+
+    const response =
+      UrlFetchApp.fetch(
+
+        'https://api.line.me/v2/bot/group/' +
+        encodeURIComponent(
+          groupId
+        ) +
+        '/summary',
+
+        {
+
+          method:
+            'get',
+
+          headers: {
+
+            Authorization:
+              'Bearer ' +
+              token
 
           },
 
-        tessedit_pageseg_mode:6
+          muteHttpExceptions:
+            true
 
-      }
+        }
+      );
+
+
+    const code =
+      response.getResponseCode();
+
+
+    if (
+      code !==
+      200
+    ) {
+
+      return '不明なグループ';
+    }
+
+
+    const data =
+      JSON.parse(
+        response.getContentText()
+      );
+
+
+    return (
+
+      data.groupName ||
+      '不明なグループ'
+
     );
 
+
+  } catch (
+    error
+  ) {
+
+    console.error(
+      error
+    );
+
+
+    return '不明なグループ';
+  }
+}
+
+
+// ============================================================
+// 23. シート色
+// ============================================================
+
+function setSheetColor_(
+  sheet,
+  userName
+) {
+
+  let color =
+    '#e0e0e0';
+
+
+  if (
+    userName.indexOf(
+      '早谷'
+    ) !== -1
+  ) {
+
+    color =
+      '#eadaed';
+
+
+  } else if (
+    userName.indexOf(
+      '田中'
+    ) !== -1
+  ) {
+
+    color =
+      '#d9ead3';
+
+
+  } else if (
+    userName.indexOf(
+      '新里'
+    ) !== -1
+  ) {
+
+    color =
+      '#fff2cc';
+
+
+  } else if (
+    userName.indexOf(
+      '市川'
+    ) !== -1
+  ) {
+
+    color =
+      '#cfe2f3';
+  }
+
+
+  sheet.setTabColor(
+    color
+  );
+}
+
+
+// ============================================================
+// 24. シート名安全化
+// ============================================================
+
+function sanitizeSheetName_(
+  name
+) {
+
+  return String(
+    name ||
+    ''
+  )
+
+    .replace(
+      /[\\\/\?\*\[\]\:]/g,
+      ' '
+    )
+
+    .replace(
+      /\s+/g,
+      ' '
+    )
+
+    .trim()
+
+    .slice(
+      0,
+      100
+    );
+}
+
+
+// ============================================================
+// 25. スプレッドシート取得
+// ============================================================
+
+function getSpreadsheet_() {
+
+  const props =
+    PropertiesService
+      .getScriptProperties();
+
+
+  const spreadsheetId =
+    props.getProperty(
+      'SPREADSHEET_ID'
+    );
+
+
+  if (
+    spreadsheetId
+  ) {
+
+    return SpreadsheetApp
+      .openById(
+        spreadsheetId
+      );
+  }
+
+
+  const active =
+    SpreadsheetApp
+      .getActiveSpreadsheet();
+
+
+  if (active) {
+
+    return active;
+  }
+
+
+  throw new Error(
+
+    'スプレッドシートを取得できません。' +
+    'SPREADSHEET_IDを確認してください。'
+
+  );
+}
+
+
+// ============================================================
+// 26. LINE Access Token
+// ============================================================
+
+function getLineChannelAccessToken_() {
 
   return (
-    result &&
-    result.data
-      ? String(
-          result.data.text || ''
-        )
-      : ''
-  );
 
+    PropertiesService
+
+      .getScriptProperties()
+
+      .getProperty(
+        'LINE_CHANNEL_ACCESS_TOKEN'
+      ) ||
+
+    ''
+
+  );
 }
 
 
-/* ============================================================
-   写真読み取り
-   ============================================================ */
+// ============================================================
+// 27. LINE Login Channel ID
+// ============================================================
 
-async function uploadPhoto(
-  file
-){
+function getLineLoginChannelId_() {
 
-  if(
-    !state.driver
-  ){
+  return (
 
-    alert(
-      '先に人物を選択してください'
-    );
+    PropertiesService
 
-    return;
-  }
+      .getScriptProperties()
 
+      .getProperty(
+        'LINE_LOGIN_CHANNEL_ID'
+      ) ||
 
-  showNotice(
-    '写真を読み込んでいます...'
+    ''
+
   );
-
-
-  el.sendBtn.disabled =
-    true;
-
-
-  try{
-
-    const dataUrl =
-      await imageToDataUrl(
-        file
-      );
-
-
-    el.photoPreview.src =
-      dataUrl;
-
-
-    /*
-     * OCR結果は内部だけ。
-     * 画面には表示しない。
-     */
-
-    const ocrText =
-      await runBrowserOcr(
-        dataUrl
-      );
-
-
-    showNotice(
-      '読み取り結果を確認しています...'
-    );
-
-
-    const result =
-      await callServer(
-        'ocrPhoto',
-        {
-
-          selectedDriverKey:
-            state.driver.driverKey,
-
-          mode:
-            state.mode,
-
-          imageBase64:
-            dataUrl,
-
-          fileName:
-            file.name,
-
-          ocrText:
-            ocrText
-
-        }
-      );
-
-
-    state.draft =
-      result;
-
-
-    el.preview.classList.add(
-      'show'
-    );
-
-
-    el.reportDate.value =
-      result.reportDate ||
-      today();
-
-
-    el.startTime.value =
-      result.startTime ||
-      result.ocrTime ||
-      state.workState.startTime ||
-      nowTime();
-
-
-    if(
-      state.mode === 'out'
-    ){
-
-      el.endTime.value =
-        result.endTime ||
-        result.ocrTime ||
-        nowTime();
-
-    }
-
-
-    /*
-     * 写真を新しく読み込んだら
-     * メモ欄は空欄にする。
-     */
-
-    el.memo.value =
-      '';
-
-
-    refreshMessage();
-
-
-    el.sendBtn.disabled =
-      false;
-
-
-    showNotice(
-      '読み取り完了。時間を確認・修正して送信してください。'
-    );
-
-
-  }catch(error){
-
-    console.error(
-      error
-    );
-
-
-    showNotice(
-      error.message ||
-      '写真の読み取りに失敗しました。'
-    );
-
-  }
-
 }
 
 
-/* ============================================================
-   送信
-   ============================================================ */
+// ============================================================
+// 28. Text出力
+// ============================================================
 
-async function sendDraft(){
+function textOut_(
+  message
+) {
 
-  if(
-    !state.draft ||
-    !state.driver
-  ){
+  return ContentService
 
-    return;
-
-  }
-
-
-  el.sendBtn.disabled =
-    true;
-
-
-  showNotice(
-    '写真＋報告文章を送信中です...'
-  );
-
-
-  try{
-
-    /*
-     * textareaを含む完全な文章
-     */
-    const message =
-      buildCompleteMessage();
-
-
-    const result =
-      await callServer(
-        'sendAttendanceDraft',
-        {
-
-          draftId:
-            state.draft.draftId,
-
-          mode:
-            state.mode,
-
-          reportDate:
-            el.reportDate.value,
-
-          reportTime:
-            state.mode === 'in'
-              ? el.startTime.value
-              : el.endTime.value,
-
-          startTime:
-            el.startTime.value,
-
-          endTime:
-            state.mode === 'out'
-              ? el.endTime.value
-              : '',
-
-          nextDate:
-            state.mode === 'out'
-              ? el.nextDate.value
-              : '',
-
-          nextTime:
-            state.mode === 'out'
-              ? el.nextTime.value
-              : '',
-
-          message:
-            message
-
-        }
-      );
-
-
-    if(
-      !result ||
-      result.ok !== true
-    ){
-
-      throw new Error(
-        '送信に失敗しました'
-      );
-
-    }
-
-
-    showNotice(
-      '送信完了しました。'
+    .createTextOutput(
+      String(
+        message ||
+        ''
+      )
     );
-
-
-    state.draft =
-      null;
-
-
-    el.preview.classList.remove(
-      'show'
-    );
-
-
-    el.photoInput.value =
-      '';
-
-
-    el.memo.value =
-      '';
-
-
-    await refreshSelectedDriverData();
-
-
-  }catch(error){
-
-    console.error(
-      error
-    );
-
-
-    showNotice(
-      error.message ||
-      '送信に失敗しました'
-    );
-
-
-  }finally{
-
-    el.sendBtn.disabled =
-      !state.draft;
-
-  }
-
 }
 
 
-/* ============================================================
-   人物変更
-   ============================================================ */
+// ============================================================
+// 29. テスト
+// ============================================================
 
-el.driverSelect.addEventListener(
-  'change',
-  async function(){
+function testDriverMaster() {
 
-    const driver =
-      findDriver(
-        el.driverSelect.value
-      );
+  const drivers =
+    getDriverTable_();
 
 
-    await selectDriver(
-      driver,
-      true
-    );
-
-  }
-);
-
-
-/* ============================================================
-   出勤
-   ============================================================ */
-
-el.inMode.addEventListener(
-  'click',
-  function(){
-
-    if(
-      !state.driver
-    ){
-
-      alert(
-        '先に人物を選択してください'
-      );
-
-      return;
-    }
-
-
-    setMode(
-      'in'
-    );
-
-  }
-);
-
-
-/* ============================================================
-   退勤
-   ============================================================ */
-
-el.outMode.addEventListener(
-  'click',
-  function(){
-
-    if(
-      !state.driver
-    ){
-
-      alert(
-        '先に人物を選択してください'
-      );
-
-      return;
-    }
-
-
-    setMode(
-      'out'
-    );
-
-  }
-);
-
-
-/* ============================================================
-   写真選択
-   ============================================================ */
-
-el.uploadBtn.addEventListener(
-  'click',
-  function(){
-
-    if(
-      !state.driver
-    ){
-
-      alert(
-        '先に人物を選択してください'
-      );
-
-      return;
-    }
-
-
-    el.photoInput.click();
-
-  }
-);
-
-
-/* ============================================================
-   写真変更
-   ============================================================ */
-
-el.photoInput.addEventListener(
-  'change',
-  function(){
-
-    const file =
-      el.photoInput.files &&
-      el.photoInput.files[0];
-
-
-    if(
-      file
-    ){
-
-      uploadPhoto(
-        file
-      );
-
-    }
-
-  }
-);
-
-
-/* ============================================================
-   入力変更
-   ============================================================ */
-
-[
-  el.reportDate,
-  el.startTime,
-  el.endTime,
-  el.nextDate,
-  el.nextTime,
-  el.memo
-]
-.forEach(
-  input=>{
-
-    input.addEventListener(
-      'input',
-      refreshMessage
-    );
-
-
-    input.addEventListener(
-      'change',
-      refreshMessage
-    );
-
-  }
-);
-
-
-/* ============================================================
-   送信
-   ============================================================ */
-
-el.sendBtn.addEventListener(
-  'click',
-  sendDraft
-);
-
-
-/* ============================================================
-   自動判別
-   ============================================================ */
-
-async function autoDetect(){
-
-  setStatus(
-    '判別中',
-    false
+  console.log(
+    JSON.stringify(
+      drivers,
+      null,
+      2
+    )
   );
 
 
-  try{
-
-    if(
-      typeof liff ===
-      'undefined'
-    ){
-
-      throw new Error(
-        'LIFF SDKが読み込まれていません'
-      );
-
-    }
-
-
-    await withTimeout(
-      liff.init({
-        liffId:
-          LIFF_ID
-      }),
-      AUTO_DETECT_TIMEOUT
-    );
-
-
-    if(
-      state.userSelectedManually &&
-      state.driver
-    ){
-
-      setStatus(
-        '完了',
-        true
-      );
-
-      return;
-
-    }
-
-
-    if(
-      !liff.isLoggedIn()
-    ){
-
-      setStatus(
-        '右から選択',
-        false
-      );
-
-      return;
-
-    }
-
-
-    state.idToken =
-      liff.getIDToken() ||
-      '';
-
-
-    if(
-      !state.idToken
-    ){
-
-      setStatus(
-        '右から選択',
-        false
-      );
-
-      return;
-
-    }
-
-
-    const info =
-      await withTimeout(
-        callServer(
-          'getDriverInfo'
-        ),
-        AUTO_DETECT_TIMEOUT
-      );
-
-
-    if(
-      state.userSelectedManually &&
-      state.driver
-    ){
-
-      setStatus(
-        '完了',
-        true
-      );
-
-      return;
-
-    }
-
-
-    if(
-      info &&
-      info.found &&
-      info.driverKey
-    ){
-
-      const driver =
-        findDriver(
-          info.driverKey
-        );
-
-
-      if(
-        driver
-      ){
-
-        await selectDriver(
-          driver,
-          false
-        );
-
-
-        setStatus(
-          '完了',
-          true
-        );
-
-        return;
-
-      }
-
-    }
-
-
-    setStatus(
-      '右から選択',
-      false
-    );
-
-
-  }catch(error){
-
-    console.warn(
-      '自動判別終了',
-      error
-    );
-
-
-    if(
-      state.userSelectedManually &&
-      state.driver
-    ){
-
-      setStatus(
-        '完了',
-        true
-      );
-
-    }else{
-
-      setStatus(
-        '右から選択',
-        false
-      );
-
-    }
-
-  }
-
+  return drivers;
 }
 
 
-/* ============================================================
-   初期化
-   ============================================================ */
+// ============================================================
+// 30. 設定確認
+// ============================================================
 
-window.addEventListener(
-  'load',
-  function(){
+function testSettings() {
 
-    /*
-     * 次回出勤時間
-     * 00:00～23:59 + ??:??
-     */
-    buildNextTimeOptions();
+  const token =
+    getLineChannelAccessToken_();
 
 
-    el.reportDate.value =
-      today();
+  const channelId =
+    getLineLoginChannelId_();
 
 
-    el.startTime.value =
-      nowTime();
+  console.log(
+
+    'LINE_CHANNEL_ACCESS_TOKEN: ' +
+
+    (
+      token
+        ? '設定済み'
+        : '未設定'
+    )
+
+  );
 
 
-    el.nextDate.value =
-      tomorrow();
+  console.log(
+
+    'LINE_LOGIN_CHANNEL_ID: ' +
+
+    (
+      channelId
+        ? '設定済み'
+        : '未設定'
+    )
+
+  );
 
 
-    el.nextTime.value =
-      '08:00';
+  console.log(
+
+    'driver_master: ' +
+    DRIVER_MASTER_SHEET_NAME
+
+  );
+}
+
+// ============================================================
+// 担当表・代休取得 API
+// ============================================================
+
+const MANAGEMENT_SHEET_ASSIGNMENT = '担当表';
+const MANAGEMENT_SHEET_COMP = '代休取得';
 
 
-    el.memo.value =
-      '';
+function getManagementData_(
+  sheetType,
+  selectedDriverKey
+) {
 
-
-    setMode(
-      'in'
-    );
-
-
-    setStatus(
-      '判別中',
-      false
-    );
-
-
-    loadDrivers()
-      .catch(
-        error=>{
-
-          console.error(
-            '人物一覧取得失敗',
-            error
-          );
-
-        }
-      );
-
-
-    setTimeout(
-      ()=>{
-        autoDetect();
-      },
-      150
-    );
-
+  if (sheetType === 'assignment') {
+    return getAssignmentTable_();
   }
-);
 
-
-/* ============================================================
-   復帰
-   ============================================================ */
-
-window.addEventListener(
-  'pageshow',
-  function(){
-
-    setTimeout(
-      function(){
-
-        if(
-          state.driver
-        ){
-
-          refreshSelectedDriverData();
-
-        }
-
-      },
-      200
-    );
-
+  if (sheetType === 'comp') {
+    return getCompTable_();
   }
-);
+
+  throw new Error(
+    '対象が不正です: ' + sheetType
+  );
+}
 
 
-window.addEventListener(
-  'focus',
-  function(){
+function getAssignmentTable_() {
 
-    setTimeout(
-      function(){
+  const ss = getSpreadsheet_();
+  const sheet = ss.getSheetByName(MANAGEMENT_SHEET_ASSIGNMENT);
 
-        if(
-          state.driver
-        ){
-
-          refreshSelectedDriverData();
-
-        }
-
-      },
-      200
-    );
-
+  if (!sheet) {
+    throw new Error('「担当表」シートが見つかりません');
   }
-);
 
-</script>
+  // 現在のシート構造：B4:F17
+  // B列＝月、C～F列＝4役員
+  const values = sheet.getRange(4,2,14,5).getDisplayValues();
 
-</body>
-</html>
+  const officerNames = [
+    String(values[0][1] || '安田副社長'),
+    String(values[0][2] || '伊藤副社長'),
+    String(values[0][3] || '山下副社長'),
+    String(values[0][4] || '西山副社長')
+  ];
+
+  const rows = [];
+
+  for (let r=2; r<values.length; r++) {
+    const month = String(values[r][0] || '').trim();
+    if (!month) continue;
+
+    const assignments = {};
+    officerNames.forEach((name,i)=>{
+      assignments[name] = String(values[r][i+1] || '');
+    });
+
+    rows.push({
+      sheetRow:r+4,
+      month,
+      assignments
+    });
+  }
+
+  return {
+    ok:true,
+    sheetName:MANAGEMENT_SHEET_ASSIGNMENT,
+    officers:officerNames,
+    rows
+  };
+}
+
+
+function saveAssignmentTable_(payload) {
+
+  let data;
+  try {
+    data = JSON.parse(payload);
+  } catch (error) {
+    throw new Error('担当表データの形式が不正です');
+  }
+
+  if (!data || !Array.isArray(data.rows)) {
+    throw new Error('担当表データが不正です');
+  }
+
+  const ss = getSpreadsheet_();
+  const sheet = ss.getSheetByName(MANAGEMENT_SHEET_ASSIGNMENT);
+
+  if (!sheet) {
+    throw new Error('「担当表」シートが見つかりません');
+  }
+
+  const current = sheet.getRange(4,2,14,5).getDisplayValues();
+
+  const officerNames = [
+    String(current[0][1] || '安田副社長'),
+    String(current[0][2] || '伊藤副社長'),
+    String(current[0][3] || '山下副社長'),
+    String(current[0][4] || '西山副社長')
+  ];
+
+  data.rows.forEach(row=>{
+
+    const sheetRow = Number(row.sheetRow);
+
+    if (!Number.isInteger(sheetRow) || sheetRow < 6 || sheetRow > 17) {
+      return;
+    }
+
+    officerNames.forEach((officer,index)=>{
+      const value = row.assignments && row.assignments[officer] != null
+        ? row.assignments[officer]
+        : '';
+
+      // セルだけを書き換える。書式・色・罫線・結合セルは触らない。
+      sheet.getRange(sheetRow,3+index).setValue(String(value));
+    });
+  });
+
+  SpreadsheetApp.flush();
+
+  return {
+    ok:true,
+    sheetName:MANAGEMENT_SHEET_ASSIGNMENT
+  };
+}
+
+
+function getCompTable_() {
+
+  const ss = getSpreadsheet_();
+  const sheet = ss.getSheetByName(MANAGEMENT_SHEET_COMP);
+
+  if (!sheet) {
+    throw new Error('「代休取得」シートが見つかりません');
+  }
+
+  // 現在のシート構造：
+  // B:E 8～18行＝取得予定、未取得
+  // B:E 25～39行＝取得済み
+  const plannedValues = sheet.getRange(8,2,11,4).getDisplayValues();
+  const completedValues = sheet.getRange(25,2,15,4).getDisplayValues();
+
+  const planned = plannedValues.map((row,i)=>({
+    sheetRow:8+i,
+    startDate:String(row[0] || ''),
+    compDate:String(row[1] || ''),
+    driver:String(row[2] || ''),
+    officer:String(row[3] || '')
+  }));
+
+  const completed = completedValues.map((row,i)=>({
+    sheetRow:25+i,
+    startDate:String(row[0] || ''),
+    compDate:String(row[1] || ''),
+    driver:String(row[2] || ''),
+    officer:String(row[3] || '')
+  }));
+
+  return {
+    ok:true,
+    sheetName:MANAGEMENT_SHEET_COMP,
+    planned,
+    completed
+  };
+}
+
+
+function saveCompTable_(payload) {
+
+  let data;
+  try {
+    data = JSON.parse(payload);
+  } catch (error) {
+    throw new Error('代休データの形式が不正です');
+  }
+
+  if (!data) {
+    throw new Error('代休データがありません');
+  }
+
+  const ss = getSpreadsheet_();
+  const sheet = ss.getSheetByName(MANAGEMENT_SHEET_COMP);
+
+  if (!sheet) {
+    throw new Error('「代休取得」シートが見つかりません');
+  }
+
+  const writeRows = (rows,startRow,maxRow)=>{
+
+    if (!Array.isArray(rows)) return;
+
+    rows.forEach((row,index)=>{
+
+      const targetRow = Number(row.sheetRow) || (startRow + index);
+
+      if (targetRow < startRow || targetRow > maxRow) return;
+
+      sheet.getRange(targetRow,2,1,4).setValues([[
+        String(row.startDate || ''),
+        String(row.compDate || ''),
+        String(row.driver || ''),
+        String(row.officer || '')
+      ]]);
+    });
+  };
+
+  writeRows(data.planned,8,18);
+  writeRows(data.completed,25,39);
+
+  SpreadsheetApp.flush();
+
+  return {
+    ok:true,
+    sheetName:MANAGEMENT_SHEET_COMP
+  };
+}
+
+
+function saveManagementData_(
+  sheetType,
+  selectedDriverKey,
+  payload
+) {
+
+  if (!payload) {
+    throw new Error('保存データがありません');
+  }
+
+  if (sheetType === 'assignment') {
+    return saveAssignmentTable_(payload);
+  }
+
+  if (sheetType === 'comp') {
+    return saveCompTable_(payload);
+  }
+
+  throw new Error('保存対象が不正です: ' + sheetType);
+}
