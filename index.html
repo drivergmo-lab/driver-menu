@@ -270,7 +270,6 @@ font-size:18px;
 font-weight:900;
 }
 .send-btn:disabled{opacity:.45;cursor:not-allowed}
-
 .management-menu{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -290,7 +289,6 @@ color:var(--blue);
 .management-btn:active{transform:scale(.99)}
 .assignment-btn{background:#eef8ff}
 .comp-btn{background:#f4fbf5;color:#18824e}
-
 .management-panel{
 margin-top:8px;
 padding:6px;
@@ -303,13 +301,9 @@ display:flex;
 align-items:center;
 justify-content:space-between;
 gap:8px;
-margin-bottom:7px;
+margin-bottom:9px;
 }
-.management-title{
-color:var(--blue);
-font-size:18px;
-font-weight:900;
-}
+.management-title{color:var(--blue);font-size:18px;font-weight:900}
 .management-close{
 border:0;
 border-radius:10px;
@@ -320,16 +314,13 @@ font-size:12px;
 font-weight:900;
 }
 .management-loading{
-padding:10px;
+padding:18px;
 color:#688094;
 text-align:center;
 font-size:13px;
 font-weight:800;
 }
-.management-table-wrap{
-overflow-x:hidden;
-max-width:100%;
-}
+.management-table-wrap{overflow-x:hidden;max-width:100%;}
 .management-table{
 width:100%;
 min-width:0;
@@ -337,8 +328,7 @@ table-layout:fixed;
 border-collapse:collapse;
 font-size:11px;
 }
-.management-table th,
-.management-table td{
+.management-table th,.management-table td{
 padding:1px 2px;
 border:1px solid #dbeaf3;
 vertical-align:middle;
@@ -364,33 +354,22 @@ background:#fff;
 color:var(--text);
 font-size:11px;
 }
-.assignment-panel .management-table th,
-.assignment-panel .management-table td{
-width:20%;
-}
-.comp-panel .management-table th:nth-child(1),
-.comp-panel .management-table td:nth-child(1){width:20%}
-.comp-panel .management-table th:nth-child(2),
-.comp-panel .management-table td:nth-child(2){width:20%}
-.comp-panel .management-table th:nth-child(3),
-.comp-panel .management-table td:nth-child(3){width:22%}
-.comp-panel .management-table th:nth-child(4),
-.comp-panel .management-table td:nth-child(4){width:38%}
-
+.assignment-panel .management-table th,.assignment-panel .management-table td{width:20%;}
+.comp-panel .management-table th:nth-child(1),.comp-panel .management-table td:nth-child(1){width:20%;}
+.comp-panel .management-table th:nth-child(2),.comp-panel .management-table td:nth-child(2){width:20%;}
+.comp-panel .management-table th:nth-child(3),.comp-panel .management-table td:nth-child(3){width:22%;}
+.comp-panel .management-table th:nth-child(4),.comp-panel .management-table td:nth-child(4){width:38%;}
 .management-section-title{
-margin:7px 0 5px;
+margin:8px 0 6px;
 color:var(--blue);
 font-size:15px;
 font-weight:900;
 }
-.comp-panel{
-display:grid;
-gap:8px;
-}
+.comp-panel{display:grid;gap:8px}
 .management-add{
 width:100%;
 min-height:42px;
-margin-top:6px;
+margin:0;
 border:1px dashed #8fc9ea;
 border-radius:12px;
 background:#f7fcff;
@@ -401,23 +380,17 @@ font-weight:900;
 .management-add:active{transform:scale(.99)}
 .management-save{
 width:100%;
-min-height:46px;
-margin-top:8px;
+min-height:48px;
+margin-top:10px;
 border:0;
-border-radius:14px;
+border-radius:15px;
 background:linear-gradient(#56baf0,#2d88d8);
 color:#fff;
 font-size:16px;
 font-weight:900;
 }
 .management-save:disabled{opacity:.45;cursor:not-allowed}
-.management-panel.hidden,
-.comp-panel.hidden,
-.management-table-wrap.hidden,
-.management-save.hidden{
-display:none!important;
-}
-
+.management-panel.hidden,.comp-panel.hidden,.management-table-wrap.hidden,.management-save.hidden{display:none!important}
 .history{
 margin-top:16px;
 padding-top:13px;
@@ -430,11 +403,7 @@ font-size:20px;
 font-weight:900;
 text-align:center;
 }
-.history-list{
-list-style:none;
-padding:0;
-margin:0;
-}
+.history-list{list-style:none;padding:0;margin:0}
 .history-list li{
 display:grid;
 grid-template-columns:84px 42px minmax(78px,1fr) 26px;
@@ -448,30 +417,10 @@ white-space:nowrap;
 }
 .history-date{font-weight:800}
 .history-type{color:var(--blue);font-weight:900}
-.history-time{
-color:var(--text);
-font-weight:900;
-overflow:hidden;
-text-overflow:ellipsis;
-}
-.history-ok{
-color:var(--green);
-font-size:16px;
-font-weight:900;
-text-align:right;
-}
-.empty{
-display:block!important;
-text-align:center;
-color:#7a90a3;
-}
-.footer{
-padding:14px 10px 4px;
-color:#8aa0b2;
-font-size:13px;
-text-align:center;
-}
-
+.history-time{color:var(--text);font-weight:900;overflow:hidden;text-overflow:ellipsis}
+.history-ok{color:var(--green);font-size:16px;font-weight:900;text-align:right}
+.empty{display:block!important;text-align:center;color:#7a90a3}
+.footer{padding:14px 10px 4px;color:#8aa0b2;font-size:13px;text-align:center}
 @media(max-width:480px){
 .page{padding:10px 9px 20px}
 .hero{padding:20px 10px 21px}
@@ -480,213 +429,108 @@ text-align:center;
 .top-row{grid-template-columns:145px minmax(0,1fr)}
 .status{min-height:76px;font-size:17px}
 .mode-btn{min-height:82px;font-size:25px}
-.history-list li{
-grid-template-columns:auto auto minmax(70px,1fr) 24px;
-}
-.management-table{
-min-width:0;
-font-size:11px;
-}
-.management-table input{
-font-size:11px;
-height:30px;
-padding:3px;
-}
+.history-list li{grid-template-columns:auto auto minmax(70px,1fr) 24px}
+.management-table{min-width:0;font-size:11px}
+.management-table input{font-size:11px;height:30px;padding:3px}
 }
 </style>
 </head>
-
 <body>
-
 <div class="page">
-
-<header class="hero">
-<h1>🚙 運転手MENU</h1>
-</header>
-
+<header class="hero"><h1>🚙 運転手MENU</h1></header>
 <main class="card">
 
 <div class="management-menu">
-<button id="assignmentBtn" class="management-btn assignment-btn" type="button">
-📋 担当表
-</button>
-<button id="compBtn" class="management-btn comp-btn" type="button">
-🗓️ 代休取得
-</button>
+<button id="assignmentBtn" class="management-btn assignment-btn" type="button">📋 担当表</button>
+<button id="compBtn" class="management-btn comp-btn" type="button">🗓️ 代休取得</button>
 </div>
 
 <div class="top-row">
-
 <div id="status" class="status">
 <span id="statusIcon">⏰</span>
 <span id="statusText">⏳判別中⏳</span>
 </div>
-
 <div class="select-box">
 <label for="driverSelect">選択</label>
-<select id="driverSelect">
-<option value="">⏳判別中⏳</option>
-</select>
+<select id="driverSelect"><option value="">⏳判別中⏳</option></select>
 </div>
-
 </div>
 
 <div class="mode-box">
-<button id="inMode" class="mode-btn in" type="button" disabled>
-☀️出勤☀️
-</button>
-<button id="outMode" class="mode-btn out off" type="button" disabled>
-🌙退勤🌙
-</button>
+<button id="inMode" class="mode-btn in" type="button" disabled>☀️出勤☀️</button>
+<button id="outMode" class="mode-btn out off" type="button" disabled>🌙退勤🌙</button>
 </div>
 
-<div class="guide">
-必要な場合は修正お願いします。
-</div>
+<div class="guide">必要な場合は修正お願いします。</div>
 
 <input id="photoInput" type="file" accept="image/*" class="hidden">
-
-<button id="uploadBtn" class="upload-btn" type="button" disabled>
-📷 写真を撮影・選択して読み取る
-</button>
-
+<button id="uploadBtn" class="upload-btn" type="button" disabled>📷 写真を撮影・選択して読み取る</button>
 <div id="notice" class="notice"></div>
 
 <section id="preview" class="preview">
-
 <div class="preview-box">
-
 <img id="photoPreview" class="photo-preview" alt="勤怠写真">
 
 <div class="fields">
-
 <div class="field">
 <label class="field-title" for="reportDate">日付</label>
 <input id="reportDate" type="date">
 </div>
-
 <div class="field">
 <label class="field-title" for="startTime">出勤時間</label>
 <input id="startTime" type="time">
 </div>
-
 <div id="endField" class="field hidden">
 <label class="field-title" for="endTime">退勤時間</label>
 <input id="endTime" type="time">
 </div>
-
 <div id="nextDateField" class="field hidden">
 <label class="field-title" for="nextDate">次回出勤日</label>
 <input id="nextDate" type="date">
 </div>
-
 <div id="nextTimeField" class="field hidden">
 <label class="field-title" for="nextTime">次回出勤時間</label>
 <select id="nextTime"></select>
 </div>
-
-<div id="summary" class="summary">
-前回残業 <strong>0:00</strong>　月間合計 <strong>0:00</strong>
-</div>
-
+<div id="summary" class="summary">前回残業 <strong>0:00</strong>　月間合計 <strong>0:00</strong></div>
 </div>
 
 <div class="message-section">
-
-<div class="message-title">
-報告文章
-</div>
-
+<div class="message-title">報告文章</div>
 <div class="message-box">
-
 <div id="messagePreview" class="message-preview"></div>
-
-<textarea
-id="memo"
-class="memo-input"
-placeholder="文章を入力できます"
-></textarea>
-
+<textarea id="memo" class="memo-input" placeholder="文章を入力できます"></textarea>
+</div>
 </div>
 
+<button id="sendBtn" class="send-btn" type="button" disabled>写真＋報告文章を送信</button>
 </div>
-
-<button id="sendBtn" class="send-btn" type="button" disabled>
-写真＋報告文章を送信
-</button>
-
-</div>
-
 </section>
 
 <section class="history">
-
-<h2 class="history-title">
-＜履歴＞
-</h2>
-
-<ul id="historyList" class="history-list">
-<li class="empty"></li>
-</ul>
-
+<h2 class="history-title">＜履歴＞</h2>
+<ul id="historyList" class="history-list"><li class="empty"></li></ul>
 </section>
 
 <section id="managementPanel" class="management-panel hidden">
-
 <div class="management-header">
-
-<div id="managementTitle" class="management-title">
-📋 担当表
+<div id="managementTitle" class="management-title">📋 担当表</div>
+<button id="managementClose" class="management-close" type="button">閉じる</button>
 </div>
-
-<button id="managementClose" class="management-close" type="button">
-閉じる
-</button>
-
-</div>
-
-<div id="managementLoading" class="management-loading">
-読み込み中...
-</div>
-
-<div
-id="assignmentPanel"
-class="management-table-wrap hidden"
-></div>
-
-<div
-id="compPanel"
-class="comp-panel hidden"
-></div>
-
-<button
-id="managementSave"
-class="management-save hidden"
-type="button"
->
-保存する
-</button>
-
+<div id="managementLoading" class="management-loading">読み込み中...</div>
+<div id="assignmentPanel" class="management-table-wrap hidden"></div>
+<div id="compPanel" class="comp-panel hidden"></div>
+<button id="managementSave" class="management-save hidden" type="button">保存する</button>
 </section>
 
 </main>
-
-<footer class="footer">
-勤怠管理Bot
-</footer>
-
+<footer class="footer">勤怠管理Bot</footer>
 </div>
 
 <script>
-
-const API_URL=
-'https://script.google.com/macros/s/AKfycbySmhEE3JyfWGxEylyWscOtqL3FTIH9Ww6nybcAGb0f_kw2QXVP-LaoVtT1eFRtv-4Lyw/exec';
-
-const LIFF_ID=
-'2011011273-HIdBF1sM';
-
-const AUTO_DETECT_TIMEOUT=
-5000;
+const API_URL='https://script.google.com/macros/s/AKfycbySmhEE3JyfWGxEylyWscOtqL3FTIH9Ww6nybcAGb0f_kw2QXVP-LaoVtT1eFRtv-4Lyw/exec';
+const LIFF_ID='2011011273-HIdBF1sM';
+const AUTO_DETECT_TIMEOUT=3500;
 
 const el={
 status:document.getElementById('status'),
@@ -740,10 +584,7 @@ function buildNextTimeOptions(){
 el.nextTime.innerHTML='';
 for(let hour=0;hour<24;hour++){
 for(let minute=0;minute<60;minute++){
-const value=
-String(hour).padStart(2,'0')+
-':'+
-String(minute).padStart(2,'0');
+const value=String(hour).padStart(2,'0')+':'+String(minute).padStart(2,'0');
 const option=document.createElement('option');
 option.value=value;
 option.textContent=value;
@@ -756,9 +597,7 @@ el.nextTime.appendChild(unknown);
 el.nextTime.value='08:00';
 }
 
-function pad2(value){
-return String(value).padStart(2,'0');
-}
+function pad2(value){return String(value).padStart(2,'0')}
 
 function today(){
 const d=new Date();
@@ -837,98 +676,35 @@ setTimeout(()=>reject(new Error('timeout')),milliseconds);
 }
 
 async function callServer(operation,data={}){
+const lightweight=[
+'getDriverInfo',
+'getDriverList',
+'getTodayHistory',
+'getWorkState',
+'getAttendanceSummary',
+'getCurrentAssignment',
+'getManagementData',
+'saveManagementData'
+];
+
+if(lightweight.includes(operation)){
 return new Promise((resolve,reject)=>{
-const requestId='req_'+Date.now()+'_'+Math.random().toString(36).slice(2);
-const params=new URLSearchParams();
-params.append('action','api');
-params.append('operation',operation);
-params.append('requestId',requestId);
-params.append('idToken',state.idToken||'');
-Object.keys(data).forEach(
-key=>params.append(key,data[key]??'')
-);
-
-fetch(API_URL,{
-method:'POST',
-headers:{
-'Content-Type':
-'application/x-www-form-urlencoded;charset=UTF-8'
-},
-body:params.toString(),
-mode:'no-cors'
-}).catch(
-error=>console.warn('API POST失敗',error)
-);
-
-pollApi(requestId,resolve,reject,0);
-});
-}
-
-function pollApi(requestId,resolve,reject,attempt){
-if(attempt>=50){
-reject(
-new Error(
-'サーバー応答がタイムアウトしました'
-)
-);
-return;
-}
-
-const callback=
-'gasCallback_'+Date.now()+'_'+attempt;
-
-const script=
-document.createElement('script');
-
+const callback='gasGet_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+const script=document.createElement('script');
 let finished=false;
 
 function cleanup(){
-if(script.parentNode){
-script.parentNode.removeChild(script);
-}
-try{
-delete window[callback];
-}catch(_){
-window[callback]=undefined;
-}
+if(script.parentNode)script.parentNode.removeChild(script);
+try{delete window[callback]}catch(_){window[callback]=undefined}
 }
 
 window[callback]=function(response){
-
 if(finished)return;
-
 finished=true;
 cleanup();
 
-if(
-response&&
-(
-response.status==='pending'||
-response.status==='processing'
-)
-){
-setTimeout(
-()=>pollApi(
-requestId,
-resolve,
-reject,
-attempt+1
-),
-500
-);
-return;
-}
-
 if(!response||response.ok!==true){
-reject(
-new Error(
-response&&response.error
-?
-response.error
-:
-'Apps Script APIエラー'
-)
-);
+reject(new Error(response&&response.error?response.error:'Apps Script APIエラー'));
 return;
 }
 
@@ -936,50 +712,136 @@ resolve(response.data);
 };
 
 script.onerror=function(){
-
 if(finished)return;
-
 finished=true;
 cleanup();
-
-setTimeout(
-()=>pollApi(
-requestId,
-resolve,
-reject,
-attempt+1
-),
-500
-);
+reject(new Error('Apps Script APIに接続できませんでした'));
 };
+
+const params=new URLSearchParams();
+
+params.append(
+'action',
+'api'
+);
+
+params.append(
+'operation',
+operation
+);
+
+params.append(
+'callback',
+callback
+);
+
+params.append(
+'_',
+Date.now()
+);
+
+params.append(
+'idToken',
+state.idToken||''
+);
+
+Object.keys(data).forEach(
+key=>
+params.append(
+key,
+data[key]??''
+)
+);
 
 script.src=
 API_URL+
-'?action=pollApi'+
-'&requestId='+encodeURIComponent(requestId)+
-'&callback='+encodeURIComponent(callback)+
-'&_='+Date.now();
+'?'+
+params.toString();
 
 document.body.appendChild(script);
+});
+}
+
+return new Promise((resolve,reject)=>{
+
+const requestId=
+'req_'+
+Date.now()+
+'_'+
+Math.random().toString(36).slice(2);
+
+const params=
+new URLSearchParams();
+
+params.append(
+'action',
+'api'
+);
+
+params.append(
+'operation',
+operation
+);
+
+params.append(
+'requestId',
+requestId
+);
+
+params.append(
+'idToken',
+state.idToken||''
+);
+
+Object.keys(data).forEach(
+key=>
+params.append(
+key,
+data[key]??''
+)
+);
+
+fetch(
+API_URL,
+{
+method:'POST',
+headers:{
+'Content-Type':
+'application/x-www-form-urlencoded;charset=UTF-8'
+},
+body:
+params.toString(),
+mode:'no-cors'
+}
+).catch(
+error=>
+console.warn(
+'API POST失敗',
+error
+)
+);
+
+pollApi(
+requestId,
+resolve,
+reject,
+0
+);
+});
 }
 
 function findDriver(key){
-return (
-state.drivers.find(
-driver=>driver.driverKey===key
-)||
-null
-);
+return state.drivers.find(
+driver=>
+driver.driverKey===key
+)||null;
 }
 
 function renderDrivers(){
-
 const current=
 state.driver
-?
-state.driver.driverKey
-:
-'';
+?state.driver.driverKey
+:'';
 
 el.driverSelect.innerHTML=
 '<option value="">選択して下さい</option>';
@@ -987,14 +849,20 @@ el.driverSelect.innerHTML=
 state.drivers.forEach(
 driver=>{
 const option=
-document.createElement('option');
+document.createElement(
+'option'
+);
+
 option.value=
 driver.driverKey;
+
 option.textContent=
 driver.displayName;
-el.driverSelect.appendChild(option);
-}
+
+el.driverSelect.appendChild(
+option
 );
+});
 
 if(current){
 el.driverSelect.value=
@@ -1004,17 +872,37 @@ current;
 
 async function loadDrivers(){
 
+const fallbackDrivers=[
+{
+displayName:'市川 悟',
+driverKey:'D001'
+},
+{
+displayName:'早谷 一慶',
+driverKey:'D002'
+},
+{
+displayName:'田中 大登',
+driverKey:'D003'
+},
+{
+displayName:'新里 元輝',
+driverKey:'D004'
+}
+];
+
 try{
 
 const list=
-await callServer('getDriverList');
+await callServer(
+'getDriverList'
+);
 
 state.drivers=
-Array.isArray(list)
-?
-list
-:
-[];
+Array.isArray(list)&&
+list.length
+?list
+:fallbackDrivers;
 
 renderDrivers();
 
@@ -1025,17 +913,31 @@ console.error(
 error
 );
 
+state.drivers=
+fallbackDrivers;
+
+renderDrivers();
+
+showNotice(
+'自動取得に失敗したため、手動で人物を選択できます。'
+);
+
 }
 }
 
-async function selectDriver(driver,manual=false){
+async function selectDriver(
+driver,
+manual=false
+){
 
 if(!driver){
 
 state.driver=null;
+
 el.inMode.disabled=true;
 el.outMode.disabled=true;
 el.uploadBtn.disabled=true;
+
 el.historyList.innerHTML=
 '<li class="empty"></li>';
 
@@ -1045,6 +947,7 @@ false
 );
 
 return;
+
 }
 
 if(manual){
@@ -1057,14 +960,9 @@ driver;
 el.driverSelect.value=
 driver.driverKey;
 
-el.inMode.disabled=
-false;
-
-el.outMode.disabled=
-false;
-
-el.uploadBtn.disabled=
-false;
+el.inMode.disabled=false;
+el.outMode.disabled=false;
+el.uploadBtn.disabled=false;
 
 setStatus(
 '完了',
@@ -1072,6 +970,7 @@ true
 );
 
 await refreshSelectedDriverData();
+
 }
 
 async function refreshSelectedDriverData(){
@@ -1088,26 +987,38 @@ const results=
 await Promise.allSettled([
 callServer(
 'getTodayHistory',
-{selectedDriverKey:driverKey}
+{
+selectedDriverKey:
+driverKey
+}
 ),
 callServer(
 'getWorkState',
-{selectedDriverKey:driverKey}
+{
+selectedDriverKey:
+driverKey
+}
 ),
 callServer(
 'getAttendanceSummary',
-{selectedDriverKey:driverKey}
+{
+selectedDriverKey:
+driverKey
+}
 )
 ]);
 
-if(results[0].status==='fulfilled'){
+if(
+results[0].status===
+'fulfilled'
+){
 
 state.history=
-Array.isArray(results[0].value)
-?
+Array.isArray(
 results[0].value
-:
-[];
+)
+?results[0].value
+:[];
 
 renderHistory(
 state.history
@@ -1120,22 +1031,36 @@ el.historyList.innerHTML=
 
 }
 
-if(results[1].status==='fulfilled'){
+if(
+results[1].status===
+'fulfilled'
+){
+
 state.workState=
 results[1].value||
-{hasWork:false,startTime:''};
+{
+hasWork:false,
+startTime:''
+};
+
 }
 
-if(results[2].status==='fulfilled'){
+if(
+results[2].status===
+'fulfilled'
+){
 
 state.summary=
 results[2].value||
 {
-previousOvertime:'0:00',
-monthlyOvertime:'0:00'
+previousOvertime:
+'0:00',
+monthlyOvertime:
+'0:00'
 };
 
 renderSummary();
+
 }
 
 }
@@ -1144,7 +1069,6 @@ let managementMode='';
 let managementState=null;
 
 function setManagementLoading(text){
-
 el.managementLoading.textContent=
 text||
 '読み込み中...';
@@ -1155,7 +1079,6 @@ el.managementLoading.classList.remove(
 }
 
 function clearManagementPanels(){
-
 el.assignmentPanel.innerHTML='';
 el.compPanel.innerHTML='';
 
@@ -1188,10 +1111,8 @@ el.managementPanel.classList.remove(
 
 el.managementTitle.textContent=
 mode==='assignment'
-?
-'📋 担当表'
-:
-'🗓️ 代休取得';
+?'📋 担当表'
+:'🗓️ 代休取得';
 
 setManagementLoading(
 '読み込み中...'
@@ -1203,25 +1124,26 @@ const result=
 await callServer(
 'getManagementData',
 {
-sheetType:mode,
+sheetType:
+mode,
 selectedDriverKey:
 state.driver
-?
-state.driver.driverKey
-:
-''
+?state.driver.driverKey
+:''
 }
 );
 
-if(!result||result.ok!==true){
+if(
+!result||
+result.ok!==true
+){
 
 throw new Error(
 result&&result.error
-?
-result.error
-:
-'データを取得できませんでした'
+?result.error
+:'データを取得できませんでした'
 );
+
 }
 
 managementState=
@@ -1231,28 +1153,24 @@ el.managementLoading.classList.add(
 'hidden'
 );
 
-if(mode==='assignment'){
+if(
+mode==='assignment'
+){
+
 renderAssignmentTable(
 result
 );
+
 }else{
+
 renderCompTable(
 result
 );
+
 }
 
 el.managementSave.classList.remove(
 'hidden'
-);
-
-setTimeout(
-()=>{
-el.managementPanel.scrollIntoView({
-behavior:'smooth',
-block:'start'
-});
-},
-50
 );
 
 }catch(error){
@@ -1268,9 +1186,12 @@ error.message||
 );
 
 }
+
 }
 
-function renderAssignmentTable(data){
+function renderAssignmentTable(
+data
+){
 
 const wrap=
 el.assignmentPanel;
@@ -1282,13 +1203,19 @@ wrap.classList.remove(
 );
 
 const table=
-document.createElement('table');
+document.createElement(
+'table'
+);
 
 table.className=
 'management-table';
 
 const rawOfficers=
-Array.isArray(data.officers)&&data.officers.length
+(
+Array.isArray(
+data.officers
+)&&
+data.officers.length
 ?
 data.officers
 :
@@ -1297,7 +1224,8 @@ data.officers
 '伊藤社長',
 '山下副社長',
 '西山副社長'
-];
+]
+);
 
 const officerColumns=
 rawOfficers.map(
@@ -1305,10 +1233,8 @@ name=>({
 key:name,
 label:
 name==='伊藤副社長'
-?
-'伊藤社長'
-:
-name
+?'伊藤社長'
+:name
 })
 );
 
@@ -1320,35 +1246,56 @@ item=>item.label
 ];
 
 const thead=
-document.createElement('thead');
+document.createElement(
+'thead'
+);
 
 const hrow=
-document.createElement('tr');
+document.createElement(
+'tr'
+);
 
 header.forEach(
 text=>{
 const th=
-document.createElement('th');
+document.createElement(
+'th'
+);
+
 th.textContent=
 text;
-hrow.appendChild(th);
+
+hrow.appendChild(
+th
+);
 }
 );
 
-thead.appendChild(hrow);
-table.appendChild(thead);
+thead.appendChild(
+hrow
+);
+
+table.appendChild(
+thead
+);
 
 const tbody=
-document.createElement('tbody');
+document.createElement(
+'tbody'
+);
 
 data.rows.forEach(
 (row,i)=>{
 
 const tr=
-document.createElement('tr');
+document.createElement(
+'tr'
+);
 
 const month=
-document.createElement('th');
+document.createElement(
+'th'
+);
 
 month.textContent=
 row.month;
@@ -1361,23 +1308,28 @@ officerColumns.forEach(
 officer=>{
 
 const td=
-document.createElement('td');
+document.createElement(
+'td'
+);
 
 const input=
-document.createElement('input');
+document.createElement(
+'input'
+);
 
-input.type='text';
+input.type=
+'text';
 
 input.value=
 row.assignments[
 officer.key
-]||
-'';
+]||'';
 
 input.addEventListener(
 'input',
 ()=>{
-data.rows[i].assignments[
+data.rows[i]
+.assignments[
 officer.key
 ]=
 input.value;
@@ -1388,89 +1340,273 @@ td.appendChild(
 input
 );
 
-tr.appendChild(td);
+tr.appendChild(
+td
+);
+
 }
 );
 
-tbody.appendChild(tr);
+tbody.appendChild(
+tr
+);
+
 }
 );
 
-table.appendChild(tbody);
-wrap.appendChild(table);
+table.appendChild(
+tbody
+);
+
+wrap.appendChild(
+table
+);
+
 }
 
-function renderCompTable(data){
-const wrap=el.compPanel;
+function renderCompTable(
+data
+){
+
+const wrap=
+el.compPanel;
+
 wrap.innerHTML='';
-wrap.classList.remove('hidden');
-const makeSection=(title,rows,key)=>{
-const section=document.createElement('div');
-const titleEl=document.createElement('div');
-titleEl.className='management-section-title';
-titleEl.textContent=title;
-section.appendChild(titleEl);
-const table=document.createElement('table');
-table.className='management-table';
-const thead=document.createElement('thead');
-const hrow=document.createElement('tr');
-['出勤日','代休日','担当者','役員'].forEach(text=>{const th=document.createElement('th');th.textContent=text;hrow.appendChild(th);});
-thead.appendChild(hrow);table.appendChild(thead);
-const tbody=document.createElement('tbody');
-rows.forEach((row,i)=>{
-const tr=document.createElement('tr');
-['startDate','compDate','driver','officer'].forEach(field=>{
-const td=document.createElement('td');
-const input=document.createElement('input');
-input.type='text';input.value=row[field]||'';
-input.addEventListener('input',()=>{managementState[key][i][field]=input.value;});
-td.appendChild(input);tr.appendChild(td);
-});
-tbody.appendChild(tr);
-});
-table.appendChild(tbody);section.appendChild(table);return section;
+
+wrap.classList.remove(
+'hidden'
+);
+
+const makeSection=(
+title,
+rows,
+key
+)=>{
+
+const section=
+document.createElement(
+'div'
+);
+
+const titleEl=
+document.createElement(
+'div'
+);
+
+titleEl.className=
+'management-section-title';
+
+titleEl.textContent=
+title;
+
+section.appendChild(
+titleEl
+);
+
+const table=
+document.createElement(
+'table'
+);
+
+table.className=
+'management-table';
+
+const thead=
+document.createElement(
+'thead'
+);
+
+const hrow=
+document.createElement(
+'tr'
+);
+
+[
+'出勤日',
+'代休日',
+'担当者',
+'役員'
+].forEach(
+text=>{
+const th=
+document.createElement(
+'th'
+);
+
+th.textContent=
+text;
+
+hrow.appendChild(
+th
+);
+}
+);
+
+thead.appendChild(
+hrow
+);
+
+table.appendChild(
+thead
+);
+
+const tbody=
+document.createElement(
+'tbody'
+);
+
+rows.forEach(
+(row,i)=>{
+const tr=
+document.createElement(
+'tr'
+);
+
+[
+'startDate',
+'compDate',
+'driver',
+'officer'
+].forEach(
+field=>{
+
+const td=
+document.createElement(
+'td'
+);
+
+const input=
+document.createElement(
+'input'
+);
+
+input.type=
+'text';
+
+input.value=
+row[field]||'';
+
+input.addEventListener(
+'input',
+()=>{
+managementState[
+key
+][i][
+field
+]=
+input.value;
+}
+);
+
+td.appendChild(
+input
+);
+
+tr.appendChild(
+td
+);
+
+}
+);
+
+tbody.appendChild(
+tr
+);
+
+}
+);
+
+table.appendChild(
+tbody
+);
+
+section.appendChild(
+table
+);
+
+return section;
+
 };
-const planned=Array.isArray(data.planned)?data.planned:[];
-const completed=Array.isArray(data.completed)?data.completed:[];
-if(planned.length){wrap.appendChild(makeSection('取得予定、未取得',planned,'planned'));}
-else{const empty=document.createElement('div');empty.className='management-section-title';empty.textContent='取得予定、未取得';wrap.appendChild(empty);}
-const addBtn=document.createElement('button');
-addBtn.type='button';addBtn.className='management-add';addBtn.textContent='＋ 予定を追加';
-addBtn.addEventListener('click',()=>{
-if(!Array.isArray(data.planned))data.planned=[];
-data.planned.push({sheetRow:null,startDate:'',compDate:'',driver:'',officer:''});
-renderCompTable(data);
-setTimeout(()=>{const inputs=wrap.querySelectorAll('.management-table input');if(inputs.length)inputs[inputs.length-4].focus();},30);
-});
-wrap.appendChild(addBtn);
-if(completed.length)wrap.appendChild(makeSection('取得済み',completed,'completed'));
+
+wrap.appendChild(
+makeSection(
+'取得予定、未取得',
+data.planned,
+'planned'
+)
+);
+
+const addBtn=
+document.createElement(
+'button'
+);
+
+addBtn.type=
+'button';
+
+addBtn.className=
+'management-add';
+
+addBtn.textContent=
+'＋ 予定を追加';
+
+addBtn.addEventListener(
+'click',
+()=>{
+if(
+!Array.isArray(
+data.planned
+)
+)data.planned=[];
+
+data.planned.push(
+{
+sheetRow:null,
+startDate:'',
+compDate:'',
+driver:'',
+officer:''
+}
+);
+
+renderCompTable(
+data
+);
+}
+);
+
+wrap.appendChild(
+addBtn
+);
+
+wrap.appendChild(
+makeSection(
+'取得済み',
+data.completed,
+'completed'
+)
+);
 }
 
 el.assignmentBtn.addEventListener(
 'click',
-()=>{
-openManagement(
+()=>openManagement(
 'assignment'
 )
-}
 );
 
 el.compBtn.addEventListener(
 'click',
-()=>{
-openManagement(
+()=>openManagement(
 'comp'
 )
-}
 );
 
 el.managementClose.addEventListener(
 'click',
-()=>{
-el.managementPanel.classList.add(
+()=>el.managementPanel.classList.add(
 'hidden'
-);
-}
+)
 );
 
 el.managementSave.addEventListener(
@@ -1493,12 +1629,12 @@ await callServer(
 {
 sheetType:
 managementMode,
+
 selectedDriverKey:
 state.driver
-?
-state.driver.driverKey
-:
-'',
+?state.driver.driverKey
+:'',
+
 payload:
 JSON.stringify(
 managementState
@@ -1513,11 +1649,10 @@ result.ok!==true
 
 throw new Error(
 result&&result.error
-?
-result.error
-:
-'保存に失敗しました'
+?result.error
+:'保存に失敗しました'
 );
+
 }
 
 alert(
@@ -1549,6 +1684,7 @@ el.managementSave.textContent=
 '保存する';
 
 }
+
 }
 );
 
@@ -1566,9 +1702,12 @@ state.summary.monthlyOvertime||
 '0:00'
 )+
 '</strong>';
+
 }
 
-function normalizeHistoryType(item){
+function normalizeHistoryType(
+item
+){
 
 const raw=
 String(
@@ -1592,9 +1731,12 @@ raw==='退勤時'
 )return '退勤';
 
 return '';
+
 }
 
-function normalizeHistoryDate(item){
+function normalizeHistoryDate(
+item
+){
 
 const value=
 item.date||
@@ -1604,7 +1746,9 @@ item.reportDate||
 if(!value)return '';
 
 const text=
-String(value);
+String(
+value
+);
 
 let match=
 text.match(
@@ -1613,7 +1757,7 @@ text.match(
 
 if(match){
 
-return (
+return(
 match[1]+'/'+
 Number(match[2])+'/'+
 Number(match[3])
@@ -1631,7 +1775,7 @@ if(match){
 const now=
 new Date();
 
-return (
+return(
 now.getFullYear()+'/'+
 Number(match[1])+'/'+
 Number(match[2])
@@ -1640,9 +1784,12 @@ Number(match[2])
 }
 
 return text;
+
 }
 
-function renderHistory(list){
+function renderHistory(
+list
+){
 
 if(
 !Array.isArray(list)||
@@ -1653,13 +1800,18 @@ el.historyList.innerHTML=
 '<li class="empty">まだ履歴はありません</li>';
 
 return;
+
 }
 
 const sorted=
 [...list].sort(
 (a,b)=>
-Number(b.savedAt||0)-
-Number(a.savedAt||0)
+Number(
+b.savedAt||0
+)-
+Number(
+a.savedAt||0
+)
 );
 
 el.historyList.innerHTML=
@@ -1667,21 +1819,35 @@ sorted.map(
 item=>{
 
 const type=
-normalizeHistoryType(item);
+normalizeHistoryType(
+item
+);
 
 const date=
-normalizeHistoryDate(item);
+normalizeHistoryDate(
+item
+);
 
 let time='';
 
-if(type==='退勤'){
+if(
+type==='退勤'
+){
 
 time=
-(item.startTime||'0:00')+
+(
+item.startTime||
+'0:00'
+)+
 '→'+
-(item.endTime||'0:00');
+(
+item.endTime||
+'0:00'
+);
 
-}else if(type==='出勤'){
+}else if(
+type==='出勤'
+){
 
 time=
 item.reportTime||
@@ -1693,13 +1859,19 @@ item.startTime||
 return(
 '<li>'+
 '<span class="history-date">'+
-escapeHtml(date)+
+escapeHtml(
+date
+)+
 '</span>'+
 '<span class="history-type">'+
-escapeHtml(type)+
+escapeHtml(
+type
+)+
 '</span>'+
 '<span class="history-time">'+
-escapeHtml(time)+
+escapeHtml(
+time
+)+
 '</span>'+
 '<span class="history-ok">✅</span>'+
 '</li>'
@@ -1707,9 +1879,12 @@ escapeHtml(time)+
 
 }
 ).join('');
+
 }
 
-function setMode(mode){
+function setMode(
+mode
+){
 
 state.mode=
 mode;
@@ -1738,7 +1913,9 @@ el.photoInput.value='';
 
 showNotice('');
 
-if(mode==='in'){
+if(
+mode==='in'
+){
 
 el.endField.classList.add(
 'hidden'
@@ -1787,14 +1964,18 @@ tomorrow();
 
 el.nextTime.value=
 '08:00';
+
 }
 
 refreshMessage();
+
 }
 
 function buildReportBaseMessage(){
 
-if(state.mode==='in'){
+if(
+state.mode==='in'
+){
 
 const date=
 el.reportDate.value||
@@ -1806,8 +1987,7 @@ nowTime();
 
 return(
 'お疲れ様でございます。\n'+
-dateText(date)+
-' '+
+dateText(date)+' '+
 time+
 '出勤いたしました。\n'+
 '本日もよろしくお願いいたします。\n'+
@@ -1819,6 +1999,7 @@ time+
 '\n'+
 '【MEMO】'
 );
+
 }
 
 const reportDate=
@@ -1854,19 +2035,15 @@ nextDate
 
 let nextAttendance=
 prefix
-?
-prefix+' '+datePart
-:
-datePart;
+?prefix+' '+datePart
+:datePart;
 
-nextAttendance+=
-' '+nextTime;
+nextAttendance+=' '+nextTime;
 
 return(
 'お疲れ様でございます。\n'+
 '業務完了いたしました。\n'+
-dateText(reportDate)+
-'\n'+
+dateText(reportDate)+'\n'+
 '稼働)'+
 start+
 '→'+
@@ -1879,34 +2056,31 @@ nextAttendance+
 '明日もよろしくお願いいたします。\n'+
 '【MEMO】'
 );
+
 }
 
 function refreshMessage(){
-
 el.messagePreview.textContent=
 buildReportBaseMessage();
-
 }
 
 function buildCompleteMessage(){
-
 const base=
 buildReportBaseMessage();
 
 const memo=
 String(
-el.memo.value||
-''
+el.memo.value||''
 ).trim();
 
 return memo
-?
-base+'\n'+memo
-:
-base;
+?base+'\n'+memo
+:base;
 }
 
-function imageToDataUrl(file){
+function imageToDataUrl(
+file
+){
 
 return new Promise(
 (resolve,reject)=>{
@@ -1914,12 +2088,14 @@ return new Promise(
 const reader=
 new FileReader();
 
-reader.onload=function(){
+reader.onload=
+function(){
 
 const image=
 new Image();
 
-image.onload=function(){
+image.onload=
+function(){
 
 const max=
 1800;
@@ -1954,7 +2130,9 @@ scale
 const context=
 canvas.getContext(
 '2d',
-{alpha:false}
+{
+alpha:false
+}
 );
 
 context.drawImage(
@@ -1971,6 +2149,7 @@ canvas.toDataURL(
 .86
 )
 );
+
 };
 
 image.onerror=
@@ -1978,6 +2157,7 @@ reject;
 
 image.src=
 reader.result;
+
 };
 
 reader.onerror=
@@ -1987,13 +2167,16 @@ reader.readAsDataURL(
 file
 );
 
-}
-);
+});
 }
 
-async function runBrowserOcr(dataUrl){
+async function runBrowserOcr(
+dataUrl
+){
 
-if(!window.Tesseract){
+if(
+!window.Tesseract
+){
 
 throw new Error(
 'OCRライブラリの読み込みに失敗しました'
@@ -2006,11 +2189,13 @@ await Tesseract.recognize(
 dataUrl,
 'eng',
 {
-logger:message=>{
+logger:
+message=>{
 
 if(
 message&&
-message.status==='recognizing text'&&
+message.status===
+'recognizing text'&&
 message.progress
 ){
 
@@ -2023,29 +2208,34 @@ message.progress*100
 );
 
 }
+
 },
 tessedit_pageseg_mode:6
 }
 );
 
 return result&&result.data
-?
-String(
+?String(
 result.data.text||''
 )
-:
-'';
+:'';
+
 }
 
-async function uploadPhoto(file){
+async function uploadPhoto(
+file
+){
 
-if(!state.driver){
+if(
+!state.driver
+){
 
 alert(
 '先に人物を選択してください'
 );
 
 return;
+
 }
 
 showNotice(
@@ -2080,12 +2270,16 @@ await callServer(
 {
 selectedDriverKey:
 state.driver.driverKey,
+
 mode:
 state.mode,
+
 imageBase64:
 dataUrl,
+
 fileName:
 file.name,
+
 ocrText:
 ocrText
 }
@@ -2108,7 +2302,9 @@ result.ocrTime||
 state.workState.startTime||
 nowTime();
 
-if(state.mode==='out'){
+if(
+state.mode==='out'
+){
 
 el.endTime.value=
 result.endTime||
@@ -2136,13 +2332,17 @@ showNotice(
 error.message||
 '写真の読み取りに失敗しました。'
 );
+
 }
+
 }
 
 async function sendDraft(){
 
-if(!state.draft||!state.driver)
-return;
+if(
+!state.draft||
+!state.driver
+)return;
 
 el.sendBtn.disabled=
 true;
@@ -2162,46 +2362,50 @@ await callServer(
 {
 draftId:
 state.draft.draftId,
+
 mode:
 state.mode,
+
 reportDate:
 el.reportDate.value,
+
 reportTime:
 state.mode==='in'
-?
-el.startTime.value
-:
-el.endTime.value,
+?el.startTime.value
+:el.endTime.value,
+
 startTime:
 el.startTime.value,
+
 endTime:
 state.mode==='out'
-?
-el.endTime.value
-:
-'',
+?el.endTime.value
+:'',
+
 nextDate:
 state.mode==='out'
-?
-el.nextDate.value
-:
-'',
+?el.nextDate.value
+:'',
+
 nextTime:
 state.mode==='out'
-?
-el.nextTime.value
-:
-'',
+?el.nextTime.value
+:'',
+
 message:
 message
 }
 );
 
-if(!result||result.ok!==true){
+if(
+!result||
+result.ok!==true
+){
 
 throw new Error(
 '送信に失敗しました'
 );
+
 }
 
 showNotice(
@@ -2238,6 +2442,7 @@ el.sendBtn.disabled=
 !state.draft;
 
 }
+
 }
 
 el.driverSelect.addEventListener(
@@ -2261,18 +2466,19 @@ el.inMode.addEventListener(
 'click',
 function(){
 
-if(!state.driver){
+if(
+!state.driver
+){
 
 alert(
 '先に人物を選択してください'
 );
 
 return;
+
 }
 
-setMode(
-'in'
-);
+setMode('in');
 
 }
 );
@@ -2281,18 +2487,19 @@ el.outMode.addEventListener(
 'click',
 function(){
 
-if(!state.driver){
+if(
+!state.driver
+){
 
 alert(
 '先に人物を選択してください'
 );
 
 return;
+
 }
 
-setMode(
-'out'
-);
+setMode('out');
 
 }
 );
@@ -2301,13 +2508,16 @@ el.uploadBtn.addEventListener(
 'click',
 function(){
 
-if(!state.driver){
+if(
+!state.driver
+){
 
 alert(
 '先に人物を選択してください'
 );
 
 return;
+
 }
 
 el.photoInput.click();
@@ -2371,7 +2581,9 @@ false
 
 try{
 
-if(typeof liff==='undefined'){
+if(
+typeof liff==='undefined'
+){
 
 throw new Error(
 'LIFF SDKが読み込まれていません'
@@ -2398,9 +2610,12 @@ true
 );
 
 return;
+
 }
 
-if(!liff.isLoggedIn()){
+if(
+!liff.isLoggedIn()
+){
 
 setStatus(
 '右から選択',
@@ -2408,13 +2623,16 @@ false
 );
 
 return;
+
 }
 
 state.idToken=
 liff.getIDToken()||
 '';
 
-if(!state.idToken){
+if(
+!state.idToken
+){
 
 setStatus(
 '右から選択',
@@ -2422,6 +2640,7 @@ false
 );
 
 return;
+
 }
 
 const info=
@@ -2443,6 +2662,7 @@ true
 );
 
 return;
+
 }
 
 if(
@@ -2469,6 +2689,7 @@ true
 );
 
 return;
+
 }
 
 }
@@ -2505,6 +2726,7 @@ false
 }
 
 }
+
 }
 
 window.addEventListener(
@@ -2540,12 +2762,10 @@ false
 loadDrivers()
 .catch(
 error=>{
-
 console.error(
 '人物一覧取得失敗',
 error
 );
-
 }
 );
 
@@ -2566,7 +2786,9 @@ function(){
 setTimeout(
 function(){
 
-if(state.driver){
+if(
+state.driver
+){
 
 refreshSelectedDriverData();
 
@@ -2586,7 +2808,9 @@ function(){
 setTimeout(
 function(){
 
-if(state.driver){
+if(
+state.driver
+){
 
 refreshSelectedDriverData();
 
