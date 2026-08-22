@@ -14,8 +14,6 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-
 <style>
 
 :root{
@@ -42,6 +40,7 @@ body{
 
 body{
   min-height:100vh;
+
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -49,7 +48,9 @@ body{
     "Yu Gothic",
     Meiryo,
     sans-serif;
+
   color:var(--text);
+
   background:
     linear-gradient(
       var(--bg),
@@ -74,11 +75,25 @@ button{
   padding:12px 10px 24px;
 }
 
+
+/* ==========================================================
+   ヘッダー
+========================================================== */
+
 .hero{
   overflow:hidden;
-  padding:21px 10px 23px;
-  border-radius:26px;
-  text-align:center;
+
+  padding:
+    21px
+    10px
+    23px;
+
+  border-radius:
+    26px;
+
+  text-align:
+    center;
+
   background:
     linear-gradient(
       180deg,
@@ -87,148 +102,290 @@ button{
       #98dc83 70%,
       #7ccf71 100%
     );
-  box-shadow:var(--shadow);
+
+  box-shadow:
+    var(--shadow);
 }
 
 .hero h1{
   margin:0;
-  color:var(--blue);
-  font-size:30px;
-  line-height:1.15;
-  font-weight:900;
-  white-space:nowrap;
+
+  color:
+    var(--blue);
+
+  font-size:
+    30px;
+
+  line-height:
+    1.15;
+
+  font-weight:
+    900;
+
+  white-space:
+    nowrap;
 }
 
+
+/* ==========================================================
+   メイン
+========================================================== */
+
 .card{
-  margin-top:12px;
-  padding:13px;
-  border-radius:24px;
-  background:rgba(255,255,255,.97);
-  box-shadow:var(--shadow);
+  margin-top:
+    12px;
+
+  padding:
+    13px;
+
+  border-radius:
+    24px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .97
+    );
+
+  box-shadow:
+    var(--shadow);
 }
+
+
+/* ==========================================================
+   管理ボタン
+========================================================== */
 
 .management-menu{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:8px;
-  margin-bottom:12px;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:
+    8px;
+
+  margin-top:
+    8px;
+
+  margin-bottom:
+    12px;
 }
 
 .management-btn{
-  min-height:54px;
-  border:1px solid var(--line);
-  border-radius:16px;
-  font-size:16px;
-  font-weight:900;
-  background:#f7fcff;
-  color:var(--blue);
+  min-height:
+    54px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    16px;
+
+  font-size:
+    16px;
+
+  font-weight:
+    900;
+
+  background:
+    #f7fcff;
+
+  color:
+    var(--blue);
 }
 
 .assignment-btn{
-  background:#eef8ff;
+  background:
+    #eef8ff;
 }
 
 .comp-btn{
-  background:#f4fbf5;
-  color:#18824e;
+  background:
+    #f4fbf5;
+
+  color:
+    #18824e;
 }
+
+
+/* ==========================================================
+   人物選択
+========================================================== */
 
 .top-row{
   display:grid;
-  grid-template-columns:158px minmax(0,1fr);
-  gap:8px;
-  align-items:stretch;
+
+  grid-template-columns:
+    158px
+    minmax(0,1fr);
+
+  gap:
+    8px;
+
+  align-items:
+    stretch;
 }
 
 .status{
-  min-height:78px;
+  min-height:
+    78px;
+
   display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:7px;
-  padding:8px;
-  border-radius:20px;
-  background:#f3fbff;
-  border:1px solid var(--line);
-  color:var(--blue);
-  font-size:18px;
-  font-weight:900;
-  text-align:center;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    7px;
+
+  padding:
+    8px;
+
+  border-radius:
+    20px;
+
+  background:
+    #f3fbff;
+
+  border:
+    1px solid
+    var(--line);
+
+  color:
+    var(--blue);
+
+  font-size:
+    18px;
+
+  font-weight:
+    900;
+
+  text-align:
+    center;
 }
 
 .status.done{
-  background:#eefbf3;
-  border-color:#ccefd8;
-  color:var(--green);
+  background:
+    #eefbf3;
+
+  border-color:
+    #ccefd8;
+
+  color:
+    var(--green);
 }
 
 .select-box{
-  padding:9px 11px;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:#f9fdff;
+  padding:
+    9px 11px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    18px;
+
+  background:
+    #f9fdff;
 }
 
-.select-box label,
-.field-title{
+.select-box label{
   display:block;
-  margin-bottom:5px;
-  color:#637c90;
-  font-size:13px;
-  font-weight:900;
+
+  margin-bottom:
+    5px;
+
+  color:
+    #637c90;
+
+  font-size:
+    13px;
+
+  font-weight:
+    900;
 }
 
 select,
 input[type="date"],
 input[type="time"],
 textarea{
-  width:100%;
-  border:1px solid #cfe4f3;
-  border-radius:12px;
-  background:#fff;
-  color:var(--text);
-  outline:none;
+  width:
+    100%;
+
+  border:
+    1px solid
+    #cfe4f3;
+
+  border-radius:
+    12px;
+
+  background:
+    #ffffff;
+
+  color:
+    var(--text);
+
+  outline:
+    none;
 }
 
 select,
 input[type="date"],
 input[type="time"]{
-  height:44px;
-  padding:0 10px;
-  font-size:16px;
-  font-weight:800;
+  height:
+    44px;
+
+  padding:
+    0 10px;
+
+  font-size:
+    16px;
+
+  font-weight:
+    800;
 }
 
-textarea{
-  padding:10px 11px;
-  font-size:14px;
-  line-height:1.5;
-  resize:vertical;
-}
 
-select:focus,
-input:focus,
-textarea:focus{
-  border-color:#63b4ea;
-  box-shadow:
-    0 0 0 3px
-    rgba(99,180,234,.12);
-}
+/* ==========================================================
+   出勤・退勤
+========================================================== */
 
 .mode-box{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:10px;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:
+    8px;
+
+  margin-top:
+    10px;
 }
 
 .mode-btn{
-  min-height:90px;
-  border:0;
-  border-radius:20px;
-  font-size:28px;
-  font-weight:900;
+  min-height:
+    90px;
+
+  border:
+    0;
+
+  border-radius:
+    20px;
+
+  font-size:
+    28px;
+
+  font-weight:
+    900;
 }
 
 .mode-btn.in{
@@ -237,7 +394,9 @@ textarea:focus{
       #73cdf8,
       #7dd77a
     );
-  color:#084e78;
+
+  color:
+    #084e78;
 }
 
 .mode-btn.out{
@@ -246,429 +405,821 @@ textarea:focus{
       #1b357c,
       #0e1e4d
     );
-  color:#fff;
+
+  color:
+    #ffffff;
 }
 
 .mode-btn.off{
-  opacity:.38;
-  filter:grayscale(.18);
+  opacity:
+    .38;
+
+  filter:
+    grayscale(.18);
 }
 
 .guide{
-  margin:9px 4px;
-  color:var(--blue);
-  font-size:13px;
-  font-weight:900;
-  text-align:center;
+  margin:
+    9px 4px;
+
+  color:
+    var(--blue);
+
+  font-size:
+    13px;
+
+  font-weight:
+    900;
+
+  text-align:
+    center;
 }
 
+
+/* ==========================================================
+   写真
+========================================================== */
+
 .upload-btn{
-  width:100%;
-  min-height:54px;
-  border:1px solid #cfe8f7;
-  border-radius:17px;
-  background:#eaf7ff;
-  color:var(--blue);
-  font-size:17px;
-  font-weight:900;
+  width:
+    100%;
+
+  min-height:
+    54px;
+
+  border:
+    1px solid
+    #cfe8f7;
+
+  border-radius:
+    17px;
+
+  background:
+    #eaf7ff;
+
+  color:
+    var(--blue);
+
+  font-size:
+    17px;
+
+  font-weight:
+    900;
 }
 
 .upload-btn:disabled{
-  opacity:.45;
-  cursor:not-allowed;
+  opacity:
+    .45;
+
+  cursor:
+    not-allowed;
 }
 
 .notice{
-  display:none;
-  margin-top:9px;
-  padding:9px 11px;
-  border-radius:12px;
-  background:#f7fcff;
-  color:#5c7588;
-  font-size:12px;
-  line-height:1.45;
-  text-align:center;
+  display:
+    none;
+
+  margin-top:
+    9px;
+
+  padding:
+    9px 11px;
+
+  border-radius:
+    12px;
+
+  background:
+    #f7fcff;
+
+  color:
+    #5c7588;
+
+  font-size:
+    12px;
+
+  line-height:
+    1.45;
+
+  text-align:
+    center;
 }
 
 .notice.show{
-  display:block;
+  display:
+    block;
 }
 
 .hidden{
-  display:none!important;
+  display:
+    none !important;
 }
 
+
+/* ==========================================================
+   写真プレビュー
+========================================================== */
+
 .preview{
-  display:none;
-  margin-top:11px;
+  display:
+    none;
+
+  margin-top:
+    11px;
 }
 
 .preview.show{
-  display:block;
+  display:
+    block;
 }
 
 .preview-box{
-  padding:12px;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:#fff;
+  padding:
+    12px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    18px;
+
+  background:
+    #ffffff;
 }
 
 .photo-preview{
-  display:block;
-  width:100%;
-  max-height:360px;
-  object-fit:contain;
-  border-radius:14px;
-  background:#eef4f8;
+  display:
+    block;
+
+  width:
+    100%;
+
+  max-height:
+    360px;
+
+  object-fit:
+    contain;
+
+  border-radius:
+    14px;
+
+  background:
+    #eef4f8;
 }
+
+
+/* ==========================================================
+   入力欄
+========================================================== */
 
 .fields{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:7px;
-  margin-top:9px;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:
+    7px;
+
+  margin-top:
+    9px;
 }
 
 .field{
-  min-width:0;
-  padding:9px;
-  border:1px solid var(--line);
-  border-radius:14px;
-  background:var(--soft);
+  min-width:
+    0;
+
+  padding:
+    9px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    14px;
+
+  background:
+    var(--soft);
+}
+
+.field-title{
+  display:block;
+
+  margin-bottom:
+    5px;
+
+  color:
+    #637c90;
+
+  font-size:
+    13px;
+
+  font-weight:
+    900;
 }
 
 .summary{
-  grid-column:1/-1;
-  padding:9px 10px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:#fff;
-  color:#446276;
-  text-align:center;
-  font-size:13px;
-  font-weight:800;
+  grid-column:
+    1 / -1;
+
+  padding:
+    9px 10px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    12px;
+
+  background:
+    #ffffff;
+
+  color:
+    #446276;
+
+  text-align:
+    center;
+
+  font-size:
+    13px;
+
+  font-weight:
+    800;
 }
 
 .summary strong{
-  color:var(--blue);
+  color:
+    var(--blue);
 }
 
+
+/* ==========================================================
+   報告文章
+========================================================== */
+
 .message-section{
-  margin-top:12px;
+  margin-top:
+    12px;
 }
 
 .message-title{
-  margin:0 0 7px;
-  color:var(--blue);
-  font-size:20px;
-  font-weight:900;
+  margin:
+    0 0 7px;
+
+  color:
+    var(--blue);
+
+  font-size:
+    20px;
+
+  font-weight:
+    900;
 }
 
 .message-box{
-  padding:11px;
-  border:1px solid var(--line);
-  border-radius:16px;
-  background:#f7fcff;
+  padding:
+    11px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    16px;
+
+  background:
+    #f7fcff;
 }
 
 .message-preview{
-  white-space:pre-line;
-  font-size:14px;
-  line-height:1.55;
-  color:#15446e;
-  font-weight:700;
+  white-space:
+    pre-line;
+
+  font-size:
+    14px;
+
+  line-height:
+    1.55;
+
+  color:
+    #15446e;
+
+  font-weight:
+    700;
 }
 
 .memo-input{
-  display:block;
-  width:100%;
-  min-height:92px;
-  margin-top:10px;
-  padding:10px 11px;
-  border:1px solid #cfe4f3;
-  border-radius:12px;
-  background:#fff;
-  color:var(--text);
-  font-size:14px;
-  line-height:1.55;
-  resize:vertical;
-  outline:none;
+  display:
+    block;
+
+  width:
+    100%;
+
+  min-height:
+    92px;
+
+  margin-top:
+    10px;
+
+  padding:
+    10px 11px;
+
+  border:
+    1px solid
+    #cfe4f3;
+
+  border-radius:
+    12px;
+
+  background:
+    #ffffff;
+
+  color:
+    var(--text);
+
+  font-size:
+    14px;
+
+  line-height:
+    1.55;
+
+  resize:
+    vertical;
+
+  outline:
+    none;
 }
 
 .send-btn{
-  width:100%;
-  min-height:54px;
-  margin-top:9px;
-  border:0;
-  border-radius:17px;
+  width:
+    100%;
+
+  min-height:
+    54px;
+
+  margin-top:
+    9px;
+
+  border:
+    0;
+
+  border-radius:
+    17px;
+
   background:
     linear-gradient(
       #56baf0,
       #2d88d8
     );
-  color:#fff;
-  font-size:18px;
-  font-weight:900;
+
+  color:
+    #ffffff;
+
+  font-size:
+    18px;
+
+  font-weight:
+    900;
 }
 
 .send-btn:disabled{
-  opacity:.45;
-  cursor:not-allowed;
+  opacity:
+    .45;
+
+  cursor:
+    not-allowed;
 }
 
+
+/* ==========================================================
+   履歴
+========================================================== */
+
 .history{
-  margin-top:16px;
-  padding-top:13px;
-  border-top:1px solid #e2eef6;
+  margin-top:
+    16px;
+
+  padding-top:
+    13px;
+
+  border-top:
+    1px solid
+    #e2eef6;
 }
 
 .history-title{
-  margin:0 0 8px;
-  color:var(--blue);
-  font-size:20px;
-  font-weight:900;
-  text-align:center;
+  margin:
+    0 0 8px;
+
+  color:
+    var(--blue);
+
+  font-size:
+    20px;
+
+  font-weight:
+    900;
+
+  text-align:
+    center;
 }
 
-.history-list{
-  list-style:none;
-  padding:0;
-  margin:0;
-}
 
-.history-list li{
-  display:grid;
-  grid-template-columns:
-    84px
-    42px
-    minmax(78px,1fr)
-    26px;
-  gap:4px;
-  align-items:center;
-  padding:9px 1px;
-  border-bottom:1px solid #edf4fa;
-  color:#496173;
-  font-size:12px;
-  white-space:nowrap;
-}
-
-.history-ok{
-  color:var(--green);
-  font-size:16px;
-  font-weight:900;
-  text-align:right;
-}
-
-.empty{
-  display:block!important;
-  text-align:center;
-  color:#7a90a3;
-}
+/* ==========================================================
+   管理パネル
+========================================================== */
 
 .management-panel{
-  margin-top:8px;
-  padding:6px;
-  border:1px solid var(--line);
-  border-radius:16px;
-  background:#fff;
+  margin-top:
+    8px;
+
+  padding:
+    6px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    16px;
+
+  background:
+    #ffffff;
 }
 
 .management-header{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  margin-bottom:7px;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    8px;
+
+  margin-bottom:
+    7px;
 }
 
 .management-title{
-  color:var(--blue);
-  font-size:18px;
-  font-weight:900;
+  color:
+    var(--blue);
+
+  font-size:
+    18px;
+
+  font-weight:
+    900;
 }
 
 .management-close{
-  border:0;
-  border-radius:10px;
-  padding:7px 11px;
-  background:#edf4f8;
-  color:#526a7d;
-  font-size:12px;
-  font-weight:900;
+  border:
+    0;
+
+  border-radius:
+    10px;
+
+  padding:
+    7px 11px;
+
+  background:
+    #edf4f8;
+
+  color:
+    #526a7d;
+
+  font-size:
+    12px;
+
+  font-weight:
+    900;
 }
 
 .management-loading{
-  padding:12px;
-  color:#688094;
-  text-align:center;
-  font-size:13px;
-  font-weight:800;
+  padding:
+    12px;
+
+  color:
+    #688094;
+
+  text-align:
+    center;
+
+  font-size:
+    13px;
+
+  font-weight:
+    800;
 }
 
+
+/* ==========================================================
+   テーブル
+========================================================== */
+
 .management-table-wrap{
-  overflow-x:hidden;
-  max-width:100%;
+  overflow-x:
+    hidden;
+
+  max-width:
+    100%;
 }
 
 .management-table{
-  width:100%;
-  min-width:0;
-  table-layout:fixed;
-  border-collapse:collapse;
-  font-size:11px;
+  width:
+    100%;
+
+  min-width:
+    0;
+
+  table-layout:
+    fixed;
+
+  border-collapse:
+    collapse;
+
+  font-size:
+    11px;
 }
 
 .management-table th,
 .management-table td{
-  padding:1px 2px;
-  border:1px solid #dbeaf3;
-  vertical-align:middle;
-  overflow:hidden;
+  padding:
+    1px 2px;
+
+  border:
+    1px solid
+    #dbeaf3;
+
+  vertical-align:
+    middle;
+
+  overflow:
+    hidden;
 }
 
 .management-table th{
-  background:#eef8ff;
-  color:#42647b;
-  font-weight:900;
-  white-space:normal;
-  word-break:break-all;
-  line-height:1.15;
+  background:
+    #eef8ff;
+
+  color:
+    #42647b;
+
+  font-weight:
+    900;
+
+  white-space:
+    normal;
+
+  word-break:
+    break-all;
+
+  line-height:
+    1.15;
 }
 
 .management-table td{
-  background:#fff;
+  background:
+    #ffffff;
 }
 
 .management-table input,
 .management-table select{
-  width:100%;
-  min-width:0;
-  height:31px;
-  padding:2px 3px;
-  border:1px solid #d4e5ef;
-  border-radius:7px;
-  background:#fff;
-  color:var(--text);
-  font-size:11px;
-  font-weight:700;
-  outline:none;
+  width:
+    100%;
+
+  min-width:
+    0;
+
+  height:
+    31px;
+
+  padding:
+    2px 3px;
+
+  border:
+    1px solid
+    #d4e5ef;
+
+  border-radius:
+    7px;
+
+  background:
+    #ffffff;
+
+  color:
+    var(--text);
+
+  font-size:
+    11px;
+
+  font-weight:
+    700;
+
+  outline:
+    none;
 }
+
+
+/* ==========================================================
+   担当表
+========================================================== */
 
 .assignment-panel
 .management-table th,
 .assignment-panel
 .management-table td{
-  width:20%;
+  width:
+    20%;
 }
 
-/* 現在の月だけ薄い赤 */
+
+/* 現在月だけ薄い赤 */
 
 .management-table tr.current-month-row th,
 .management-table tr.current-month-row td{
-  background:#fff0f0;
+  background:
+    #fff0f0;
 }
 
-.management-table tr.current-month-row input{
-  background:#fff7f7;
-  border-color:#f2bcbc;
+.management-table tr.current-month-row input,
+.management-table tr.current-month-row select{
+  background:
+    #fff7f7;
+
+  border-color:
+    #f2bcbc;
 }
+
+
+/* ==========================================================
+   代休取得
+========================================================== */
 
 .comp-panel
 .management-table th:nth-child(1),
 .comp-panel
 .management-table td:nth-child(1){
-  width:19%;
+  width:
+    19%;
 }
 
 .comp-panel
 .management-table th:nth-child(2),
 .comp-panel
 .management-table td:nth-child(2){
-  width:19%;
+  width:
+    19%;
 }
 
 .comp-panel
 .management-table th:nth-child(3),
 .comp-panel
 .management-table td:nth-child(3){
-  width:24%;
+  width:
+    24%;
 }
 
 .comp-panel
 .management-table th:nth-child(4),
 .comp-panel
 .management-table td:nth-child(4){
-  width:38%;
+  width:
+    38%;
 }
 
 .management-section-title{
-  margin:7px 0 5px;
-  color:var(--blue);
-  font-size:15px;
-  font-weight:900;
+  margin:
+    7px 0 5px;
+
+  color:
+    var(--blue);
+
+  font-size:
+    15px;
+
+  font-weight:
+    900;
 }
 
 .comp-panel{
-  display:grid;
-  gap:7px;
+  display:
+    grid;
+
+  gap:
+    7px;
 }
 
 .management-add{
-  width:100%;
-  min-height:42px;
-  margin:2px 0;
-  border:1px dashed #8fc9ea;
-  border-radius:12px;
-  background:#f7fcff;
-  color:var(--blue);
-  font-size:14px;
-  font-weight:900;
+  width:
+    100%;
+
+  min-height:
+    42px;
+
+  margin:
+    2px 0;
+
+  border:
+    1px dashed
+    #8fc9ea;
+
+  border-radius:
+    12px;
+
+  background:
+    #f7fcff;
+
+  color:
+    var(--blue);
+
+  font-size:
+    14px;
+
+  font-weight:
+    900;
 }
 
 .management-save{
-  width:100%;
-  min-height:46px;
-  margin-top:8px;
-  border:0;
-  border-radius:14px;
+  width:
+    100%;
+
+  min-height:
+    46px;
+
+  margin-top:
+    8px;
+
+  border:
+    0;
+
+  border-radius:
+    14px;
+
   background:
     linear-gradient(
       #56baf0,
       #2d88d8
     );
-  color:#fff;
-  font-size:16px;
-  font-weight:900;
+
+  color:
+    #ffffff;
+
+  font-size:
+    16px;
+
+  font-weight:
+    900;
 }
 
 .management-save:disabled{
-  opacity:.45;
+  opacity:
+    .45;
 }
 
 .footer{
-  padding:14px 10px 4px;
-  color:#8aa0b2;
-  font-size:13px;
-  text-align:center;
+  padding:
+    14px 10px 4px;
+
+  color:
+    #8aa0b2;
+
+  font-size:
+    13px;
+
+  text-align:
+    center;
 }
+
+
+/* ==========================================================
+   スマホ
+========================================================== */
 
 @media(max-width:480px){
 
   .page{
-    padding:10px 9px 20px;
+    padding:
+      10px 9px 20px;
   }
 
   .hero{
-    padding:20px 10px 21px;
+    padding:
+      20px 10px 21px;
   }
 
   .hero h1{
-    font-size:30px;
+    font-size:
+      30px;
   }
 
   .card{
-    padding:11px;
+    padding:
+      11px;
   }
 
   .top-row{
@@ -678,26 +1229,44 @@ textarea:focus{
   }
 
   .status{
-    min-height:76px;
-    font-size:17px;
+    min-height:
+      76px;
+
+    font-size:
+      17px;
   }
 
   .mode-btn{
-    min-height:82px;
-    font-size:25px;
+    min-height:
+      82px;
+
+    font-size:
+      25px;
   }
 
   .management-table{
-    font-size:10px;
+    font-size:
+      10px;
   }
 
   .management-table input,
   .management-table select{
-    height:30px;
-    padding:1px 2px;
-    font-size:10px;
+    height:
+      30px;
+
+    padding:
+      1px 2px;
+
+    font-size:
+      10px;
   }
+
 }
+
+
+/* ==========================================================
+   SCRIPT
+========================================================== */
 
 </style>
 
@@ -705,7 +1274,9 @@ textarea:focus{
 
 <body>
 
+
 <div class="page">
+
 
 <header class="hero">
 
@@ -715,12 +1286,13 @@ textarea:focus{
 
 </header>
 
+
 <main class="card">
 
 
-<!-- ======================================================
+<!-- ========================================================
      管理ボタン
-====================================================== -->
+======================================================== -->
 
 <div class="management-menu">
 
@@ -731,6 +1303,7 @@ textarea:focus{
 >
 📋 担当表
 </button>
+
 
 <button
   id="compBtn"
@@ -743,11 +1316,12 @@ textarea:focus{
 </div>
 
 
-<!-- ======================================================
+<!-- ========================================================
      人物
-====================================================== -->
+======================================================== -->
 
 <div class="top-row">
+
 
 <div
   id="status"
@@ -764,13 +1338,19 @@ textarea:focus{
 
 </div>
 
+
 <div class="select-box">
 
-<label for="driverSelect">
+<label
+  for="driverSelect"
+>
 選択
 </label>
 
-<select id="driverSelect">
+
+<select
+  id="driverSelect"
+>
 
 <option value="">
 選択して下さい
@@ -783,11 +1363,12 @@ textarea:focus{
 </div>
 
 
-<!-- ======================================================
-     出勤退勤
-====================================================== -->
+<!-- ========================================================
+     出勤・退勤
+======================================================== -->
 
 <div class="mode-box">
+
 
 <button
   id="inMode"
@@ -797,6 +1378,7 @@ textarea:focus{
 >
 ☀️出勤☀️
 </button>
+
 
 <button
   id="outMode"
@@ -811,7 +1393,9 @@ textarea:focus{
 
 
 <div class="guide">
+
 必要な場合は修正お願いします。
+
 </div>
 
 
@@ -839,9 +1423,9 @@ textarea:focus{
 ></div>
 
 
-<!-- ======================================================
-     写真・報告
-====================================================== -->
+<!-- ========================================================
+     プレビュー
+======================================================== -->
 
 <section
   id="preview"
@@ -850,13 +1434,16 @@ textarea:focus{
 
 <div class="preview-box">
 
+
 <img
   id="photoPreview"
   class="photo-preview"
   alt="勤怠写真"
 >
 
+
 <div class="fields">
+
 
 <div class="field">
 
@@ -961,21 +1548,26 @@ textarea:focus{
 <strong>0:00</strong>
 </div>
 
+
 </div>
 
 
 <div class="message-section">
 
+
 <div class="message-title">
 報告文章
 </div>
 
+
 <div class="message-box">
+
 
 <div
   id="messagePreview"
   class="message-preview"
 ></div>
+
 
 <textarea
   id="memo"
@@ -983,7 +1575,9 @@ textarea:focus{
   placeholder="文章を入力できます"
 ></textarea>
 
+
 </div>
+
 
 </div>
 
@@ -997,14 +1591,16 @@ textarea:focus{
 写真＋報告文章を送信
 </button>
 
+
 </div>
+
 
 </section>
 
 
-<!-- ======================================================
+<!-- ========================================================
      履歴
-====================================================== -->
+======================================================== -->
 
 <section class="history">
 
@@ -1012,23 +1608,12 @@ textarea:focus{
 ＜履歴＞
 </h2>
 
-<ul
-  id="historyList"
-  class="history-list"
->
-
-<li class="empty">
-まだ履歴はありません
-</li>
-
-</ul>
-
 </section>
 
 
-<!-- ======================================================
-     管理画面
-====================================================== -->
+<!-- ========================================================
+     管理パネル
+======================================================== -->
 
 <section
   id="managementPanel"
@@ -1037,12 +1622,14 @@ textarea:focus{
 
 <div class="management-header">
 
+
 <div
   id="managementTitle"
   class="management-title"
 >
 📋 担当表
 </div>
+
 
 <button
   id="managementClose"
@@ -1051,6 +1638,7 @@ textarea:focus{
 >
 閉じる
 </button>
+
 
 </div>
 
@@ -1083,18 +1671,23 @@ textarea:focus{
 保存する
 </button>
 
+
 </section>
 
+
 </main>
+
 
 <footer class="footer">
 勤怠管理Bot
 </footer>
 
+
 </div>
 
 
 <script>
+
 
 /* ==========================================================
    設定
@@ -1280,41 +1873,51 @@ const el = {
 
 
 /* ==========================================================
-   State
+   STATE
 ========================================================== */
 
 const state = {
 
-  idToken:'',
+  idToken:
+    '',
 
-  drivers:[],
+  drivers:
+    [],
 
-  driver:null,
+  driver:
+    null,
 
-  mode:'in',
+  mode:
+    'in',
 
-  draft:null,
+  draft:
+    null,
 
-  userSelectedManually:false,
+  userSelectedManually:
+    false,
 
   summary:{
 
-    previousOvertime:'0:00',
+    previousOvertime:
+      '0:00',
 
-    monthlyOvertime:'0:00'
+    monthlyOvertime:
+      '0:00'
 
   }
 
 };
 
 
-let managementMode='';
+let managementMode =
+  '';
 
-let managementState=null;
+let managementState =
+  null;
 
 
 /* ==========================================================
-   共通
+   HELPERS
 ========================================================== */
 
 function pad2(
@@ -1337,11 +1940,11 @@ function today(){
     new Date();
 
   return(
-    d.getFullYear()+
+    d.getFullYear() +
     '-' +
     pad2(
-      d.getMonth()+1
-    )+
+      d.getMonth() + 1
+    ) +
     '-' +
     pad2(
       d.getDate()
@@ -1359,8 +1962,8 @@ function nowTime(){
   return(
     pad2(
       d.getHours()
-    )+
-    ':'+
+    ) +
+    ':' +
     pad2(
       d.getMinutes()
     )
@@ -1375,15 +1978,15 @@ function tomorrow(){
     new Date();
 
   d.setDate(
-    d.getDate()+1
+    d.getDate() + 1
   );
 
   return(
-    d.getFullYear()+
+    d.getFullYear() +
     '-' +
     pad2(
-      d.getMonth()+1
-    )+
+      d.getMonth() + 1
+    ) +
     '-' +
     pad2(
       d.getDate()
@@ -1397,15 +2000,20 @@ function dateText(
   value
 ){
 
-  if(!value){
+  if(
+    !value
+  ){
+
     return '';
+
   }
 
   const d =
     new Date(
-      value+
+      value +
       'T00:00:00'
     );
+
 
   if(
     Number.isNaN(
@@ -1414,9 +2022,11 @@ function dateText(
   ){
 
     return value;
+
   }
 
-  const week=[
+
+  const week = [
     '日',
     '月',
     '火',
@@ -1426,16 +2036,17 @@ function dateText(
     '土'
   ];
 
+
   return(
-    d.getFullYear()+
+    d.getFullYear() +
     '/' +
-    (d.getMonth()+1)+
+    (d.getMonth() + 1) +
     '/' +
-    d.getDate()+
-    '('+
+    d.getDate() +
+    '(' +
     week[
       d.getDay()
-    ]+
+    ] +
     ')'
   );
 
@@ -1446,15 +2057,20 @@ function shortDate(
   value
 ){
 
-  if(!value){
+  if(
+    !value
+  ){
+
     return '';
+
   }
 
   const d =
     new Date(
-      value+
+      value +
       'T00:00:00'
     );
+
 
   if(
     Number.isNaN(
@@ -1463,9 +2079,11 @@ function shortDate(
   ){
 
     return value;
+
   }
 
-  const week=[
+
+  const week = [
     '日',
     '月',
     '火',
@@ -1475,47 +2093,32 @@ function shortDate(
     '土'
   ];
 
+
   return(
-    (d.getMonth()+1)+
+    (d.getMonth() + 1) +
     '/' +
-    d.getDate()+
-    '('+
+    d.getDate() +
+    '(' +
     week[
       d.getDay()
-    ]+
+    ] +
     ')'
   );
 
 }
 
 
-function escapeHtml(
-  value
+function showNotice(
+  text
 ){
 
-  return String(
-    value ??
-    ''
-  )
-  .replace(
-    /&/g,
-    '&amp;'
-  )
-  .replace(
-    /</g,
-    '&lt;'
-  )
-  .replace(
-    />/g,
-    '&gt;'
-  )
-  .replace(
-    /"/g,
-    '&quot;'
-  )
-  .replace(
-    /'/g,
-    '&#39;'
+  el.notice.textContent =
+    text ||
+    '';
+
+  el.notice.classList.toggle(
+    'show',
+    !!text
   );
 
 }
@@ -1542,29 +2145,13 @@ function setStatus(
 }
 
 
-function showNotice(
-  text
-){
-
-  el.notice.textContent =
-    text ||
-    '';
-
-  el.notice.classList.toggle(
-    'show',
-    !!text
-  );
-
-}
-
-
 /* ==========================================================
-   GET + JSONP
+   GET JSONP
 ========================================================== */
 
 function callServer(
   operation,
-  data={}
+  data = {}
 ){
 
   return new Promise(
@@ -1589,6 +2176,7 @@ function callServer(
       let finished =
         false;
 
+
       const timer =
         setTimeout(
           ()=>{
@@ -1596,7 +2184,9 @@ function callServer(
             if(
               finished
             ){
+
               return;
+
             }
 
             finished =
@@ -1660,13 +2250,16 @@ function callServer(
           if(
             finished
           ){
+
             return;
+
           }
 
           finished =
             true;
 
           cleanup();
+
 
           if(
             !response ||
@@ -1686,6 +2279,7 @@ function callServer(
             return;
           }
 
+
           resolve(
             response.data
           );
@@ -1699,7 +2293,9 @@ function callServer(
           if(
             finished
           ){
+
             return;
+
           }
 
           finished =
@@ -1719,20 +2315,24 @@ function callServer(
       const params =
         new URLSearchParams();
 
+
       params.set(
         'action',
         'api'
       );
+
 
       params.set(
         'operation',
         operation
       );
 
+
       params.set(
         'callback',
         callback
       );
+
 
       params.set(
         '_',
@@ -1740,6 +2340,7 @@ function callServer(
           Date.now()
         )
       );
+
 
       params.set(
         'idToken',
@@ -1750,19 +2351,24 @@ function callServer(
 
       Object.keys(
         data
-      )
-      .forEach(
+      ).forEach(
         key=>{
+
+          const value =
+            data[
+              key
+            ];
+
 
           params.set(
             key,
-            data[key] ===
+            value ===
               undefined ||
-            data[key] ===
+            value ===
               null
               ? ''
               : String(
-                  data[key]
+                  value
                 )
           );
 
@@ -1775,6 +2381,7 @@ function callServer(
         '?' +
         params.toString();
 
+
       document.body.appendChild(
         script
       );
@@ -1786,483 +2393,7 @@ function callServer(
 
 
 /* ==========================================================
-   次回時刻
-========================================================== */
-
-function buildNextTimeOptions(){
-
-  el.nextTime.innerHTML =
-    '';
-
-  for(
-    let h=0;
-    h<24;
-    h++
-  ){
-
-    for(
-      let m=0;
-      m<60;
-      m++
-    ){
-
-      const value =
-        pad2(h)+
-        ':'+
-        pad2(m);
-
-      const option =
-        document.createElement(
-          'option'
-        );
-
-      option.value =
-        value;
-
-      option.textContent =
-        value;
-
-      el.nextTime.appendChild(
-        option
-      );
-
-    }
-
-  }
-
-  const unknown =
-    document.createElement(
-      'option'
-    );
-
-  unknown.value =
-    '??:??';
-
-  unknown.textContent =
-    '??:??';
-
-  el.nextTime.appendChild(
-    unknown
-  );
-
-  el.nextTime.value =
-    '08:00';
-
-}
-
-
-/* ==========================================================
-   運転手一覧
-========================================================== */
-
-function findDriver(
-  key
-){
-
-  return(
-    state.drivers.find(
-      driver =>
-        driver.driverKey ===
-        key
-    ) ||
-    null
-  );
-
-}
-
-
-async function loadDrivers(){
-
-  try{
-
-    const list =
-      await callServer(
-        'getDriverList'
-      );
-
-    state.drivers =
-      Array.isArray(
-        list
-      )
-        ? list
-        : [];
-
-    el.driverSelect.innerHTML =
-      '';
-
-    const first =
-      document.createElement(
-        'option'
-      );
-
-    first.value =
-      '';
-
-    first.textContent =
-      '選択して下さい';
-
-    el.driverSelect.appendChild(
-      first
-    );
-
-
-    state.drivers.forEach(
-      driver=>{
-
-        const option =
-          document.createElement(
-            'option'
-          );
-
-        option.value =
-          driver.driverKey;
-
-        option.textContent =
-          driver.displayName;
-
-        el.driverSelect.appendChild(
-          option
-        );
-
-      }
-    );
-
-  }catch(error){
-
-    console.error(
-      error
-    );
-
-    state.drivers =
-      [];
-
-    el.driverSelect.innerHTML =
-      '<option value="">選択して下さい</option>';
-
-  }
-
-}
-
-
-async function selectDriver(
-  driver,
-  manual=false
-){
-
-  state.driver =
-    driver ||
-    null;
-
-  if(
-    manual
-  ){
-
-    state.userSelectedManually =
-      true;
-
-  }
-
-  if(
-    !driver
-  ){
-
-    el.driverSelect.value =
-      '';
-
-    el.inMode.disabled =
-      true;
-
-    el.outMode.disabled =
-      true;
-
-    el.uploadBtn.disabled =
-      true;
-
-    setStatus(
-      '右から選択',
-      false
-    );
-
-    return;
-  }
-
-  el.driverSelect.value =
-    driver.driverKey;
-
-  el.inMode.disabled =
-    false;
-
-  el.outMode.disabled =
-    false;
-
-  el.uploadBtn.disabled =
-    false;
-
-  setStatus(
-    '完了',
-    true
-  );
-
-}
-
-
-/* ==========================================================
-   担当表
-========================================================== */
-
-function renderAssignmentTable(
-  data
-){
-
-  const wrap =
-    el.assignmentPanel;
-
-  wrap.innerHTML =
-    '';
-
-  wrap.classList.remove(
-    'hidden'
-  );
-
-
-  const table =
-    document.createElement(
-      'table'
-    );
-
-  table.className =
-    'management-table';
-
-
-  const officers =
-    Array.isArray(
-      data.officers
-    ) &&
-    data.officers.length
-      ? data.officers
-      : [
-          '安田副社長',
-          '伊藤社長',
-          '山下副社長',
-          '西山副社長'
-        ];
-
-
-  const header = [
-
-    '月',
-
-    ...officers.map(
-      name =>
-        name ===
-        '伊藤副社長'
-          ? '伊藤社長'
-          : name
-    )
-
-  ];
-
-
-  const thead =
-    document.createElement(
-      'thead'
-    );
-
-  const hrow =
-    document.createElement(
-      'tr'
-    );
-
-
-  header.forEach(
-    text=>{
-
-      const th =
-        document.createElement(
-          'th'
-        );
-
-      th.textContent =
-        text;
-
-      hrow.appendChild(
-        th
-      );
-
-    }
-  );
-
-
-  thead.appendChild(
-    hrow
-  );
-
-  table.appendChild(
-    thead
-  );
-
-
-  const tbody =
-    document.createElement(
-      'tbody'
-    );
-
-
-  const currentMonth =
-    new Date()
-      .getMonth() +
-    1;
-
-
-  (
-    Array.isArray(
-      data.rows
-    )
-      ? data.rows
-      : []
-  )
-  .forEach(
-    (
-      row,
-      index
-    )=>{
-
-      const tr =
-        document.createElement(
-          'tr'
-        );
-
-
-      const rowMonth =
-        parseInt(
-          String(
-            row.month ||
-            ''
-          )
-          .replace(
-            /[^\d]/g,
-            ''
-          ),
-          10
-        );
-
-
-      /* ★現在月だけ薄い赤 */
-
-      if(
-        rowMonth ===
-        currentMonth
-      ){
-
-        tr.classList.add(
-          'current-month-row'
-        );
-
-      }
-
-
-      const month =
-        document.createElement(
-          'th'
-        );
-
-      month.textContent =
-        row.month ||
-        '';
-
-      tr.appendChild(
-        month
-      );
-
-
-      officers.forEach(
-        officer=>{
-
-          const td =
-            document.createElement(
-              'td'
-            );
-
-          const input =
-            document.createElement(
-              'input'
-            );
-
-          input.type =
-            'text';
-
-          input.value =
-            row.assignments &&
-            row.assignments[
-              officer
-            ]
-              ? row.assignments[
-                  officer
-                ]
-              : '';
-
-
-          input.addEventListener(
-            'input',
-            ()=>{
-
-              if(
-                !data.rows[
-                  index
-                ].assignments
-              ){
-
-                data.rows[
-                  index
-                ].assignments =
-                  {};
-
-              }
-
-              data.rows[
-                index
-              ].assignments[
-                officer
-              ] =
-                input.value;
-
-            }
-          );
-
-
-          td.appendChild(
-            input
-          );
-
-          tr.appendChild(
-            td
-          );
-
-        }
-      );
-
-
-      tbody.appendChild(
-        tr
-      );
-
-    }
-  );
-
-
-  table.appendChild(
-    tbody
-  );
-
-  wrap.appendChild(
-    table
-  );
-
-}
-
-
-/* ==========================================================
-   名称マスター
+   名前マスター補助
 ========================================================== */
 
 function getMasterDrivers(
@@ -2308,33 +2439,34 @@ function getMasterOfficers(
 
 
 /* ==========================================================
-   代休SELECT
+   名前SELECT
 ========================================================== */
 
-function driverMasterMatch(
+function normalizeDriverDisplay(
   value,
-  list
+  drivers
 ){
 
-  const current =
+  let current =
     String(
       value ||
       ''
-    )
-    .trim();
+    ).trim();
 
 
   if(
-    !current
+    current ===
+    '田中'
   ){
 
-    return '';
+    current =
+      '田中（ひ）';
 
   }
 
 
   if(
-    list.includes(
+    drivers.includes(
       current
     )
   ){
@@ -2352,10 +2484,10 @@ function driverMasterMatch(
 
 
   const found =
-    list.find(
+    drivers.find(
       name=>{
 
-        const master =
+        const n =
           String(
             name ||
             ''
@@ -2367,7 +2499,7 @@ function driverMasterMatch(
 
 
         if(
-          master ===
+          n ===
           normalized
         ){
 
@@ -2389,27 +2521,25 @@ function driverMasterMatch(
 
         return(
           current ===
-          surname ||
-          current.indexOf(
-            surname
-          ) === 0
+          surname
         );
 
       }
     );
 
 
-  return found ||
-    current;
+  return(
+    found ||
+    current
+  );
 
 }
 
 
-function createManagementSelect(
-  values,
+function createNameSelect(
+  list,
   currentValue,
-  onChange,
-  type
+  onChange
 ){
 
   const select =
@@ -2418,34 +2548,11 @@ function createManagementSelect(
     );
 
 
-  const list =
-    Array.isArray(
-      values
-    )
-      ? [...values]
-      : [];
-
-
-  let current =
-    String(
-      currentValue ||
-      ''
-    )
-    .trim();
-
-
-  if(
-    type ===
-    'driver'
-  ){
-
-    current =
-      driverMasterMatch(
-        current,
-        list
-      );
-
-  }
+  const current =
+    normalizeDriverDisplay(
+      currentValue,
+      list
+    );
 
 
   const blank =
@@ -2490,7 +2597,7 @@ function createManagementSelect(
 
 
   list.forEach(
-    value=>{
+    name=>{
 
       const option =
         document.createElement(
@@ -2498,10 +2605,10 @@ function createManagementSelect(
         );
 
       option.value =
-        value;
+        name;
 
       option.textContent =
-        value;
+        name;
 
       select.appendChild(
         option
@@ -2518,9 +2625,11 @@ function createManagementSelect(
   select.addEventListener(
     'change',
     ()=>{
+
       onChange(
         select.value
       );
+
     }
   );
 
@@ -2531,17 +2640,17 @@ function createManagementSelect(
 
 
 /* ==========================================================
-   代休取得
-   ★空行を削除しない
-   ★スプレッドシートと1行ずつ対応
+   担当表
+   ★運転手4人をプルダウン
 ========================================================== */
 
-function renderCompTable(
+function renderAssignmentTable(
   data
 ){
 
   const wrap =
-    el.compPanel;
+    el.assignmentPanel;
+
 
   wrap.innerHTML =
     '';
@@ -2551,26 +2660,268 @@ function renderCompTable(
   );
 
 
-  const masterDrivers =
+  const table =
+    document.createElement(
+      'table'
+    );
+
+  table.className =
+    'management-table';
+
+
+  const officers =
+    Array.isArray(
+      data.officers
+    ) &&
+    data.officers.length
+      ? data.officers
+      : [
+          '安田副社長',
+          '伊藤社長',
+          '山下副社長',
+          '西山副社長'
+        ];
+
+
+  const driverNames =
     getMasterDrivers(
       data
     );
 
 
-  const masterOfficers =
+  const header = [
+    '月',
+    ...officers
+  ];
+
+
+  const thead =
+    document.createElement(
+      'thead'
+    );
+
+  const hrow =
+    document.createElement(
+      'tr'
+    );
+
+
+  header.forEach(
+    text=>{
+
+      const th =
+        document.createElement(
+          'th'
+        );
+
+      th.textContent =
+        text ===
+        '伊藤副社長'
+          ? '伊藤社長'
+          : text;
+
+      hrow.appendChild(
+        th
+      );
+
+    }
+  );
+
+
+  thead.appendChild(
+    hrow
+  );
+
+  table.appendChild(
+    thead
+  );
+
+
+  const tbody =
+    document.createElement(
+      'tbody'
+    );
+
+
+  const currentMonth =
+    new Date()
+      .getMonth() +
+    1;
+
+
+  (
+    Array.isArray(
+      data.rows
+    )
+      ? data.rows
+      : []
+  )
+  .forEach(
+    (
+      row,
+      rowIndex
+    )=>{
+
+      const tr =
+        document.createElement(
+          'tr'
+        );
+
+
+      const rowMonth =
+        parseInt(
+          String(
+            row.month ||
+            ''
+          )
+          .replace(
+            /[^\d]/g,
+            ''
+          ),
+          10
+        );
+
+
+      if(
+        rowMonth ===
+        currentMonth
+      ){
+
+        tr.classList.add(
+          'current-month-row'
+        );
+
+      }
+
+
+      const month =
+        document.createElement(
+          'th'
+        );
+
+      month.textContent =
+        row.month ||
+        '';
+
+      tr.appendChild(
+        month
+      );
+
+
+      officers.forEach(
+        officer=>{
+
+          const td =
+            document.createElement(
+              'td'
+            );
+
+
+          const select =
+            createNameSelect(
+              driverNames,
+              row.assignments &&
+              row.assignments[
+                officer
+              ]
+                ? row.assignments[
+                    officer
+                  ]
+                : '',
+              value=>{
+
+                if(
+                  !data.rows[
+                    rowIndex
+                  ].assignments
+                ){
+
+                  data.rows[
+                    rowIndex
+                  ].assignments =
+                    {};
+
+                }
+
+
+                data.rows[
+                  rowIndex
+                ].assignments[
+                  officer
+                ] =
+                  value;
+
+              }
+            );
+
+
+          td.appendChild(
+            select
+          );
+
+          tr.appendChild(
+            td
+          );
+
+        }
+      );
+
+
+      tbody.appendChild(
+        tr
+      );
+
+    }
+  );
+
+
+  table.appendChild(
+    tbody
+  );
+
+
+  wrap.appendChild(
+    table
+  );
+
+}
+
+
+/* ==========================================================
+   代休取得
+========================================================== */
+
+function renderCompTable(
+  data
+){
+
+  const wrap =
+    el.compPanel;
+
+
+  wrap.innerHTML =
+    '';
+
+  wrap.classList.remove(
+    'hidden'
+  );
+
+
+  const driverNames =
+    getMasterDrivers(
+      data
+    );
+
+
+  const officerNames =
     getMasterOfficers(
       data
     );
 
 
   /*
-   * ★ここが重要
-   *
-   * filter()で空行を削除しない。
-   *
-   * Code.gsから返ってきた
-   * planned / completed の行番号を
-   * そのまま維持する。
+   * ★空行を削除しない
+   * スプレッドシートの位置を保持する
    */
 
   data.planned =
@@ -2593,7 +2944,7 @@ function renderCompTable(
     title,
     rows,
     key,
-    headerDriverText
+    driverHeader
   ){
 
     const section =
@@ -2612,6 +2963,7 @@ function renderCompTable(
 
     titleEl.textContent =
       title;
+
 
     section.appendChild(
       titleEl
@@ -2632,6 +2984,7 @@ function renderCompTable(
         'thead'
       );
 
+
     const hrow =
       document.createElement(
         'tr'
@@ -2641,7 +2994,7 @@ function renderCompTable(
     [
       '出勤日',
       '代休日',
-      headerDriverText,
+      driverHeader,
       '役員'
     ]
     .forEach(
@@ -2681,7 +3034,7 @@ function renderCompTable(
     rows.forEach(
       (
         row,
-        index
+        rowIndex
       )=>{
 
         const tr =
@@ -2690,7 +3043,9 @@ function renderCompTable(
           );
 
 
-        /* 出勤日 */
+        /*
+         * 出勤日
+         */
 
         {
 
@@ -2703,6 +3058,7 @@ function renderCompTable(
             document.createElement(
               'input'
             );
+
 
           input.type =
             'text';
@@ -2719,7 +3075,7 @@ function renderCompTable(
               managementState[
                 key
               ][
-                index
+                rowIndex
               ].startDate =
                 input.value;
 
@@ -2738,7 +3094,9 @@ function renderCompTable(
         }
 
 
-        /* 代休日 */
+        /*
+         * 代休日
+         */
 
         {
 
@@ -2751,6 +3109,7 @@ function renderCompTable(
             document.createElement(
               'input'
             );
+
 
           input.type =
             'text';
@@ -2767,7 +3126,7 @@ function renderCompTable(
               managementState[
                 key
               ][
-                index
+                rowIndex
               ].compDate =
                 input.value;
 
@@ -2786,7 +3145,9 @@ function renderCompTable(
         }
 
 
-        /* 担当者 / 運転手 */
+        /*
+         * 運転手 / 担当者
+         */
 
         {
 
@@ -2797,25 +3158,20 @@ function renderCompTable(
 
 
           const select =
-            createManagementSelect(
-              masterDrivers,
+            createNameSelect(
+              driverNames,
               row.driver,
               value=>{
 
                 managementState[
                   key
                 ][
-                  index
+                  rowIndex
                 ].driver =
                   value;
 
-              },
-              'driver'
+              }
             );
-
-
-          row.driver =
-            select.value;
 
 
           td.appendChild(
@@ -2829,7 +3185,9 @@ function renderCompTable(
         }
 
 
-        /* 役員 */
+        /*
+         * 役員
+         */
 
         {
 
@@ -2840,25 +3198,103 @@ function renderCompTable(
 
 
           const select =
-            createManagementSelect(
-              masterOfficers,
-              row.officer,
-              value=>{
-
-                managementState[
-                  key
-                ][
-                  index
-                ].officer =
-                  value;
-
-              },
-              'officer'
+            document.createElement(
+              'select'
             );
 
 
-          row.officer =
-            select.value;
+          const blank =
+            document.createElement(
+              'option'
+            );
+
+          blank.value =
+            '';
+
+          blank.textContent =
+            '';
+
+          select.appendChild(
+            blank
+          );
+
+
+          officerNames.forEach(
+            name=>{
+
+              const option =
+                document.createElement(
+                  'option'
+                );
+
+              option.value =
+                name;
+
+              option.textContent =
+                name;
+
+              select.appendChild(
+                option
+              );
+
+            }
+          );
+
+
+          const currentOfficer =
+            String(
+              row.officer ||
+              ''
+            ).trim();
+
+
+          /*
+           * 複数役員が入っている既存データは
+           * そのまま残せるよう旧値も追加
+           */
+
+          if(
+            currentOfficer &&
+            !officerNames.includes(
+              currentOfficer
+            )
+          ){
+
+            const old =
+              document.createElement(
+                'option'
+              );
+
+            old.value =
+              currentOfficer;
+
+            old.textContent =
+              currentOfficer;
+
+            select.appendChild(
+              old
+            );
+
+          }
+
+
+          select.value =
+            currentOfficer;
+
+
+          select.addEventListener(
+            'change',
+            ()=>{
+
+              managementState[
+                key
+              ][
+                rowIndex
+              ].officer =
+                select.value;
+
+            }
+          );
 
 
           td.appendChild(
@@ -2896,7 +3332,6 @@ function renderCompTable(
 
   /*
    * 取得予定
-   * スプレッドシート側は「運転手」
    */
 
   wrap.appendChild(
@@ -2913,22 +3348,23 @@ function renderCompTable(
    * 予定追加
    */
 
-  const add =
+  const addBtn =
     document.createElement(
       'button'
     );
 
-  add.type =
+
+  addBtn.type =
     'button';
 
-  add.className =
+  addBtn.className =
     'management-add';
 
-  add.textContent =
+  addBtn.textContent =
     '＋ 予定を追加';
 
 
-  add.addEventListener(
+  addBtn.addEventListener(
     'click',
     ()=>{
 
@@ -2965,13 +3401,12 @@ function renderCompTable(
 
 
   wrap.appendChild(
-    add
+    addBtn
   );
 
 
   /*
    * 取得済み
-   * スプレッドシート側は「担当者」
    */
 
   wrap.appendChild(
@@ -2987,7 +3422,7 @@ function renderCompTable(
 
 
 /* ==========================================================
-   管理画面
+   管理画面オープン
 ========================================================== */
 
 async function openManagement(
@@ -3120,8 +3555,10 @@ async function openManagement(
 
         el.managementPanel
           .scrollIntoView({
-            behavior:'smooth',
-            block:'start'
+            behavior:
+              'smooth',
+            block:
+              'start'
           });
 
       },
@@ -3144,6 +3581,10 @@ async function openManagement(
 
 }
 
+
+/* ==========================================================
+   管理ボタン
+========================================================== */
 
 el.assignmentBtn
   .addEventListener(
@@ -3187,7 +3628,7 @@ el.managementClose
 
 
 /* ==========================================================
-   保存
+   管理保存
 ========================================================== */
 
 el.managementSave
@@ -3349,13 +3790,11 @@ function setMode(
         'hidden'
       );
 
-
     el.nextDateField
       .classList
       .add(
         'hidden'
       );
-
 
     el.nextTimeField
       .classList
@@ -3367,10 +3806,8 @@ function setMode(
     el.reportDate.value =
       today();
 
-
     el.startTime.value =
       nowTime();
-
 
   }else{
 
@@ -3380,13 +3817,11 @@ function setMode(
         'hidden'
       );
 
-
     el.nextDateField
       .classList
       .remove(
         'hidden'
       );
-
 
     el.nextTimeField
       .classList
@@ -3398,22 +3833,16 @@ function setMode(
     el.reportDate.value =
       today();
 
-
     el.endTime.value =
       nowTime();
 
-
     el.nextDate.value =
       tomorrow();
-
 
     el.nextTime.value =
       '08:00';
 
   }
-
-
-  refreshMessage();
 
 }
 
@@ -3507,6 +3936,198 @@ function refreshMessage(){
 
 
 /* ==========================================================
+   手動人物選択
+========================================================== */
+
+el.driverSelect
+  .addEventListener(
+    'change',
+    async()=>{
+
+      const driver =
+        findDriver(
+          el.driverSelect.value
+        );
+
+      state.userSelectedManually =
+        true;
+
+      await selectDriver(
+        driver,
+        true
+      );
+
+    }
+  );
+
+
+/* ==========================================================
+   運転手一覧
+========================================================== */
+
+function findDriver(
+  key
+){
+
+  return(
+    state.drivers.find(
+      driver =>
+        driver.driverKey ===
+        key
+    ) ||
+    null
+  );
+
+}
+
+
+async function loadDrivers(){
+
+  try{
+
+    const list =
+      await callServer(
+        'getDriverList'
+      );
+
+
+    state.drivers =
+      Array.isArray(
+        list
+      )
+        ? list
+        : [];
+
+
+    el.driverSelect.innerHTML =
+      '';
+
+
+    const first =
+      document.createElement(
+        'option'
+      );
+
+    first.value =
+      '';
+
+    first.textContent =
+      '選択して下さい';
+
+
+    el.driverSelect.appendChild(
+      first
+    );
+
+
+    state.drivers.forEach(
+      driver=>{
+
+        const option =
+          document.createElement(
+            'option'
+          );
+
+        option.value =
+          driver.driverKey;
+
+        option.textContent =
+          driver.displayName;
+
+        el.driverSelect.appendChild(
+          option
+        );
+
+      }
+    );
+
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+
+    state.drivers =
+      [];
+
+
+    el.driverSelect.innerHTML =
+      '<option value="">選択して下さい</option>';
+
+  }
+
+}
+
+
+async function selectDriver(
+  driver,
+  manual=false
+){
+
+  state.driver =
+    driver ||
+    null;
+
+
+  if(
+    manual
+  ){
+
+    state.userSelectedManually =
+      true;
+
+  }
+
+
+  if(
+    !driver
+  ){
+
+    el.driverSelect.value =
+      '';
+
+    el.inMode.disabled =
+      true;
+
+    el.outMode.disabled =
+      true;
+
+    el.uploadBtn.disabled =
+      true;
+
+    setStatus(
+      '右から選択',
+      false
+    );
+
+    return;
+
+  }
+
+
+  el.driverSelect.value =
+    driver.driverKey;
+
+  el.inMode.disabled =
+    false;
+
+  el.outMode.disabled =
+    false;
+
+  el.uploadBtn.disabled =
+    false;
+
+  setStatus(
+    '完了',
+    true
+  );
+
+}
+
+
+/* ==========================================================
    LINE自動判別
 ========================================================== */
 
@@ -3537,6 +4158,11 @@ async function autoDetect(){
         LIFF_ID
     });
 
+
+    /*
+     * 手動選択済みなら
+     * 自動判別で上書きしない
+     */
 
     if(
       state.userSelectedManually &&
@@ -3589,6 +4215,12 @@ async function autoDetect(){
         'getDriverInfo'
       );
 
+
+    /*
+     * API待ち中に
+     * 手動選択された場合は
+     * 自動結果で上書きしない
+     */
 
     if(
       state.userSelectedManually &&
@@ -3674,30 +4306,7 @@ async function autoDetect(){
 
 
 /* ==========================================================
-   手動選択
-========================================================== */
-
-el.driverSelect
-  .addEventListener(
-    'change',
-    async()=>{
-
-      const driver =
-        findDriver(
-          el.driverSelect.value
-        );
-
-      await selectDriver(
-        driver,
-        true
-      );
-
-    }
-  );
-
-
-/* ==========================================================
-   出勤・退勤
+   出勤
 ========================================================== */
 
 el.inMode
@@ -3724,6 +4333,10 @@ el.inMode
     }
   );
 
+
+/* ==========================================================
+   退勤
+========================================================== */
 
 el.outMode
   .addEventListener(
@@ -3753,275 +4366,6 @@ el.outMode
 /* ==========================================================
    写真
 ========================================================== */
-
-function imageToDataUrl(
-  file
-){
-
-  return new Promise(
-    (
-      resolve,
-      reject
-    )=>{
-
-      const reader =
-        new FileReader();
-
-
-      reader.onload =
-        ()=>{
-
-          const image =
-            new Image();
-
-
-          image.onload =
-            ()=>{
-
-              const max =
-                1800;
-
-
-              const scale =
-                Math.min(
-                  1,
-                  max /
-                  Math.max(
-                    image.width,
-                    image.height
-                  )
-                );
-
-
-              const canvas =
-                document.createElement(
-                  'canvas'
-                );
-
-
-              canvas.width =
-                Math.round(
-                  image.width *
-                  scale
-                );
-
-
-              canvas.height =
-                Math.round(
-                  image.height *
-                  scale
-                );
-
-
-              const ctx =
-                canvas.getContext(
-                  '2d',
-                  {
-                    alpha:false
-                  }
-                );
-
-
-              ctx.drawImage(
-                image,
-                0,
-                0,
-                canvas.width,
-                canvas.height
-              );
-
-
-              resolve(
-                canvas.toDataURL(
-                  'image/jpeg',
-                  .86
-                )
-              );
-
-            };
-
-
-          image.onerror =
-            reject;
-
-
-          image.src =
-            reader.result;
-
-        };
-
-
-      reader.onerror =
-        reject;
-
-
-      reader.readAsDataURL(
-        file
-      );
-
-    }
-  );
-
-}
-
-
-async function runBrowserOcr(
-  dataUrl
-){
-
-  if(
-    !window.Tesseract
-  ){
-
-    return '';
-
-  }
-
-
-  const result =
-    await Tesseract.recognize(
-      dataUrl,
-      'eng',
-      {
-
-        logger:
-          message=>{
-
-            if(
-              message &&
-              message.status ===
-              'recognizing text' &&
-              message.progress
-            ){
-
-              showNotice(
-                '写真を読み取り中... ' +
-                Math.round(
-                  message.progress *
-                  100
-                ) +
-                '%'
-              );
-
-            }
-
-          },
-
-        tessedit_pageseg_mode:
-          6
-
-      }
-    );
-
-
-  return(
-    result &&
-    result.data
-  )
-    ? String(
-        result.data.text ||
-        ''
-      )
-    : '';
-
-}
-
-
-async function uploadPhoto(
-  file
-){
-
-  if(
-    !state.driver
-  ){
-
-    alert(
-      '先に人物を選択してください'
-    );
-
-    return;
-
-  }
-
-
-  showNotice(
-    '写真を読み込んでいます...'
-  );
-
-
-  try{
-
-    const dataUrl =
-      await imageToDataUrl(
-        file
-      );
-
-
-    el.photoPreview.src =
-      dataUrl;
-
-
-    await runBrowserOcr(
-      dataUrl
-    );
-
-
-    state.draft = {
-      imageBase64:
-        dataUrl
-    };
-
-
-    el.preview
-      .classList
-      .add(
-        'show'
-      );
-
-
-    if(
-      state.mode ===
-      'in'
-    ){
-
-      el.startTime.value =
-        nowTime();
-
-    }else{
-
-      el.endTime.value =
-        nowTime();
-
-    }
-
-
-    refreshMessage();
-
-
-    el.sendBtn.disabled =
-      false;
-
-
-    showNotice(
-      '時間を確認・修正して送信してください。'
-    );
-
-
-  }catch(error){
-
-    console.error(
-      error
-    );
-
-
-    showNotice(
-      '写真の読み取りに失敗しました。'
-    );
-
-  }
-
-}
-
 
 el.uploadBtn
   .addEventListener(
@@ -4053,17 +4397,33 @@ el.photoInput
 
       const file =
         el.photoInput.files &&
-        el.photoInput.files[
-          0
-        ];
-
+        el.photoInput.files[0];
 
       if(
         file
       ){
 
-        uploadPhoto(
-          file
+        state.draft =
+          {
+            file:file
+          };
+
+        el.preview
+          .classList
+          .add(
+            'show'
+          );
+
+        el.photoPreview.src =
+          URL.createObjectURL(
+            file
+          );
+
+        el.sendBtn.disabled =
+          false;
+
+        showNotice(
+          '時間を確認して送信してください。'
         );
 
       }
@@ -4105,7 +4465,8 @@ el.sendBtn
         buildReportBaseMessage() +
         (
           memo
-            ? '\n' + memo
+            ? '\n' +
+              memo
             : ''
         );
 
@@ -4198,7 +4559,7 @@ el.sendBtn
 
 
 /* ==========================================================
-   入力変更
+   入力
 ========================================================== */
 
 [
@@ -4208,8 +4569,7 @@ el.sendBtn
   el.nextDate,
   el.nextTime,
   el.memo
-]
-.forEach(
+].forEach(
   input=>{
 
     input.addEventListener(
@@ -4289,7 +4649,8 @@ window.addEventListener(
 
 
     /*
-     * 先に全運転手を取得
+     * 先に運転手一覧
+     *
      * ここでは誰も自動選択しない
      */
 
@@ -4297,7 +4658,7 @@ window.addEventListener(
 
 
     /*
-     * そのあとLINE本人判別
+     * その後LINE本人判別
      */
 
     autoDetect();
@@ -4308,4 +4669,5 @@ window.addEventListener(
 </script>
 
 </body>
+
 </html>
