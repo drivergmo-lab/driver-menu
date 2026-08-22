@@ -2,6 +2,7 @@
 <html lang="ja">
 
 <head>
+
 <meta charset="UTF-8">
 
 <meta
@@ -1024,7 +1025,7 @@ input[type="time"]{
 
 
 /* ==========================================================
-   ASSIGNMENT TABLE
+   ASSIGNMENT
 ========================================================== */
 
 .assignment-panel
@@ -1037,8 +1038,7 @@ input[type="time"]{
 
 
 /* ==========================================================
-   ★ CURRENT MONTH
-   2026年8月なら「8月」の行だけ薄赤
+   現在月
 ========================================================== */
 
 .assignment-panel
@@ -1083,45 +1083,37 @@ tr.current-month-row > th{
 
 
 /* ==========================================================
-   COMP TABLE
+   COMP
 ========================================================== */
 
 .comp-panel
-.management-table
-th:nth-child(1),
+.management-table th:nth-child(1),
 .comp-panel
-.management-table
-td:nth-child(1){
+.management-table td:nth-child(1){
   width:
     19%;
 }
 
 .comp-panel
-.management-table
-th:nth-child(2),
+.management-table th:nth-child(2),
 .comp-panel
-.management-table
-td:nth-child(2){
+.management-table td:nth-child(2){
   width:
     19%;
 }
 
 .comp-panel
-.management-table
-th:nth-child(3),
+.management-table th:nth-child(3),
 .comp-panel
-.management-table
-td:nth-child(3){
+.management-table td:nth-child(3){
   width:
     24%;
 }
 
 .comp-panel
-.management-table
-th:nth-child(4),
+.management-table th:nth-child(4),
 .comp-panel
-.management-table
-td:nth-child(4){
+.management-table td:nth-child(4){
   width:
     38%;
 }
@@ -1352,7 +1344,7 @@ td:nth-child(4){
 
 
 <!-- ======================================================
-     DRIVER
+     DRIVER SELECT
 ====================================================== -->
 
 <div class="top-row">
@@ -1382,6 +1374,7 @@ td:nth-child(4){
 選択
 </label>
 
+
 <select
   id="driverSelect"
 >
@@ -1402,7 +1395,6 @@ td:nth-child(4){
 ====================================================== -->
 
 <div class="mode-box">
-
 
 <button
   id="inMode"
@@ -1580,11 +1572,11 @@ td:nth-child(4){
 <strong>0:00</strong>
 </div>
 
+
 </div>
 
 
 <div class="message-section">
-
 
 <div class="message-title">
 報告文章
@@ -1592,7 +1584,6 @@ td:nth-child(4){
 
 
 <div class="message-box">
-
 
 <div
   id="messagePreview"
@@ -1605,7 +1596,6 @@ td:nth-child(4){
   class="memo-input"
   placeholder="文章を入力できます"
 ></textarea>
-
 
 </div>
 
@@ -1642,7 +1632,7 @@ td:nth-child(4){
 
 
 <!-- ======================================================
-     MANAGEMENT PANEL
+     MANAGEMENT
 ====================================================== -->
 
 <section
@@ -1928,13 +1918,11 @@ const state = {
     false,
 
   summary:{
-
     previousOvertime:
       '0:00',
 
     monthlyOvertime:
       '0:00'
-
   }
 
 };
@@ -1948,10 +1936,12 @@ let managementState =
 
 
 /* ==========================================================
-   HELPERS
+   BASIC FUNCTIONS
 ========================================================== */
 
-function pad2(value){
+function pad2(
+  value
+){
 
   return String(
     value
@@ -1972,7 +1962,7 @@ function today(){
     d.getFullYear() +
     '-' +
     pad2(
-      d.getMonth() + 1
+      d.getMonth()+1
     ) +
     '-' +
     pad2(
@@ -2007,14 +1997,14 @@ function tomorrow(){
     new Date();
 
   d.setDate(
-    d.getDate() + 1
+    d.getDate()+1
   );
 
   return(
     d.getFullYear() +
     '-' +
     pad2(
-      d.getMonth() + 1
+      d.getMonth()+1
     ) +
     '-' +
     pad2(
@@ -2025,17 +2015,309 @@ function tomorrow(){
 }
 
 
-function dateText(value){
+/* ==========================================================
+   日付変換
+   ★スプレッドシート 8/29
+      →
+      HTML date 2026-08-29
+========================================================== */
 
-  if(!value){
+function toDateInputValue(
+  value
+){
+
+  const text =
+    String(
+      value ||
+      ''
+    ).trim();
+
+
+  if(
+    !text
+  ){
+
     return '';
+
   }
+
+
+  /*
+   * yyyy-mm-dd
+   */
+
+  if(
+    /^\d{4}-\d{1,2}-\d{1,2}$/.test(
+      text
+    )
+  ){
+
+    const parts =
+      text.split('-');
+
+
+    return(
+      parts[0] +
+      '-' +
+      String(
+        parts[1]
+      ).padStart(
+        2,
+        '0'
+      ) +
+      '-' +
+      String(
+        parts[2]
+      ).padStart(
+        2,
+        '0'
+      )
+    );
+
+  }
+
+
+  /*
+   * yyyy/mm/dd
+   */
+
+  let match =
+    text.match(
+      /^(\d{4})\/(\d{1,2})\/(\d{1,2})$/
+    );
+
+
+  if(
+    match
+  ){
+
+    return(
+      match[1] +
+      '-' +
+      String(
+        match[2]
+      ).padStart(
+        2,
+        '0'
+      ) +
+      '-' +
+      String(
+        match[3]
+      ).padStart(
+        2,
+        '0'
+      )
+    );
+
+  }
+
+
+  /*
+   * yyyy/m/d 形式
+   */
+
+  match =
+    text.match(
+      /^(\d{4})-(\d{1,2})-(\d{1,2})$/
+    );
+
+
+  if(
+    match
+  ){
+
+    return(
+      match[1] +
+      '-' +
+      String(
+        match[2]
+      ).padStart(
+        2,
+        '0'
+      ) +
+      '-' +
+      String(
+        match[3]
+      ).padStart(
+        2,
+        '0'
+      )
+    );
+
+  }
+
+
+  /*
+   * m/d
+   *
+   * 例：
+   * 8/29
+   */
+
+  match =
+    text.match(
+      /^(\d{1,2})\/(\d{1,2})$/
+    );
+
+
+  if(
+    match
+  ){
+
+    const year =
+      new Date()
+        .getFullYear();
+
+
+    return(
+      year +
+      '-' +
+      String(
+        match[1]
+      ).padStart(
+        2,
+        '0'
+      ) +
+      '-' +
+      String(
+        match[2]
+      ).padStart(
+        2,
+        '0'
+      )
+    );
+
+  }
+
+
+  return '';
+
+}
+
+
+/* ==========================================================
+   HTML date
+   →
+   スプレッドシート m/d
+========================================================== */
+
+function formatSheetDate(
+  value
+){
+
+  const text =
+    String(
+      value ||
+      ''
+    ).trim();
+
+
+  if(
+    !text
+  ){
+
+    return '';
+
+  }
+
+
+  /*
+   * yyyy-mm-dd
+   */
+
+  let match =
+    text.match(
+      /^(\d{4})-(\d{1,2})-(\d{1,2})$/
+    );
+
+
+  if(
+    match
+  ){
+
+    return(
+      Number(
+        match[2]
+      ) +
+      '/' +
+      Number(
+        match[3]
+      )
+    );
+
+  }
+
+
+  /*
+   * yyyy/mm/dd
+   */
+
+  match =
+    text.match(
+      /^(\d{4})\/(\d{1,2})\/(\d{1,2})$/
+    );
+
+
+  if(
+    match
+  ){
+
+    return(
+      Number(
+        match[2]
+      ) +
+      '/' +
+      Number(
+        match[3]
+      )
+    );
+
+  }
+
+
+  /*
+   * m/d
+   */
+
+  if(
+    /^\d{1,2}\/\d{1,2}$/.test(
+      text
+    )
+  ){
+
+    return text;
+
+  }
+
+
+  return text;
+
+}
+
+
+/* ==========================================================
+   TEXT
+========================================================== */
+
+function dateText(
+  value
+){
+
+  if(
+    !value
+  ){
+
+    return '';
+
+  }
+
 
   const d =
     new Date(
       value +
       'T00:00:00'
     );
+
 
   if(
     Number.isNaN(
@@ -2044,9 +2326,11 @@ function dateText(value){
   ){
 
     return value;
+
   }
 
-  const week = [
+
+  const week=[
     '日',
     '月',
     '火',
@@ -2055,11 +2339,12 @@ function dateText(value){
     '金',
     '土'
   ];
+
 
   return(
     d.getFullYear() +
     '/' +
-    (d.getMonth() + 1) +
+    (d.getMonth()+1) +
     '/' +
     d.getDate() +
     '(' +
@@ -2072,17 +2357,25 @@ function dateText(value){
 }
 
 
-function shortDate(value){
+function shortDate(
+  value
+){
 
-  if(!value){
+  if(
+    !value
+  ){
+
     return '';
+
   }
+
 
   const d =
     new Date(
       value +
       'T00:00:00'
     );
+
 
   if(
     Number.isNaN(
@@ -2091,9 +2384,11 @@ function shortDate(value){
   ){
 
     return value;
+
   }
 
-  const week = [
+
+  const week=[
     '日',
     '月',
     '火',
@@ -2103,8 +2398,9 @@ function shortDate(value){
     '土'
   ];
 
+
   return(
-    (d.getMonth() + 1) +
+    (d.getMonth()+1) +
     '/' +
     d.getDate() +
     '(' +
@@ -2117,37 +2413,9 @@ function shortDate(value){
 }
 
 
-function escapeHtml(value){
-
-  return String(
-    value ??
-    ''
-  )
-  .replace(
-    /&/g,
-    '&amp;'
-  )
-  .replace(
-    /</g,
-    '&lt;'
-  )
-  .replace(
-    />/g,
-    '&gt;'
-  )
-  .replace(
-    /"/g,
-    '&quot;'
-  )
-  .replace(
-    /'/g,
-    '&#39;'
-  );
-
-}
-
-
-function showNotice(text){
+function showNotice(
+  text
+){
 
   el.notice.textContent =
     text ||
@@ -2174,6 +2442,7 @@ function setStatus(
       ? '✓'
       : '⏰';
 
+
   el.status.classList.toggle(
     'done',
     !!done
@@ -2183,7 +2452,7 @@ function setStatus(
 
 
 /* ==========================================================
-   GET + JSONP
+   JSONP
 ========================================================== */
 
 function callServer(
@@ -2241,7 +2510,6 @@ function callServer(
                 'サーバー応答がタイムアウトしました'
               )
             );
-
 
           },
           API_TIMEOUT
@@ -2405,21 +2673,15 @@ function callServer(
       ).forEach(
         key=>{
 
-          const value =
-            data[
-              key
-            ];
-
-
           params.set(
             key,
-            value ===
+            data[key] ===
               undefined ||
-            value ===
+            data[key] ===
               null
               ? ''
               : String(
-                  value
+                  data[key]
                 )
           );
 
@@ -2447,7 +2709,9 @@ function callServer(
    NAME MASTER
 ========================================================== */
 
-function getMasterDrivers(data){
+function getMasterDrivers(
+  data
+){
 
   if(
     data &&
@@ -2461,12 +2725,15 @@ function getMasterDrivers(data){
 
   }
 
+
   return [];
 
 }
 
 
-function getMasterOfficers(data){
+function getMasterOfficers(
+  data
+){
 
   if(
     data &&
@@ -2479,6 +2746,7 @@ function getMasterOfficers(data){
     return data.nameMaster.officers;
 
   }
+
 
   return [];
 
@@ -2496,11 +2764,6 @@ function normalizeDriverDisplay(
       ''
     ).trim();
 
-
-  /*
-   * 旧表記を
-   * 田中（ひ）へ統一
-   */
 
   if(
     current ===
@@ -2608,11 +2871,14 @@ function createNameSelect(
       'option'
     );
 
+
   blank.value =
     '';
 
+
   blank.textContent =
     '';
+
 
   select.appendChild(
     blank
@@ -2631,11 +2897,14 @@ function createNameSelect(
         'option'
       );
 
+
     old.value =
       current;
 
+
     old.textContent =
       current;
+
 
     select.appendChild(
       old
@@ -2652,11 +2921,14 @@ function createNameSelect(
           'option'
         );
 
+
       option.value =
         name;
 
+
       option.textContent =
         name;
+
 
       select.appendChild(
         option
@@ -2688,177 +2960,7 @@ function createNameSelect(
 
 
 /* ==========================================================
-   DRIVER LIST
-========================================================== */
-
-function findDriver(key){
-
-  return(
-    state.drivers.find(
-      driver =>
-        driver.driverKey ===
-        key
-    ) ||
-    null
-  );
-
-}
-
-
-async function loadDrivers(){
-
-  try{
-
-    const list =
-      await callServer(
-        'getDriverList'
-      );
-
-
-    state.drivers =
-      Array.isArray(
-        list
-      )
-        ? list
-        : [];
-
-
-    el.driverSelect.innerHTML =
-      '';
-
-
-    const first =
-      document.createElement(
-        'option'
-      );
-
-    first.value =
-      '';
-
-    first.textContent =
-      '選択して下さい';
-
-
-    el.driverSelect.appendChild(
-      first
-    );
-
-
-    state.drivers.forEach(
-      driver=>{
-
-        const option =
-          document.createElement(
-            'option'
-          );
-
-        option.value =
-          driver.driverKey;
-
-        option.textContent =
-          driver.displayName;
-
-        el.driverSelect.appendChild(
-          option
-        );
-
-      }
-    );
-
-
-  }catch(error){
-
-    console.error(
-      error
-    );
-
-
-    state.drivers =
-      [];
-
-
-    el.driverSelect.innerHTML =
-      '<option value="">選択して下さい</option>';
-
-  }
-
-}
-
-
-async function selectDriver(
-  driver,
-  manual=false
-){
-
-  state.driver =
-    driver ||
-    null;
-
-
-  if(
-    manual
-  ){
-
-    state.userSelectedManually =
-      true;
-
-  }
-
-
-  if(
-    !driver
-  ){
-
-    el.driverSelect.value =
-      '';
-
-    el.inMode.disabled =
-      true;
-
-    el.outMode.disabled =
-      true;
-
-    el.uploadBtn.disabled =
-      true;
-
-
-    setStatus(
-      '右から選択',
-      false
-    );
-
-
-    return;
-
-  }
-
-
-  el.driverSelect.value =
-    driver.driverKey;
-
-
-  el.inMode.disabled =
-    false;
-
-  el.outMode.disabled =
-    false;
-
-  el.uploadBtn.disabled =
-    false;
-
-
-  setStatus(
-    '完了',
-    true
-  );
-
-}
-
-
-/* ==========================================================
-   ASSIGNMENT TABLE
-   ★名前は名称マスター
-   ★現在月は薄赤
+   ASSIGNMENT
 ========================================================== */
 
 function renderAssignmentTable(
@@ -2872,6 +2974,7 @@ function renderAssignmentTable(
   wrap.innerHTML =
     '';
 
+
   wrap.classList.remove(
     'hidden'
   );
@@ -2881,6 +2984,7 @@ function renderAssignmentTable(
     document.createElement(
       'table'
     );
+
 
   table.className =
     'management-table';
@@ -2964,12 +3068,6 @@ function renderAssignmentTable(
     );
 
 
-  /*
-   * 現在月
-   *
-   * 2026年8月なら 8
-   */
-
   const currentMonth =
     new Date()
       .getMonth() +
@@ -2989,16 +3087,11 @@ function renderAssignmentTable(
       rowIndex
     )=>{
 
-
       const tr =
         document.createElement(
           'tr'
         );
 
-
-      /*
-       * 「8月」「８月」などを確実に判定
-       */
 
       const monthText =
         String(
@@ -3026,10 +3119,6 @@ function renderAssignmentTable(
             );
 
 
-      /*
-       * ★現在月だけクラス追加
-       */
-
       if(
         rowMonth ===
         currentMonth
@@ -3041,10 +3130,6 @@ function renderAssignmentTable(
 
       }
 
-
-      /*
-       * 月
-       */
 
       const month =
         document.createElement(
@@ -3061,10 +3146,6 @@ function renderAssignmentTable(
         month
       );
 
-
-      /*
-       * 運転手4列
-       */
 
       officers.forEach(
         officer=>{
@@ -3149,7 +3230,8 @@ function renderAssignmentTable(
 
 
 /* ==========================================================
-   COMP TABLE
+   COMP
+   ★出勤日・代休日を type="date"
 ========================================================== */
 
 function renderCompTable(
@@ -3162,6 +3244,7 @@ function renderCompTable(
 
   wrap.innerHTML =
     '';
+
 
   wrap.classList.remove(
     'hidden'
@@ -3181,7 +3264,7 @@ function renderCompTable(
 
 
   /*
-   * 空行は削除しない
+   * 空行を削除しない
    */
 
   data.planned =
@@ -3267,8 +3350,10 @@ function renderCompTable(
             'th'
           );
 
+
         th.textContent =
           text;
+
 
         hrow.appendChild(
           th
@@ -3300,16 +3385,15 @@ function renderCompTable(
         rowIndex
       )=>{
 
-
         const tr =
           document.createElement(
             'tr'
           );
 
 
-        /*
-         * 出勤日
-         */
+        /* ==================================================
+           出勤日
+        ================================================== */
 
         {
 
@@ -3325,12 +3409,27 @@ function renderCompTable(
             );
 
 
+          /*
+           * ★ iPhone標準カレンダー
+           */
+
           input.type =
-            'text';
+            'date';
+
+
+          /*
+           * スプレッドシート
+           * 8/29
+           *
+           * →
+           *
+           * 2026-08-29
+           */
 
           input.value =
-            row.startDate ||
-            '';
+            toDateInputValue(
+              row.startDate
+            );
 
 
           input.addEventListener(
@@ -3342,7 +3441,26 @@ function renderCompTable(
               ][
                 rowIndex
               ].startDate =
-                input.value;
+                formatSheetDate(
+                  input.value
+                );
+
+            }
+          );
+
+
+          input.addEventListener(
+            'change',
+            ()=>{
+
+              managementState[
+                key
+              ][
+                rowIndex
+              ].startDate =
+                formatSheetDate(
+                  input.value
+                );
 
             }
           );
@@ -3352,6 +3470,7 @@ function renderCompTable(
             input
           );
 
+
           tr.appendChild(
             td
           );
@@ -3359,9 +3478,9 @@ function renderCompTable(
         }
 
 
-        /*
-         * 代休日
-         */
+        /* ==================================================
+           代休日
+        ================================================== */
 
         {
 
@@ -3377,12 +3496,18 @@ function renderCompTable(
             );
 
 
+          /*
+           * ★ iPhone標準カレンダー
+           */
+
           input.type =
-            'text';
+            'date';
+
 
           input.value =
-            row.compDate ||
-            '';
+            toDateInputValue(
+              row.compDate
+            );
 
 
           input.addEventListener(
@@ -3394,7 +3519,26 @@ function renderCompTable(
               ][
                 rowIndex
               ].compDate =
-                input.value;
+                formatSheetDate(
+                  input.value
+                );
+
+            }
+          );
+
+
+          input.addEventListener(
+            'change',
+            ()=>{
+
+              managementState[
+                key
+              ][
+                rowIndex
+              ].compDate =
+                formatSheetDate(
+                  input.value
+                );
 
             }
           );
@@ -3404,6 +3548,7 @@ function renderCompTable(
             input
           );
 
+
           tr.appendChild(
             td
           );
@@ -3411,9 +3556,9 @@ function renderCompTable(
         }
 
 
-        /*
-         * 運転手 / 担当者
-         */
+        /* ==================================================
+           運転手 / 担当者
+        ================================================== */
 
         {
 
@@ -3452,9 +3597,9 @@ function renderCompTable(
         }
 
 
-        /*
-         * 役員
-         */
+        /* ==================================================
+           役員
+        ================================================== */
 
         {
 
@@ -3479,6 +3624,7 @@ function renderCompTable(
           blank.value =
             '';
 
+
           blank.textContent =
             '';
 
@@ -3499,6 +3645,7 @@ function renderCompTable(
 
               option.value =
                 name;
+
 
               option.textContent =
                 name;
@@ -3534,6 +3681,7 @@ function renderCompTable(
 
             old.value =
               currentOfficer;
+
 
             old.textContent =
               currentOfficer;
@@ -3615,7 +3763,7 @@ function renderCompTable(
 
 
   /*
-   * 追加
+   * 予定追加
    */
 
   const addBtn =
@@ -3627,8 +3775,10 @@ function renderCompTable(
   addBtn.type =
     'button';
 
+
   addBtn.className =
     'management-add';
+
 
   addBtn.textContent =
     '＋ 予定を追加';
@@ -3852,10 +4002,6 @@ async function openManagement(
 
 }
 
-
-/* ==========================================================
-   MANAGEMENT BUTTONS
-========================================================== */
 
 el.assignmentBtn
   .addEventListener(
@@ -4086,6 +4232,7 @@ function setMode(
     el.startTime.value =
       nowTime();
 
+
   }else{
 
     el.endField
@@ -4125,7 +4272,6 @@ function setMode(
       '08:00';
 
   }
-
 
   refreshMessage();
 
@@ -4221,7 +4367,7 @@ function refreshMessage(){
 
 
 /* ==========================================================
-   DRIVER MANUAL SELECT
+   MANUAL DRIVER
 ========================================================== */
 
 el.driverSelect
@@ -4230,9 +4376,12 @@ el.driverSelect
     async()=>{
 
       const driver =
-        findDriver(
-          el.driverSelect.value
-        );
+        state.drivers.find(
+          item =>
+            item.driverKey ===
+            el.driverSelect.value
+        ) ||
+        null;
 
 
       state.userSelectedManually =
@@ -4249,7 +4398,250 @@ el.driverSelect
 
 
 /* ==========================================================
-   MODE BUTTON EVENTS
+   SELECT DRIVER
+========================================================== */
+
+async function selectDriver(
+  driver,
+  manual=false
+){
+
+  state.driver =
+    driver ||
+    null;
+
+
+  if(
+    manual
+  ){
+
+    state.userSelectedManually =
+      true;
+
+  }
+
+
+  if(
+    !driver
+  ){
+
+    el.inMode.disabled =
+      true;
+
+    el.outMode.disabled =
+      true;
+
+    el.uploadBtn.disabled =
+      true;
+
+
+    setStatus(
+      '右から選択',
+      false
+    );
+
+
+    return;
+
+  }
+
+
+  el.inMode.disabled =
+    false;
+
+  el.outMode.disabled =
+    false;
+
+  el.uploadBtn.disabled =
+    false;
+
+
+  el.driverSelect.value =
+    driver.driverKey;
+
+
+  setStatus(
+    '完了',
+    true
+  );
+
+}
+
+
+/* ==========================================================
+   AUTO DETECT
+========================================================== */
+
+async function autoDetect(){
+
+  setStatus(
+    '判別中',
+    false
+  );
+
+
+  try{
+
+    if(
+      typeof liff ===
+      'undefined'
+    ){
+
+      throw new Error(
+        'LIFF SDKが読み込まれていません'
+      );
+
+    }
+
+
+    await liff.init({
+      liffId:
+        LIFF_ID
+    });
+
+
+    if(
+      state.userSelectedManually &&
+      state.driver
+    ){
+
+      return;
+
+    }
+
+
+    if(
+      !liff.isLoggedIn()
+    ){
+
+      state.idToken =
+        '';
+
+
+      setStatus(
+        '右から選択',
+        false
+      );
+
+
+      return;
+
+    }
+
+
+    state.idToken =
+      liff.getIDToken() ||
+      '';
+
+
+    if(
+      !state.idToken
+    ){
+
+      setStatus(
+        '右から選択',
+        false
+      );
+
+
+      return;
+
+    }
+
+
+    const info =
+      await callServer(
+        'getDriverInfo'
+      );
+
+
+    if(
+      state.userSelectedManually &&
+      state.driver
+    ){
+
+      return;
+
+    }
+
+
+    if(
+      info &&
+      info.found &&
+      info.driverKey
+    ){
+
+      const driver =
+        state.drivers.find(
+          item =>
+            item.driverKey ===
+            info.driverKey
+        );
+
+
+      if(
+        driver
+      ){
+
+        await selectDriver(
+          driver,
+          false
+        );
+
+
+        setStatus(
+          '完了',
+          true
+        );
+
+
+        return;
+
+      }
+
+    }
+
+
+    setStatus(
+      '右から選択',
+      false
+    );
+
+
+  }catch(error){
+
+    console.warn(
+      '自動判別失敗',
+      error
+    );
+
+
+    if(
+      state.userSelectedManually &&
+      state.driver
+    ){
+
+      setStatus(
+        '完了',
+        true
+      );
+
+    }else{
+
+      setStatus(
+        '右から選択',
+        false
+      );
+
+    }
+
+  }
+
+}
+
+
+/* ==========================================================
+   IN / OUT
 ========================================================== */
 
 el.inMode
@@ -4266,7 +4658,9 @@ el.inMode
         );
 
         return;
+
       }
+
 
       setMode(
         'in'
@@ -4290,7 +4684,9 @@ el.outMode
         );
 
         return;
+
       }
+
 
       setMode(
         'out'
@@ -4318,6 +4714,7 @@ el.uploadBtn
         );
 
         return;
+
       }
 
 
@@ -4334,7 +4731,9 @@ el.photoInput
 
       const file =
         el.photoInput.files &&
-        el.photoInput.files[0];
+        el.photoInput.files[
+          0
+        ];
 
 
       if(
@@ -4395,6 +4794,7 @@ el.sendBtn
         );
 
         return;
+
       }
 
 
@@ -4503,7 +4903,7 @@ el.sendBtn
 
 
 /* ==========================================================
-   INPUT
+   INPUT CHANGE
 ========================================================== */
 
 [
@@ -4530,178 +4930,6 @@ el.sendBtn
 
   }
 );
-
-
-/* ==========================================================
-   LINE AUTO DETECT
-========================================================== */
-
-async function autoDetect(){
-
-  setStatus(
-    '判別中',
-    false
-  );
-
-
-  try{
-
-    if(
-      typeof liff ===
-      'undefined'
-    ){
-
-      throw new Error(
-        'LIFF SDKが読み込まれていません'
-      );
-
-    }
-
-
-    await liff.init({
-      liffId:
-        LIFF_ID
-    });
-
-
-    /*
-     * 手動選択済みなら
-     * 上書きしない
-     */
-
-    if(
-      state.userSelectedManually &&
-      state.driver
-    ){
-
-      return;
-
-    }
-
-
-    if(
-      !liff.isLoggedIn()
-    ){
-
-      state.idToken =
-        '';
-
-      setStatus(
-        '右から選択',
-        false
-      );
-
-      return;
-
-    }
-
-
-    state.idToken =
-      liff.getIDToken() ||
-      '';
-
-
-    if(
-      !state.idToken
-    ){
-
-      setStatus(
-        '右から選択',
-        false
-      );
-
-      return;
-
-    }
-
-
-    const info =
-      await callServer(
-        'getDriverInfo'
-      );
-
-
-    if(
-      state.userSelectedManually &&
-      state.driver
-    ){
-
-      return;
-
-    }
-
-
-    if(
-      info &&
-      info.found &&
-      info.driverKey
-    ){
-
-      const driver =
-        findDriver(
-          info.driverKey
-        );
-
-
-      if(
-        driver
-      ){
-
-        await selectDriver(
-          driver,
-          false
-        );
-
-
-        setStatus(
-          '完了',
-          true
-        );
-
-
-        return;
-
-      }
-
-    }
-
-
-    setStatus(
-      '右から選択',
-      false
-    );
-
-
-  }catch(error){
-
-    console.warn(
-      '自動判別失敗',
-      error
-    );
-
-
-    if(
-      state.userSelectedManually &&
-      state.driver
-    ){
-
-      setStatus(
-        '完了',
-        true
-      );
-
-    }else{
-
-      setStatus(
-        '右から選択',
-        false
-      );
-
-    }
-
-  }
-
-}
 
 
 /* ==========================================================
@@ -4757,14 +4985,14 @@ window.addEventListener(
 
 
     /*
-     * 先に運転手一覧を取得
+     * 運転手一覧を先に取得
      */
 
     await loadDrivers();
 
 
     /*
-     * その後LINE本人判別
+     * その後LINE判別
      */
 
     autoDetect();
@@ -4775,4 +5003,5 @@ window.addEventListener(
 </script>
 
 </body>
+
 </html>
