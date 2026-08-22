@@ -30,6 +30,9 @@
   --green:#18824e;
   --soft:#f6fbfe;
   --shadow:0 12px 34px rgba(40,92,128,.10);
+  --current:#ffe6e6;
+  --current-input:#fff0f0;
+  --current-border:#f3b6b6;
 }
 
 *{
@@ -217,7 +220,7 @@ button{
 
 
 /* ==========================================================
-   DRIVER
+   DRIVER SELECT
 ========================================================== */
 
 .top-row{
@@ -301,8 +304,7 @@ button{
     #f9fdff;
 }
 
-.select-box label,
-.field-title{
+.select-box label{
   display:block;
 
   margin-bottom:
@@ -603,6 +605,22 @@ input[type="time"]{
     var(--soft);
 }
 
+.field-title{
+  display:block;
+
+  margin-bottom:
+    5px;
+
+  color:
+    #637c90;
+
+  font-size:
+    13px;
+
+  font-weight:
+    900;
+}
+
 .summary{
   grid-column:
     1/-1;
@@ -812,7 +830,7 @@ input[type="time"]{
 
 
 /* ==========================================================
-   MANAGEMENT
+   MANAGEMENT PANEL
 ========================================================== */
 
 .management-panel{
@@ -898,6 +916,49 @@ input[type="time"]{
 
   font-weight:
     800;
+}
+
+
+/* ==========================================================
+   ASSIGNMENT VIEW
+========================================================== */
+
+.assignment-toolbar{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:8px;
+
+  margin-bottom:6px;
+}
+
+.assignment-info{
+  min-width:0;
+
+  color:#6a8190;
+
+  font-size:11px;
+
+  font-weight:800;
+}
+
+.assignment-sort-note{
+  padding:4px 7px;
+
+  border-radius:8px;
+
+  background:#f5f9fc;
+
+  color:#648095;
+
+  font-size:10px;
+
+  font-weight:900;
+
+  white-space:nowrap;
 }
 
 
@@ -1010,9 +1071,52 @@ input[type="time"]{
 
 
 /* ==========================================================
+   CURRENT MONTH
+========================================================== */
+
+.assignment-panel
+.management-table
+tbody
+tr.current-month-row > th,
+
+.assignment-panel
+.management-table
+tbody
+tr.current-month-row > td{
+  background-color:
+    var(--current)
+    !important;
+}
+
+.assignment-panel
+.management-table
+tbody
+tr.current-month-row > td > select{
+  background-color:
+    var(--current-input)
+    !important;
+
+  border-color:
+    var(--current-border)
+    !important;
+}
+
+.assignment-panel
+.management-table
+tbody
+tr.current-month-row > th{
+  color:
+    #b33a3a
+    !important;
+
+  font-weight:
+    900
+    !important;
+}
+
+
+/* ==========================================================
    DATE DISPLAY
-   表示：8/29
-   タップ：iPhone標準カレンダー
 ========================================================== */
 
 .comp-date-wrap{
@@ -1114,120 +1218,26 @@ input[type="time"]{
 
 
 /* ==========================================================
-   担当表
+   ASSIGNMENT TABLE
 ========================================================== */
 
 .assignment-panel
-.management-table th,
+.management-table th:first-child,
 .assignment-panel
-.management-table td{
-  width:
-    20%;
+.management-table td:first-child{
+  width:18%;
+}
+
+.assignment-panel
+.management-table th:not(:first-child),
+.assignment-panel
+.management-table td:not(:first-child){
+  width:20.5%;
 }
 
 
 /* ==========================================================
-   現在月
-========================================================== */
-
-.assignment-panel
-.management-table
-tbody
-tr.current-month-row > th,
-
-.assignment-panel
-.management-table
-tbody
-tr.current-month-row > td{
-  background-color:
-    #ffe6e6 !important;
-}
-
-.assignment-panel
-.management-table
-tbody
-tr.current-month-row > td > select{
-  background-color:
-    #fff0f0 !important;
-
-  border-color:
-    #f3b6b6 !important;
-}
-
-.assignment-panel
-.management-table
-tbody
-tr.current-month-row > th{
-  color:
-    #b33a3a !important;
-
-  font-weight:
-    900 !important;
-}
-
-
-/* ==========================================================
-   代休
-========================================================== */
-
-.comp-panel
-.management-table th:nth-child(1),
-.comp-panel
-.management-table td:nth-child(1){
-  width:
-    19%;
-}
-
-.comp-panel
-.management-table th:nth-child(2),
-.comp-panel
-.management-table td:nth-child(2){
-  width:
-    19%;
-}
-
-.comp-panel
-.management-table th:nth-child(3),
-.comp-panel
-.management-table td:nth-child(3){
-  width:
-    24%;
-}
-
-.comp-panel
-.management-table th:nth-child(4),
-.comp-panel
-.management-table td:nth-child(4){
-  width:
-    38%;
-}
-
-.management-section-title{
-  margin:
-    7px 0 5px;
-
-  color:
-    var(--blue);
-
-  font-size:
-    15px;
-
-  font-weight:
-    900;
-}
-
-.comp-panel{
-  display:
-    grid;
-
-  gap:
-    7px;
-}
-
-
-/* ==========================================================
-   ★ 役員複数選択用
-   縦に増えるだけ
+   OFFICER STACK
 ========================================================== */
 
 .officer-stack{
@@ -1340,35 +1350,176 @@ tr.current-month-row > th{
     18px;
 }
 
-.management-add{
+
+/* ==========================================================
+   COMP
+========================================================== */
+
+.comp-panel
+.management-table th:nth-child(1),
+.comp-panel
+.management-table td:nth-child(1){
   width:
-    100%;
+    19%;
+}
 
-  min-height:
-    42px;
+.comp-panel
+.management-table th:nth-child(2),
+.comp-panel
+.management-table td:nth-child(2){
+  width:
+    19%;
+}
 
+.comp-panel
+.management-table th:nth-child(3),
+.comp-panel
+.management-table td:nth-child(3){
+  width:
+    24%;
+}
+
+.comp-panel
+.management-table th:nth-child(4),
+.comp-panel
+.management-table td:nth-child(4){
+  width:
+    38%;
+}
+
+.management-section-title{
   margin:
-    2px 0;
-
-  border:
-    1px dashed
-    #8fc9ea;
-
-  border-radius:
-    12px;
-
-  background:
-    #f7fcff;
+    7px 0 5px;
 
   color:
     var(--blue);
 
   font-size:
-    14px;
+    15px;
 
   font-weight:
     900;
 }
+
+.comp-panel{
+  display:
+    grid;
+
+  gap:
+    7px;
+}
+
+
+/* ==========================================================
+   ADD MONTH
+========================================================== */
+
+.month-add-wrap{
+  margin-top:
+    8px;
+
+  padding-top:
+    8px;
+
+  border-top:
+    1px solid
+    #e5eff6;
+}
+
+.month-add-title{
+  margin-bottom:
+    6px;
+
+  color:
+    #6b8292;
+
+  font-size:
+    11px;
+
+  font-weight:
+    900;
+
+  text-align:
+    center;
+}
+
+.month-add-row{
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    auto;
+
+  gap:
+    6px;
+
+  align-items:
+    center;
+}
+
+.month-add-select{
+  width:
+    100%;
+
+  height:
+    38px;
+
+  padding:
+    0 8px;
+
+  border:
+    1px solid
+    #cfe4f3;
+
+  border-radius:
+    10px;
+
+  background:
+    #ffffff;
+
+  color:
+    var(--text);
+
+  font-size:
+    13px;
+
+  font-weight:
+    800;
+}
+
+.month-add-btn{
+  min-height:
+    38px;
+
+  padding:
+    0 12px;
+
+  border:
+    0;
+
+  border-radius:
+    10px;
+
+  background:
+    #eef8ff;
+
+  color:
+    var(--blue);
+
+  font-size:
+    12px;
+
+  font-weight:
+    900;
+
+  white-space:
+    nowrap;
+}
+
+
+/* ==========================================================
+   SAVE
+========================================================== */
 
 .management-save{
   width:
@@ -1535,6 +1686,17 @@ tr.current-month-row > th{
       20px;
   }
 
+  .month-add-row{
+    grid-template-columns:
+      minmax(0,1fr)
+      auto;
+  }
+
+  .month-add-btn{
+    padding:
+      0 10px;
+  }
+
 }
 
 </style>
@@ -1574,7 +1736,6 @@ tr.current-month-row > th{
 📋 担当表
 </button>
 
-
 <button
   id="compBtn"
   class="management-btn comp-btn"
@@ -1591,7 +1752,6 @@ tr.current-month-row > th{
 ====================================================== -->
 
 <div class="top-row">
-
 
 <div
   id="status"
@@ -1611,16 +1771,11 @@ tr.current-month-row > th{
 
 <div class="select-box">
 
-<label
-  for="driverSelect"
->
+<label for="driverSelect">
 選択
 </label>
 
-
-<select
-  id="driverSelect"
->
+<select id="driverSelect">
 
 <option value="">
 選択して下さい
@@ -1647,7 +1802,6 @@ tr.current-month-row > th{
 >
 ☀️出勤☀️
 </button>
-
 
 <button
   id="outMode"
@@ -1701,7 +1855,6 @@ tr.current-month-row > th{
 
 <div class="preview-box">
 
-
 <img
   id="photoPreview"
   class="photo-preview"
@@ -1721,7 +1874,6 @@ tr.current-month-row > th{
 日付
 </label>
 
-
 <input
   id="reportDate"
   type="date"
@@ -1738,7 +1890,6 @@ tr.current-month-row > th{
 >
 出勤時間
 </label>
-
 
 <input
   id="startTime"
@@ -1760,7 +1911,6 @@ tr.current-month-row > th{
 退勤時間
 </label>
 
-
 <input
   id="endTime"
   type="time"
@@ -1780,7 +1930,6 @@ tr.current-month-row > th{
 >
 次回出勤日
 </label>
-
 
 <input
   id="nextDate"
@@ -1802,7 +1951,6 @@ tr.current-month-row > th{
 次回出勤時間
 </label>
 
-
 <select
   id="nextTime"
 ></select>
@@ -1820,12 +1968,10 @@ tr.current-month-row > th{
 <strong>0:00</strong>
 </div>
 
-
 </div>
 
 
 <div class="message-section">
-
 
 <div class="message-title">
 報告文章
@@ -1833,7 +1979,6 @@ tr.current-month-row > th{
 
 
 <div class="message-box">
-
 
 <div
   id="messagePreview"
@@ -1883,7 +2028,7 @@ tr.current-month-row > th{
 
 
 <!-- ======================================================
-     MANAGEMENT
+     MANAGEMENT PANEL
 ====================================================== -->
 
 <section
@@ -1893,7 +2038,6 @@ tr.current-month-row > th{
 
 
 <div class="management-header">
-
 
 <div
   id="managementTitle"
@@ -1910,7 +2054,6 @@ tr.current-month-row > th{
 >
 閉じる
 </button>
-
 
 </div>
 
@@ -1959,7 +2102,6 @@ tr.current-month-row > th{
 
 
 <script>
-
 
 /* ==========================================================
    CONFIG
@@ -2150,21 +2292,32 @@ const el = {
 
 const state = {
 
-  idToken:'',
+  idToken:
+    '',
 
-  drivers:[],
+  drivers:
+    [],
 
-  driver:null,
+  driver:
+    null,
 
-  mode:'in',
+  mode:
+    'in',
 
-  draft:null,
+  draft:
+    null,
 
-  userSelectedManually:false,
+  userSelectedManually:
+    false,
 
   summary:{
-    previousOvertime:'0:00',
-    monthlyOvertime:'0:00'
+
+    previousOvertime:
+      '0:00',
+
+    monthlyOvertime:
+      '0:00'
+
   }
 
 };
@@ -2178,7 +2331,7 @@ let managementState =
 
 
 /* ==========================================================
-   BASIC
+   BASIC HELPERS
 ========================================================== */
 
 function pad2(
@@ -2200,6 +2353,7 @@ function today(){
   const d =
     new Date();
 
+
   return(
     d.getFullYear() +
     '-' +
@@ -2220,6 +2374,7 @@ function nowTime(){
   const d =
     new Date();
 
+
   return(
     pad2(
       d.getHours()
@@ -2238,9 +2393,11 @@ function tomorrow(){
   const d =
     new Date();
 
+
   d.setDate(
     d.getDate()+1
   );
+
 
   return(
     d.getFullYear() +
@@ -2503,6 +2660,10 @@ function formatDisplayDate(
 }
 
 
+/* ==========================================================
+   DATE UI
+========================================================== */
+
 function createDateInput(
   value,
   onChange
@@ -2628,7 +2789,7 @@ function dateText(
   }
 
 
-  const week=[
+  const week = [
     '日',
     '月',
     '火',
@@ -2686,7 +2847,7 @@ function shortDate(
   }
 
 
-  const week=[
+  const week = [
     '日',
     '月',
     '火',
@@ -2752,7 +2913,7 @@ function setStatus(
 
 
 /* ==========================================================
-   API
+   API / JSONP
 ========================================================== */
 
 function callServer(
@@ -3317,7 +3478,9 @@ function joinOfficerValues(
     .filter(
       Boolean
     )
-    .join('、');
+    .join(
+      '、'
+    );
 
 }
 
@@ -3356,22 +3519,8 @@ function createOfficerStack(
 
   function update(){
 
-    const result =
-      values
-        .map(
-          value =>
-            String(
-              value ||
-              ''
-            ).trim()
-        )
-        .filter(
-          Boolean
-        );
-
-
     onChange(
-      result
+      values
     );
 
   }
@@ -3449,10 +3598,6 @@ function createOfficerStack(
         );
 
 
-        /*
-         * 既存の複数文字列など
-         */
-
         if(
           current &&
           !officerNames.includes(
@@ -3504,10 +3649,6 @@ function createOfficerStack(
         );
 
 
-        /*
-         * 2枠目以降は削除ボタン
-         */
-
         if(
           values.length > 1
         ){
@@ -3552,6 +3693,7 @@ function createOfficerStack(
 
               update();
 
+
               render();
 
             }
@@ -3572,10 +3714,6 @@ function createOfficerStack(
       }
     );
 
-
-    /*
-     * 枠追加
-     */
 
     const add =
       document.createElement(
@@ -3606,6 +3744,7 @@ function createOfficerStack(
 
         update();
 
+
         render();
 
       }
@@ -3628,188 +3767,200 @@ function createOfficerStack(
 
 
 /* ==========================================================
-   DRIVER LIST
-========================================================== */
-
-function findDriver(
-  key
-){
-
-  return(
-    state.drivers.find(
-      driver =>
-        driver.driverKey ===
-        key
-    ) ||
-    null
-  );
-
-}
-
-
-async function loadDrivers(){
-
-  try{
-
-    const list =
-      await callServer(
-        'getDriverList'
-      );
-
-
-    state.drivers =
-      Array.isArray(
-        list
-      )
-        ? list
-        : [];
-
-
-    el.driverSelect.innerHTML =
-      '';
-
-
-    const first =
-      document.createElement(
-        'option'
-      );
-
-
-    first.value =
-      '';
-
-
-    first.textContent =
-      '選択して下さい';
-
-
-    el.driverSelect.appendChild(
-      first
-    );
-
-
-    state.drivers.forEach(
-      driver=>{
-
-        const option =
-          document.createElement(
-            'option'
-          );
-
-
-        option.value =
-          driver.driverKey;
-
-
-        option.textContent =
-          driver.displayName;
-
-
-        el.driverSelect.appendChild(
-          option
-        );
-
-      }
-    );
-
-
-  }catch(error){
-
-    console.error(
-      error
-    );
-
-
-    state.drivers =
-      [];
-
-
-    el.driverSelect.innerHTML =
-      '<option value="">選択して下さい</option>';
-
-  }
-
-}
-
-
-async function selectDriver(
-  driver,
-  manual=false
-){
-
-  state.driver =
-    driver ||
-    null;
-
-
-  if(
-    manual
-  ){
-
-    state.userSelectedManually =
-      true;
-
-  }
-
-
-  if(
-    !driver
-  ){
-
-    el.driverSelect.value =
-      '';
-
-
-    el.inMode.disabled =
-      true;
-
-
-    el.outMode.disabled =
-      true;
-
-
-    el.uploadBtn.disabled =
-      true;
-
-
-    setStatus(
-      '右から選択',
-      false
-    );
-
-
-    return;
-
-  }
-
-
-  el.driverSelect.value =
-    driver.driverKey;
-
-
-  el.inMode.disabled =
-    false;
-
-
-  el.outMode.disabled =
-    false;
-
-
-  el.uploadBtn.disabled =
-    false;
-
-
-  setStatus(
-    '完了',
-    true
-  );
-
-}
-
-
-/* ==========================================================
    ASSIGNMENT
 ========================================================== */
+
+function getCurrentYearMonth(){
+
+  const d =
+    new Date();
+
+
+  return {
+    year:
+      d.getFullYear(),
+
+    month:
+      d.getMonth()+1
+  };
+
+}
+
+
+function sortAssignmentRows(
+  rows
+){
+
+  const current =
+    getCurrentYearMonth();
+
+
+  const currentIndex =
+    current.year * 100 +
+    current.month;
+
+
+  return [
+    ...rows
+  ].sort(
+    (
+      a,
+      b
+    )=>{
+
+      const aIndex =
+        a.year * 100 +
+        a.month;
+
+
+      const bIndex =
+        b.year * 100 +
+        b.month;
+
+
+      function distance(
+        value
+      ){
+
+        let d =
+          value -
+          currentIndex;
+
+
+        if(
+          d < 0
+        ){
+
+          d += 1200;
+
+        }
+
+
+        return d;
+
+      }
+
+
+      return(
+        distance(aIndex) -
+        distance(bIndex)
+      );
+
+    }
+  );
+
+}
+
+
+function makeFutureMonths(
+  rows,
+  count
+){
+
+  const existing =
+    new Set(
+      rows.map(
+        row =>
+          row.yearMonth
+      )
+    );
+
+
+  const result =
+    [];
+
+
+  const now =
+    new Date();
+
+
+  let cursor =
+    new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      1
+    );
+
+
+  for(
+    let i=0;
+    result.length < count;
+    i++
+  ){
+
+    const year =
+      cursor.getFullYear();
+
+
+    const month =
+      cursor.getMonth()+1;
+
+
+    const yearMonth =
+      year +
+      '/' +
+      month;
+
+
+    if(
+      !existing.has(
+        yearMonth
+      )
+    ){
+
+      result.push({
+
+        sheetRow:
+          null,
+
+        year:
+          year,
+
+        month:
+          month,
+
+        yearMonth:
+          yearMonth,
+
+        displayMonth:
+          yearMonth,
+
+        assignments:{
+
+          ...(rows[0] &&
+              rows[0].assignments
+              ? Object.fromEntries(
+                  Object.keys(
+                    rows[0].assignments
+                  )
+                  .map(
+                    key=>[
+                      key,
+                      ''
+                    ]
+                  )
+                )
+              : {}
+          )
+
+        }
+
+      });
+
+    }
+
+
+    cursor.setMonth(
+      cursor.getMonth()+1
+    );
+
+  }
+
+
+  return result;
+
+}
+
 
 function renderAssignmentTable(
   data
@@ -3828,15 +3979,136 @@ function renderAssignmentTable(
   );
 
 
-  const table =
-    document.createElement(
-      'table'
+  const driverNames =
+    getMasterDrivers(
+      data
     );
 
 
-  table.className =
-    'management-table';
+  /*
+   * 元データ
+   */
 
+  const sourceRows =
+    Array.isArray(
+      data.rows
+    )
+      ? data.rows
+      : [];
+
+
+  /*
+   * 現在月を先頭にして
+   * 12か月だけ表示
+   */
+
+  let rows =
+    sortAssignmentRows(
+      sourceRows
+    );
+
+
+  /*
+   * 現在月から12か月分を生成
+   * 足りない月は画面上だけ追加
+   */
+
+  const current =
+    getCurrentYearMonth();
+
+
+  const rowMap =
+    new Map();
+
+
+  rows.forEach(
+    row => {
+
+      rowMap.set(
+        row.yearMonth,
+        row
+      );
+
+    }
+  );
+
+
+  const displayRows =
+    [];
+
+
+  for(
+    let i=0;
+    i<12;
+    i++
+  ){
+
+    const d =
+      new Date(
+        current.year,
+        current.month-1+i,
+        1
+      );
+
+
+    const year =
+      d.getFullYear();
+
+
+    const month =
+      d.getMonth()+1;
+
+
+    const yearMonth =
+      year +
+      '/' +
+      month;
+
+
+    if(
+      rowMap.has(
+        yearMonth
+      )
+    ){
+
+      displayRows.push(
+        rowMap.get(
+          yearMonth
+        )
+      );
+
+    }else{
+
+      displayRows.push({
+
+        sheetRow:
+          null,
+
+        year:
+          year,
+
+        month:
+          month,
+
+        yearMonth:
+          yearMonth,
+
+        displayMonth:
+          yearMonth,
+
+        assignments:
+          {}
+
+      });
+
+    }
+
+  }
+
+
+  /*
+   * 役員
+   */
 
   const officers =
     Array.isArray(
@@ -3852,16 +4124,83 @@ function renderAssignmentTable(
         ];
 
 
-  const driverNames =
-    getMasterDrivers(
-      data
+  /*
+   * 操作用配列
+   */
+
+  data.rows =
+    displayRows;
+
+
+  /* --------------------------------------------------------
+     タイトル
+  -------------------------------------------------------- */
+
+  const toolbar =
+    document.createElement(
+      'div'
     );
 
 
-  const header = [
-    '月',
-    ...officers
-  ];
+  toolbar.className =
+    'assignment-toolbar';
+
+
+  const info =
+    document.createElement(
+      'div'
+    );
+
+
+  info.className =
+    'assignment-info';
+
+
+  info.textContent =
+    '現在月を先頭に12か月表示';
+
+
+  const note =
+    document.createElement(
+      'div'
+    );
+
+
+  note.className =
+    'assignment-sort-note';
+
+
+  note.textContent =
+    '過去月も保存';
+
+
+  toolbar.appendChild(
+    info
+  );
+
+
+  toolbar.appendChild(
+    note
+  );
+
+
+  wrap.appendChild(
+    toolbar
+  );
+
+
+  /* --------------------------------------------------------
+     table
+  -------------------------------------------------------- */
+
+  const table =
+    document.createElement(
+      'table'
+    );
+
+
+  table.className =
+    'management-table';
 
 
   const thead =
@@ -3876,8 +4215,23 @@ function renderAssignmentTable(
     );
 
 
-  header.forEach(
-    text=>{
+  const h1 =
+    document.createElement(
+      'th'
+    );
+
+
+  h1.textContent =
+    '月';
+
+
+  hrow.appendChild(
+    h1
+  );
+
+
+  officers.forEach(
+    officer=>{
 
       const th =
         document.createElement(
@@ -3886,10 +4240,10 @@ function renderAssignmentTable(
 
 
       th.textContent =
-        text ===
+        officer ===
         '伊藤副社長'
           ? '伊藤社長'
-          : text;
+          : officer;
 
 
       hrow.appendChild(
@@ -3916,20 +4270,7 @@ function renderAssignmentTable(
     );
 
 
-  const currentMonth =
-    new Date()
-      .getMonth() +
-    1;
-
-
-  (
-    Array.isArray(
-      data.rows
-    )
-      ? data.rows
-      : []
-  )
-  .forEach(
+  displayRows.forEach(
     (
       row,
       rowIndex
@@ -3941,35 +4282,27 @@ function renderAssignmentTable(
         );
 
 
-      const monthText =
-        String(
-          row.month ||
-          ''
-        ).trim();
+      const now =
+        getCurrentYearMonth();
 
 
-      const rowMonthMatch =
-        monthText.match(
-          /(\d{1,2})\s*月/
+      const isCurrent =
+        Number(
+          row.year
+        ) ===
+        Number(
+          now.year
+        ) &&
+        Number(
+          row.month
+        ) ===
+        Number(
+          now.month
         );
 
 
-      const rowMonth =
-        rowMonthMatch
-          ? Number(
-              rowMonthMatch[1]
-            )
-          : Number(
-              monthText.replace(
-                /[^\d]/g,
-                ''
-              )
-            );
-
-
       if(
-        rowMonth ===
-        currentMonth
+        isCurrent
       ){
 
         tr.classList.add(
@@ -3979,19 +4312,19 @@ function renderAssignmentTable(
       }
 
 
-      const month =
+      const monthCell =
         document.createElement(
           'th'
         );
 
 
-      month.textContent =
-        row.month ||
-        '';
+      monthCell.textContent =
+        row.month +
+        '月';
 
 
       tr.appendChild(
-        month
+        monthCell
       );
 
 
@@ -4072,6 +4405,303 @@ function renderAssignmentTable(
 
   wrap.appendChild(
     table
+  );
+
+
+  /* --------------------------------------------------------
+     月追加
+  -------------------------------------------------------- */
+
+  const addWrap =
+    document.createElement(
+      'div'
+    );
+
+
+  addWrap.className =
+    'month-add-wrap';
+
+
+  const addTitle =
+    document.createElement(
+      'div'
+    );
+
+
+  addTitle.className =
+    'month-add-title';
+
+
+  addTitle.textContent =
+    '必要な月を追加';
+
+
+  addWrap.appendChild(
+    addTitle
+  );
+
+
+  const addRow =
+    document.createElement(
+      'div'
+    );
+
+
+  addRow.className =
+    'month-add-row';
+
+
+  const addSelect =
+    document.createElement(
+      'select'
+    );
+
+
+  addSelect.className =
+    'month-add-select';
+
+
+  /*
+   * 現在月から24か月先まで
+   */
+
+  const existingMonths =
+    new Set(
+      displayRows.map(
+        row =>
+          row.yearMonth
+      )
+    );
+
+
+  const candidates =
+    [];
+
+
+  const base =
+    new Date(
+      current.year,
+      current.month-1,
+      1
+    );
+
+
+  for(
+    let i=0;
+    i<24;
+    i++
+  ){
+
+    const d =
+      new Date(
+        base.getFullYear(),
+        base.getMonth()+i,
+        1
+      );
+
+
+    const year =
+      d.getFullYear();
+
+
+    const month =
+      d.getMonth()+1;
+
+
+    const yearMonth =
+      year +
+      '/' +
+      month;
+
+
+    if(
+      !existingMonths.has(
+        yearMonth
+      )
+    ){
+
+      candidates.push({
+        year:
+          year,
+
+        month:
+          month,
+
+        yearMonth:
+          yearMonth
+
+      });
+
+    }
+
+  }
+
+
+  if(
+    candidates.length ===
+    0
+  ){
+
+    const none =
+      document.createElement(
+        'option'
+      );
+
+
+    none.value =
+      '';
+
+
+    none.textContent =
+      '追加できる月はありません';
+
+
+    addSelect.appendChild(
+      none
+    );
+
+
+  }else{
+
+    candidates.forEach(
+      item=>{
+
+        const option =
+          document.createElement(
+            'option'
+          );
+
+
+        option.value =
+          item.yearMonth;
+
+
+        option.textContent =
+          item.year +
+          '/' +
+          item.month +
+          '月';
+
+
+        addSelect.appendChild(
+          option
+        );
+
+      }
+    );
+
+  }
+
+
+  const addButton =
+    document.createElement(
+      'button'
+    );
+
+
+  addButton.type =
+    'button';
+
+
+  addButton.className =
+    'month-add-btn';
+
+
+  addButton.textContent =
+    '＋ 月を追加';
+
+
+  addButton.disabled =
+    candidates.length ===
+    0;
+
+
+  addButton.addEventListener(
+    'click',
+    ()=>{
+
+      const value =
+        addSelect.value;
+
+
+      if(
+        !value
+      ){
+
+        return;
+
+      }
+
+
+      const parts =
+        value.split('/');
+
+
+      const year =
+        Number(
+          parts[0]
+        );
+
+
+      const month =
+        Number(
+          parts[1]
+        );
+
+
+      /*
+       * 現在の表示12か月に
+       * 新しい月を追加
+       */
+
+      data.rows.push({
+
+        sheetRow:
+          null,
+
+        year:
+          year,
+
+        month:
+          month,
+
+        yearMonth:
+          value,
+
+        displayMonth:
+          value,
+
+        assignments:
+          {}
+
+      });
+
+
+      renderAssignmentTable(
+        data
+      );
+
+    }
+  );
+
+
+  addRow.appendChild(
+    addSelect
+  );
+
+
+  addRow.appendChild(
+    addButton
+  );
+
+
+  addWrap.appendChild(
+    addRow
+  );
+
+
+  wrap.appendChild(
+    addWrap
   );
 
 }
@@ -4234,9 +4864,9 @@ function renderCompTable(
           );
 
 
-        /* ================================================
+        /* ==================================================
            出勤日
-        ================================================= */
+        ================================================== */
 
         {
 
@@ -4249,6 +4879,7 @@ function renderCompTable(
           const dateInput =
             createDateInput(
               row.startDate,
+
               value=>{
 
                 managementState[
@@ -4274,9 +4905,9 @@ function renderCompTable(
         }
 
 
-        /* ================================================
+        /* ==================================================
            代休日
-        ================================================= */
+        ================================================== */
 
         {
 
@@ -4289,6 +4920,7 @@ function renderCompTable(
           const dateInput =
             createDateInput(
               row.compDate,
+
               value=>{
 
                 managementState[
@@ -4314,9 +4946,9 @@ function renderCompTable(
         }
 
 
-        /* ================================================
+        /* ==================================================
            運転手 / 担当者
-        ================================================= */
+        ================================================== */
 
         {
 
@@ -4329,7 +4961,9 @@ function renderCompTable(
           const select =
             createNameSelect(
               driverNames,
+
               row.driver,
+
               value=>{
 
                 managementState[
@@ -4355,12 +4989,9 @@ function renderCompTable(
         }
 
 
-        /* ================================================
-           ★役員
-           1名なら1枠
-           2名なら2枠
-           「＋役員を追加」で増やせる
-        ================================================= */
+        /* ==================================================
+           役員
+        ================================================== */
 
         {
 
@@ -4372,18 +5003,12 @@ function renderCompTable(
 
           const stack =
             createOfficerStack(
+
               officerNames,
 
               row.officer,
 
               values=>{
-
-                /*
-                 * ここでは
-                 * 1セルに「A、B」の形で保持
-                 *
-                 * Code.gsは変更不要
-                 */
 
                 managementState[
                   key
@@ -4395,6 +5020,7 @@ function renderCompTable(
                   );
 
               }
+
             );
 
 
@@ -4661,10 +5287,13 @@ async function openManagement(
 
         el.managementPanel
           .scrollIntoView({
+
             behavior:
               'smooth',
+
             block:
               'start'
+
           });
 
       },
@@ -5057,7 +5686,7 @@ function refreshMessage(){
 
 
 /* ==========================================================
-   MANUAL DRIVER SELECT
+   DRIVER SELECT
 ========================================================== */
 
 el.driverSelect
@@ -5352,7 +5981,7 @@ el.sendBtn
 
 
 /* ==========================================================
-   INPUT
+   INPUT EVENTS
 ========================================================== */
 
 [
