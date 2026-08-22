@@ -30,6 +30,8 @@
   --green:#18824e;
   --soft:#f6fbfe;
   --shadow:0 12px 34px rgba(40,92,128,.10);
+
+  /* 現在月 */
   --current:#ffe6e6;
   --current-input:#fff0f0;
   --current-border:#f3b6b6;
@@ -920,7 +922,7 @@ input[type="time"]{
 
 
 /* ==========================================================
-   ASSIGNMENT VIEW
+   ASSIGNMENT TOOLBAR
 ========================================================== */
 
 .assignment-toolbar{
@@ -930,35 +932,48 @@ input[type="time"]{
 
   justify-content:space-between;
 
-  gap:8px;
+  gap:
+    8px;
 
-  margin-bottom:6px;
+  margin-bottom:
+    6px;
 }
 
 .assignment-info{
-  min-width:0;
+  min-width:
+    0;
 
-  color:#6a8190;
+  color:
+    #6a8190;
 
-  font-size:11px;
+  font-size:
+    11px;
 
-  font-weight:800;
+  font-weight:
+    800;
 }
 
 .assignment-sort-note{
-  padding:4px 7px;
+  padding:
+    4px 7px;
 
-  border-radius:8px;
+  border-radius:
+    8px;
 
-  background:#f5f9fc;
+  background:
+    #f5f9fc;
 
-  color:#648095;
+  color:
+    #648095;
 
-  font-size:10px;
+  font-size:
+    10px;
 
-  font-weight:900;
+  font-weight:
+    900;
 
-  white-space:nowrap;
+  white-space:
+    nowrap;
 }
 
 
@@ -1083,6 +1098,7 @@ tr.current-month-row > th,
 .management-table
 tbody
 tr.current-month-row > td{
+
   background-color:
     var(--current)
     !important;
@@ -1092,6 +1108,7 @@ tr.current-month-row > td{
 .management-table
 tbody
 tr.current-month-row > td > select{
+
   background-color:
     var(--current-input)
     !important;
@@ -1105,6 +1122,7 @@ tr.current-month-row > td > select{
 .management-table
 tbody
 tr.current-month-row > th{
+
   color:
     #b33a3a
     !important;
@@ -1112,6 +1130,29 @@ tr.current-month-row > th{
   font-weight:
     900
     !important;
+}
+
+
+/* ==========================================================
+   ASSIGNMENT COLUMN WIDTH
+========================================================== */
+
+.assignment-panel
+.management-table th:first-child,
+.assignment-panel
+.management-table td:first-child{
+
+  width:
+    18%;
+}
+
+.assignment-panel
+.management-table th:not(:first-child),
+.assignment-panel
+.management-table td:not(:first-child){
+
+  width:
+    20.5%;
 }
 
 
@@ -1214,25 +1255,6 @@ tr.current-month-row > th{
 
   z-index:
     2;
-}
-
-
-/* ==========================================================
-   ASSIGNMENT TABLE
-========================================================== */
-
-.assignment-panel
-.management-table th:first-child,
-.assignment-panel
-.management-table td:first-child{
-  width:18%;
-}
-
-.assignment-panel
-.management-table th:not(:first-child),
-.assignment-panel
-.management-table td:not(:first-child){
-  width:20.5%;
 }
 
 
@@ -1411,7 +1433,7 @@ tr.current-month-row > th{
 
 
 /* ==========================================================
-   ADD MONTH
+   MONTH ADD
 ========================================================== */
 
 .month-add-wrap{
@@ -1447,7 +1469,7 @@ tr.current-month-row > th{
   display:grid;
 
   grid-template-columns:
-    1fr
+    minmax(0,1fr)
     auto;
 
   gap:
@@ -1771,11 +1793,15 @@ tr.current-month-row > th{
 
 <div class="select-box">
 
-<label for="driverSelect">
+<label
+  for="driverSelect"
+>
 選択
 </label>
 
-<select id="driverSelect">
+<select
+  id="driverSelect"
+>
 
 <option value="">
 選択して下さい
@@ -1992,9 +2018,7 @@ tr.current-month-row > th{
   placeholder="文章を入力できます"
 ></textarea>
 
-
 </div>
-
 
 </div>
 
@@ -2007,7 +2031,6 @@ tr.current-month-row > th{
 >
 写真＋報告文章を送信
 </button>
-
 
 </div>
 
@@ -2102,6 +2125,7 @@ tr.current-month-row > th{
 
 
 <script>
+
 
 /* ==========================================================
    CONFIG
@@ -2331,7 +2355,7 @@ let managementState =
 
 
 /* ==========================================================
-   BASIC HELPERS
+   BASIC
 ========================================================== */
 
 function pad2(
@@ -2913,7 +2937,7 @@ function setStatus(
 
 
 /* ==========================================================
-   API / JSONP
+   API
 ========================================================== */
 
 function callServer(
@@ -3767,7 +3791,190 @@ function createOfficerStack(
 
 
 /* ==========================================================
+   DRIVER
+========================================================== */
+
+function findDriver(
+  key
+){
+
+  return(
+    state.drivers.find(
+      driver =>
+        driver.driverKey ===
+        key
+    ) ||
+    null
+  );
+
+}
+
+
+async function loadDrivers(){
+
+  try{
+
+    const list =
+      await callServer(
+        'getDriverList'
+      );
+
+
+    state.drivers =
+      Array.isArray(
+        list
+      )
+        ? list
+        : [];
+
+
+    el.driverSelect.innerHTML =
+      '';
+
+
+    const first =
+      document.createElement(
+        'option'
+      );
+
+
+    first.value =
+      '';
+
+
+    first.textContent =
+      '選択して下さい';
+
+
+    el.driverSelect.appendChild(
+      first
+    );
+
+
+    state.drivers.forEach(
+      driver=>{
+
+        const option =
+          document.createElement(
+            'option'
+          );
+
+
+        option.value =
+          driver.driverKey;
+
+
+        option.textContent =
+          driver.displayName;
+
+
+        el.driverSelect.appendChild(
+          option
+        );
+
+      }
+    );
+
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+
+    state.drivers =
+      [];
+
+
+    el.driverSelect.innerHTML =
+      '<option value="">選択して下さい</option>';
+
+  }
+
+}
+
+
+async function selectDriver(
+  driver,
+  manual=false
+){
+
+  state.driver =
+    driver ||
+    null;
+
+
+  if(
+    manual
+  ){
+
+    state.userSelectedManually =
+      true;
+
+  }
+
+
+  if(
+    !driver
+  ){
+
+    el.driverSelect.value =
+      '';
+
+
+    el.inMode.disabled =
+      true;
+
+
+    el.outMode.disabled =
+      true;
+
+
+    el.uploadBtn.disabled =
+      true;
+
+
+    setStatus(
+      '右から選択',
+      false
+    );
+
+
+    return;
+
+  }
+
+
+  el.driverSelect.value =
+    driver.driverKey;
+
+
+  el.inMode.disabled =
+    false;
+
+
+  el.outMode.disabled =
+    false;
+
+
+  el.uploadBtn.disabled =
+    false;
+
+
+  setStatus(
+    '完了',
+    true
+  );
+
+}
+
+
+/* ==========================================================
    ASSIGNMENT
+   ★重要
+   「先月 + 現在月 + 未来11か月」
+   ＝ 13か月表示
 ========================================================== */
 
 function getCurrentYearMonth(){
@@ -3777,136 +3984,169 @@ function getCurrentYearMonth(){
 
 
   return {
+
     year:
       d.getFullYear(),
 
     month:
       d.getMonth()+1
+
   };
 
 }
 
 
-function sortAssignmentRows(
-  rows
+/* ==========================================================
+   対象年月キー
+========================================================== */
+
+function makeYearMonthKey(
+  year,
+  month
+){
+
+  return(
+    Number(year) +
+    '/' +
+    Number(month)
+  );
+
+}
+
+
+/* ==========================================================
+   担当表を
+   「先月から13か月」
+   に整形
+========================================================== */
+
+function buildVisibleAssignmentRows(
+  sourceRows
 ){
 
   const current =
     getCurrentYearMonth();
 
 
-  const currentIndex =
-    current.year * 100 +
-    current.month;
+  /*
+   * スプレッドシート全データを
+   * 年月でMap化
+   */
+
+  const map =
+    new Map();
 
 
-  return [
-    ...rows
-  ].sort(
-    (
-      a,
-      b
-    )=>{
+  (
+    Array.isArray(
+      sourceRows
+    )
+      ? sourceRows
+      : []
+  )
+  .forEach(
+    row=>{
 
-      const aIndex =
-        a.year * 100 +
-        a.month;
-
-
-      const bIndex =
-        b.year * 100 +
-        b.month;
+      const year =
+        Number(
+          row.year
+        );
 
 
-      function distance(
-        value
+      const month =
+        Number(
+          row.month
+        );
+
+
+      if(
+        !year ||
+        !month
       ){
 
-        let d =
-          value -
-          currentIndex;
-
-
-        if(
-          d < 0
-        ){
-
-          d += 1200;
-
-        }
-
-
-        return d;
+        return;
 
       }
 
 
-      return(
-        distance(aIndex) -
-        distance(bIndex)
+      const key =
+        makeYearMonthKey(
+          year,
+          month
+        );
+
+
+      map.set(
+        key,
+        row
       );
 
     }
   );
-
-}
-
-
-function makeFutureMonths(
-  rows,
-  count
-){
-
-  const existing =
-    new Set(
-      rows.map(
-        row =>
-          row.yearMonth
-      )
-    );
 
 
   const result =
     [];
 
 
-  const now =
-    new Date();
+  /*
+   * 先月を起点
+   *
+   * 先月 + 今月 + 未来11か月
+   *
+   * 合計13か月
+   */
 
-
-  let cursor =
+  const start =
     new Date(
-      now.getFullYear(),
-      now.getMonth(),
+      current.year,
+      current.month - 2,
       1
     );
 
 
   for(
     let i=0;
-    result.length < count;
+    i<13;
     i++
   ){
 
+    const d =
+      new Date(
+        start.getFullYear(),
+        start.getMonth()+i,
+        1
+      );
+
+
     const year =
-      cursor.getFullYear();
+      d.getFullYear();
 
 
     const month =
-      cursor.getMonth()+1;
+      d.getMonth()+1;
 
 
-    const yearMonth =
-      year +
-      '/' +
-      month;
+    const key =
+      makeYearMonthKey(
+        year,
+        month
+      );
 
 
     if(
-      !existing.has(
-        yearMonth
+      map.has(
+        key
       )
     ){
+
+      result.push(
+        map.get(
+          key
+        )
+      );
+
+    }else{
 
       result.push({
 
@@ -3920,39 +4160,17 @@ function makeFutureMonths(
           month,
 
         yearMonth:
-          yearMonth,
+          key,
 
         displayMonth:
-          yearMonth,
+          key,
 
-        assignments:{
-
-          ...(rows[0] &&
-              rows[0].assignments
-              ? Object.fromEntries(
-                  Object.keys(
-                    rows[0].assignments
-                  )
-                  .map(
-                    key=>[
-                      key,
-                      ''
-                    ]
-                  )
-                )
-              : {}
-          )
-
-        }
+        assignments:
+          {}
 
       });
 
     }
-
-
-    cursor.setMonth(
-      cursor.getMonth()+1
-    );
 
   }
 
@@ -3961,6 +4179,10 @@ function makeFutureMonths(
 
 }
 
+
+/* ==========================================================
+   担当表表示
+========================================================== */
 
 function renderAssignmentTable(
   data
@@ -3985,131 +4207,6 @@ function renderAssignmentTable(
     );
 
 
-  /*
-   * 元データ
-   */
-
-  const sourceRows =
-    Array.isArray(
-      data.rows
-    )
-      ? data.rows
-      : [];
-
-
-  /*
-   * 現在月を先頭にして
-   * 12か月だけ表示
-   */
-
-  let rows =
-    sortAssignmentRows(
-      sourceRows
-    );
-
-
-  /*
-   * 現在月から12か月分を生成
-   * 足りない月は画面上だけ追加
-   */
-
-  const current =
-    getCurrentYearMonth();
-
-
-  const rowMap =
-    new Map();
-
-
-  rows.forEach(
-    row => {
-
-      rowMap.set(
-        row.yearMonth,
-        row
-      );
-
-    }
-  );
-
-
-  const displayRows =
-    [];
-
-
-  for(
-    let i=0;
-    i<12;
-    i++
-  ){
-
-    const d =
-      new Date(
-        current.year,
-        current.month-1+i,
-        1
-      );
-
-
-    const year =
-      d.getFullYear();
-
-
-    const month =
-      d.getMonth()+1;
-
-
-    const yearMonth =
-      year +
-      '/' +
-      month;
-
-
-    if(
-      rowMap.has(
-        yearMonth
-      )
-    ){
-
-      displayRows.push(
-        rowMap.get(
-          yearMonth
-        )
-      );
-
-    }else{
-
-      displayRows.push({
-
-        sheetRow:
-          null,
-
-        year:
-          year,
-
-        month:
-          month,
-
-        yearMonth:
-          yearMonth,
-
-        displayMonth:
-          yearMonth,
-
-        assignments:
-          {}
-
-      });
-
-    }
-
-  }
-
-
-  /*
-   * 役員
-   */
-
   const officers =
     Array.isArray(
       data.officers
@@ -4125,7 +4222,22 @@ function renderAssignmentTable(
 
 
   /*
-   * 操作用配列
+   * ★表示対象を
+   * 先月から13か月に限定
+   */
+
+  const displayRows =
+    buildVisibleAssignmentRows(
+      data.rows
+    );
+
+
+  /*
+   * 保存用の状態も
+   * この13か月だけにする
+   *
+   * ただし過去月をスプレッドシートから
+   * 削除するわけではない
    */
 
   data.rows =
@@ -4133,7 +4245,7 @@ function renderAssignmentTable(
 
 
   /* --------------------------------------------------------
-     タイトル
+     Toolbar
   -------------------------------------------------------- */
 
   const toolbar =
@@ -4157,7 +4269,7 @@ function renderAssignmentTable(
 
 
   info.textContent =
-    '現在月を先頭に12か月表示';
+    '先月＋現在月＋未来11か月';
 
 
   const note =
@@ -4171,7 +4283,7 @@ function renderAssignmentTable(
 
 
   note.textContent =
-    '過去月も保存';
+    '過去月はスプレッドシートに保存';
 
 
   toolbar.appendChild(
@@ -4190,7 +4302,7 @@ function renderAssignmentTable(
 
 
   /* --------------------------------------------------------
-     table
+     Table
   -------------------------------------------------------- */
 
   const table =
@@ -4215,18 +4327,18 @@ function renderAssignmentTable(
     );
 
 
-  const h1 =
+  const monthHeader =
     document.createElement(
       'th'
     );
 
 
-  h1.textContent =
+  monthHeader.textContent =
     '月';
 
 
   hrow.appendChild(
-    h1
+    monthHeader
   );
 
 
@@ -4270,6 +4382,10 @@ function renderAssignmentTable(
     );
 
 
+  const current =
+    getCurrentYearMonth();
+
+
   displayRows.forEach(
     (
       row,
@@ -4282,22 +4398,22 @@ function renderAssignmentTable(
         );
 
 
-      const now =
-        getCurrentYearMonth();
-
+      /*
+       * 現在月だけ薄赤
+       */
 
       const isCurrent =
         Number(
           row.year
         ) ===
         Number(
-          now.year
+          current.year
         ) &&
         Number(
           row.month
         ) ===
         Number(
-          now.month
+          current.month
         );
 
 
@@ -4311,6 +4427,10 @@ function renderAssignmentTable(
 
       }
 
+
+      /*
+       * 月
+       */
 
       const monthCell =
         document.createElement(
@@ -4328,6 +4448,10 @@ function renderAssignmentTable(
       );
 
 
+      /*
+       * 担当4人
+       */
+
       officers.forEach(
         officer=>{
 
@@ -4337,19 +4461,21 @@ function renderAssignmentTable(
             );
 
 
+          const currentValue =
+            row.assignments &&
+            row.assignments[
+              officer
+            ]
+              ? row.assignments[
+                  officer
+                ]
+              : '';
+
+
           const select =
             createNameSelect(
               driverNames,
-
-              row.assignments &&
-              row.assignments[
-                officer
-              ]
-                ? row.assignments[
-                    officer
-                  ]
-                : '',
-
+              currentValue,
               value=>{
 
                 if(
@@ -4408,9 +4534,12 @@ function renderAssignmentTable(
   );
 
 
-  /* --------------------------------------------------------
-     月追加
-  -------------------------------------------------------- */
+  /*
+   * 月追加ボタン
+   *
+   * 13か月表示のさらに先を
+   * 手動で追加する場合
+   */
 
   const addWrap =
     document.createElement(
@@ -4433,7 +4562,7 @@ function renderAssignmentTable(
 
 
   addTitle.textContent =
-    '必要な月を追加';
+    '必要な場合は未来の月を追加';
 
 
   addWrap.appendChild(
@@ -4461,13 +4590,9 @@ function renderAssignmentTable(
     'month-add-select';
 
 
-  /*
-   * 現在月から24か月先まで
-   */
-
-  const existingMonths =
+  const existing =
     new Set(
-      displayRows.map(
+      data.rows.map(
         row =>
           row.yearMonth
       )
@@ -4477,6 +4602,11 @@ function renderAssignmentTable(
   const candidates =
     [];
 
+
+  /*
+   * 未来24か月の中から
+   * まだ存在しない月を候補にする
+   */
 
   const base =
     new Date(
@@ -4508,19 +4638,21 @@ function renderAssignmentTable(
       d.getMonth()+1;
 
 
-    const yearMonth =
-      year +
-      '/' +
-      month;
+    const key =
+      makeYearMonthKey(
+        year,
+        month
+      );
 
 
     if(
-      !existingMonths.has(
-        yearMonth
+      !existing.has(
+        key
       )
     ){
 
       candidates.push({
+
         year:
           year,
 
@@ -4528,7 +4660,7 @@ function renderAssignmentTable(
           month,
 
         yearMonth:
-          yearMonth
+          key
 
       });
 
@@ -4542,24 +4674,23 @@ function renderAssignmentTable(
     0
   ){
 
-    const none =
+    const option =
       document.createElement(
         'option'
       );
 
 
-    none.value =
+    option.value =
       '';
 
 
-    none.textContent =
+    option.textContent =
       '追加できる月はありません';
 
 
     addSelect.appendChild(
-      none
+      option
     );
-
 
   }else{
 
@@ -4579,8 +4710,7 @@ function renderAssignmentTable(
         option.textContent =
           item.year +
           '/' +
-          item.month +
-          '月';
+          item.month;
 
 
         addSelect.appendChild(
@@ -4620,12 +4750,12 @@ function renderAssignmentTable(
     'click',
     ()=>{
 
-      const value =
+      const selected =
         addSelect.value;
 
 
       if(
-        !value
+        !selected
       ){
 
         return;
@@ -4634,7 +4764,7 @@ function renderAssignmentTable(
 
 
       const parts =
-        value.split('/');
+        selected.split('/');
 
 
       const year =
@@ -4649,11 +4779,6 @@ function renderAssignmentTable(
         );
 
 
-      /*
-       * 現在の表示12か月に
-       * 新しい月を追加
-       */
-
       data.rows.push({
 
         sheetRow:
@@ -4666,16 +4791,20 @@ function renderAssignmentTable(
           month,
 
         yearMonth:
-          value,
+          selected,
 
         displayMonth:
-          value,
+          selected,
 
         assignments:
           {}
 
       });
 
+
+      /*
+       * 追加後に再描画
+       */
 
       renderAssignmentTable(
         data
@@ -4864,9 +4993,9 @@ function renderCompTable(
           );
 
 
-        /* ==================================================
+        /* --------------------------------------------------
            出勤日
-        ================================================== */
+        -------------------------------------------------- */
 
         {
 
@@ -4879,7 +5008,6 @@ function renderCompTable(
           const dateInput =
             createDateInput(
               row.startDate,
-
               value=>{
 
                 managementState[
@@ -4905,9 +5033,9 @@ function renderCompTable(
         }
 
 
-        /* ==================================================
+        /* --------------------------------------------------
            代休日
-        ================================================== */
+        -------------------------------------------------- */
 
         {
 
@@ -4920,7 +5048,6 @@ function renderCompTable(
           const dateInput =
             createDateInput(
               row.compDate,
-
               value=>{
 
                 managementState[
@@ -4946,9 +5073,9 @@ function renderCompTable(
         }
 
 
-        /* ==================================================
+        /* --------------------------------------------------
            運転手 / 担当者
-        ================================================== */
+        -------------------------------------------------- */
 
         {
 
@@ -4961,9 +5088,7 @@ function renderCompTable(
           const select =
             createNameSelect(
               driverNames,
-
               row.driver,
-
               value=>{
 
                 managementState[
@@ -4989,9 +5114,9 @@ function renderCompTable(
         }
 
 
-        /* ==================================================
+        /* --------------------------------------------------
            役員
-        ================================================== */
+        -------------------------------------------------- */
 
         {
 
@@ -5003,11 +5128,8 @@ function renderCompTable(
 
           const stack =
             createOfficerStack(
-
               officerNames,
-
               row.officer,
-
               values=>{
 
                 managementState[
@@ -5020,7 +5142,6 @@ function renderCompTable(
                   );
 
               }
-
             );
 
 
@@ -5686,7 +5807,7 @@ function refreshMessage(){
 
 
 /* ==========================================================
-   DRIVER SELECT
+   DRIVER MANUAL SELECT
 ========================================================== */
 
 el.driverSelect
