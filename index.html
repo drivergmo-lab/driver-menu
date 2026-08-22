@@ -2,7 +2,6 @@
 <html lang="ja">
 
 <head>
-
 <meta charset="UTF-8">
 
 <meta
@@ -15,6 +14,10 @@
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
 <style>
+
+/* ==========================================================
+   BASE
+========================================================== */
 
 :root{
   --bg:#eef9ff;
@@ -77,7 +80,7 @@ button{
 
 
 /* ==========================================================
-   ヘッダー
+   HERO
 ========================================================== */
 
 .hero{
@@ -128,7 +131,7 @@ button{
 
 
 /* ==========================================================
-   メイン
+   CARD
 ========================================================== */
 
 .card{
@@ -155,7 +158,7 @@ button{
 
 
 /* ==========================================================
-   管理ボタン
+   MANAGEMENT BUTTONS
 ========================================================== */
 
 .management-menu{
@@ -213,7 +216,7 @@ button{
 
 
 /* ==========================================================
-   人物選択
+   DRIVER SELECT
 ========================================================== */
 
 .top-row{
@@ -355,7 +358,7 @@ input[type="time"]{
 
 
 /* ==========================================================
-   出勤・退勤
+   MODE BUTTONS
 ========================================================== */
 
 .mode-box{
@@ -437,7 +440,7 @@ input[type="time"]{
 
 
 /* ==========================================================
-   写真
+   PHOTO
 ========================================================== */
 
 .upload-btn{
@@ -516,7 +519,7 @@ input[type="time"]{
 
 
 /* ==========================================================
-   写真プレビュー
+   PREVIEW
 ========================================================== */
 
 .preview{
@@ -566,11 +569,6 @@ input[type="time"]{
   background:
     #eef4f8;
 }
-
-
-/* ==========================================================
-   入力欄
-========================================================== */
 
 .fields{
   display:grid;
@@ -656,7 +654,7 @@ input[type="time"]{
 
 
 /* ==========================================================
-   報告文章
+   MESSAGE
 ========================================================== */
 
 .message-section{
@@ -794,7 +792,7 @@ input[type="time"]{
 
 
 /* ==========================================================
-   履歴
+   HISTORY
 ========================================================== */
 
 .history{
@@ -828,7 +826,7 @@ input[type="time"]{
 
 
 /* ==========================================================
-   管理パネル
+   MANAGEMENT PANEL
 ========================================================== */
 
 .management-panel{
@@ -918,7 +916,7 @@ input[type="time"]{
 
 
 /* ==========================================================
-   テーブル
+   TABLE
 ========================================================== */
 
 .management-table-wrap{
@@ -1026,7 +1024,7 @@ input[type="time"]{
 
 
 /* ==========================================================
-   担当表
+   ASSIGNMENT TABLE
 ========================================================== */
 
 .assignment-panel
@@ -1038,56 +1036,92 @@ input[type="time"]{
 }
 
 
-/* 現在月だけ薄い赤 */
+/* ==========================================================
+   ★ CURRENT MONTH
+   2026年8月なら「8月」の行だけ薄赤
+========================================================== */
 
-.management-table tr.current-month-row th,
-.management-table tr.current-month-row td{
-  background:
-    #fff0f0;
+.assignment-panel
+.management-table
+tbody
+tr.current-month-row > th,
+
+.assignment-panel
+.management-table
+tbody
+tr.current-month-row > td{
+
+  background-color:
+    #ffe6e6 !important;
 }
 
-.management-table tr.current-month-row input,
-.management-table tr.current-month-row select{
-  background:
-    #fff7f7;
+
+.assignment-panel
+.management-table
+tbody
+tr.current-month-row > td > select{
+
+  background-color:
+    #fff0f0 !important;
 
   border-color:
-    #f2bcbc;
+    #f3b6b6 !important;
+}
+
+
+.assignment-panel
+.management-table
+tbody
+tr.current-month-row > th{
+
+  color:
+    #b33a3a !important;
+
+  font-weight:
+    900 !important;
 }
 
 
 /* ==========================================================
-   代休取得
+   COMP TABLE
 ========================================================== */
 
 .comp-panel
-.management-table th:nth-child(1),
+.management-table
+th:nth-child(1),
 .comp-panel
-.management-table td:nth-child(1){
+.management-table
+td:nth-child(1){
   width:
     19%;
 }
 
 .comp-panel
-.management-table th:nth-child(2),
+.management-table
+th:nth-child(2),
 .comp-panel
-.management-table td:nth-child(2){
+.management-table
+td:nth-child(2){
   width:
     19%;
 }
 
 .comp-panel
-.management-table th:nth-child(3),
+.management-table
+th:nth-child(3),
 .comp-panel
-.management-table td:nth-child(3){
+.management-table
+td:nth-child(3){
   width:
     24%;
 }
 
 .comp-panel
-.management-table th:nth-child(4),
+.management-table
+th:nth-child(4),
 .comp-panel
-.management-table td:nth-child(4){
+.management-table
+td:nth-child(4){
   width:
     38%;
 }
@@ -1181,6 +1215,11 @@ input[type="time"]{
     .45;
 }
 
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
 .footer{
   padding:
     14px 10px 4px;
@@ -1197,7 +1236,7 @@ input[type="time"]{
 
 
 /* ==========================================================
-   スマホ
+   MOBILE
 ========================================================== */
 
 @media(max-width:480px){
@@ -1263,14 +1302,10 @@ input[type="time"]{
 
 }
 
-
-/* ==========================================================
-   SCRIPT
-========================================================== */
-
 </style>
 
 </head>
+
 
 <body>
 
@@ -1290,9 +1325,9 @@ input[type="time"]{
 <main class="card">
 
 
-<!-- ========================================================
-     管理ボタン
-======================================================== -->
+<!-- ======================================================
+     MANAGEMENT BUTTONS
+====================================================== -->
 
 <div class="management-menu">
 
@@ -1316,9 +1351,9 @@ input[type="time"]{
 </div>
 
 
-<!-- ========================================================
-     人物
-======================================================== -->
+<!-- ======================================================
+     DRIVER
+====================================================== -->
 
 <div class="top-row">
 
@@ -1347,7 +1382,6 @@ input[type="time"]{
 選択
 </label>
 
-
 <select
   id="driverSelect"
 >
@@ -1363,9 +1397,9 @@ input[type="time"]{
 </div>
 
 
-<!-- ========================================================
-     出勤・退勤
-======================================================== -->
+<!-- ======================================================
+     MODE
+====================================================== -->
 
 <div class="mode-box">
 
@@ -1393,9 +1427,7 @@ input[type="time"]{
 
 
 <div class="guide">
-
 必要な場合は修正お願いします。
-
 </div>
 
 
@@ -1423,9 +1455,9 @@ input[type="time"]{
 ></div>
 
 
-<!-- ========================================================
-     プレビュー
-======================================================== -->
+<!-- ======================================================
+     PREVIEW
+====================================================== -->
 
 <section
   id="preview"
@@ -1548,7 +1580,6 @@ input[type="time"]{
 <strong>0:00</strong>
 </div>
 
-
 </div>
 
 
@@ -1594,13 +1625,12 @@ input[type="time"]{
 
 </div>
 
-
 </section>
 
 
-<!-- ========================================================
-     履歴
-======================================================== -->
+<!-- ======================================================
+     HISTORY
+====================================================== -->
 
 <section class="history">
 
@@ -1611,14 +1641,15 @@ input[type="time"]{
 </section>
 
 
-<!-- ========================================================
-     管理パネル
-======================================================== -->
+<!-- ======================================================
+     MANAGEMENT PANEL
+====================================================== -->
 
 <section
   id="managementPanel"
   class="management-panel hidden"
 >
+
 
 <div class="management-header">
 
@@ -1690,7 +1721,7 @@ input[type="time"]{
 
 
 /* ==========================================================
-   設定
+   CONFIG
 ========================================================== */
 
 const API_URL =
@@ -1920,9 +1951,7 @@ let managementState =
    HELPERS
 ========================================================== */
 
-function pad2(
-  value
-){
+function pad2(value){
 
   return String(
     value
@@ -1996,16 +2025,10 @@ function tomorrow(){
 }
 
 
-function dateText(
-  value
-){
+function dateText(value){
 
-  if(
-    !value
-  ){
-
+  if(!value){
     return '';
-
   }
 
   const d =
@@ -2014,7 +2037,6 @@ function dateText(
       'T00:00:00'
     );
 
-
   if(
     Number.isNaN(
       d.getTime()
@@ -2022,9 +2044,7 @@ function dateText(
   ){
 
     return value;
-
   }
-
 
   const week = [
     '日',
@@ -2035,7 +2055,6 @@ function dateText(
     '金',
     '土'
   ];
-
 
   return(
     d.getFullYear() +
@@ -2053,16 +2072,10 @@ function dateText(
 }
 
 
-function shortDate(
-  value
-){
+function shortDate(value){
 
-  if(
-    !value
-  ){
-
+  if(!value){
     return '';
-
   }
 
   const d =
@@ -2071,7 +2084,6 @@ function shortDate(
       'T00:00:00'
     );
 
-
   if(
     Number.isNaN(
       d.getTime()
@@ -2079,9 +2091,7 @@ function shortDate(
   ){
 
     return value;
-
   }
-
 
   const week = [
     '日',
@@ -2092,7 +2102,6 @@ function shortDate(
     '金',
     '土'
   ];
-
 
   return(
     (d.getMonth() + 1) +
@@ -2108,9 +2117,37 @@ function shortDate(
 }
 
 
-function showNotice(
-  text
-){
+function escapeHtml(value){
+
+  return String(
+    value ??
+    ''
+  )
+  .replace(
+    /&/g,
+    '&amp;'
+  )
+  .replace(
+    /</g,
+    '&lt;'
+  )
+  .replace(
+    />/g,
+    '&gt;'
+  )
+  .replace(
+    /"/g,
+    '&quot;'
+  )
+  .replace(
+    /'/g,
+    '&#39;'
+  );
+
+}
+
+
+function showNotice(text){
 
   el.notice.textContent =
     text ||
@@ -2146,12 +2183,12 @@ function setStatus(
 
 
 /* ==========================================================
-   GET JSONP
+   GET + JSONP
 ========================================================== */
 
 function callServer(
   operation,
-  data = {}
+  data={}
 ){
 
   return new Promise(
@@ -2168,10 +2205,12 @@ function callServer(
           .toString(36)
           .slice(2);
 
+
       const script =
         document.createElement(
           'script'
         );
+
 
       let finished =
         false;
@@ -2189,16 +2228,20 @@ function callServer(
 
             }
 
+
             finished =
               true;
 
+
             cleanup();
+
 
             reject(
               new Error(
                 'サーバー応答がタイムアウトしました'
               )
             );
+
 
           },
           API_TIMEOUT
@@ -2211,6 +2254,7 @@ function callServer(
           timer
         );
 
+
         if(
           script.parentNode
         ){
@@ -2221,6 +2265,7 @@ function callServer(
             );
 
         }
+
 
         try{
 
@@ -2255,8 +2300,10 @@ function callServer(
 
           }
 
+
           finished =
             true;
+
 
           cleanup();
 
@@ -2277,6 +2324,7 @@ function callServer(
             );
 
             return;
+
           }
 
 
@@ -2298,10 +2346,13 @@ function callServer(
 
           }
 
+
           finished =
             true;
 
+
           cleanup();
+
 
           reject(
             new Error(
@@ -2393,12 +2444,10 @@ function callServer(
 
 
 /* ==========================================================
-   名前マスター補助
+   NAME MASTER
 ========================================================== */
 
-function getMasterDrivers(
-  data
-){
+function getMasterDrivers(data){
 
   if(
     data &&
@@ -2417,9 +2466,7 @@ function getMasterDrivers(
 }
 
 
-function getMasterOfficers(
-  data
-){
+function getMasterOfficers(data){
 
   if(
     data &&
@@ -2438,10 +2485,6 @@ function getMasterOfficers(
 }
 
 
-/* ==========================================================
-   名前SELECT
-========================================================== */
-
 function normalizeDriverDisplay(
   value,
   drivers
@@ -2453,6 +2496,11 @@ function normalizeDriverDisplay(
       ''
     ).trim();
 
+
+  /*
+   * 旧表記を
+   * 田中（ひ）へ統一
+   */
 
   if(
     current ===
@@ -2640,8 +2688,177 @@ function createNameSelect(
 
 
 /* ==========================================================
-   担当表
-   ★運転手4人をプルダウン
+   DRIVER LIST
+========================================================== */
+
+function findDriver(key){
+
+  return(
+    state.drivers.find(
+      driver =>
+        driver.driverKey ===
+        key
+    ) ||
+    null
+  );
+
+}
+
+
+async function loadDrivers(){
+
+  try{
+
+    const list =
+      await callServer(
+        'getDriverList'
+      );
+
+
+    state.drivers =
+      Array.isArray(
+        list
+      )
+        ? list
+        : [];
+
+
+    el.driverSelect.innerHTML =
+      '';
+
+
+    const first =
+      document.createElement(
+        'option'
+      );
+
+    first.value =
+      '';
+
+    first.textContent =
+      '選択して下さい';
+
+
+    el.driverSelect.appendChild(
+      first
+    );
+
+
+    state.drivers.forEach(
+      driver=>{
+
+        const option =
+          document.createElement(
+            'option'
+          );
+
+        option.value =
+          driver.driverKey;
+
+        option.textContent =
+          driver.displayName;
+
+        el.driverSelect.appendChild(
+          option
+        );
+
+      }
+    );
+
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+
+    state.drivers =
+      [];
+
+
+    el.driverSelect.innerHTML =
+      '<option value="">選択して下さい</option>';
+
+  }
+
+}
+
+
+async function selectDriver(
+  driver,
+  manual=false
+){
+
+  state.driver =
+    driver ||
+    null;
+
+
+  if(
+    manual
+  ){
+
+    state.userSelectedManually =
+      true;
+
+  }
+
+
+  if(
+    !driver
+  ){
+
+    el.driverSelect.value =
+      '';
+
+    el.inMode.disabled =
+      true;
+
+    el.outMode.disabled =
+      true;
+
+    el.uploadBtn.disabled =
+      true;
+
+
+    setStatus(
+      '右から選択',
+      false
+    );
+
+
+    return;
+
+  }
+
+
+  el.driverSelect.value =
+    driver.driverKey;
+
+
+  el.inMode.disabled =
+    false;
+
+  el.outMode.disabled =
+    false;
+
+  el.uploadBtn.disabled =
+    false;
+
+
+  setStatus(
+    '完了',
+    true
+  );
+
+}
+
+
+/* ==========================================================
+   ASSIGNMENT TABLE
+   ★名前は名称マスター
+   ★現在月は薄赤
 ========================================================== */
 
 function renderAssignmentTable(
@@ -2700,6 +2917,7 @@ function renderAssignmentTable(
       'thead'
     );
 
+
   const hrow =
     document.createElement(
       'tr'
@@ -2714,11 +2932,13 @@ function renderAssignmentTable(
           'th'
         );
 
+
       th.textContent =
         text ===
         '伊藤副社長'
           ? '伊藤社長'
           : text;
+
 
       hrow.appendChild(
         th
@@ -2732,6 +2952,7 @@ function renderAssignmentTable(
     hrow
   );
 
+
   table.appendChild(
     thead
   );
@@ -2742,6 +2963,12 @@ function renderAssignmentTable(
       'tbody'
     );
 
+
+  /*
+   * 現在月
+   *
+   * 2026年8月なら 8
+   */
 
   const currentMonth =
     new Date()
@@ -2762,25 +2989,46 @@ function renderAssignmentTable(
       rowIndex
     )=>{
 
+
       const tr =
         document.createElement(
           'tr'
         );
 
 
-      const rowMonth =
-        parseInt(
-          String(
-            row.month ||
-            ''
-          )
-          .replace(
-            /[^\d]/g,
-            ''
-          ),
-          10
+      /*
+       * 「8月」「８月」などを確実に判定
+       */
+
+      const monthText =
+        String(
+          row.month ||
+          ''
+        ).trim();
+
+
+      const rowMonthMatch =
+        monthText.match(
+          /(\d{1,2})\s*月/
         );
 
+
+      const rowMonth =
+        rowMonthMatch
+          ? Number(
+              rowMonthMatch[1]
+            )
+          : Number(
+              monthText.replace(
+                /[^\d]/g,
+                ''
+              )
+            );
+
+
+      /*
+       * ★現在月だけクラス追加
+       */
 
       if(
         rowMonth ===
@@ -2794,19 +3042,29 @@ function renderAssignmentTable(
       }
 
 
+      /*
+       * 月
+       */
+
       const month =
         document.createElement(
           'th'
         );
 
+
       month.textContent =
         row.month ||
         '';
+
 
       tr.appendChild(
         month
       );
 
+
+      /*
+       * 運転手4列
+       */
 
       officers.forEach(
         officer=>{
@@ -2820,6 +3078,7 @@ function renderAssignmentTable(
           const select =
             createNameSelect(
               driverNames,
+
               row.assignments &&
               row.assignments[
                 officer
@@ -2828,6 +3087,7 @@ function renderAssignmentTable(
                     officer
                   ]
                 : '',
+
               value=>{
 
                 if(
@@ -2859,6 +3119,7 @@ function renderAssignmentTable(
             select
           );
 
+
           tr.appendChild(
             td
           );
@@ -2888,7 +3149,7 @@ function renderAssignmentTable(
 
 
 /* ==========================================================
-   代休取得
+   COMP TABLE
 ========================================================== */
 
 function renderCompTable(
@@ -2920,8 +3181,7 @@ function renderCompTable(
 
 
   /*
-   * ★空行を削除しない
-   * スプレッドシートの位置を保持する
+   * 空行は削除しない
    */
 
   data.planned =
@@ -2958,8 +3218,10 @@ function renderCompTable(
         'div'
       );
 
+
     titleEl.className =
       'management-section-title';
+
 
     titleEl.textContent =
       title;
@@ -2974,6 +3236,7 @@ function renderCompTable(
       document.createElement(
         'table'
       );
+
 
     table.className =
       'management-table';
@@ -2996,8 +3259,7 @@ function renderCompTable(
       '代休日',
       driverHeader,
       '役員'
-    ]
-    .forEach(
+    ].forEach(
       text=>{
 
         const th =
@@ -3020,6 +3282,7 @@ function renderCompTable(
       hrow
     );
 
+
     table.appendChild(
       thead
     );
@@ -3037,6 +3300,7 @@ function renderCompTable(
         rowIndex
       )=>{
 
+
         const tr =
           document.createElement(
             'tr'
@@ -3053,6 +3317,7 @@ function renderCompTable(
             document.createElement(
               'td'
             );
+
 
           const input =
             document.createElement(
@@ -3104,6 +3369,7 @@ function renderCompTable(
             document.createElement(
               'td'
             );
+
 
           const input =
             document.createElement(
@@ -3178,6 +3444,7 @@ function renderCompTable(
             select
           );
 
+
           tr.appendChild(
             td
           );
@@ -3208,11 +3475,13 @@ function renderCompTable(
               'option'
             );
 
+
           blank.value =
             '';
 
           blank.textContent =
             '';
+
 
           select.appendChild(
             blank
@@ -3227,11 +3496,13 @@ function renderCompTable(
                   'option'
                 );
 
+
               option.value =
                 name;
 
               option.textContent =
                 name;
+
 
               select.appendChild(
                 option
@@ -3248,11 +3519,6 @@ function renderCompTable(
             ).trim();
 
 
-          /*
-           * 複数役員が入っている既存データは
-           * そのまま残せるよう旧値も追加
-           */
-
           if(
             currentOfficer &&
             !officerNames.includes(
@@ -3265,11 +3531,13 @@ function renderCompTable(
                 'option'
               );
 
+
             old.value =
               currentOfficer;
 
             old.textContent =
               currentOfficer;
+
 
             select.appendChild(
               old
@@ -3301,6 +3569,7 @@ function renderCompTable(
             select
           );
 
+
           tr.appendChild(
             td
           );
@@ -3319,6 +3588,7 @@ function renderCompTable(
     table.appendChild(
       tbody
     );
+
 
     section.appendChild(
       table
@@ -3345,7 +3615,7 @@ function renderCompTable(
 
 
   /*
-   * 予定追加
+   * 追加
    */
 
   const addBtn =
@@ -3422,7 +3692,7 @@ function renderCompTable(
 
 
 /* ==========================================================
-   管理画面オープン
+   MANAGEMENT OPEN
 ========================================================== */
 
 async function openManagement(
@@ -3431,6 +3701,7 @@ async function openManagement(
 
   managementMode =
     mode;
+
 
   managementState =
     null;
@@ -3583,7 +3854,7 @@ async function openManagement(
 
 
 /* ==========================================================
-   管理ボタン
+   MANAGEMENT BUTTONS
 ========================================================== */
 
 el.assignmentBtn
@@ -3628,7 +3899,7 @@ el.managementClose
 
 
 /* ==========================================================
-   管理保存
+   SAVE
 ========================================================== */
 
 el.managementSave
@@ -3647,6 +3918,7 @@ el.managementSave
 
       el.managementSave.disabled =
         true;
+
 
       el.managementSave.textContent =
         '保存中...';
@@ -3717,6 +3989,7 @@ el.managementSave
         el.managementSave.disabled =
           false;
 
+
         el.managementSave.textContent =
           '保存する';
 
@@ -3727,7 +4000,7 @@ el.managementSave
 
 
 /* ==========================================================
-   モード
+   MODE
 ========================================================== */
 
 function setMode(
@@ -3736,6 +4009,7 @@ function setMode(
 
   state.mode =
     mode;
+
 
   state.draft =
     null;
@@ -3790,11 +4064,13 @@ function setMode(
         'hidden'
       );
 
+
     el.nextDateField
       .classList
       .add(
         'hidden'
       );
+
 
     el.nextTimeField
       .classList
@@ -3805,6 +4081,7 @@ function setMode(
 
     el.reportDate.value =
       today();
+
 
     el.startTime.value =
       nowTime();
@@ -3817,11 +4094,13 @@ function setMode(
         'hidden'
       );
 
+
     el.nextDateField
       .classList
       .remove(
         'hidden'
       );
+
 
     el.nextTimeField
       .classList
@@ -3833,22 +4112,28 @@ function setMode(
     el.reportDate.value =
       today();
 
+
     el.endTime.value =
       nowTime();
 
+
     el.nextDate.value =
       tomorrow();
+
 
     el.nextTime.value =
       '08:00';
 
   }
 
+
+  refreshMessage();
+
 }
 
 
 /* ==========================================================
-   メッセージ
+   MESSAGE
 ========================================================== */
 
 function buildReportBaseMessage(){
@@ -3936,7 +4221,7 @@ function refreshMessage(){
 
 
 /* ==========================================================
-   手動人物選択
+   DRIVER MANUAL SELECT
 ========================================================== */
 
 el.driverSelect
@@ -3949,8 +4234,10 @@ el.driverSelect
           el.driverSelect.value
         );
 
+
       state.userSelectedManually =
         true;
+
 
       await selectDriver(
         driver,
@@ -3962,351 +4249,7 @@ el.driverSelect
 
 
 /* ==========================================================
-   運転手一覧
-========================================================== */
-
-function findDriver(
-  key
-){
-
-  return(
-    state.drivers.find(
-      driver =>
-        driver.driverKey ===
-        key
-    ) ||
-    null
-  );
-
-}
-
-
-async function loadDrivers(){
-
-  try{
-
-    const list =
-      await callServer(
-        'getDriverList'
-      );
-
-
-    state.drivers =
-      Array.isArray(
-        list
-      )
-        ? list
-        : [];
-
-
-    el.driverSelect.innerHTML =
-      '';
-
-
-    const first =
-      document.createElement(
-        'option'
-      );
-
-    first.value =
-      '';
-
-    first.textContent =
-      '選択して下さい';
-
-
-    el.driverSelect.appendChild(
-      first
-    );
-
-
-    state.drivers.forEach(
-      driver=>{
-
-        const option =
-          document.createElement(
-            'option'
-          );
-
-        option.value =
-          driver.driverKey;
-
-        option.textContent =
-          driver.displayName;
-
-        el.driverSelect.appendChild(
-          option
-        );
-
-      }
-    );
-
-
-  }catch(error){
-
-    console.error(
-      error
-    );
-
-
-    state.drivers =
-      [];
-
-
-    el.driverSelect.innerHTML =
-      '<option value="">選択して下さい</option>';
-
-  }
-
-}
-
-
-async function selectDriver(
-  driver,
-  manual=false
-){
-
-  state.driver =
-    driver ||
-    null;
-
-
-  if(
-    manual
-  ){
-
-    state.userSelectedManually =
-      true;
-
-  }
-
-
-  if(
-    !driver
-  ){
-
-    el.driverSelect.value =
-      '';
-
-    el.inMode.disabled =
-      true;
-
-    el.outMode.disabled =
-      true;
-
-    el.uploadBtn.disabled =
-      true;
-
-    setStatus(
-      '右から選択',
-      false
-    );
-
-    return;
-
-  }
-
-
-  el.driverSelect.value =
-    driver.driverKey;
-
-  el.inMode.disabled =
-    false;
-
-  el.outMode.disabled =
-    false;
-
-  el.uploadBtn.disabled =
-    false;
-
-  setStatus(
-    '完了',
-    true
-  );
-
-}
-
-
-/* ==========================================================
-   LINE自動判別
-========================================================== */
-
-async function autoDetect(){
-
-  setStatus(
-    '判別中',
-    false
-  );
-
-
-  try{
-
-    if(
-      typeof liff ===
-      'undefined'
-    ){
-
-      throw new Error(
-        'LIFF SDKが読み込まれていません'
-      );
-
-    }
-
-
-    await liff.init({
-      liffId:
-        LIFF_ID
-    });
-
-
-    /*
-     * 手動選択済みなら
-     * 自動判別で上書きしない
-     */
-
-    if(
-      state.userSelectedManually &&
-      state.driver
-    ){
-
-      return;
-
-    }
-
-
-    if(
-      !liff.isLoggedIn()
-    ){
-
-      state.idToken =
-        '';
-
-      setStatus(
-        '右から選択',
-        false
-      );
-
-      return;
-
-    }
-
-
-    state.idToken =
-      liff.getIDToken() ||
-      '';
-
-
-    if(
-      !state.idToken
-    ){
-
-      setStatus(
-        '右から選択',
-        false
-      );
-
-      return;
-
-    }
-
-
-    const info =
-      await callServer(
-        'getDriverInfo'
-      );
-
-
-    /*
-     * API待ち中に
-     * 手動選択された場合は
-     * 自動結果で上書きしない
-     */
-
-    if(
-      state.userSelectedManually &&
-      state.driver
-    ){
-
-      return;
-
-    }
-
-
-    if(
-      info &&
-      info.found &&
-      info.driverKey
-    ){
-
-      const driver =
-        findDriver(
-          info.driverKey
-        );
-
-
-      if(
-        driver
-      ){
-
-        await selectDriver(
-          driver,
-          false
-        );
-
-
-        setStatus(
-          '完了',
-          true
-        );
-
-
-        return;
-
-      }
-
-    }
-
-
-    setStatus(
-      '右から選択',
-      false
-    );
-
-
-  }catch(error){
-
-    console.warn(
-      '自動判別失敗',
-      error
-    );
-
-
-    if(
-      state.userSelectedManually &&
-      state.driver
-    ){
-
-      setStatus(
-        '完了',
-        true
-      );
-
-    }else{
-
-      setStatus(
-        '右から選択',
-        false
-      );
-
-    }
-
-  }
-
-}
-
-
-/* ==========================================================
-   出勤
+   MODE BUTTON EVENTS
 ========================================================== */
 
 el.inMode
@@ -4323,7 +4266,6 @@ el.inMode
         );
 
         return;
-
       }
 
       setMode(
@@ -4333,10 +4275,6 @@ el.inMode
     }
   );
 
-
-/* ==========================================================
-   退勤
-========================================================== */
 
 el.outMode
   .addEventListener(
@@ -4352,7 +4290,6 @@ el.outMode
         );
 
         return;
-
       }
 
       setMode(
@@ -4364,7 +4301,7 @@ el.outMode
 
 
 /* ==========================================================
-   写真
+   PHOTO
 ========================================================== */
 
 el.uploadBtn
@@ -4381,8 +4318,8 @@ el.uploadBtn
         );
 
         return;
-
       }
+
 
       el.photoInput.click();
 
@@ -4399,41 +4336,49 @@ el.photoInput
         el.photoInput.files &&
         el.photoInput.files[0];
 
+
       if(
-        file
+        !file
       ){
 
-        state.draft =
-          {
-            file:file
-          };
-
-        el.preview
-          .classList
-          .add(
-            'show'
-          );
-
-        el.photoPreview.src =
-          URL.createObjectURL(
-            file
-          );
-
-        el.sendBtn.disabled =
-          false;
-
-        showNotice(
-          '時間を確認して送信してください。'
-        );
+        return;
 
       }
+
+
+      state.draft = {
+        file:
+          file
+      };
+
+
+      el.preview
+        .classList
+        .add(
+          'show'
+        );
+
+
+      el.photoPreview.src =
+        URL.createObjectURL(
+          file
+        );
+
+
+      el.sendBtn.disabled =
+        false;
+
+
+      showNotice(
+        '時間を確認して送信してください。'
+      );
 
     }
   );
 
 
 /* ==========================================================
-   送信
+   SEND
 ========================================================== */
 
 el.sendBtn
@@ -4450,7 +4395,6 @@ el.sendBtn
         );
 
         return;
-
       }
 
 
@@ -4559,7 +4503,7 @@ el.sendBtn
 
 
 /* ==========================================================
-   入力
+   INPUT
 ========================================================== */
 
 [
@@ -4569,13 +4513,15 @@ el.sendBtn
   el.nextDate,
   el.nextTime,
   el.memo
-].forEach(
+]
+.forEach(
   input=>{
 
     input.addEventListener(
       'input',
       refreshMessage
     );
+
 
     input.addEventListener(
       'change',
@@ -4587,31 +4533,196 @@ el.sendBtn
 
 
 /* ==========================================================
-   初期化
+   LINE AUTO DETECT
+========================================================== */
+
+async function autoDetect(){
+
+  setStatus(
+    '判別中',
+    false
+  );
+
+
+  try{
+
+    if(
+      typeof liff ===
+      'undefined'
+    ){
+
+      throw new Error(
+        'LIFF SDKが読み込まれていません'
+      );
+
+    }
+
+
+    await liff.init({
+      liffId:
+        LIFF_ID
+    });
+
+
+    /*
+     * 手動選択済みなら
+     * 上書きしない
+     */
+
+    if(
+      state.userSelectedManually &&
+      state.driver
+    ){
+
+      return;
+
+    }
+
+
+    if(
+      !liff.isLoggedIn()
+    ){
+
+      state.idToken =
+        '';
+
+      setStatus(
+        '右から選択',
+        false
+      );
+
+      return;
+
+    }
+
+
+    state.idToken =
+      liff.getIDToken() ||
+      '';
+
+
+    if(
+      !state.idToken
+    ){
+
+      setStatus(
+        '右から選択',
+        false
+      );
+
+      return;
+
+    }
+
+
+    const info =
+      await callServer(
+        'getDriverInfo'
+      );
+
+
+    if(
+      state.userSelectedManually &&
+      state.driver
+    ){
+
+      return;
+
+    }
+
+
+    if(
+      info &&
+      info.found &&
+      info.driverKey
+    ){
+
+      const driver =
+        findDriver(
+          info.driverKey
+        );
+
+
+      if(
+        driver
+      ){
+
+        await selectDriver(
+          driver,
+          false
+        );
+
+
+        setStatus(
+          '完了',
+          true
+        );
+
+
+        return;
+
+      }
+
+    }
+
+
+    setStatus(
+      '右から選択',
+      false
+    );
+
+
+  }catch(error){
+
+    console.warn(
+      '自動判別失敗',
+      error
+    );
+
+
+    if(
+      state.userSelectedManually &&
+      state.driver
+    ){
+
+      setStatus(
+        '完了',
+        true
+      );
+
+    }else{
+
+      setStatus(
+        '右から選択',
+        false
+      );
+
+    }
+
+  }
+
+}
+
+
+/* ==========================================================
+   INIT
 ========================================================== */
 
 window.addEventListener(
   'load',
   async()=>{
 
-    buildNextTimeOptions();
-
-
     el.reportDate.value =
       today();
-
 
     el.startTime.value =
       nowTime();
 
-
     el.nextDate.value =
       tomorrow();
 
-
     el.nextTime.value =
       '08:00';
-
 
     el.memo.value =
       '';
@@ -4620,7 +4731,6 @@ window.addEventListener(
     state.driver =
       null;
 
-
     state.userSelectedManually =
       false;
 
@@ -4628,10 +4738,8 @@ window.addEventListener(
     el.inMode.disabled =
       true;
 
-
     el.outMode.disabled =
       true;
-
 
     el.uploadBtn.disabled =
       true;
@@ -4649,9 +4757,7 @@ window.addEventListener(
 
 
     /*
-     * 先に運転手一覧
-     *
-     * ここでは誰も自動選択しない
+     * 先に運転手一覧を取得
      */
 
     await loadDrivers();
@@ -4669,5 +4775,4 @@ window.addEventListener(
 </script>
 
 </body>
-
 </html>
