@@ -14,6 +14,8 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
 <style>
 
 /* ==========================================================
@@ -31,7 +33,6 @@
   --soft:#f6fbfe;
   --shadow:0 12px 34px rgba(40,92,128,.10);
 
-  /* 現在月 */
   --current:#ffe6e6;
   --current-input:#fff0f0;
   --current-border:#f3b6b6;
@@ -525,6 +526,71 @@ input[type="time"]{
 
 
 /* ==========================================================
+   OCR
+========================================================== */
+
+.ocr-status{
+  display:
+    none;
+
+  margin-top:
+    9px;
+
+  padding:
+    10px 12px;
+
+  border:
+    1px solid
+    #d8eaf5;
+
+  border-radius:
+    12px;
+
+  background:
+    #f7fcff;
+
+  color:
+    #487087;
+
+  font-size:
+    12px;
+
+  font-weight:
+    800;
+
+  text-align:
+    center;
+}
+
+.ocr-status.show{
+  display:
+    block;
+}
+
+.ocr-status.success{
+  background:
+    #eefbf3;
+
+  border-color:
+    #ccefd8;
+
+  color:
+    #197049;
+}
+
+.ocr-status.error{
+  background:
+    #fff5f5;
+
+  border-color:
+    #f0cccc;
+
+  color:
+    #a14a4a;
+}
+
+
+/* ==========================================================
    PREVIEW
 ========================================================== */
 
@@ -832,7 +898,7 @@ input[type="time"]{
 
 
 /* ==========================================================
-   MANAGEMENT PANEL
+   MANAGEMENT
 ========================================================== */
 
 .management-panel{
@@ -1098,7 +1164,6 @@ tr.current-month-row > th,
 .management-table
 tbody
 tr.current-month-row > td{
-
   background-color:
     var(--current)
     !important;
@@ -1108,7 +1173,6 @@ tr.current-month-row > td{
 .management-table
 tbody
 tr.current-month-row > td > select{
-
   background-color:
     var(--current-input)
     !important;
@@ -1122,7 +1186,6 @@ tr.current-month-row > td > select{
 .management-table
 tbody
 tr.current-month-row > th{
-
   color:
     #b33a3a
     !important;
@@ -1134,14 +1197,13 @@ tr.current-month-row > th{
 
 
 /* ==========================================================
-   ASSIGNMENT COLUMN WIDTH
+   ASSIGNMENT WIDTH
 ========================================================== */
 
 .assignment-panel
 .management-table th:first-child,
 .assignment-panel
 .management-table td:first-child{
-
   width:
     18%;
 }
@@ -1150,7 +1212,6 @@ tr.current-month-row > th{
 .management-table th:not(:first-child),
 .assignment-panel
 .management-table td:not(:first-child){
-
   width:
     20.5%;
 }
@@ -1158,6 +1219,7 @@ tr.current-month-row > th{
 
 /* ==========================================================
    DATE DISPLAY
+   ★ 11/15(日)
 ========================================================== */
 
 .comp-date-wrap{
@@ -1259,7 +1321,7 @@ tr.current-month-row > th{
 
 
 /* ==========================================================
-   OFFICER STACK
+   OFFICER
 ========================================================== */
 
 .officer-stack{
@@ -1793,15 +1855,11 @@ tr.current-month-row > th{
 
 <div class="select-box">
 
-<label
-  for="driverSelect"
->
+<label for="driverSelect">
 選択
 </label>
 
-<select
-  id="driverSelect"
->
+<select id="driverSelect">
 
 <option value="">
 選択して下さい
@@ -1867,6 +1925,12 @@ tr.current-month-row > th{
 <div
   id="notice"
   class="notice"
+></div>
+
+
+<div
+  id="ocrStatus"
+  class="ocr-status"
 ></div>
 
 
@@ -1994,6 +2058,7 @@ tr.current-month-row > th{
 <strong>0:00</strong>
 </div>
 
+
 </div>
 
 
@@ -2032,6 +2097,7 @@ tr.current-month-row > th{
 写真＋報告文章を送信
 </button>
 
+
 </div>
 
 </section>
@@ -2051,7 +2117,7 @@ tr.current-month-row > th{
 
 
 <!-- ======================================================
-     MANAGEMENT PANEL
+     MANAGEMENT
 ====================================================== -->
 
 <section
@@ -2235,6 +2301,11 @@ const el = {
   notice:
     document.getElementById(
       'notice'
+    ),
+
+  ocrStatus:
+    document.getElementById(
+      'ocrStatus'
     ),
 
   preview:
@@ -2439,7 +2510,7 @@ function tomorrow(){
 
 
 /* ==========================================================
-   DATE
+   DATE CONVERSION
 ========================================================== */
 
 function toDateInputValue(
@@ -2613,6 +2684,11 @@ function formatSheetDate(
 }
 
 
+/* ==========================================================
+   ★ 曜日付き表示
+   11/15(日)
+========================================================== */
+
 function formatDisplayDate(
   value
 ){
@@ -2633,6 +2709,11 @@ function formatDisplayDate(
   }
 
 
+  let year = 0;
+  let month = 0;
+  let day = 0;
+
+
   let match =
     text.match(
       /^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})$/
@@ -2643,43 +2724,110 @@ function formatDisplayDate(
     match
   ){
 
-    return(
+    year =
+      Number(
+        match[1]
+      );
+
+    month =
       Number(
         match[2]
-      ) +
-      '/' +
+      );
+
+    day =
       Number(
         match[3]
-      )
-    );
+      );
+
+  }else{
+
+    match =
+      text.match(
+        /^(\d{1,2})\/(\d{1,2})$/
+      );
+
+
+    if(
+      !match
+    ){
+
+      return text;
+
+    }
+
+
+    year =
+      new Date().getFullYear();
+
+    month =
+      Number(
+        match[1]
+      );
+
+    day =
+      Number(
+        match[2]
+      );
 
   }
 
 
-  match =
-    text.match(
-      /^(\d{1,2})\/(\d{1,2})$/
+  const date =
+    new Date(
+      year,
+      month - 1,
+      day
     );
 
 
   if(
-    match
+    Number.isNaN(
+      date.getTime()
+    )
   ){
 
-    return(
-      Number(
-        match[1]
-      ) +
-      '/' +
-      Number(
-        match[2]
-      )
-    );
+    return text;
 
   }
 
 
-  return text;
+  /*
+   * JavaScript Dateで
+   * 日付の繰り上がりが起きていないか確認
+   */
+
+  if(
+    date.getFullYear() !== year ||
+    date.getMonth() + 1 !== month ||
+    date.getDate() !== day
+  ){
+
+    return text;
+
+  }
+
+
+  const week = [
+    '日',
+    '月',
+    '火',
+    '水',
+    '木',
+    '金',
+    '土'
+  ];
+
+
+  return(
+    month +
+    '/' +
+    day +
+    '(' +
+    week[
+      date.getDay()
+    ] +
+    ')'
+  );
 
 }
 
@@ -2749,11 +2897,20 @@ function createDateInput(
         );
 
 
+      /*
+       * 表示は曜日付き
+       */
+
       display.textContent =
         formatDisplayDate(
           sheetValue
         );
 
+
+      /*
+       * 保存値は従来通り
+       * 8/29
+       */
 
       onChange(
         sheetValue
@@ -2908,6 +3065,38 @@ function showNotice(
   el.notice.classList.toggle(
     'show',
     !!text
+  );
+
+}
+
+
+function setOCRStatus(
+  text,
+  type=''
+){
+
+  el.ocrStatus.textContent =
+    text ||
+    '';
+
+
+  el.ocrStatus.classList.toggle(
+    'show',
+    !!text
+  );
+
+
+  el.ocrStatus.classList.toggle(
+    'success',
+    type ===
+      'success'
+  );
+
+
+  el.ocrStatus.classList.toggle(
+    'error',
+    type ===
+      'error'
   );
 
 }
@@ -3446,7 +3635,7 @@ function createNameSelect(
 
 
 /* ==========================================================
-   OFFICER HELPERS
+   OFFICER
 ========================================================== */
 
 function splitOfficerValues(
@@ -3972,9 +4161,6 @@ async function selectDriver(
 
 /* ==========================================================
    ASSIGNMENT
-   ★重要
-   「先月 + 現在月 + 未来11か月」
-   ＝ 13か月表示
 ========================================================== */
 
 function getCurrentYearMonth(){
@@ -3996,10 +4182,6 @@ function getCurrentYearMonth(){
 }
 
 
-/* ==========================================================
-   対象年月キー
-========================================================== */
-
 function makeYearMonthKey(
   year,
   month
@@ -4014,12 +4196,6 @@ function makeYearMonthKey(
 }
 
 
-/* ==========================================================
-   担当表を
-   「先月から13か月」
-   に整形
-========================================================== */
-
 function buildVisibleAssignmentRows(
   sourceRows
 ){
@@ -4027,11 +4203,6 @@ function buildVisibleAssignmentRows(
   const current =
     getCurrentYearMonth();
 
-
-  /*
-   * スプレッドシート全データを
-   * 年月でMap化
-   */
 
   const map =
     new Map();
@@ -4069,15 +4240,11 @@ function buildVisibleAssignmentRows(
       }
 
 
-      const key =
+      map.set(
         makeYearMonthKey(
           year,
           month
-        );
-
-
-      map.set(
-        key,
+        ),
         row
       );
 
@@ -4090,17 +4257,14 @@ function buildVisibleAssignmentRows(
 
 
   /*
-   * 先月を起点
-   *
-   * 先月 + 今月 + 未来11か月
-   *
+   * 先月＋現在月＋未来11か月
    * 合計13か月
    */
 
   const start =
     new Date(
       current.year,
-      current.month - 2,
+      current.month-2,
       1
     );
 
@@ -4180,10 +4344,6 @@ function buildVisibleAssignmentRows(
 }
 
 
-/* ==========================================================
-   担当表表示
-========================================================== */
-
 function renderAssignmentTable(
   data
 ){
@@ -4221,32 +4381,15 @@ function renderAssignmentTable(
         ];
 
 
-  /*
-   * ★表示対象を
-   * 先月から13か月に限定
-   */
-
   const displayRows =
     buildVisibleAssignmentRows(
       data.rows
     );
 
 
-  /*
-   * 保存用の状態も
-   * この13か月だけにする
-   *
-   * ただし過去月をスプレッドシートから
-   * 削除するわけではない
-   */
-
   data.rows =
     displayRows;
 
-
-  /* --------------------------------------------------------
-     Toolbar
-  -------------------------------------------------------- */
 
   const toolbar =
     document.createElement(
@@ -4283,7 +4426,7 @@ function renderAssignmentTable(
 
 
   note.textContent =
-    '過去月はスプレッドシートに保存';
+    '過去月は保存';
 
 
   toolbar.appendChild(
@@ -4300,10 +4443,6 @@ function renderAssignmentTable(
     toolbar
   );
 
-
-  /* --------------------------------------------------------
-     Table
-  -------------------------------------------------------- */
 
   const table =
     document.createElement(
@@ -4398,10 +4537,6 @@ function renderAssignmentTable(
         );
 
 
-      /*
-       * 現在月だけ薄赤
-       */
-
       const isCurrent =
         Number(
           row.year
@@ -4428,10 +4563,6 @@ function renderAssignmentTable(
       }
 
 
-      /*
-       * 月
-       */
-
       const monthCell =
         document.createElement(
           'th'
@@ -4447,10 +4578,6 @@ function renderAssignmentTable(
         monthCell
       );
 
-
-      /*
-       * 担当4人
-       */
 
       officers.forEach(
         officer=>{
@@ -4534,13 +4661,6 @@ function renderAssignmentTable(
   );
 
 
-  /*
-   * 月追加ボタン
-   *
-   * 13か月表示のさらに先を
-   * 手動で追加する場合
-   */
-
   const addWrap =
     document.createElement(
       'div'
@@ -4603,11 +4723,6 @@ function renderAssignmentTable(
     [];
 
 
-  /*
-   * 未来24か月の中から
-   * まだ存在しない月を候補にする
-   */
-
   const base =
     new Date(
       current.year,
@@ -4669,6 +4784,33 @@ function renderAssignmentTable(
   }
 
 
+  candidates.forEach(
+    item=>{
+
+      const option =
+        document.createElement(
+          'option'
+        );
+
+
+      option.value =
+        item.yearMonth;
+
+
+      option.textContent =
+        item.year +
+        '/' +
+        item.month;
+
+
+      addSelect.appendChild(
+        option
+      );
+
+    }
+  );
+
+
   if(
     candidates.length ===
     0
@@ -4690,34 +4832,6 @@ function renderAssignmentTable(
 
     addSelect.appendChild(
       option
-    );
-
-  }else{
-
-    candidates.forEach(
-      item=>{
-
-        const option =
-          document.createElement(
-            'option'
-          );
-
-
-        option.value =
-          item.yearMonth;
-
-
-        option.textContent =
-          item.year +
-          '/' +
-          item.month;
-
-
-        addSelect.appendChild(
-          option
-        );
-
-      }
     );
 
   }
@@ -4801,10 +4915,6 @@ function renderAssignmentTable(
 
       });
 
-
-      /*
-       * 追加後に再描画
-       */
 
       renderAssignmentTable(
         data
@@ -4993,9 +5103,9 @@ function renderCompTable(
           );
 
 
-        /* --------------------------------------------------
-           出勤日
-        -------------------------------------------------- */
+        /*
+         * 出勤日
+         */
 
         {
 
@@ -5033,9 +5143,9 @@ function renderCompTable(
         }
 
 
-        /* --------------------------------------------------
-           代休日
-        -------------------------------------------------- */
+        /*
+         * 代休日
+         */
 
         {
 
@@ -5073,9 +5183,9 @@ function renderCompTable(
         }
 
 
-        /* --------------------------------------------------
-           運転手 / 担当者
-        -------------------------------------------------- */
+        /*
+         * 運転手
+         */
 
         {
 
@@ -5114,9 +5224,9 @@ function renderCompTable(
         }
 
 
-        /* --------------------------------------------------
-           役員
-        -------------------------------------------------- */
+        /*
+         * 役員
+         */
 
         {
 
@@ -5180,9 +5290,9 @@ function renderCompTable(
   }
 
 
-  /* ======================================================
-     取得予定
-  ====================================================== */
+  /*
+   * 取得予定
+   */
 
   wrap.appendChild(
     makeSection(
@@ -5194,9 +5304,9 @@ function renderCompTable(
   );
 
 
-  /* ======================================================
-     予定追加
-  ====================================================== */
+  /*
+   * 予定追加
+   */
 
   const addBtn =
     document.createElement(
@@ -5257,9 +5367,9 @@ function renderCompTable(
   );
 
 
-  /* ======================================================
-     取得済み
-  ====================================================== */
+  /*
+   * 取得済み
+   */
 
   wrap.appendChild(
     makeSection(
@@ -5439,7 +5549,7 @@ async function openManagement(
 
 
 /* ==========================================================
-   MANAGEMENT BUTTONS
+   MANAGEMENT EVENTS
 ========================================================== */
 
 el.assignmentBtn
@@ -5638,6 +5748,11 @@ function setMode(
   );
 
 
+  setOCRStatus(
+    ''
+  );
+
+
   if(
     mode ===
     'in'
@@ -5664,13 +5779,17 @@ function setMode(
       );
 
 
+    /*
+     * 日付は初期値を今日
+     * 時刻はOCRで取得するため空欄
+     */
+
     el.reportDate.value =
       today();
 
 
     el.startTime.value =
-      nowTime();
-
+      '';
 
   }else{
 
@@ -5738,7 +5857,7 @@ function buildReportBaseMessage(){
       ' ' +
       (
         el.startTime.value ||
-        nowTime()
+        '--:--'
       ) +
       '出勤いたしました。\n' +
       '本日もよろしくお願いいたします。\n' +
@@ -5807,7 +5926,7 @@ function refreshMessage(){
 
 
 /* ==========================================================
-   DRIVER MANUAL SELECT
+   DRIVER SELECT
 ========================================================== */
 
 el.driverSelect
@@ -5894,6 +6013,7 @@ el.outMode
 
 /* ==========================================================
    PHOTO
+   ★ 出勤時は写真OCR
 ========================================================== */
 
 el.uploadBtn
@@ -5924,7 +6044,7 @@ el.uploadBtn
 el.photoInput
   .addEventListener(
     'change',
-    ()=>{
+    async()=>{
 
       const file =
         el.photoInput.files &&
@@ -5942,11 +6062,10 @@ el.photoInput
       }
 
 
-      state.draft =
-        {
-          file:
-            file
-        };
+      state.draft = {
+        file:
+          file
+      };
 
 
       el.preview
@@ -5967,8 +6086,58 @@ el.photoInput
 
 
       showNotice(
-        '時間を確認して送信してください。'
+        '写真を確認してください。'
       );
+
+
+      /*
+       * 出勤
+       */
+
+      if(
+        state.mode ===
+        'in'
+      ){
+
+        /*
+         * 端末の現在時刻は使わない
+         */
+
+        el.startTime.value =
+          '';
+
+
+        refreshMessage();
+
+
+        /*
+         * 写真OCR
+         */
+
+        await readDateTimeFromPhoto(
+          file
+        );
+
+      }else{
+
+        /*
+         * 退勤
+         * 従来通り現在時刻を初期値
+         */
+
+        if(
+          !el.endTime.value
+        ){
+
+          el.endTime.value =
+            nowTime();
+
+        }
+
+
+        refreshMessage();
+
+      }
 
     }
   );
@@ -5993,6 +6162,34 @@ el.sendBtn
 
 
         return;
+
+      }
+
+
+      /*
+       * 出勤なのにOCR時刻なし
+       */
+
+      if(
+        state.mode ===
+        'in' &&
+        !el.startTime.value
+      ){
+
+        const ok =
+          confirm(
+            '写真から出勤時刻を読み取れていません。\n' +
+            '手動で時刻を入力してから送信しますか？'
+          );
+
+
+        if(
+          !ok
+        ){
+
+          return;
+
+        }
 
       }
 
@@ -6102,7 +6299,7 @@ el.sendBtn
 
 
 /* ==========================================================
-   INPUT EVENTS
+   INPUT
 ========================================================== */
 
 [
@@ -6396,8 +6593,13 @@ window.addEventListener(
       today();
 
 
+    /*
+     * 出勤時刻は空欄
+     * 写真OCRで取得
+     */
+
     el.startTime.value =
-      nowTime();
+      '';
 
 
     el.nextDate.value =
@@ -6440,6 +6642,11 @@ window.addEventListener(
     setStatus(
       '判別中',
       false
+    );
+
+
+    setOCRStatus(
+      ''
     );
 
 
